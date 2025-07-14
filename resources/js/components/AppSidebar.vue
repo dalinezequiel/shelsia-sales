@@ -10,8 +10,23 @@ import AppLogo from './AppLogo.vue';
 
 const mainNavItems: NavItem[] = [
     {
-        title: 'Dashboard',
+        title: 'Visão geral',
         href: '/dashboard',
+        icon: LayoutGrid,
+    },
+    {
+        title: 'Cadastros',
+        href: '/financial',
+        icon: LayoutGrid,
+    },
+    {
+        title: 'Financeiro',
+        href: '/financial',
+        icon: LayoutGrid,
+    },
+    {
+        title: 'Vendas',
+        href: '/financial',
         icon: LayoutGrid,
     },
 ];
