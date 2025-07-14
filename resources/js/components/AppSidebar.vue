@@ -15,7 +15,7 @@ const mainNavItems: NavItem[] = [
         icon: LayoutGrid,
     },
     {
-        title: 'Cadastros',
+        title: 'Cadastro',
         href: '/financial',
         icon: LayoutGrid,
     },
