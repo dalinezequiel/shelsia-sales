@@ -2,7 +2,6 @@
 import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/vue3';
-import PlaceholderPattern from '../../components/PlaceholderPattern.vue';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -16,6 +15,5 @@ const breadcrumbs: BreadcrumbItem[] = [
     <Head title="Registration" />
 
     <AppLayout :breadcrumbs="breadcrumbs">
-        <h1>Reg. Index</h1>
     </AppLayout>
 </template>
