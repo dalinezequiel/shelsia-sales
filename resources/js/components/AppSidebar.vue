@@ -25,7 +25,7 @@ const mainNavItems: NavItem[] = [
     },
     {
         title: 'Sales',
-        href: '/financial',
+        href: '/sales',
         icon: LayoutGrid,
     },
 ];
