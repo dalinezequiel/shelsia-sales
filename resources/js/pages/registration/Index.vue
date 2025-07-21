@@ -7,7 +7,7 @@ import MemberTable from '@/components/additional/MemberTable.vue';
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Registration',
-        href: '/initials',
+        href: '/registrations',
     },
 ];
 </script>
