@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use App\Http\Controllers\Registrations\RegistrationController;
+use App\Http\Controllers\Registration\RegistrationController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome');
