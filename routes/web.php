@@ -13,7 +13,7 @@ Route::get('dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::resource('initials', RegistrationController::class);
+Route::resource('registrations', RegistrationController::class);
 Route::resource('financial', FinancialController::class);
 
 require __DIR__.'/settings.php';

@@ -15,7 +15,7 @@ const mainNavItems: NavItem[] = [
     },
     {
         title: 'Registration',
-        href: '/initials',
+        href: '/registrations',
         icon: LayoutGrid,
     },
     {
