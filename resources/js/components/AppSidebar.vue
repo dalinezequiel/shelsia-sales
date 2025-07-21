@@ -33,8 +33,8 @@ const mainNavItems: NavItem[] = [
 
 const footerNavItems: NavItem[] = [
     {
-        title: 'System',
-        href: 'https://laravel.com/docs/starter-kits#vue',
+        title: 'Parameters',
+        href: '/parameters',
         icon: SlidersHorizontal,
     },
 ];
