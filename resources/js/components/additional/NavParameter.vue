@@ -7,17 +7,25 @@ import { Link, usePage } from '@inertiajs/vue3';
 
 const sidebarNavItems: NavItem[] = [
     {
-        title: 'Profile',
-        href: '/settings/profile',
+        title: 'Company',
+        href: '/financial/profile',
     },
     {
-        title: 'Password',
+        title: 'Customers',
         href: '/settings/password',
     },
     {
-        title: 'Appearance',
+        title: 'Suppliers',
         href: '/settings/appearance',
     },
+    {
+        title: 'Accounts',
+        href: '/settings/appearance',
+    },
+    {
+        title: 'Categories',
+        href: '/settings/appearance',
+    }
 ];
 
 const page = usePage();
@@ -27,7 +35,7 @@ const currentPath = page.props.ziggy?.location ? new URL(page.props.ziggy.locati
 
 <template>
     <div class="px-4 py-6">
-        <Heading title="Settings" description="Manage your profile and account settings" />
+        <Heading title="Parameters" description="Manage your profile and account settings" />
 
         <div class="flex flex-col space-y-8 md:space-y-0 lg:flex-row lg:space-y-0 lg:space-x-12">
             <aside class="w-full max-w-xl lg:w-48">
