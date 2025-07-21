@@ -5,7 +5,7 @@ import NavUser from '@/components/NavUser.vue';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/vue3';
-import { BookOpen, Folder, LayoutGrid, WalletMinimal, ShoppingBag, FileInput, SlidersHorizontal } from 'lucide-vue-next';
+import { BookOpen, Folder, LayoutGrid, WalletMinimal, ShoppingBag, Barcode, FileInput, SlidersHorizontal } from 'lucide-vue-next';
 import AppLogo from './AppLogo.vue';
 
 const mainNavItems: NavItem[] = [
@@ -15,9 +15,9 @@ const mainNavItems: NavItem[] = [
         icon: LayoutGrid,
     },
     {
-        title: 'Registration',
+        title: 'Products',
         href: '/registrations',
-        icon: FileInput,
+        icon: Barcode,
     },
     {
         title: 'Financial',
