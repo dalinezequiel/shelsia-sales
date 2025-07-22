@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use App\Http\Controllers\Registration\RegistrationController;
+use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\Financial\FinancialController;
 use App\Http\Controllers\Sales\SalesController;
 use App\Http\Controllers\Parameter\Customer\CustomerController;
@@ -17,7 +17,7 @@ Route::get('dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::resource('registrations', RegistrationController::class);
+Route::resource('products', ProductController::class);
 Route::resource('financial', FinancialController::class);
 Route::resource('sales', SalesController::class);
 Route::resource('parameters/customers', CustomerController::class);

@@ -16,7 +16,7 @@ const mainNavItems: NavItem[] = [
     },
     {
         title: 'Products',
-        href: '/registrations',
+        href: '/products',
         icon: Barcode,
     },
     {
