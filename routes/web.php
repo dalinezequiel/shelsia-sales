@@ -6,6 +6,7 @@ use App\Http\Controllers\Registration\RegistrationController;
 use App\Http\Controllers\Financial\FinancialController;
 use App\Http\Controllers\Sales\SalesController;
 use App\Http\Controllers\Parameter\ParameterController;
+use App\Http\Controllers\Parameter\Customer\CustomerController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome');
@@ -19,6 +20,7 @@ Route::resource('registrations', RegistrationController::class);
 Route::resource('financial', FinancialController::class);
 Route::resource('sales', SalesController::class);
 Route::resource('parameters', ParameterController::class);
+Route::resource('customers', CustomerController::class);
 
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';
