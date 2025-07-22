@@ -21,7 +21,7 @@ Route::resource('registrations', RegistrationController::class);
 Route::resource('financial', FinancialController::class);
 Route::resource('sales', SalesController::class);
 Route::resource('parameters', ParameterController::class);
-Route::resource('customers', CustomerController::class);
+Route::resource('parameters/customers', CustomerController::class);
 Route::resource('parameters/suppliers', SupplierController::class);
 
 require __DIR__.'/settings.php';
