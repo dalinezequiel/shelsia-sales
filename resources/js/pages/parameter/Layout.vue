@@ -12,15 +12,15 @@ const sidebarNavItems: NavItem[] = [
     },
     {
         title: 'Customers',
-        href: '/settings/password',
+        href: '/parameters/customers',
     },
     {
         title: 'Suppliers',
-        href: '/settings/appearance',
+        href: '/parameters/suppliers',
     },
     {
         title: 'Accounts',
-        href: '/settings/appearance',
+        href: '/parameters/accounts',
     },
     {
         title: 'Categories',
