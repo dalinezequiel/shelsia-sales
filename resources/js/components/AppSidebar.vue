@@ -34,7 +34,7 @@ const mainNavItems: NavItem[] = [
 const footerNavItems: NavItem[] = [
     {
         title: 'Parameters',
-        href: '/parameters',
+        href: '/parameters/customers',
         icon: SlidersHorizontal,
     },
 ];

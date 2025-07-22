@@ -5,7 +5,6 @@ use Inertia\Inertia;
 use App\Http\Controllers\Registration\RegistrationController;
 use App\Http\Controllers\Financial\FinancialController;
 use App\Http\Controllers\Sales\SalesController;
-use App\Http\Controllers\Parameter\ParameterController;
 use App\Http\Controllers\Parameter\Customer\CustomerController;
 use App\Http\Controllers\Parameter\Supplier\SupplierController;
 
@@ -20,7 +19,6 @@ Route::get('dashboard', function () {
 Route::resource('registrations', RegistrationController::class);
 Route::resource('financial', FinancialController::class);
 Route::resource('sales', SalesController::class);
-Route::resource('parameters', ParameterController::class);
 Route::resource('parameters/customers', CustomerController::class);
 Route::resource('parameters/suppliers', SupplierController::class);
 
