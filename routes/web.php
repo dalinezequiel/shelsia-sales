@@ -20,9 +20,11 @@ Route::get('dashboard', function () {
 Route::resource('products', ProductController::class);
 Route::resource('financial', FinancialController::class);
 Route::resource('sales', SalesController::class);
-Route::resource('parameters/customers', CustomerController::class);
-Route::resource('parameters/suppliers', SupplierController::class);
-Route::resource('parameters/accounts', AccountController::class);
+Route::prefix('parameters')->group(function(){
+    Route::resource('customers', CustomerController::class);
+    Route::resource('suppliers', SupplierController::class);
+    Route::resource('accounts', AccountController::class);
+});
 
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';
