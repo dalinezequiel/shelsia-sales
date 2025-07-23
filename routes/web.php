@@ -21,9 +21,9 @@ Route::resource('products', ProductController::class);
 Route::resource('financial', FinancialController::class);
 Route::resource('sales', SalesController::class);
 Route::prefix('parameters')->group(function(){
-    Route::resource('customers', CustomerController::class);
-    Route::resource('suppliers', SupplierController::class);
-    Route::resource('accounts', AccountController::class);
+    Route::resource('/customers', CustomerController::class);
+    Route::resource('/suppliers', SupplierController::class);
+    Route::resource('/accounts', AccountController::class);
 });
 
 require __DIR__.'/settings.php';
