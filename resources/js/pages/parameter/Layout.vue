@@ -25,6 +25,10 @@ const sidebarNavItems: NavItem[] = [
     {
         title: 'Categories',
         href: '/settings/appearance',
+    },
+    {
+        title: 'Payments',
+        href: '/settings/appearance',
     }
 ];
 
