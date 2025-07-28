@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import ParameterTable from '@/components/additional/ParameterTable.vue';
 import AppLayout from '@/layouts/AppLayout.vue';
 import ParameterLayout from '@/pages/parameter/Layout.vue';
 import { type BreadcrumbItem } from '@/types';
@@ -13,11 +14,12 @@ const breadcrumbs: BreadcrumbItem[] = [
 </script>
 
 <template>
+
     <Head title="Suppliers" />
 
     <AppLayout :breadcrumbs="breadcrumbs">
         <ParameterLayout>
-            <h1>I'm supplier index</h1>
+            <ParameterTable title="Suppliers list" subtitle="See information about all suppliers" />
         </ParameterLayout>
     </AppLayout>
 </template>
