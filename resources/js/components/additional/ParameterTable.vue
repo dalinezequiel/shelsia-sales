@@ -1,3 +1,15 @@
+<script setup lang="ts">
+defineProps({
+    title: {
+        type: String,
+        required: true
+    },
+    subtitle: {
+        type: String,
+        required: true
+    }
+});
+</script>
 <template>
     <div class="relative flex flex-col w-full h-full text-gray-700 bg-white bg-clip-border">
         <div class="relative mx-4 mt-2 overflow-hidden text-gray-700 bg-white rounded-none bg-clip-border">
@@ -5,10 +17,10 @@
                 <div>
                     <h5
                         class="block font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
-                        Members list
+                        {{ title }}
                     </h5>
                     <p class="block mt-1 font-sans text-base antialiased font-normal leading-relaxed text-gray-700">
-                        See information about all members
+                        {{ subtitle }}
                     </p>
                 </div>
                 <div class="flex flex-col gap-2 shrink-0 sm:flex-row">

@@ -8,7 +8,6 @@ import { Label } from '@/components/ui/label';
 import ParameterLayout from '@/pages/parameter/Layout.vue';
 import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/vue3';
-import MemberTable from '@/components/additional/MemberTable.vue';
 import ParameterTable from '@/components/additional/ParameterTable.vue';
 
 const breadcrumbs: BreadcrumbItem[] = [
@@ -20,11 +19,12 @@ const breadcrumbs: BreadcrumbItem[] = [
 </script>
 
 <template>
+
     <Head title="Customer Parameters" />
 
     <AppLayout :breadcrumbs="breadcrumbs">
         <ParameterLayout>
-            <ParameterTable></ParameterTable>
+            <ParameterTable title="Members list" subtitle="See information about all members" />
         </ParameterLayout>
     </AppLayout>
 </template>
