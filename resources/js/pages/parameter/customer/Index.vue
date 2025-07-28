@@ -24,7 +24,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 
     <AppLayout :breadcrumbs="breadcrumbs">
         <ParameterLayout>
-            <ParameterTable title="Members list" subtitle="See information about all members" />
+            <ParameterTable title="Customers list" subtitle="See information about all customers" />
         </ParameterLayout>
     </AppLayout>
 </template>
