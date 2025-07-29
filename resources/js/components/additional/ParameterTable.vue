@@ -166,7 +166,7 @@ defineProps({
                                 class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                 type="button">
                                 <Link href="">
-                                <File width="18" height="18" color="#F4BD0B" class="mx-1 hover:stroke-[#FAE18F]" />
+                                <File width="18" height="18" color="#393B3C" class="mx-1 hover:stroke-[#949799]" />
                                 </Link>
                             </button>
                             <button
@@ -227,7 +227,7 @@ defineProps({
                                 class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                 type="button">
                                 <Link href="">
-                                <File width="18" height="18" color="#F4BD0B" class="mx-1 hover:stroke-[#FAE18F]" />
+                                <File width="18" height="18" color="#393B3C" class="mx-1 hover:stroke-[#949799]" />
                                 </Link>
                             </button>
                             <button
@@ -287,7 +287,7 @@ defineProps({
                                 class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                 type="button">
                                 <Link href="">
-                                <File width="18" height="18" color="#F4BD0B" class="mx-1 hover:stroke-[#FAE18F]" />
+                                <File width="18" height="18" color="#393B3C" class="mx-1 hover:stroke-[#949799]" />
                                 </Link>
                             </button>
                             <button
@@ -347,7 +347,7 @@ defineProps({
                                 class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                 type="button">
                                 <Link href="">
-                                <File width="18" height="18" color="#F4BD0B" class="mx-1 hover:stroke-[#FAE18F]" />
+                                <File width="18" height="18" color="#393B3C" class="mx-1 hover:stroke-[#949799]" />
                                 </Link>
                             </button>
                             <button
@@ -407,7 +407,7 @@ defineProps({
                                 class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                 type="button">
                                 <Link href="">
-                                <File width="18" height="18" color="#F4BD0B" class="mx-1 hover:stroke-[#FAE18F]" />
+                                <File width="18" height="18" color="#393B3C" class="mx-1 hover:stroke-[#949799]" />
                                 </Link>
                             </button>
                             <button
