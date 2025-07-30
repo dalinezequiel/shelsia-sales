@@ -10,6 +10,10 @@ defineProps({
         type: String,
         required: true,
     },
+    href: {
+        type: String,
+        required: true,
+    },
 });
 </script>
 <template>
@@ -34,7 +38,7 @@ defineProps({
                     <button
                         class="flex items-center gap-3 rounded-lg bg-gray-900 px-4 py-2 text-center align-middle font-sans text-xs font-bold text-white uppercase shadow-md shadow-gray-900/10 transition-all select-none hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                         type="button">
-                        <Link href="" class="flex gap-3">
+                        <Link :href="href" class="flex gap-3">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                             aria-hidden="true" stroke-width="2" class="h-4 w-4">
                             <path
