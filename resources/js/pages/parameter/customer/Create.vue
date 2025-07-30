@@ -7,7 +7,7 @@ import { DropdownMenu } from '@/components/ui/dropdown-menu';
 import AppLayout from '@/layouts/AppLayout.vue';
 import ParameterLayout from '@/pages/parameter/Layout.vue';
 import { type BreadcrumbItem } from '@/types';
-import { Head } from '@inertiajs/vue3';
+import { Head, Link } from '@inertiajs/vue3';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -79,8 +79,8 @@ const breadcrumbs: BreadcrumbItem[] = [
                         </div>
 
                         <div class="flex items-center gap-4">
-                            <Button color="red">Back</Button>
-                            <Button>Save</Button>
+                            <Link href="" class="px-2 py-1.5 bg-[#DCDBDA] hover:bg-[#D1D1D1] rounded">Back</Link>
+                            <Button class="cursor-pointer">Save</Button>
 
                             <Transition enter-active-class="transition ease-in-out" enter-from-class="opacity-0"
                                 leave-active-class="transition ease-in-out" leave-to-class="opacity-0">
