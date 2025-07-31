@@ -125,9 +125,6 @@ defineProps({
                     <tr>
                         <td class="border-blue-gray-50 border-b p-4">
                             <div class="flex items-center gap-3">
-                                <img src="https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg"
-                                    alt="John Michael"
-                                    class="relative inline-block h-9 w-9 !rounded-full object-cover object-center" />
                                 <div class="flex flex-col">
                                     <p
                                         class="text-blue-gray-900 block font-sans text-sm leading-normal font-normal antialiased">
@@ -186,9 +183,6 @@ defineProps({
                     <tr>
                         <td class="border-blue-gray-50 border-b p-4">
                             <div class="flex items-center gap-3">
-                                <img src="https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg"
-                                    alt="John Michael"
-                                    class="relative inline-block h-9 w-9 !rounded-full object-cover object-center" />
                                 <div class="flex flex-col">
                                     <p
                                         class="text-blue-gray-900 block font-sans text-sm leading-normal font-normal antialiased">
@@ -247,9 +241,6 @@ defineProps({
                     <tr>
                         <td class="border-blue-gray-50 border-b p-4">
                             <div class="flex items-center gap-3">
-                                <img src="https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-1.jpg"
-                                    alt="Laurent Perrier"
-                                    class="relative inline-block h-9 w-9 !rounded-full object-cover object-center" />
                                 <div class="flex flex-col">
                                     <p
                                         class="text-blue-gray-900 block font-sans text-sm leading-normal font-normal antialiased">
@@ -307,9 +298,6 @@ defineProps({
                     <tr>
                         <td class="border-blue-gray-50 border-b p-4">
                             <div class="flex items-center gap-3">
-                                <img src="https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-4.jpg"
-                                    alt="Michael Levi"
-                                    class="relative inline-block h-9 w-9 !rounded-full object-cover object-center" />
                                 <div class="flex flex-col">
                                     <p
                                         class="text-blue-gray-900 block font-sans text-sm leading-normal font-normal antialiased">
@@ -367,9 +355,6 @@ defineProps({
                     <tr>
                         <td class="p-4">
                             <div class="flex items-center gap-3">
-                                <img src="https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-5.jpg"
-                                    alt="Richard Gran"
-                                    class="relative inline-block h-9 w-9 !rounded-full object-cover object-center" />
                                 <div class="flex flex-col">
                                     <p
                                         class="text-blue-gray-900 block font-sans text-sm leading-normal font-normal antialiased">
