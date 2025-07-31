@@ -18,7 +18,7 @@ defineProps({
 </script>
 <template>
     <div class="relative flex h-full w-full flex-col bg-white bg-clip-border text-gray-700">
-        <div class="relative mx-4 mt-2 overflow-hidden rounded-none bg-white bg-clip-border text-gray-700">
+        <div class="relative mx-4 mt-1 overflow-hidden rounded-none bg-white bg-clip-border text-gray-700">
             <div class="mb-8 flex items-center justify-between gap-8">
                 <div>
                     <h5
@@ -116,7 +116,7 @@ defineProps({
                         </th>
                         <th class="border-blue-gray-100 bg-blue-gray-50/50 border-y p-4">
                             <p
-                                class="text-blue-gray-900 block font-sans text-sm leading-none font-normal antialiased opacity-70">
+                                class="text-blue-gray-900 block font-sans text-center text-sm leading-none font-normal antialiased opacity-70">
                                 Action</p>
                         </th>
                     </tr>
@@ -158,7 +158,7 @@ defineProps({
                                 </div>
                             </div>
                         </td>
-                        <td class="border-blue-gray-50 border-b p-4">
+                        <td class="border-blue-gray-50 border-b p-4 text-center">
                             <button
                                 class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                 type="button">
@@ -167,10 +167,10 @@ defineProps({
                                 </Link>
                             </button>
                             <button
-                                class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                                class="relative rounded-lg text-center mx-2 align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                 type="button">
                                 <Link href="">
-                                <File width="18" height="18" color="#393B3C" class="mx-1 hover:stroke-[#949799]" />
+                                <File width="18" height="18" color="#393B3C" class="hover:stroke-[#949799]" />
                                 </Link>
                             </button>
                             <button
@@ -219,7 +219,7 @@ defineProps({
                                 </div>
                             </div>
                         </td>
-                        <td class="border-blue-gray-50 border-b p-4">
+                        <td class="border-blue-gray-50 border-b p-4 text-center">
                             <button
                                 class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                 type="button">
@@ -228,10 +228,10 @@ defineProps({
                                 </Link>
                             </button>
                             <button
-                                class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                                class="relative rounded-lg text-center mx-2 align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                 type="button">
                                 <Link href="">
-                                <File width="18" height="18" color="#393B3C" class="mx-1 hover:stroke-[#949799]" />
+                                <File width="18" height="18" color="#393B3C" class="hover:stroke-[#949799]" />
                                 </Link>
                             </button>
                             <button
@@ -279,7 +279,7 @@ defineProps({
                                 </div>
                             </div>
                         </td>
-                        <td class="border-blue-gray-50 border-b p-4">
+                        <td class="border-blue-gray-50 border-b p-4 text-center">
                             <button
                                 class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                 type="button">
@@ -288,10 +288,10 @@ defineProps({
                                 </Link>
                             </button>
                             <button
-                                class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                                class="relative rounded-lg text-center mx-2 align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                 type="button">
                                 <Link href="">
-                                <File width="18" height="18" color="#393B3C" class="mx-1 hover:stroke-[#949799]" />
+                                <File width="18" height="18" color="#393B3C" class="hover:stroke-[#949799]" />
                                 </Link>
                             </button>
                             <button
@@ -339,7 +339,7 @@ defineProps({
                                 </div>
                             </div>
                         </td>
-                        <td class="border-blue-gray-50 border-b p-4">
+                        <td class="border-blue-gray-50 border-b p-4 text-center">
                             <button
                                 class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                 type="button">
@@ -348,10 +348,10 @@ defineProps({
                                 </Link>
                             </button>
                             <button
-                                class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                                class="relative rounded-lg text-center mx-2 align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                 type="button">
                                 <Link href="">
-                                <File width="18" height="18" color="#393B3C" class="mx-1 hover:stroke-[#949799]" />
+                                <File width="18" height="18" color="#393B3C" class="hover:stroke-[#949799]" />
                                 </Link>
                             </button>
                             <button
@@ -399,7 +399,7 @@ defineProps({
                                 </div>
                             </div>
                         </td>
-                        <td class="p-4">
+                        <td class="p-4 text-center">
                             <button
                                 class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                 type="button">
@@ -408,10 +408,10 @@ defineProps({
                                 </Link>
                             </button>
                             <button
-                                class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                                class="relative rounded-lg text-center mx-2 align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                 type="button">
                                 <Link href="">
-                                <File width="18" height="18" color="#393B3C" class="mx-1 hover:stroke-[#949799]" />
+                                <File width="18" height="18" color="#393B3C" class="hover:stroke-[#949799]" />
                                 </Link>
                             </button>
                             <button
