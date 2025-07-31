@@ -8,7 +8,18 @@ import { Switch } from '@/components/ui/switch';
 import AppLayout from '@/layouts/AppLayout.vue';
 import ParameterLayout from '@/pages/parameter/Layout.vue';
 import { type BreadcrumbItem } from '@/types';
-import { Head, Link } from '@inertiajs/vue3';
+import { Head, Link, useForm } from '@inertiajs/vue3';
+
+
+const form = useForm({
+    name: '',
+    surname: '',
+    gender: '',
+    phone: '',
+    email: '',
+    address: '',
+    status: ''
+})
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -39,21 +50,21 @@ const breadcrumbs: BreadcrumbItem[] = [
                     <form class="space-y-6">
                         <div class="grid gap-2">
                             <Label for="name">Name</Label>
-                            <Input id="name" class="mt-1 block w-full" required autocomplete="name"
+                            <Input id="name" v-model="form.name" class="mt-1 block w-full" required autocomplete="name"
                                 placeholder="Full name" />
-                            <InputError class="mt-2" />
+                            <InputError :message="form.errors.name" class="mt-2" />
                         </div>
 
                         <div class="grid gap-2">
                             <Label for="surname">Surname</Label>
-                            <Input id="surname" class="mt-1 block w-full" required autocomplete="username"
-                                placeholder="Surname" />
-                            <InputError class="mt-2" />
+                            <Input id="surname" v-model="form.surname" class="mt-1 block w-full" required
+                                autocomplete="surname" placeholder="Surname" />
+                            <InputError :message="form.errors.surname" class="mt-2" />
                         </div>
 
                         <div class="grid gap-2">
                             <Label for="gender">Gender</Label>
-                            <Select id="gender">
+                            <Select id="gender" v-model="form.gender">
                                 <SelectTrigger class="w-auto mt-1">
                                     <SelectValue placeholder="Select gender" />
                                 </SelectTrigger>
@@ -62,30 +73,30 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <SelectItem value="female"> Female </SelectItem>
                                 </SelectContent>
                             </Select>
-                            <InputError class="mt-2" />
+                            <InputError :message="form.errors.gender" class="mt-2" />
                         </div>
 
                         <div class="grid lg:grid-cols-2 lg:gap-4 ">
                             <div class="grid gap-2 mb-6 lg:mb-0">
                                 <Label for="phone">Phone</Label>
-                                <Input id="phone" type="number" class="mt-1 block w-full" required autocomplete="phone"
-                                    placeholder="Phone" />
-                                <InputError class="mt-2" />
+                                <Input id="phone" v-model="form.phone" type="number" class="mt-1 block w-full" required
+                                    autocomplete="phone" placeholder="Phone" />
+                                <InputError :message="form.errors.phone" class="mt-2" />
                             </div>
 
                             <div class="grid gap-2">
                                 <Label for="email">Email</Label>
-                                <Input id="email" type="email" class="mt-1 block w-full" required
-                                    autocomplete="username" placeholder="Email address" />
-                                <InputError class="mt-2" />
+                                <Input id="email" v-model="form.email" type="email" class="mt-1 block w-full" required
+                                    autocomplete="email" placeholder="Email address" />
+                                <InputError :message="form.errors.email" class="mt-2" />
                             </div>
                         </div>
 
                         <div class="grid gap-2">
                             <Label for="address">Address</Label>
-                            <Input id="address" class="mt-1 block w-full" required autocomplete="username"
-                                placeholder="Address" />
-                            <InputError class="mt-2" />
+                            <Input id="address" v-model="form.address" class="mt-1 block w-full" required
+                                autocomplete="username" placeholder="Address" />
+                            <InputError :message="form.errors.address" class="mt-2" />
                         </div>
 
                         <div class="flex items-center space-x-2 ">
