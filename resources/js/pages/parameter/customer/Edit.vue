@@ -86,7 +86,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                         </div>
 
                         <div class="flex items-center gap-4 mt-10">
-                            <Link href="/parameters/customers"
+                            <Link :href="route('customers.index')"
                                 class="rounded bg-[#E3E3E3] px-4 py-2 text-sm hover:bg-[#F2F2F2]">Back</Link>
                             <Button class="cursor-pointer">Edit</Button>
 
