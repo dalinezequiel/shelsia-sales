@@ -21,7 +21,6 @@ const breadcrumbs: BreadcrumbItem[] = [
 <template>
 
     <Head title="Customer Parameters" />
-
     <AppLayout :breadcrumbs="breadcrumbs">
         <ParameterLayout>
             <div class="relative flex h-full w-full flex-col bg-white bg-clip-border text-gray-700">
