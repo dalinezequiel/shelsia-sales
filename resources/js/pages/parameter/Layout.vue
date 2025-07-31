@@ -4,27 +4,33 @@ import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { type NavItem } from '@/types';
 import { Link, usePage } from '@inertiajs/vue3';
+import { Box, Landmark, CreditCard, User, SlidersHorizontal } from 'lucide-vue-next';
 
 const sidebarNavItems: NavItem[] = [
     {
         title: 'Customers',
         href: '/parameters/customers',
+        icon: User
     },
     {
         title: 'Suppliers',
         href: '/parameters/suppliers',
+        icon: Box
     },
     {
         title: 'Accounts',
         href: '/parameters/accounts',
+        icon: Landmark
     },
     {
         title: 'Categories',
         href: '/settings/appearance',
+        icon: SlidersHorizontal
     },
     {
         title: 'Payments',
         href: '/settings/appearance',
+        icon: CreditCard
     }
 ];
 
@@ -40,7 +46,8 @@ const currentPath = page.props.ziggy?.location ? new URL(page.props.ziggy.locati
                 <nav class="flex flex-col space-y-1 space-x-0">
                     <Button v-for="item in sidebarNavItems" :key="item.href" variant="ghost"
                         :class="['w-full justify-start', { 'bg-muted': currentPath === item.href }]" as-child>
-                        <Link :href="item.href">
+                        <Link :href="item.href" class="text-gray-700">
+                        <component :is="item.icon" />
                         {{ item.title }}
                         </Link>
                     </Button>
