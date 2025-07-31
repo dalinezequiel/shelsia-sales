@@ -74,11 +74,18 @@ const breadcrumbs: BreadcrumbItem[] = [
                             </div>
 
                             <div class="grid gap-2">
-                                <Label for="email">Email address</Label>
+                                <Label for="email">Email</Label>
                                 <Input id="email" type="email" class="mt-1 block w-full" required
                                     autocomplete="username" placeholder="Email address" />
                                 <InputError class="mt-2" />
                             </div>
+                        </div>
+
+                        <div class="grid gap-2">
+                            <Label for="address">Address</Label>
+                            <Input id="address" class="mt-1 block w-full" required autocomplete="username"
+                                placeholder="Address" />
+                            <InputError class="mt-2" />
                         </div>
 
                         <div class="flex items-center space-x-2 ">
@@ -86,8 +93,8 @@ const breadcrumbs: BreadcrumbItem[] = [
                             <Label for="airplane-mode">Customer status</Label>
                         </div>
 
-                        <div class="flex items-center gap-4 mt-10">
-                            <Link href="/parameters/customers"
+                        <div class="flex items-center gap-2 mt-10">
+                            <Link :href="route('customers.index')"
                                 class="rounded bg-[#E3E3E3] px-4 py-2 text-sm hover:bg-[#F2F2F2]">Back</Link>
                             <Button class="cursor-pointer">Save</Button>
 
