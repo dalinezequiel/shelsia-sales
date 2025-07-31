@@ -50,10 +50,9 @@ const breadcrumbs: BreadcrumbItem[] = [
                         <span class="mt-1 block text-gray-500 dark:text-neutral-500">3682303</span>
 
                         <address class="mt-4 not-italic text-gray-800 dark:text-neutral-200">
-                            45 Roker Terrace<br>
-                            Latheronwheel<br>
-                            KW5 8NW, London<br>
-                            United Kingdom<br>
+                            Av. Eduardo Mondlane<br>
+                            Alto Maé, Maputo<br>
+                            Mozambique<br>
                         </address>
                     </div>
                     <!-- Col -->
@@ -63,9 +62,9 @@ const breadcrumbs: BreadcrumbItem[] = [
                 <!-- Grid -->
                 <div class="mt-8 grid sm:grid-cols-2 gap-3">
                     <div>
-                        <h3 class="text-lg font-semibold text-gray-800 dark:text-neutral-200">Report date</h3>
+                        <h3 class="text-md font-semibold text-gray-800 dark:text-neutral-200">Report date</h3>
                         <!-- <h3 class="text-lg font-semibold text-gray-800 dark:text-neutral-200">Sara Williams</h3> -->
-                        <address class="mt-0 not-italic text-gray-500 dark:text-neutral-500">
+                        <address class="mt-0 not-italic text-md text-gray-500 dark:text-neutral-500">
                             03/10/2018
                         </address>
                     </div>
@@ -108,7 +107,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                             <div>
                                 <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">
                                     Amount</h5>
-                                <p class="sm:text-end text-gray-800 dark:text-neutral-200">$500</p>
+                                <p class="sm:text-end text-gray-800 dark:text-neutral-200">500</p>
                             </div>
                         </div>
 
@@ -133,7 +132,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                             <div>
                                 <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">
                                     Amount</h5>
-                                <p class="sm:text-end text-gray-800 dark:text-neutral-200">$1250</p>
+                                <p class="sm:text-end text-gray-800 dark:text-neutral-200">1250</p>
                             </div>
                         </div>
 
@@ -158,7 +157,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                             <div>
                                 <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">
                                     Amount</h5>
-                                <p class="sm:text-end text-gray-800 dark:text-neutral-200">$2000</p>
+                                <p class="sm:text-end text-gray-800 dark:text-neutral-200">2000</p>
                             </div>
                         </div>
                     </div>
@@ -173,13 +172,13 @@ const breadcrumbs: BreadcrumbItem[] = [
                             <dl class="grid sm:grid-cols-5 gap-x-3">
                                 <dt class="col-span-3 font-semibold text-gray-800 dark:text-neutral-200">
                                     Subtotal:</dt>
-                                <dd class="col-span-2 text-gray-500 dark:text-neutral-500">$2750.00</dd>
+                                <dd class="col-span-2 text-gray-500 dark:text-neutral-500">2750.00</dd>
                             </dl>
 
                             <dl class="grid sm:grid-cols-5 gap-x-3">
                                 <dt class="col-span-3 font-semibold text-gray-800 dark:text-neutral-200">Total:
                                 </dt>
-                                <dd class="col-span-2 text-gray-500 dark:text-neutral-500">$2750.00</dd>
+                                <dd class="col-span-2 text-gray-500 dark:text-neutral-500">2750.00</dd>
                             </dl>
                         </div>
                         <!-- End Grid -->
@@ -190,13 +189,13 @@ const breadcrumbs: BreadcrumbItem[] = [
                 <div class="mt-8 sm:mt-12">
                     <div class="mt-2">
                         <p class="block text-sm font-medium text-gray-800 dark:text-neutral-200">
-                            example@site.com</p>
-                        <p class="block text-sm font-medium text-gray-800 dark:text-neutral-200">+1 (062)
+                            suporte@shelsia.com</p>
+                        <p class="block text-sm font-medium text-gray-800 dark:text-neutral-200">+258 (86)
                             109-9222</p>
                     </div>
                 </div>
 
-                <p class="mt-5 text-sm text-gray-500 dark:text-neutral-500">© 2022 Preline.</p>
+                <p class="mt-5 text-sm text-gray-500 dark:text-neutral-500">© 2025 Shelsia Sales.</p>
             </div>
             <!-- End Card -->
 
@@ -213,7 +212,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                     </svg>
                     Back
                 </a>
-                <!-- <a class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-2xs hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden focus:bg-gray-50 dark:bg-transparent dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800"
+                <a class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-2xs hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden focus:bg-gray-50 dark:bg-transparent dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800"
                     href="#">
                     <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -224,17 +223,6 @@ const breadcrumbs: BreadcrumbItem[] = [
                     </svg>
                     Invoice PDF
                 </a>
-                <a class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-hidden focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
-                    href="#">
-                    <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <polyline points="6 9 6 2 18 2 18 9" />
-                        <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
-                        <rect width="12" height="8" x="6" y="14" />
-                    </svg>
-                    Print
-                </a> -->
             </div>
             <!-- End Buttons -->
             <!-- End Invoice -->
