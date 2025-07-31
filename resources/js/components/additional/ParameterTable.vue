@@ -162,7 +162,7 @@ defineProps({
                             <button
                                 class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                 type="button">
-                                <Link href="">
+                                <Link :href="route('customers.edit', 334)">
                                 <Pencil width="18" height="18" color="#1C7005" class="hover:stroke-[#33C809]" />
                                 </Link>
                             </button>
