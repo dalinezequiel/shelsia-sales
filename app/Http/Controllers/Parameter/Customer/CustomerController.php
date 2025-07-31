@@ -40,6 +40,10 @@ class CustomerController extends Controller
     public function show(string $id)
     {
         //
+        $customer='';
+        return Inertia::render('parameter/customer/Show', [
+            $customer
+        ]);
     }
 
     /**
