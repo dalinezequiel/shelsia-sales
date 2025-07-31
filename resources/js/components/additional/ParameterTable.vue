@@ -169,7 +169,7 @@ defineProps({
                             <button
                                 class="relative rounded-lg text-center mx-2 align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                 type="button">
-                                <Link href="">
+                                <Link :href="route('customers.show', 305)">
                                 <File width="18" height="18" color="#393B3C" class="hover:stroke-[#949799]" />
                                 </Link>
                             </button>
