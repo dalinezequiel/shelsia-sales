@@ -45,9 +45,13 @@ class CustomerController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(int $id)
     {
         //
+        $customer='';
+        return Inertia::render('parameter/customer/Edit', [
+            $customer
+        ]);
     }
 
     /**
