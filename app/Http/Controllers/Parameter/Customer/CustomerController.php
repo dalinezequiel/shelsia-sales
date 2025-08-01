@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Parameter\Customer;
 
 use App\Http\Controllers\Controller;
+use App\Models\Customer\Customer;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -31,7 +32,22 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'surname' => 'required'
+        ]);
+
+        Customer::create([
+            'name' => $request -> name,
+            'surname' => $request -> surname,
+            'gender' => $request -> gender,
+            'phone' => $request -> phone,
+            'email' => $request -> email,
+            'address' => $request -> address,
+            'is_active' => $request -> status
+        ]);
+
+        return redirect()->route('customers.create')->with('success', 'Cadastrado com sucesso!');
     }
 
     /**
