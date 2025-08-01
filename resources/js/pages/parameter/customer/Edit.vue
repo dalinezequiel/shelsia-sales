@@ -15,6 +15,10 @@ const breadcrumbs: BreadcrumbItem[] = [
         title: 'Customers',
         href: '/customers',
     },
+    {
+        title: 'Update',
+        href: '/customers/Edit',
+    },
 ];
 </script>
 
