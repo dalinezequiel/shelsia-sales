@@ -4,7 +4,6 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Switch } from '@/components/ui/switch';
 import AppLayout from '@/layouts/AppLayout.vue';
 import ParameterLayout from '@/pages/parameter/Layout.vue';
 import { type BreadcrumbItem } from '@/types';
@@ -18,7 +17,7 @@ const form = useForm({
     phone: '',
     email: '',
     address: '',
-    status: ''
+    status: false
 });
 
 const submit = () => {
@@ -110,8 +109,14 @@ const breadcrumbs: BreadcrumbItem[] = [
                         </div>
 
                         <div class="flex items-center space-x-2 ">
-                            <Switch id="airplane-mode" />
-                            <Label for="airplane-mode">Customer status</Label>
+                            <label class="inline-flex items-center cursor-pointer">
+                                <input type="checkbox" id="is_active" v-model="form.status" class="sr-only peer">
+                                <div
+                                    class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-gray-900 dark:peer-checked:bg-blue-600">
+                                </div>
+                                <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Customer
+                                    status</span>
+                            </label>
                         </div>
 
                         <div class="flex items-center gap-2 mt-10">
