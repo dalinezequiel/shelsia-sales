@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('gender');
             $table->string('phone');
             $table->string('email')->unique();
+            $table->string('address');
             $table->boolean('is_active')->default(false);
             $table->timestamps();
         });
