@@ -28,7 +28,7 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
     {
         title: 'Registration',
-        href: '/customers',
+        href: '/customers/Create',
     },
 ];
 </script>
