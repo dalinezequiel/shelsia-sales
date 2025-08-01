@@ -19,7 +19,13 @@ const form = useForm({
     email: '',
     address: '',
     status: ''
-})
+});
+
+const submit = () => {
+    form.post(route('customers.store'), {
+        preserveScroll: true,
+    });
+};
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -51,7 +57,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                     </div>
                 </div>
                 <div class="mx-4">
-                    <form class="space-y-6">
+                    <form @submit.prevent="submit" class="space-y-6">
                         <div class="grid gap-2">
                             <Label for="name">Name</Label>
                             <Input id="name" v-model="form.name" class="mt-1 block w-full" required autocomplete="name"
