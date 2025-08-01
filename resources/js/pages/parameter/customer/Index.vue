@@ -4,6 +4,7 @@ import ParameterLayout from '@/pages/parameter/Layout.vue';
 import { type BreadcrumbItem } from '@/types';
 import { File, Pencil, Trash2 } from 'lucide-vue-next';
 import { Head, Link } from '@inertiajs/vue3';
+import Avatar from '@/components/additional/Avatar.vue';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -61,7 +62,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                         <div class="block w-full overflow-hidden md:w-max">
                             <nav>
                                 <ul role="tablist"
-                                    class="bg-blue-gray-50 bg-opacity-60 relative flex flex-row rounded-lg p-1">
+                                    class="bg-gray-100 bg-opacity-60 relative flex flex-row rounded-lg p-1">
                                     <li role="tab"
                                         class="text-blue-gray-900 relative flex h-full w-full cursor-pointer items-center justify-center bg-transparent px-2 py-1 text-center font-sans text-base leading-relaxed font-normal antialiased select-none"
                                         data-value="all">
@@ -133,6 +134,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                             <tr>
                                 <td class="border-blue-gray-50 border-b p-4">
                                     <div class="flex items-center gap-3">
+                                        <Avatar name="JL" />
                                         <div class="flex flex-col">
                                             <p
                                                 class="text-blue-gray-900 block font-sans text-sm leading-normal font-normal antialiased">
@@ -191,6 +193,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                             <tr>
                                 <td class="border-blue-gray-50 border-b p-4">
                                     <div class="flex items-center gap-3">
+                                        <Avatar name="JL" />
                                         <div class="flex flex-col">
                                             <p
                                                 class="text-blue-gray-900 block font-sans text-sm leading-normal font-normal antialiased">
@@ -249,6 +252,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                             <tr>
                                 <td class="border-blue-gray-50 border-b p-4">
                                     <div class="flex items-center gap-3">
+                                        <Avatar name="JL" />
                                         <div class="flex flex-col">
                                             <p
                                                 class="text-blue-gray-900 block font-sans text-sm leading-normal font-normal antialiased">
@@ -273,7 +277,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                 <td class="border-blue-gray-50 border-b p-4">
                                     <div class="w-max">
                                         <div
-                                            class="bg-blue-gray-500/20 text-blue-gray-900 relative grid items-center rounded-md px-2 py-1 font-sans text-xs font-bold whitespace-nowrap uppercase select-none">
+                                            class="bg-gray-200 text-blue-gray-900 relative grid items-center rounded-md px-2 py-1 font-sans text-xs font-bold whitespace-nowrap uppercase select-none">
                                             <span class="">offline</span>
                                         </div>
                                     </div>
@@ -306,6 +310,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                             <tr>
                                 <td class="border-blue-gray-50 border-b p-4">
                                     <div class="flex items-center gap-3">
+                                        <Avatar name="JL" />
                                         <div class="flex flex-col">
                                             <p
                                                 class="text-blue-gray-900 block font-sans text-sm leading-normal font-normal antialiased">
@@ -363,6 +368,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                             <tr>
                                 <td class="p-4">
                                     <div class="flex items-center gap-3">
+                                        <Avatar name="JL" />
                                         <div class="flex flex-col">
                                             <p
                                                 class="text-blue-gray-900 block font-sans text-sm leading-normal font-normal antialiased">
@@ -387,7 +393,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                 <td class="p-4">
                                     <div class="w-max">
                                         <div
-                                            class="bg-blue-gray-500/20 text-blue-gray-900 relative grid items-center rounded-md px-2 py-1 font-sans text-xs font-bold whitespace-nowrap uppercase select-none">
+                                            class="bg-gray-200 text-blue-gray-900 relative grid items-center rounded-md px-2 py-1 font-sans text-xs font-bold whitespace-nowrap uppercase select-none">
                                             <span class="">offline</span>
                                         </div>
                                     </div>
