@@ -10,6 +10,10 @@ const breadcrumbs: BreadcrumbItem[] = [
         title: 'Customers',
         href: '/customers',
     },
+    {
+        title: 'Details',
+        href: '/customers/Show',
+    },
 ];
 </script>
 
@@ -19,29 +23,11 @@ const breadcrumbs: BreadcrumbItem[] = [
 
     <AppLayout :breadcrumbs="breadcrumbs">
         <ParameterLayout>
-            <!-- Invoice -->
             <div class="flex flex-col p-4 sm:p-10 bg-white shadow-md rounded-xl dark:bg-neutral-800">
-                <!-- Grid -->
                 <div class="flex justify-between">
                     <div>
                         <AppLogo />
-                        <!-- <svg class="size-10" width="26" height="26" viewBox="0 0 26 26" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M1 26V13C1 6.37258 6.37258 1 13 1C19.6274 1 25 6.37258 25 13C25 19.6274 19.6274 25 13 25H12"
-                                class="stroke-blue-600 dark:stroke-white" stroke="currentColor" stroke-width="2" />
-                            <path
-                                d="M5 26V13.16C5 8.65336 8.58172 5 13 5C17.4183 5 21 8.65336 21 13.16C21 17.6666 17.4183 21.32 13 21.32H12"
-                                class="stroke-blue-600 dark:stroke-white" stroke="currentColor" stroke-width="2" />
-                            <circle cx="13" cy="13.0214" r="5" fill="currentColor"
-                                class="fill-blue-600 dark:fill-white" />
-                        </svg> -->
-
-                        <!-- <h1 class="mt-2 text-lg md:text-xl font-semibold text-blue-600 dark:text-white">Preline
-                            Inc.
-                        </h1> -->
                     </div>
-                    <!-- Col -->
 
                     <div class="text-end">
                         <h2 class="text-2xl md:text-3xl font-semibold text-gray-800 dark:text-neutral-200">
@@ -55,23 +41,16 @@ const breadcrumbs: BreadcrumbItem[] = [
                             Mozambique<br>
                         </address>
                     </div>
-                    <!-- Col -->
                 </div>
-                <!-- End Grid -->
-
-                <!-- Grid -->
                 <div class="mt-8 grid sm:grid-cols-2 gap-3">
                     <div>
                         <h3 class="text-md font-semibold text-gray-800 dark:text-neutral-200">Report date</h3>
-                        <!-- <h3 class="text-lg font-semibold text-gray-800 dark:text-neutral-200">Sara Williams</h3> -->
                         <address class="mt-0 not-italic text-md text-gray-500 dark:text-neutral-500">
                             03/10/2018
                         </address>
                     </div>
                 </div>
-                <!-- End Grid -->
 
-                <!-- Table -->
                 <div class="mt-6">
                     <div class="border border-gray-200 p-4 rounded-lg space-y-4 dark:border-neutral-700">
                         <div class="hidden sm:grid sm:grid-cols-5">
@@ -162,12 +141,8 @@ const breadcrumbs: BreadcrumbItem[] = [
                         </div>
                     </div>
                 </div>
-                <!-- End Table -->
-
-                <!-- Flex -->
                 <div class="mt-8 flex sm:justify-end">
                     <div class="w-full max-w-2xl sm:text-end space-y-2">
-                        <!-- Grid -->
                         <div class="grid grid-cols-2 sm:grid-cols-1 gap-3 sm:gap-2">
                             <dl class="grid sm:grid-cols-5 gap-x-3">
                                 <dt class="col-span-3 font-semibold text-gray-800 dark:text-neutral-200">
@@ -181,10 +156,8 @@ const breadcrumbs: BreadcrumbItem[] = [
                                 <dd class="col-span-2 text-gray-500 dark:text-neutral-500">2750.00</dd>
                             </dl>
                         </div>
-                        <!-- End Grid -->
                     </div>
                 </div>
-                <!-- End Flex -->
 
                 <div class="mt-8 sm:mt-12">
                     <div class="mt-2">
@@ -197,9 +170,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 
                 <p class="mt-5 text-sm text-gray-500 dark:text-neutral-500">© 2025 Shelsia Sales.</p>
             </div>
-            <!-- End Card -->
 
-            <!-- Buttons -->
             <div class="mt-6 flex justify-start gap-x-3">
                 <Link :href="route('customers.index')"
                     class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-2xs hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden focus:bg-gray-50 dark:bg-transparent dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800">
@@ -223,8 +194,6 @@ const breadcrumbs: BreadcrumbItem[] = [
                     Invoice PDF
                 </a>
             </div>
-            <!-- End Buttons -->
-            <!-- End Invoice -->
         </ParameterLayout>
     </AppLayout>
 </template>
