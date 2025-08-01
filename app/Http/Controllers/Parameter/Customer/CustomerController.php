@@ -47,7 +47,7 @@ class CustomerController extends Controller
             'is_active' => $request -> status
         ]);
 
-        return redirect()->route('customers.create')->with('success', 'Cadastrado com sucesso!');
+        return redirect()->route('customers.index')->with('success', 'Cadastrado com sucesso!');
     }
 
     /**
