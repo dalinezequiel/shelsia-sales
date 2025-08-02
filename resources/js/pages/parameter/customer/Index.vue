@@ -6,6 +6,13 @@ import { File, Pencil, Trash2 } from 'lucide-vue-next';
 import { Head, Link } from '@inertiajs/vue3';
 import Avatar from '@/components/additional/Avatar.vue';
 
+defineProps({
+    customers: {
+        type: Array,
+        required: true
+    }
+});
+
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Customers',
@@ -104,7 +111,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                         </div>
                     </div>
                 </div>
-                <div class="overflow-auto px-0 pt-6 pb-4">
+                <div class="overflow-auto px-0 pt-6 pb-2">
                     <table class="mt-4 w-full min-w-max table-auto text-left">
                         <thead>
                             <tr>
@@ -131,17 +138,17 @@ const breadcrumbs: BreadcrumbItem[] = [
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            <tr v-for="customer in customers" :key="customer.id">
                                 <td class="border-blue-gray-50 border-b p-4">
                                     <div class="flex items-center gap-3">
                                         <Avatar name="JL" />
                                         <div class="flex flex-col">
                                             <p
                                                 class="text-blue-gray-900 block font-sans text-sm leading-normal font-normal antialiased">
-                                                John Michael</p>
+                                                {{ customer.name }}</p>
                                             <p
                                                 class="text-blue-gray-900 block font-sans text-sm leading-normal font-normal antialiased opacity-70">
-                                                john@creative-tim.com
+                                                {{ customer.surname }}
                                             </p>
                                         </div>
                                     </div>
@@ -150,10 +157,10 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <div class="flex flex-col">
                                         <p
                                             class="text-blue-gray-900 block font-sans text-sm leading-normal font-normal antialiased">
-                                            Manager</p>
+                                            {{ customer.phone }}</p>
                                         <p
                                             class="text-blue-gray-900 block font-sans text-sm leading-normal font-normal antialiased opacity-70">
-                                            Organization
+                                            {{ customer.email }}
                                         </p>
                                     </div>
                                 </td>
@@ -161,7 +168,8 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <div class="w-max">
                                         <div
                                             class="relative grid items-center rounded-md bg-green-500/20 px-2 py-1 font-sans text-xs font-bold whitespace-nowrap text-green-900 uppercase select-none">
-                                            <span class="">online</span>
+                                            <span v-if="customer.is_active" class="">Activo</span>
+                                            <span v-else class="">Inactivo</span>
                                         </div>
                                     </div>
                                 </td>
@@ -190,243 +198,10 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     </button>
                                 </td>
                             </tr>
-                            <tr>
-                                <td class="border-blue-gray-50 border-b p-4">
-                                    <div class="flex items-center gap-3">
-                                        <Avatar name="JL" />
-                                        <div class="flex flex-col">
-                                            <p
-                                                class="text-blue-gray-900 block font-sans text-sm leading-normal font-normal antialiased">
-                                                John Michael</p>
-                                            <p
-                                                class="text-blue-gray-900 block font-sans text-sm leading-normal font-normal antialiased opacity-70">
-                                                john@creative-tim.com
-                                            </p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="border-blue-gray-50 border-b p-4">
-                                    <div class="flex flex-col">
-                                        <p
-                                            class="text-blue-gray-900 block font-sans text-sm leading-normal font-normal antialiased">
-                                            Manager</p>
-                                        <p
-                                            class="text-blue-gray-900 block font-sans text-sm leading-normal font-normal antialiased opacity-70">
-                                            Organization
-                                        </p>
-                                    </div>
-                                </td>
-                                <td class="border-blue-gray-50 border-b p-4">
-                                    <div class="w-max">
-                                        <div
-                                            class="relative grid items-center rounded-md bg-green-500/20 px-2 py-1 font-sans text-xs font-bold whitespace-nowrap text-green-900 uppercase select-none">
-                                            <span class="">online</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="border-blue-gray-50 border-b p-4 text-center">
-                                    <button
-                                        class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                        type="button">
-                                        <Link href="">
-                                        <Pencil width="18" height="18" color="#1C7005" class="hover:stroke-[#33C809]" />
-                                        </Link>
-                                    </button>
-                                    <button
-                                        class="relative rounded-lg text-center mx-2 align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                        type="button">
-                                        <Link href="">
-                                        <File width="18" height="18" color="#393B3C" class="hover:stroke-[#949799]" />
-                                        </Link>
-                                    </button>
-                                    <button
-                                        class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                        type="button">
-                                        <Link href="">
-                                        <Trash2 width="18" height="18" color="#C80909"
-                                            class="transition-all hover:stroke-[#F86363]" />
-                                        </Link>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="border-blue-gray-50 border-b p-4">
-                                    <div class="flex items-center gap-3">
-                                        <Avatar name="JL" />
-                                        <div class="flex flex-col">
-                                            <p
-                                                class="text-blue-gray-900 block font-sans text-sm leading-normal font-normal antialiased">
-                                                Laurent Perrier</p>
-                                            <p
-                                                class="text-blue-gray-900 block font-sans text-sm leading-normal font-normal antialiased opacity-70">
-                                                laurent@creative-tim.com
-                                            </p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="border-blue-gray-50 border-b p-4">
-                                    <div class="flex flex-col">
-                                        <p
-                                            class="text-blue-gray-900 block font-sans text-sm leading-normal font-normal antialiased">
-                                            Executive</p>
-                                        <p
-                                            class="text-blue-gray-900 block font-sans text-sm leading-normal font-normal antialiased opacity-70">
-                                            Projects</p>
-                                    </div>
-                                </td>
-                                <td class="border-blue-gray-50 border-b p-4">
-                                    <div class="w-max">
-                                        <div
-                                            class="bg-gray-200 text-blue-gray-900 relative grid items-center rounded-md px-2 py-1 font-sans text-xs font-bold whitespace-nowrap uppercase select-none">
-                                            <span class="">offline</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="border-blue-gray-50 border-b p-4 text-center">
-                                    <button
-                                        class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                        type="button">
-                                        <Link href="">
-                                        <Pencil width="18" height="18" color="#1C7005" class="hover:stroke-[#33C809]" />
-                                        </Link>
-                                    </button>
-                                    <button
-                                        class="relative rounded-lg text-center mx-2 align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                        type="button">
-                                        <Link href="">
-                                        <File width="18" height="18" color="#393B3C" class="hover:stroke-[#949799]" />
-                                        </Link>
-                                    </button>
-                                    <button
-                                        class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                        type="button">
-                                        <Link href="">
-                                        <Trash2 width="18" height="18" color="#C80909"
-                                            class="transition-all hover:stroke-[#F86363]" />
-                                        </Link>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="border-blue-gray-50 border-b p-4">
-                                    <div class="flex items-center gap-3">
-                                        <Avatar name="JL" />
-                                        <div class="flex flex-col">
-                                            <p
-                                                class="text-blue-gray-900 block font-sans text-sm leading-normal font-normal antialiased">
-                                                Michael Levi</p>
-                                            <p
-                                                class="text-blue-gray-900 block font-sans text-sm leading-normal font-normal antialiased opacity-70">
-                                                michael@creative-tim.com
-                                            </p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="border-blue-gray-50 border-b p-4">
-                                    <div class="flex flex-col">
-                                        <p
-                                            class="text-blue-gray-900 block font-sans text-sm leading-normal font-normal antialiased">
-                                            Programator</p>
-                                        <p
-                                            class="text-blue-gray-900 block font-sans text-sm leading-normal font-normal antialiased opacity-70">
-                                            Developer</p>
-                                    </div>
-                                </td>
-                                <td class="border-blue-gray-50 border-b p-4">
-                                    <div class="w-max">
-                                        <div
-                                            class="relative grid items-center rounded-md bg-green-500/20 px-2 py-1 font-sans text-xs font-bold whitespace-nowrap text-green-900 uppercase select-none">
-                                            <span class="">online</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="border-blue-gray-50 border-b p-4 text-center">
-                                    <button
-                                        class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                        type="button">
-                                        <Link href="">
-                                        <Pencil width="18" height="18" color="#1C7005" class="hover:stroke-[#33C809]" />
-                                        </Link>
-                                    </button>
-                                    <button
-                                        class="relative rounded-lg text-center mx-2 align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                        type="button">
-                                        <Link href="">
-                                        <File width="18" height="18" color="#393B3C" class="hover:stroke-[#949799]" />
-                                        </Link>
-                                    </button>
-                                    <button
-                                        class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                        type="button">
-                                        <Link href="">
-                                        <Trash2 width="18" height="18" color="#C80909"
-                                            class="transition-all hover:stroke-[#F86363]" />
-                                        </Link>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="p-4">
-                                    <div class="flex items-center gap-3">
-                                        <Avatar name="JL" />
-                                        <div class="flex flex-col">
-                                            <p
-                                                class="text-blue-gray-900 block font-sans text-sm leading-normal font-normal antialiased">
-                                                Richard Gran</p>
-                                            <p
-                                                class="text-blue-gray-900 block font-sans text-sm leading-normal font-normal antialiased opacity-70">
-                                                richard@creative-tim.com
-                                            </p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="p-4">
-                                    <div class="flex flex-col">
-                                        <p
-                                            class="text-blue-gray-900 block font-sans text-sm leading-normal font-normal antialiased">
-                                            Manager</p>
-                                        <p
-                                            class="text-blue-gray-900 block font-sans text-sm leading-normal font-normal antialiased opacity-70">
-                                            Executive</p>
-                                    </div>
-                                </td>
-                                <td class="p-4">
-                                    <div class="w-max">
-                                        <div
-                                            class="bg-gray-200 text-blue-gray-900 relative grid items-center rounded-md px-2 py-1 font-sans text-xs font-bold whitespace-nowrap uppercase select-none">
-                                            <span class="">offline</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="p-4 text-center">
-                                    <button
-                                        class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                        type="button">
-                                        <Link href="">
-                                        <Pencil width="18" height="18" color="#1C7005" class="hover:stroke-[#33C809]" />
-                                        </Link>
-                                    </button>
-                                    <button
-                                        class="relative rounded-lg text-center mx-2 align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                        type="button">
-                                        <Link href="">
-                                        <File width="18" height="18" color="#393B3C" class="hover:stroke-[#949799]" />
-                                        </Link>
-                                    </button>
-                                    <button
-                                        class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                        type="button">
-                                        <Link href="">
-                                        <Trash2 width="18" height="18" color="#C80909"
-                                            class="transition-all hover:stroke-[#F86363]" />
-                                        </Link>
-                                    </button>
-                                </td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>
-                <div class="border-blue-gray-50 flex items-center justify-between border-t p-4">
+                <div class="border-blue-gray-50 flex items-center justify-between p-4">
                     <p class="text-blue-gray-900 block font-sans text-sm leading-normal font-normal antialiased">Page 1
                         of 10
                     </p>
