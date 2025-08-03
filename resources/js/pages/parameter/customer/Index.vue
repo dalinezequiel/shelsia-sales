@@ -186,7 +186,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                 </td>
                                 <td class="border-blue-gray-50 border-b p-4">
                                     <div class="w-max">
-                                        <div :class="customer.is_active ? 'bg-green-500/20' : 'bg-slate-100 text-slate-500'"
+                                        <div :class="customer.is_active ? 'bg-green-500/20' : 'bg-slate-100 text-slate-600'"
                                             class="relative grid items-center rounded-md  px-2 py-1 font-sans text-xs font-bold whitespace-nowrap text-green-900 uppercase select-none">
                                             <span v-if="customer.is_active" class="">Activo</span>
                                             <span v-else class="">Inactivo</span>
@@ -228,7 +228,8 @@ const breadcrumbs: BreadcrumbItem[] = [
                                             </AlertDialogHeader>
                                             <AlertDialogFooter>
                                                 <AlertDialogCancel>Cancel</AlertDialogCancel>
-                                                <AlertDialogAction @click="deleteCustomer(customer.id)">Yes, Delete
+                                                <AlertDialogAction class="bg-[#EC3636]"
+                                                    @click="deleteCustomer(customer.id)">Yes, Delete
                                                 </AlertDialogAction>
                                             </AlertDialogFooter>
                                         </AlertDialogContent>
@@ -238,20 +239,29 @@ const breadcrumbs: BreadcrumbItem[] = [
                         </tbody>
                     </table>
                 </div>
-                <div class="border-blue-gray-50 flex items-center justify-between p-4">
-                    <p class="text-blue-gray-900 block font-sans text-sm leading-normal font-normal antialiased">
-                        Page 1
-                        of 10
-                    </p>
-                    <div class="flex gap-2">
+                <div class="flex justify-between items-center px-4 py-4">
+                    <div class="text-sm text-slate-500">
+                        Showing <b>1-5</b> of 45
+                    </div>
+                    <div class="flex space-x-1">
                         <button
-                            class="rounded-lg border border-gray-900 px-4 py-2 text-center align-middle font-sans text-xs font-bold text-gray-900 uppercase transition-all select-none hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                            type="button">
-                            Previous
+                            class="px-3 py-1 min-w-9 min-h-9 text-sm font-normal text-slate-500 bg-white border border-slate-200 rounded hover:bg-slate-50 hover:border-slate-400 transition duration-200 ease">
+                            Prev
                         </button>
                         <button
-                            class="rounded-lg border border-gray-900 px-4 py-2 text-center align-middle font-sans text-xs font-bold text-gray-900 uppercase transition-all select-none hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                            type="button">
+                            class="px-3 py-1 min-w-9 min-h-9 text-sm font-normal text-white bg-primary border border-slate-800 rounded hover:bg-slate-600 hover:border-slate-600 transition duration-200 ease">
+                            1
+                        </button>
+                        <button
+                            class="px-3 py-1 min-w-9 min-h-9 text-sm font-normal text-slate-500 bg-white border border-slate-200 rounded hover:bg-slate-50 hover:border-slate-400 transition duration-200 ease">
+                            2
+                        </button>
+                        <button
+                            class="px-3 py-1 min-w-9 min-h-9 text-sm font-normal text-slate-500 bg-white border border-slate-200 rounded hover:bg-slate-50 hover:border-slate-400 transition duration-200 ease">
+                            3
+                        </button>
+                        <button
+                            class="px-3 py-1 min-w-9 min-h-9 text-sm font-normal text-slate-500 bg-white border border-slate-200 rounded hover:bg-slate-50 hover:border-slate-400 transition duration-200 ease">
                             Next
                         </button>
                     </div>
