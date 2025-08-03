@@ -6,6 +6,18 @@ import { File, Pencil, Trash2 } from 'lucide-vue-next';
 import { Head, Link } from '@inertiajs/vue3';
 import Avatar from '@/components/additional/Avatar.vue';
 
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+} from '@/components/ui/alert-dialog'
+
 defineProps({
     customers: {
         type: Object,
@@ -28,7 +40,6 @@ const breadcrumbs: BreadcrumbItem[] = [
 <template>
 
     <Head title="Customer Parameters" />
-
     <AppLayout :breadcrumbs="breadcrumbs">
         <ParameterLayout>
             <div class="relative flex h-full w-full flex-col bg-white bg-clip-border text-gray-700">
@@ -188,21 +199,38 @@ const breadcrumbs: BreadcrumbItem[] = [
                                         <File width="18" height="18" color="#393B3C" class="hover:stroke-[#949799]" />
                                         </Link>
                                     </button>
-                                    <button
-                                        class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                        type="button">
-                                        <Link href="">
-                                        <Trash2 width="18" height="18" color="#C80909"
-                                            class="transition-all hover:stroke-[#F86363]" />
-                                        </Link>
-                                    </button>
+                                    <AlertDialog>
+                                        <AlertDialogTrigger
+                                            class="relative cursor-pointer rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
+                                            <!-- <Link href=""> -->
+                                            <Trash2 width="18" height="18" color="#C80909"
+                                                class="transition-all hover:stroke-[#F86363]" />
+                                            <!-- </Link> -->
+                                        </AlertDialogTrigger>
+
+                                        <AlertDialogContent>
+                                            <AlertDialogHeader>
+                                                <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                                                <AlertDialogDescription>
+                                                    This action cannot be undone. This will permanently delete your
+                                                    account
+                                                    and remove your data from our servers.
+                                                </AlertDialogDescription>
+                                            </AlertDialogHeader>
+                                            <AlertDialogFooter>
+                                                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                                                <AlertDialogAction>Yes, Delete</AlertDialogAction>
+                                            </AlertDialogFooter>
+                                        </AlertDialogContent>
+                                    </AlertDialog>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="border-blue-gray-50 flex items-center justify-between p-4">
-                    <p class="text-blue-gray-900 block font-sans text-sm leading-normal font-normal antialiased">Page 1
+                    <p class="text-blue-gray-900 block font-sans text-sm leading-normal font-normal antialiased">
+                        Page 1
                         of 10
                     </p>
                     <div class="flex gap-2">
@@ -219,7 +247,6 @@ const breadcrumbs: BreadcrumbItem[] = [
                     </div>
                 </div>
             </div>
-
         </ParameterLayout>
     </AppLayout>
 </template>
