@@ -17,6 +17,7 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
+import { toast } from 'vue-sonner';
 
 defineProps({
     customers: {
@@ -27,7 +28,8 @@ defineProps({
 
 const deleteCustomer = (id: number) => {
     router.delete(route('customers.destroy', id), {
-        preserveScroll: true
+        preserveScroll: true,
+        onSuccess: () => toast.success('Cliente excluído com sucesso.')
     })
 }
 
