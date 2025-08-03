@@ -29,7 +29,8 @@ defineProps({
 const deleteCustomer = (id: number) => {
     router.delete(route('customers.destroy', id), {
         preserveScroll: true,
-        onSuccess: () => toast.success('Cliente excluído com sucesso.')
+        onSuccess: () => toast.success('Cliente excluído com sucesso.'),
+        onError: () => toast.error('Ocorreu um erro ao tentar excluir cliente.')
     })
 }
 
