@@ -8,7 +8,7 @@ import Avatar from '@/components/additional/Avatar.vue';
 
 defineProps({
     customers: {
-        type: Array,
+        type: Object,
         required: true
     }
 });
