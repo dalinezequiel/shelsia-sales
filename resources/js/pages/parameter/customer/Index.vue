@@ -3,7 +3,7 @@ import AppLayout from '@/layouts/AppLayout.vue';
 import ParameterLayout from '@/pages/parameter/Layout.vue';
 import { type BreadcrumbItem } from '@/types';
 import { File, Pencil, Trash2 } from 'lucide-vue-next';
-import { Head, Link } from '@inertiajs/vue3';
+import { Head, Link, router } from '@inertiajs/vue3';
 import Avatar from '@/components/additional/Avatar.vue';
 
 import {
@@ -24,6 +24,12 @@ defineProps({
         required: true
     }
 });
+
+const deleteCustomer = (id: number) => {
+    router.delete(route('customers.destroy', id), {
+        preserveScroll: true
+    })
+}
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -219,7 +225,8 @@ const breadcrumbs: BreadcrumbItem[] = [
                                             </AlertDialogHeader>
                                             <AlertDialogFooter>
                                                 <AlertDialogCancel>Cancel</AlertDialogCancel>
-                                                <AlertDialogAction>Yes, Delete</AlertDialogAction>
+                                                <AlertDialogAction @click="deleteCustomer(customer.id)">Yes, Delete
+                                                </AlertDialogAction>
                                             </AlertDialogFooter>
                                         </AlertDialogContent>
                                     </AlertDialog>
