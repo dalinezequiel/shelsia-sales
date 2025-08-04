@@ -67,7 +67,6 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-        $customers = Customer::get();
         return Inertia::render('parameter/customer/Index', compact('customer'));
     }
 
