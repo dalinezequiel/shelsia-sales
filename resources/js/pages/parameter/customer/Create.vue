@@ -8,7 +8,7 @@ import AppLayout from '@/layouts/AppLayout.vue';
 import ParameterLayout from '@/pages/parameter/Layout.vue';
 import { type BreadcrumbItem } from '@/types';
 import { Head, Link, useForm } from '@inertiajs/vue3';
-
+import { toast } from 'vue-sonner';
 
 const form = useForm({
     name: '',
@@ -23,6 +23,8 @@ const form = useForm({
 const submit = () => {
     form.post(route('customers.store'), {
         preserveScroll: true,
+        onSuccess: () => toast.success('Cliente cadastrado com sucesso.'),
+        onError: () => toast.error('Ocorreu um erro ao tentar cadastrar cliente.')
     });
 };
 

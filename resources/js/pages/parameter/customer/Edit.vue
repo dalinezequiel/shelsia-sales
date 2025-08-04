@@ -113,12 +113,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
                                     <path d="M3 3v5h5" />
                                 </svg>
-                                Edit</Button>
-
-                            <Transition enter-active-class="transition ease-in-out" enter-from-class="opacity-0"
-                                leave-active-class="transition ease-in-out" leave-to-class="opacity-0">
-                                <p class="text-sm text-neutral-600">Edited.</p>
-                            </Transition>
+                                Save Changes</Button>
                         </div>
                     </form>
                 </div>
