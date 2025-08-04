@@ -73,9 +73,24 @@ class CustomerController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Customer $customer)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'surname' => 'required'
+        ]);
+
+        $customer -> update([
+            'name' => $request -> input('name'),
+            'surname' => $request -> input('surname'),
+            'gender' => $request -> input('gender'),
+            'phone' => $request -> input('phone'),
+            'email' => $request -> input('email'),
+            'address' => $request -> input('address'),
+            'is_active' => $request -> input('status')
+        ]);
+
+        return redirect()->route('customers.index')->with('success', 'Actualizado com sucesso!');
     }
 
     /**
