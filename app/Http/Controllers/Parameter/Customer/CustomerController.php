@@ -67,7 +67,7 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-        return Inertia::render('parameter/customer/Index', compact('customer'));
+        return Inertia::render('parameter/customer/Edit', compact('customer'));
     }
 
     /**
