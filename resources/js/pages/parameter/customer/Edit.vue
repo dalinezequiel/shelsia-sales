@@ -8,7 +8,39 @@ import { Switch } from '@/components/ui/switch';
 import AppLayout from '@/layouts/AppLayout.vue';
 import ParameterLayout from '@/pages/parameter/Layout.vue';
 import { type BreadcrumbItem } from '@/types';
-import { Head, Link } from '@inertiajs/vue3';
+import { Head, Link, useForm } from '@inertiajs/vue3';
+import { toast } from 'vue-sonner';
+
+interface Customer {
+    id: number,
+    name: string,
+    surname: string,
+    gender: string,
+    phone: string,
+    email: string,
+    address: string,
+    is_active: boolean
+}
+
+const props = defineProps<{ customer: Customer }>();
+
+const form = useForm({
+    name: props.customer.name,
+    surname: props.customer.surname,
+    gender: props.customer.gender,
+    phone: props.customer.phone,
+    email: props.customer.email,
+    address: props.customer.address,
+    status: props.customer.is_active
+});
+
+const submit = () => {
+    form.put(route('customers.update'), {
+        preserveScroll: true,
+        onSuccess: () => toast.success('Cliente actualizado com sucesso.'),
+        onError: () => toast.error('Ocorreu um erro ao tentar actualizar cliente.')
+    });
+};
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -39,7 +71,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                     </div>
                 </div>
                 <div class="mx-4">
-                    <form class="space-y-6">
+                    <form @submit.prevent="submit" class="space-y-6">
                         <div class="grid gap-2">
                             <Label for="name">Name</Label>
                             <Input id="name" class="mt-1 block w-full" required autocomplete="name"
