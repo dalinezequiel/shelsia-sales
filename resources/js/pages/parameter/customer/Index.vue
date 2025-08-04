@@ -197,14 +197,14 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <button
                                         class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                         type="button">
-                                        <Link :href="route('customers.edit', 334)">
+                                        <Link :href="route('customers.edit', customer.id)">
                                         <Pencil width="18" height="18" color="#1C7005" class="hover:stroke-[#33C809]" />
                                         </Link>
                                     </button>
                                     <button
                                         class="relative rounded-lg text-center mx-2 align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                         type="button">
-                                        <Link :href="route('customers.show', 305)">
+                                        <Link :href="route('customers.show', customer.id)">
                                         <File width="18" height="18" color="#393B3C" class="hover:stroke-[#949799]" />
                                         </Link>
                                     </button>
