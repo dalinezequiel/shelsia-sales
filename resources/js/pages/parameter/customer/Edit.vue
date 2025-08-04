@@ -4,7 +4,6 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Switch } from '@/components/ui/switch';
 import AppLayout from '@/layouts/AppLayout.vue';
 import ParameterLayout from '@/pages/parameter/Layout.vue';
 import { type BreadcrumbItem } from '@/types';
@@ -12,30 +11,31 @@ import { Head, Link, useForm } from '@inertiajs/vue3';
 import { toast } from 'vue-sonner';
 
 interface Customer {
-    id: number,
-    name: string,
-    surname: string,
-    gender: string,
-    phone: string,
-    email: string,
-    address: string,
+    id: number;
+    name: string;
+    surname: string;
+    gender: string;
+    phone: string;
+    email: string;
+    address: string;
     is_active: boolean
 }
 
 const props = defineProps<{ customer: Customer }>();
 
 const form = useForm({
+    id: props.customer.id,
     name: props.customer.name,
     surname: props.customer.surname,
     gender: props.customer.gender,
     phone: props.customer.phone,
     email: props.customer.email,
     address: props.customer.address,
-    status: props.customer.is_active
+    is_active: props.customer.is_active
 });
 
 const submit = () => {
-    form.put(route('customers.update'), {
+    form.put(route('customers.update', props.customer), {
         preserveScroll: true,
         onSuccess: () => toast.success('Cliente actualizado com sucesso.'),
         onError: () => toast.error('Ocorreu um erro ao tentar actualizar cliente.')
@@ -125,7 +125,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 
                         <div class="flex items-center space-x-2 ">
                             <label class="inline-flex items-center cursor-pointer">
-                                <input type="checkbox" id="is_active" v-model="form.status" class="sr-only peer">
+                                <input type="checkbox" id="is_active" v-model="form.is_active" class="sr-only peer">
                                 <div
                                     class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-gray-900 dark:peer-checked:bg-blue-600">
                                 </div>
