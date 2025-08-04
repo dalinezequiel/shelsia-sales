@@ -87,7 +87,7 @@ class CustomerController extends Controller
             'phone' => $request -> input('phone'),
             'email' => $request -> input('email'),
             'address' => $request -> input('address'),
-            'is_active' => $request -> input('status')
+            'is_active' => $request -> input('is_active')
         ]);
 
         return redirect()->route('customers.index')->with('success', 'Actualizado com sucesso!');
