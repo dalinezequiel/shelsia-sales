@@ -31,7 +31,7 @@ const form = useForm({
     phone: props.customer.phone,
     email: props.customer.email,
     address: props.customer.address,
-    is_active: props.customer.is_active
+    is_active: Boolean(props.customer.is_active)
 });
 
 const submit = () => {
