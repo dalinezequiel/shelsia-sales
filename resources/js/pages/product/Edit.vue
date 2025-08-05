@@ -120,9 +120,9 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <SelectValue placeholder="Select unit" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem value="a"> ml </SelectItem>
-                                    <SelectItem value="a"> l </SelectItem>
-                                    <SelectItem value="a"> Kg </SelectItem>
+                                    <SelectItem value="ml"> ml </SelectItem>
+                                    <SelectItem value="l"> l </SelectItem>
+                                    <SelectItem value="kg"> Kg </SelectItem>
                                 </SelectContent>
                             </Select>
                             <InputError :message="form.errors.unit" class="mt-2" />
