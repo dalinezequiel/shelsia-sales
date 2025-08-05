@@ -135,8 +135,8 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <SelectValue placeholder="Select supplier" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem value="coke"> Handling Mozambique </SelectItem>
-                                    <SelectItem value="coke"> Wholesale Zimpeto Market </SelectItem>
+                                    <SelectItem value="handling"> Handling Mozambique </SelectItem>
+                                    <SelectItem value="wholesale"> Wholesale Zimpeto Market </SelectItem>
                                 </SelectContent>
                             </Select>
                             <InputError :message="form.errors.supplier" class="mt-2" />
