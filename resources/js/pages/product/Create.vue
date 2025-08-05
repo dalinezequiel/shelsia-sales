@@ -6,7 +6,35 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
-import { Head, Link } from '@inertiajs/vue3';
+import { Head, Link, useForm } from '@inertiajs/vue3';
+import { toast } from 'vue-sonner';
+
+
+
+const form = useForm({
+    barcode: '',
+    description: '',
+    category: '',
+    unit: '',
+    supplier: '',
+    purchase_price: '',
+    sale_price: '',
+    validity: '',
+    minimum_stock: '',
+    maximum_stock: '',
+    available_stock: '',
+    location: '',
+    image: '',
+    is_active: false
+});
+
+const submit = () => {
+    form.post(route('customers.store'), {
+        preserveScroll: true,
+        onSuccess: () => toast.success('Producto cadastrado com sucesso.'),
+        onError: () => toast.error('Ocorreu um erro ao tentar cadastrar producto.')
+    });
+};
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -36,27 +64,27 @@ const breadcrumbs: BreadcrumbItem[] = [
                 </div>
             </div>
             <div class="mx-4">
-                <form class="space-y-6">
+                <form @submit.prevent="submit" class="space-y-6">
                     <div class="grid lg:grid-cols-2 lg:gap-4 ">
                         <div class="grid gap-2 mb-6 lg:mb-0">
                             <Label for="barcode">Barcode</Label>
-                            <Input id="barcode" type="number" class="mt-1 block w-full" required autocomplete="barcode"
-                                placeholder="Barcode" />
-                            <InputError class="mt-2" />
+                            <Input id="barcode" v-model="form.barcode" type="number" class="mt-1 block w-full" required
+                                autocomplete="barcode" placeholder="Barcode" />
+                            <InputError :message="form.errors.barcode" class="mt-2" />
                         </div>
 
                         <div class="grid gap-2 mb-6 lg:mb-0">
                             <Label for="description">Description</Label>
-                            <Input id="description" class="mt-1 block w-full" required autocomplete="description"
-                                placeholder="Description" />
-                            <InputError class="mt-2" />
+                            <Input id="description" v-model="form.description" class="mt-1 block w-full" required
+                                autocomplete="description" placeholder="Description" />
+                            <InputError :message="form.errors.description" class="mt-2" />
                         </div>
                     </div>
 
                     <div class="grid lg:grid-cols-2 lg:gap-4 ">
                         <div class="grid gap-2 mb-6 lg:mb-0">
                             <Label for="category">Category</Label>
-                            <Select id="category">
+                            <Select id="category" v-model="form.category">
                                 <SelectTrigger class="w-auto mt-1">
                                     <SelectValue placeholder="Select category" />
                                 </SelectTrigger>
@@ -65,12 +93,12 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <SelectItem value="drinks"> Drinks </SelectItem>
                                 </SelectContent>
                             </Select>
-                            <InputError class="mt-2" />
+                            <InputError :message="form.errors.category" class="mt-2" />
                         </div>
 
                         <div class="grid gap-2 mb-6 lg:mb-0">
                             <Label for="unit">Unit</Label>
-                            <Select id="unit">
+                            <Select id="unit" v-model="form.unit">
                                 <SelectTrigger class="w-auto mt-1">
                                     <SelectValue placeholder="Select unit" />
                                 </SelectTrigger>
@@ -80,12 +108,12 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <SelectItem value="a"> Kg </SelectItem>
                                 </SelectContent>
                             </Select>
-                            <InputError class="mt-2" />
+                            <InputError :message="form.errors.unit" class="mt-2" />
                         </div>
 
                         <div class="grid gap-2">
                             <Label for="supplier">Supplier</Label>
-                            <Select id="supplier">
+                            <Select id="supplier" v-model="form.supplier">
                                 <SelectTrigger class="w-auto mt-1">
                                     <SelectValue placeholder="Select supplier" />
                                 </SelectTrigger>
@@ -94,72 +122,75 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <SelectItem value="coke"> Wholesale Zimpeto Market </SelectItem>
                                 </SelectContent>
                             </Select>
-                            <InputError class="mt-2" />
+                            <InputError :message="form.errors.supplier" class="mt-2" />
                         </div>
                     </div>
 
                     <div class="grid lg:grid-cols-3 lg:gap-4 ">
                         <div class="grid gap-2 mb-6 lg:mb-0">
                             <Label for="purchase_price">Purchase price</Label>
-                            <Input id="purchase_price" type="number" class="mt-1 block w-full" required
-                                placeholder="Purchase price" />
-                            <InputError class="mt-2" />
+                            <Input id="purchase_price" v-model="form.purchase_price" type="number"
+                                class="mt-1 block w-full" required placeholder="Purchase price" />
+                            <InputError :message="form.errors.purchase_price" class="mt-2" />
                         </div>
 
                         <div class="grid gap-2 mb-6 lg:mb-0">
                             <Label for="sale_price">Sale price</Label>
-                            <Input id="sale_price" type="number" class="mt-1 block w-full" required
-                                placeholder="Sale price" />
-                            <InputError class="mt-2" />
+                            <Input id="sale_price" v-model="form.sale_price" type="number" class="mt-1 block w-full"
+                                required placeholder="Sale price" />
+                            <InputError :message="form.errors.sale_price" class="mt-2" />
                         </div>
 
                         <div class="grid gap-2">
-                            <Label for="validity">Expiration date</Label>
-                            <Input id="validity" type="date" class="mt-1 block w-full" required autocomplete="validity"
-                                placeholder="Validity" />
-                            <InputError class="mt-2" />
+                            <Label for="validity">Validity</Label>
+                            <Input id="validity" v-model="form.validity" type="date" class="mt-1 block w-full" required
+                                autocomplete="validity" placeholder="Validity" />
+                            <InputError :message="form.errors.validity" class="mt-2" />
                         </div>
                     </div>
 
                     <div class="grid lg:grid-cols-3 lg:gap-4 ">
                         <div class="grid gap-2 mb-6 lg:mb-0">
                             <Label for="minimum_stock">Minimum stock</Label>
-                            <Input id="minimum_stock" type="number" class="mt-1 block w-full" required
-                                autocomplete="minimum_stock" placeholder="Minimum stock" />
-                            <InputError class="mt-2" />
+                            <Input id="minimum_stock" v-model="form.minimum_stock" type="number"
+                                class="mt-1 block w-full" required autocomplete="minimum_stock"
+                                placeholder="Minimum stock" />
+                            <InputError :message="form.errors.minimum_stock" class="mt-2" />
                         </div>
 
                         <div class="grid gap-2 mb-6 lg:mb-0">
                             <Label for="maximum_stock">Maximum stock</Label>
-                            <Input id="maximum_stock" type="number" class="mt-1 block w-full" required
-                                autocomplete="maximum_stock" placeholder="Maximum stock" />
-                            <InputError class="mt-2" />
+                            <Input id="maximum_stock" v-model="form.maximum_stock" type="number"
+                                class="mt-1 block w-full" required autocomplete="maximum_stock"
+                                placeholder="Maximum stock" />
+                            <InputError :message="form.errors.maximum_stock" class="mt-2" />
                         </div>
 
                         <div class="grid gap-2 mb-6 lg:mb-0">
                             <Label for="available_stock">Available stock</Label>
-                            <Input id="available_stock" type="number" class="mt-1 block w-full"
-                                autocomplete="available_stock" placeholder="Available stock" />
-                            <InputError class="mt-2" />
+                            <Input id="available_stock" v-model="form.available_stock" type="number"
+                                class="mt-1 block w-full" autocomplete="available_stock"
+                                placeholder="Available stock" />
+                            <InputError :message="form.errors.available_stock" class="mt-2" />
                         </div>
 
                         <div class="grid gap-2 mb-6 lg:mb-0">
                             <Label for="location">Location</Label>
-                            <Input id="location" class="mt-1 block w-full" autocomplete="location"
-                                placeholder="Location" />
-                            <InputError class="mt-2" />
+                            <Input id="location" v-model="form.location" class="mt-1 block w-full"
+                                autocomplete="location" placeholder="Location" />
+                            <InputError :message="form.errors.location" class="mt-2" />
                         </div>
 
                         <div class="grid gap-2 mb-6 lg:mb-0">
                             <Label for="image">Image</Label>
-                            <Input id="image" type="file" class="mt-1 block w-full" />
-                            <InputError class="mt-2" />
+                            <Input id="image" v-model="form.image" type="file" class="mt-1 block w-full" />
+                            <InputError :message="form.errors.image" class="mt-2" />
                         </div>
                     </div>
 
                     <div class="flex items-center space-x-2 ">
                         <label class="inline-flex items-center cursor-pointer">
-                            <input type="checkbox" id="is_active" class="sr-only peer">
+                            <input type="checkbox" id="is_active" v-model="form.is_active" class="sr-only peer">
                             <div
                                 class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-gray-900 dark:peer-checked:bg-blue-600">
                             </div>
