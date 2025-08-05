@@ -235,7 +235,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                 <path d="M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7" />
                                 <path d="M7 3v4a1 1 0 0 0 1 1h7" />
                             </svg>
-                            Save</Button>
+                            Save Changes</Button>
                     </div>
                 </form>
             </div>
