@@ -24,7 +24,7 @@ const breadcrumbs: BreadcrumbItem[] = [
     <Head title="Products" />
 
     <AppLayout :breadcrumbs="breadcrumbs">
-        <div class="relative flex h-full lg:pr-50 w-full flex-col bg-white bg-clip-border text-gray-700">
+        <div class="relative flex h-full lg:pr-40 w-full flex-col bg-white bg-clip-border text-gray-700">
             <div class="relative mx-4 mt-2 overflow-hidden rounded-none bg-white bg-clip-border text-gray-700">
                 <div class="mb-8 flex items-center justify-between gap-8">
                     <div>
@@ -61,7 +61,8 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <SelectValue placeholder="Select category" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem value="a"> A </SelectItem>
+                                    <SelectItem value="foods"> Foods </SelectItem>
+                                    <SelectItem value="drinks"> Drinks </SelectItem>
                                 </SelectContent>
                             </Select>
                             <InputError class="mt-2" />
@@ -74,37 +75,40 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <SelectValue placeholder="Select unit" />
                                 </SelectTrigger>
                                 <SelectContent>
+                                    <SelectItem value="a"> ml </SelectItem>
+                                    <SelectItem value="a"> l </SelectItem>
                                     <SelectItem value="a"> Kg </SelectItem>
+                                </SelectContent>
+                            </Select>
+                            <InputError class="mt-2" />
+                        </div>
+
+                        <div class="grid gap-2">
+                            <Label for="supplier">Supplier</Label>
+                            <Select id="supplier">
+                                <SelectTrigger class="w-auto mt-1">
+                                    <SelectValue placeholder="Select supplier" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="coke"> Handling Mozambique </SelectItem>
+                                    <SelectItem value="coke"> Wholesale Zimpeto Market </SelectItem>
                                 </SelectContent>
                             </Select>
                             <InputError class="mt-2" />
                         </div>
                     </div>
 
-                    <div class="grid gap-2">
-                        <Label for="supplier">Supplier</Label>
-                        <Select id="supplier">
-                            <SelectTrigger class="w-auto mt-1">
-                                <SelectValue placeholder="Select supplier" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectItem value="coke"> The Coca Cola Company </SelectItem>
-                            </SelectContent>
-                        </Select>
-                        <InputError class="mt-2" />
-                    </div>
-
                     <div class="grid lg:grid-cols-3 lg:gap-4 ">
                         <div class="grid gap-2 mb-6 lg:mb-0">
-                            <Label for="purchase">Purchase price</Label>
-                            <Input id="purchase" type="number" class="mt-1 block w-full" required
-                                autocomplete="purchase" placeholder="Purchase" />
+                            <Label for="purchase_price">Purchase price</Label>
+                            <Input id="purchase_price" type="number" class="mt-1 block w-full" required
+                                placeholder="Purchase price" />
                             <InputError class="mt-2" />
                         </div>
 
                         <div class="grid gap-2 mb-6 lg:mb-0">
-                            <Label for="sale">Sale price</Label>
-                            <Input id="sale" type="number" class="mt-1 block w-full" required autocomplete="sale"
+                            <Label for="sale_price">Sale price</Label>
+                            <Input id="sale_price" type="number" class="mt-1 block w-full" required
                                 placeholder="Sale price" />
                             <InputError class="mt-2" />
                         </div>
@@ -119,30 +123,36 @@ const breadcrumbs: BreadcrumbItem[] = [
 
                     <div class="grid lg:grid-cols-3 lg:gap-4 ">
                         <div class="grid gap-2 mb-6 lg:mb-0">
-                            <Label for="minimum">Minimum stock</Label>
-                            <Input id="minimum" type="number" class="mt-1 block w-full" required autocomplete="minimum"
-                                placeholder="Minimum stock" />
+                            <Label for="minimum_stock">Minimum stock</Label>
+                            <Input id="minimum_stock" type="number" class="mt-1 block w-full" required
+                                autocomplete="minimum_stock" placeholder="Minimum stock" />
                             <InputError class="mt-2" />
                         </div>
 
                         <div class="grid gap-2 mb-6 lg:mb-0">
-                            <Label for="maximum">Maximum stock</Label>
-                            <Input id="maximum" type="number" class="mt-1 block w-full" required autocomplete="maximum"
-                                placeholder="Maximum stock" />
+                            <Label for="maximum_stock">Maximum stock</Label>
+                            <Input id="maximum_stock" type="number" class="mt-1 block w-full" required
+                                autocomplete="maximum_stock" placeholder="Maximum stock" />
                             <InputError class="mt-2" />
                         </div>
 
                         <div class="grid gap-2 mb-6 lg:mb-0">
-                            <Label for="available">Available stock</Label>
-                            <Input id="available" type="number" class="mt-1 block w-full" required
-                                autocomplete="available" placeholder="Available stock" />
+                            <Label for="available_stock">Available stock</Label>
+                            <Input id="available_stock" type="number" class="mt-1 block w-full"
+                                autocomplete="available_stock" placeholder="Available stock" />
                             <InputError class="mt-2" />
                         </div>
 
                         <div class="grid gap-2 mb-6 lg:mb-0">
-                            <Label for="available">Available stock</Label>
-                            <Input id="available" type="number" class="mt-1 block w-full" required
-                                autocomplete="available" placeholder="Available stock" />
+                            <Label for="location">Location</Label>
+                            <Input id="location" class="mt-1 block w-full" autocomplete="location"
+                                placeholder="Location" />
+                            <InputError class="mt-2" />
+                        </div>
+
+                        <div class="grid gap-2 mb-6 lg:mb-0">
+                            <Label for="image">Image</Label>
+                            <Input id="image" type="file" class="mt-1 block w-full" />
                             <InputError class="mt-2" />
                         </div>
                     </div>
