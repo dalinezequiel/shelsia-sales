@@ -36,7 +36,7 @@ const form = useForm({
     supplier: props.product.supplier,
     purchase_price: props.product.purchase_price,
     sale_price: props.product.sale_price,
-    validity: props.product.validity.toDateString(),
+    validity: props.product.validity.toString(),
     minimum_stock: props.product.maximum_stock,
     maximum_stock: props.product.maximum_stock,
     available_stock: props.product.available_stock,
