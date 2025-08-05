@@ -1,8 +1,35 @@
 <script setup lang="ts">
 import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
-import { Head, Link } from '@inertiajs/vue3';
+import { Head, Link, router } from '@inertiajs/vue3';
 import { File, Pencil, Trash2 } from 'lucide-vue-next';
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+} from '@/components/ui/alert-dialog'
+import { toast } from 'vue-sonner';
+
+defineProps({
+    products: {
+        type: Object,
+        required: true
+    }
+});
+
+const deleteProduct = (id: number) => {
+    router.delete(route('products.destroy', id), {
+        preserveScroll: true,
+        onSuccess: () => toast.success('Producto excluído com sucesso.'),
+        onError: () => toast.error('Ocorreu um erro ao tentar excluir producto.')
+    })
+}
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -143,7 +170,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr v-for="product in products" :key="product.id">
                             <td class="p-4 border-b border-blue-gray-50">
                                 <div class="flex items-center gap-3">
                                     <img src="https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg"
@@ -152,7 +179,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <div class="flex flex-col">
                                         <p
                                             class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                                            John Michael
+                                            {{ product.description }}
                                         </p>
                                         <p
                                             class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900 opacity-70">
@@ -191,301 +218,42 @@ const breadcrumbs: BreadcrumbItem[] = [
                                 <button
                                     class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                     type="button">
-                                    <Link :href="route('customers.edit', 334)">
+                                    <Link :href="route('products.edit', product.id)">
                                     <Pencil width="18" height="18" color="#1C7005" class="hover:stroke-[#33C809]" />
                                     </Link>
                                 </button>
                                 <button
                                     class="relative rounded-lg text-center mx-2 align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                     type="button">
-                                    <Link :href="route('customers.show', 305)">
+                                    <Link :href="route('products.show', product.id)">
                                     <File width="18" height="18" color="#393B3C" class="hover:stroke-[#949799]" />
                                     </Link>
                                 </button>
-                                <button
-                                    class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                    type="button">
-                                    <Link href="">
-                                    <Trash2 width="18" height="18" color="#C80909"
-                                        class="transition-all hover:stroke-[#F86363]" />
-                                    </Link>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="p-4 border-b border-blue-gray-50">
-                                <div class="flex items-center gap-3">
-                                    <img src="https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-2.jpg"
-                                        alt="Alexa Liras"
-                                        class="relative inline-block h-9 w-9 !rounded-full object-cover object-center" />
-                                    <div class="flex flex-col">
-                                        <p
-                                            class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                                            Alexa Liras
-                                        </p>
-                                        <p
-                                            class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900 opacity-70">
-                                            alexa@creative-tim.com
-                                        </p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="p-4 border-b border-blue-gray-50">
-                                <div class="flex flex-col">
-                                    <p
-                                        class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                                        Programator
-                                    </p>
-                                    <p
-                                        class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900 opacity-70">
-                                        Developer
-                                    </p>
-                                </div>
-                            </td>
-                            <td class="p-4 border-b border-blue-gray-50">
-                                <div class="w-max">
-                                    <div
-                                        class="relative grid items-center px-2 py-1 font-sans text-xs font-bold uppercase rounded-md select-none whitespace-nowrap bg-blue-gray-500/20 text-blue-gray-900">
-                                        <span class="">offline</span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="p-4 border-b border-blue-gray-50">
-                                <p
-                                    class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                                    23/04/18
-                                </p>
-                            </td>
-                            <td class="p-4 border-b border-blue-gray-50 text-center">
-                                <button
-                                    class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                    type="button">
-                                    <Link :href="route('customers.edit', 334)">
-                                    <Pencil width="18" height="18" color="#1C7005" class="hover:stroke-[#33C809]" />
-                                    </Link>
-                                </button>
-                                <button
-                                    class="relative rounded-lg text-center mx-2 align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                    type="button">
-                                    <Link :href="route('customers.show', 305)">
-                                    <File width="18" height="18" color="#393B3C" class="hover:stroke-[#949799]" />
-                                    </Link>
-                                </button>
-                                <button
-                                    class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                    type="button">
-                                    <Link href="">
-                                    <Trash2 width="18" height="18" color="#C80909"
-                                        class="transition-all hover:stroke-[#F86363]" />
-                                    </Link>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="p-4 border-b border-blue-gray-50">
-                                <div class="flex items-center gap-3">
-                                    <img src="https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-1.jpg"
-                                        alt="Laurent Perrier"
-                                        class="relative inline-block h-9 w-9 !rounded-full  object-cover object-center" />
-                                    <div class="flex flex-col">
-                                        <p
-                                            class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                                            Laurent Perrier
-                                        </p>
-                                        <p
-                                            class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900 opacity-70">
-                                            laurent@creative-tim.com
-                                        </p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="p-4 border-b border-blue-gray-50">
-                                <div class="flex flex-col">
-                                    <p
-                                        class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                                        Executive
-                                    </p>
-                                    <p
-                                        class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900 opacity-70">
-                                        Projects
-                                    </p>
-                                </div>
-                            </td>
-                            <td class="p-4 border-b border-blue-gray-50">
-                                <div class="w-max">
-                                    <div
-                                        class="relative grid items-center px-2 py-1 font-sans text-xs font-bold uppercase rounded-md select-none whitespace-nowrap bg-blue-gray-500/20 text-blue-gray-900">
-                                        <span class="">offline</span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="p-4 border-b border-blue-gray-50">
-                                <p
-                                    class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                                    19/09/17
-                                </p>
-                            </td>
-                            <td class="p-4 border-b border-blue-gray-50 text-center">
-                                <button
-                                    class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                    type="button">
-                                    <Link :href="route('customers.edit', 334)">
-                                    <Pencil width="18" height="18" color="#1C7005" class="hover:stroke-[#33C809]" />
-                                    </Link>
-                                </button>
-                                <button
-                                    class="relative rounded-lg text-center mx-2 align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                    type="button">
-                                    <Link :href="route('customers.show', 305)">
-                                    <File width="18" height="18" color="#393B3C" class="hover:stroke-[#949799]" />
-                                    </Link>
-                                </button>
-                                <button
-                                    class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                    type="button">
-                                    <Link href="">
-                                    <Trash2 width="18" height="18" color="#C80909"
-                                        class="transition-all hover:stroke-[#F86363]" />
-                                    </Link>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="p-4 border-b border-blue-gray-50">
-                                <div class="flex items-center gap-3">
-                                    <img src="https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-4.jpg"
-                                        alt="Michael Levi"
-                                        class="relative inline-block h-9 w-9 !rounded-full object-cover object-center" />
-                                    <div class="flex flex-col">
-                                        <p
-                                            class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                                            Michael Levi
-                                        </p>
-                                        <p
-                                            class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900 opacity-70">
-                                            michael@creative-tim.com
-                                        </p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="p-4 border-b border-blue-gray-50">
-                                <div class="flex flex-col">
-                                    <p
-                                        class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                                        Programator
-                                    </p>
-                                    <p
-                                        class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900 opacity-70">
-                                        Developer
-                                    </p>
-                                </div>
-                            </td>
-                            <td class="p-4 border-b border-blue-gray-50">
-                                <div class="w-max">
-                                    <div
-                                        class="relative grid items-center px-2 py-1 font-sans text-xs font-bold text-green-900 uppercase rounded-md select-none whitespace-nowrap bg-green-500/20">
-                                        <span class="">online</span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="p-4 border-b border-blue-gray-50">
-                                <p
-                                    class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                                    24/12/08
-                                </p>
-                            </td>
-                            <td class="p-4 border-b border-blue-gray-50 text-center">
-                                <button
-                                    class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                    type="button">
-                                    <Link :href="route('customers.edit', 334)">
-                                    <Pencil width="18" height="18" color="#1C7005" class="hover:stroke-[#33C809]" />
-                                    </Link>
-                                </button>
-                                <button
-                                    class="relative rounded-lg text-center mx-2 align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                    type="button">
-                                    <Link :href="route('customers.show', 305)">
-                                    <File width="18" height="18" color="#393B3C" class="hover:stroke-[#949799]" />
-                                    </Link>
-                                </button>
-                                <button
-                                    class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                    type="button">
-                                    <Link href="">
-                                    <Trash2 width="18" height="18" color="#C80909"
-                                        class="transition-all hover:stroke-[#F86363]" />
-                                    </Link>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="p-4">
-                                <div class="flex items-center gap-3">
-                                    <img src="https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-5.jpg"
-                                        alt="Richard Gran"
-                                        class="relative inline-block h-9 w-9 !rounded-full object-cover object-center" />
-                                    <div class="flex flex-col">
-                                        <p
-                                            class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                                            Richard Gran
-                                        </p>
-                                        <p
-                                            class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900 opacity-70">
-                                            richard@creative-tim.com
-                                        </p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="p-4">
-                                <div class="flex flex-col">
-                                    <p
-                                        class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                                        Manager
-                                    </p>
-                                    <p
-                                        class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900 opacity-70">
-                                        Executive
-                                    </p>
-                                </div>
-                            </td>
-                            <td class="p-4">
-                                <div class="w-max">
-                                    <div
-                                        class="relative grid items-center px-2 py-1 font-sans text-xs font-bold uppercase rounded-md select-none whitespace-nowrap bg-blue-gray-500/20 text-blue-gray-900">
-                                        <span class="">offline</span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="p-4">
-                                <p
-                                    class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                                    04/10/21
-                                </p>
-                            </td>
-                            <td class="p-4 text-center">
-                                <button
-                                    class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                    type="button">
-                                    <Link :href="route('customers.edit', 334)">
-                                    <Pencil width="18" height="18" color="#1C7005" class="hover:stroke-[#33C809]" />
-                                    </Link>
-                                </button>
-                                <button
-                                    class="relative rounded-lg text-center mx-2 align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                    type="button">
-                                    <Link :href="route('customers.show', 305)">
-                                    <File width="18" height="18" color="#393B3C" class="hover:stroke-[#949799]" />
-                                    </Link>
-                                </button>
-                                <button
-                                    class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                    type="button">
-                                    <Link href="">
-                                    <Trash2 width="18" height="18" color="#C80909"
-                                        class="transition-all hover:stroke-[#F86363]" />
-                                    </Link>
-                                </button>
+
+                                <AlertDialog>
+                                    <AlertDialogTrigger>
+                                        <Trash2 width="18" height="18" color="#C80909"
+                                            class="transition-all hover:stroke-[#F86363]" />
+                                    </AlertDialogTrigger>
+
+                                    <AlertDialogContent>
+                                        <AlertDialogHeader>
+                                            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                                            <AlertDialogDescription>
+                                                This action cannot be undone. This will permanently delete your
+                                                account
+                                                and remove your data from our servers.
+                                            </AlertDialogDescription>
+                                        </AlertDialogHeader>
+                                        <AlertDialogFooter>
+                                            <AlertDialogCancel>Cancel</AlertDialogCancel>
+                                            <AlertDialogAction class="bg-[#EC3636]" @click="deleteProduct(product.id)">
+                                                Yes, Delete
+                                            </AlertDialogAction>
+                                        </AlertDialogFooter>
+                                    </AlertDialogContent>
+                                </AlertDialog>
+
                             </td>
                         </tr>
                     </tbody>
