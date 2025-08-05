@@ -1,21 +1,521 @@
 <script setup lang="ts">
 import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
-import { Head } from '@inertiajs/vue3';
-import MemberTable from '@/components/additional/MemberTable.vue';
+import { Head, Link } from '@inertiajs/vue3';
+import { File, Pencil, Trash2 } from 'lucide-vue-next';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Products',
         href: '/products',
     },
+    {
+        title: 'List',
+        href: '/products',
+    }
 ];
 </script>
 
 <template>
+
     <Head title="Products" />
 
     <AppLayout :breadcrumbs="breadcrumbs">
-        <MemberTable></MemberTable>
+        <div class="relative flex flex-col w-full h-full text-gray-700 bg-white shadow-md rounded-xl bg-clip-border">
+            <div class="relative mx-4 mt-4 overflow-hidden text-gray-700 bg-white rounded-none bg-clip-border">
+                <div class="flex items-center justify-between gap-8 mb-8">
+                    <div>
+                        <h5
+                            class="block font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
+                            Product list
+                        </h5>
+                        <p class="block mt-1 font-sans text-base antialiased font-normal leading-relaxed text-gray-700">
+                            See information about all products
+                        </p>
+                    </div>
+                    <div class="flex flex-col gap-2 shrink-0 sm:flex-row">
+                        <button
+                            class="select-none rounded-lg border border-gray-900 py-2 px-4 text-center align-middle font-sans text-xs font-bold uppercase text-gray-900 transition-all hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                            type="button">
+                            view all
+                        </button>
+                        <button
+                            class="flex select-none items-center gap-3 rounded-lg bg-gray-900 py-2 px-4 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                            type="button">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                aria-hidden="true" stroke-width="2" class="w-4 h-4">
+                                <path
+                                    d="M6.25 6.375a4.125 4.125 0 118.25 0 4.125 4.125 0 01-8.25 0zM3.25 19.125a7.125 7.125 0 0114.25 0v.003l-.001.119a.75.75 0 01-.363.63 13.067 13.067 0 01-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 01-.364-.63l-.001-.122zM19.75 7.5a.75.75 0 00-1.5 0v2.25H16a.75.75 0 000 1.5h2.25v2.25a.75.75 0 001.5 0v-2.25H22a.75.75 0 000-1.5h-2.25V7.5z">
+                                </path>
+                            </svg>
+                            Add product
+                        </button>
+                    </div>
+                </div>
+                <div class="flex flex-col items-center justify-between gap-4 md:flex-row">
+                    <div class="block w-full overflow-hidden md:w-max">
+                        <nav>
+                            <ul role="tablist"
+                                class="relative flex flex-row p-1 rounded-lg bg-blue-gray-50 bg-opacity-60">
+                                <li role="tab"
+                                    class="relative flex items-center justify-center w-full h-full px-2 py-1 font-sans text-base antialiased font-normal leading-relaxed text-center bg-transparent cursor-pointer select-none text-blue-gray-900"
+                                    data-value="all">
+                                    <div class="z-20 text-inherit">
+                                        &nbsp;&nbsp;All&nbsp;&nbsp;
+                                    </div>
+                                    <div class="absolute inset-0 z-10 h-full bg-white rounded-md shadow"></div>
+                                </li>
+                                <li role="tab"
+                                    class="relative flex items-center justify-center w-full h-full px-2 py-1 font-sans text-base antialiased font-normal leading-relaxed text-center bg-transparent cursor-pointer select-none text-blue-gray-900"
+                                    data-value="monitored">
+                                    <div class="z-20 text-inherit">
+                                        &nbsp;&nbsp;Monitored&nbsp;&nbsp;
+                                    </div>
+                                </li>
+                                <li role="tab"
+                                    class="relative flex items-center justify-center w-full h-full px-2 py-1 font-sans text-base antialiased font-normal leading-relaxed text-center bg-transparent cursor-pointer select-none text-blue-gray-900"
+                                    data-value="unmonitored">
+                                    <div class="z-20 text-inherit">
+                                        &nbsp;&nbsp;Unmonitored&nbsp;&nbsp;
+                                    </div>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="w-full md:w-72">
+                        <div class="relative h-10 w-full min-w-[200px]">
+                            <div
+                                class="absolute grid w-5 h-5 top-2/4 right-3 -translate-y-2/4 place-items-center text-blue-gray-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" aria-hidden="true" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <input
+                                class="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 !pr-9 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                                placeholder=" " />
+                            <label
+                                class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight text-gray-500 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-gray-900 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:!border-gray-900 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:!border-gray-900 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+                                Search
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="p-6 px-0 overflow-auto">
+                <table class="w-full mt-4 text-left table-auto min-w-max">
+                    <thead>
+                        <tr>
+                            <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
+                                <p
+                                    class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                                    Member
+                                </p>
+                            </th>
+                            <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
+                                <p
+                                    class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                                    Function
+                                </p>
+                            </th>
+                            <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
+                                <p
+                                    class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                                    Status
+                                </p>
+                            </th>
+                            <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
+                                <p
+                                    class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                                    Employed
+                                </p>
+                            </th>
+                            <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
+                                <p
+                                    class="block font-sans text-center text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                                    Action
+                                </p>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="p-4 border-b border-blue-gray-50">
+                                <div class="flex items-center gap-3">
+                                    <img src="https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg"
+                                        alt="John Michael"
+                                        class="relative inline-block h-9 w-9 !rounded-full object-cover object-center" />
+                                    <div class="flex flex-col">
+                                        <p
+                                            class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                                            John Michael
+                                        </p>
+                                        <p
+                                            class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900 opacity-70">
+                                            john@creative-tim.com
+                                        </p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="p-4 border-b border-blue-gray-50">
+                                <div class="flex flex-col">
+                                    <p
+                                        class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                                        Manager
+                                    </p>
+                                    <p
+                                        class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900 opacity-70">
+                                        Organization
+                                    </p>
+                                </div>
+                            </td>
+                            <td class="p-4 border-b border-blue-gray-50">
+                                <div class="w-max">
+                                    <div
+                                        class="relative grid items-center px-2 py-1 font-sans text-xs font-bold text-green-900 uppercase rounded-md select-none whitespace-nowrap bg-green-500/20">
+                                        <span class="">online</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="p-4 border-b border-blue-gray-50">
+                                <p
+                                    class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                                    23/04/18
+                                </p>
+                            </td>
+                            <td class="p-4 border-b border-blue-gray-50 text-center">
+                                <button
+                                    class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                                    type="button">
+                                    <Link :href="route('customers.edit', 334)">
+                                    <Pencil width="18" height="18" color="#1C7005" class="hover:stroke-[#33C809]" />
+                                    </Link>
+                                </button>
+                                <button
+                                    class="relative rounded-lg text-center mx-2 align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                                    type="button">
+                                    <Link :href="route('customers.show', 305)">
+                                    <File width="18" height="18" color="#393B3C" class="hover:stroke-[#949799]" />
+                                    </Link>
+                                </button>
+                                <button
+                                    class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                                    type="button">
+                                    <Link href="">
+                                    <Trash2 width="18" height="18" color="#C80909"
+                                        class="transition-all hover:stroke-[#F86363]" />
+                                    </Link>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 border-b border-blue-gray-50">
+                                <div class="flex items-center gap-3">
+                                    <img src="https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-2.jpg"
+                                        alt="Alexa Liras"
+                                        class="relative inline-block h-9 w-9 !rounded-full object-cover object-center" />
+                                    <div class="flex flex-col">
+                                        <p
+                                            class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                                            Alexa Liras
+                                        </p>
+                                        <p
+                                            class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900 opacity-70">
+                                            alexa@creative-tim.com
+                                        </p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="p-4 border-b border-blue-gray-50">
+                                <div class="flex flex-col">
+                                    <p
+                                        class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                                        Programator
+                                    </p>
+                                    <p
+                                        class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900 opacity-70">
+                                        Developer
+                                    </p>
+                                </div>
+                            </td>
+                            <td class="p-4 border-b border-blue-gray-50">
+                                <div class="w-max">
+                                    <div
+                                        class="relative grid items-center px-2 py-1 font-sans text-xs font-bold uppercase rounded-md select-none whitespace-nowrap bg-blue-gray-500/20 text-blue-gray-900">
+                                        <span class="">offline</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="p-4 border-b border-blue-gray-50">
+                                <p
+                                    class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                                    23/04/18
+                                </p>
+                            </td>
+                            <td class="p-4 border-b border-blue-gray-50 text-center">
+                                <button
+                                    class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                                    type="button">
+                                    <Link :href="route('customers.edit', 334)">
+                                    <Pencil width="18" height="18" color="#1C7005" class="hover:stroke-[#33C809]" />
+                                    </Link>
+                                </button>
+                                <button
+                                    class="relative rounded-lg text-center mx-2 align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                                    type="button">
+                                    <Link :href="route('customers.show', 305)">
+                                    <File width="18" height="18" color="#393B3C" class="hover:stroke-[#949799]" />
+                                    </Link>
+                                </button>
+                                <button
+                                    class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                                    type="button">
+                                    <Link href="">
+                                    <Trash2 width="18" height="18" color="#C80909"
+                                        class="transition-all hover:stroke-[#F86363]" />
+                                    </Link>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 border-b border-blue-gray-50">
+                                <div class="flex items-center gap-3">
+                                    <img src="https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-1.jpg"
+                                        alt="Laurent Perrier"
+                                        class="relative inline-block h-9 w-9 !rounded-full  object-cover object-center" />
+                                    <div class="flex flex-col">
+                                        <p
+                                            class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                                            Laurent Perrier
+                                        </p>
+                                        <p
+                                            class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900 opacity-70">
+                                            laurent@creative-tim.com
+                                        </p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="p-4 border-b border-blue-gray-50">
+                                <div class="flex flex-col">
+                                    <p
+                                        class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                                        Executive
+                                    </p>
+                                    <p
+                                        class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900 opacity-70">
+                                        Projects
+                                    </p>
+                                </div>
+                            </td>
+                            <td class="p-4 border-b border-blue-gray-50">
+                                <div class="w-max">
+                                    <div
+                                        class="relative grid items-center px-2 py-1 font-sans text-xs font-bold uppercase rounded-md select-none whitespace-nowrap bg-blue-gray-500/20 text-blue-gray-900">
+                                        <span class="">offline</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="p-4 border-b border-blue-gray-50">
+                                <p
+                                    class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                                    19/09/17
+                                </p>
+                            </td>
+                            <td class="p-4 border-b border-blue-gray-50 text-center">
+                                <button
+                                    class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                                    type="button">
+                                    <Link :href="route('customers.edit', 334)">
+                                    <Pencil width="18" height="18" color="#1C7005" class="hover:stroke-[#33C809]" />
+                                    </Link>
+                                </button>
+                                <button
+                                    class="relative rounded-lg text-center mx-2 align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                                    type="button">
+                                    <Link :href="route('customers.show', 305)">
+                                    <File width="18" height="18" color="#393B3C" class="hover:stroke-[#949799]" />
+                                    </Link>
+                                </button>
+                                <button
+                                    class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                                    type="button">
+                                    <Link href="">
+                                    <Trash2 width="18" height="18" color="#C80909"
+                                        class="transition-all hover:stroke-[#F86363]" />
+                                    </Link>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 border-b border-blue-gray-50">
+                                <div class="flex items-center gap-3">
+                                    <img src="https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-4.jpg"
+                                        alt="Michael Levi"
+                                        class="relative inline-block h-9 w-9 !rounded-full object-cover object-center" />
+                                    <div class="flex flex-col">
+                                        <p
+                                            class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                                            Michael Levi
+                                        </p>
+                                        <p
+                                            class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900 opacity-70">
+                                            michael@creative-tim.com
+                                        </p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="p-4 border-b border-blue-gray-50">
+                                <div class="flex flex-col">
+                                    <p
+                                        class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                                        Programator
+                                    </p>
+                                    <p
+                                        class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900 opacity-70">
+                                        Developer
+                                    </p>
+                                </div>
+                            </td>
+                            <td class="p-4 border-b border-blue-gray-50">
+                                <div class="w-max">
+                                    <div
+                                        class="relative grid items-center px-2 py-1 font-sans text-xs font-bold text-green-900 uppercase rounded-md select-none whitespace-nowrap bg-green-500/20">
+                                        <span class="">online</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="p-4 border-b border-blue-gray-50">
+                                <p
+                                    class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                                    24/12/08
+                                </p>
+                            </td>
+                            <td class="p-4 border-b border-blue-gray-50 text-center">
+                                <button
+                                    class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                                    type="button">
+                                    <Link :href="route('customers.edit', 334)">
+                                    <Pencil width="18" height="18" color="#1C7005" class="hover:stroke-[#33C809]" />
+                                    </Link>
+                                </button>
+                                <button
+                                    class="relative rounded-lg text-center mx-2 align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                                    type="button">
+                                    <Link :href="route('customers.show', 305)">
+                                    <File width="18" height="18" color="#393B3C" class="hover:stroke-[#949799]" />
+                                    </Link>
+                                </button>
+                                <button
+                                    class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                                    type="button">
+                                    <Link href="">
+                                    <Trash2 width="18" height="18" color="#C80909"
+                                        class="transition-all hover:stroke-[#F86363]" />
+                                    </Link>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="p-4">
+                                <div class="flex items-center gap-3">
+                                    <img src="https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-5.jpg"
+                                        alt="Richard Gran"
+                                        class="relative inline-block h-9 w-9 !rounded-full object-cover object-center" />
+                                    <div class="flex flex-col">
+                                        <p
+                                            class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                                            Richard Gran
+                                        </p>
+                                        <p
+                                            class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900 opacity-70">
+                                            richard@creative-tim.com
+                                        </p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="p-4">
+                                <div class="flex flex-col">
+                                    <p
+                                        class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                                        Manager
+                                    </p>
+                                    <p
+                                        class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900 opacity-70">
+                                        Executive
+                                    </p>
+                                </div>
+                            </td>
+                            <td class="p-4">
+                                <div class="w-max">
+                                    <div
+                                        class="relative grid items-center px-2 py-1 font-sans text-xs font-bold uppercase rounded-md select-none whitespace-nowrap bg-blue-gray-500/20 text-blue-gray-900">
+                                        <span class="">offline</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="p-4">
+                                <p
+                                    class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                                    04/10/21
+                                </p>
+                            </td>
+                            <td class="p-4 text-center">
+                                <button
+                                    class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                                    type="button">
+                                    <Link :href="route('customers.edit', 334)">
+                                    <Pencil width="18" height="18" color="#1C7005" class="hover:stroke-[#33C809]" />
+                                    </Link>
+                                </button>
+                                <button
+                                    class="relative rounded-lg text-center mx-2 align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                                    type="button">
+                                    <Link :href="route('customers.show', 305)">
+                                    <File width="18" height="18" color="#393B3C" class="hover:stroke-[#949799]" />
+                                    </Link>
+                                </button>
+                                <button
+                                    class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                                    type="button">
+                                    <Link href="">
+                                    <Trash2 width="18" height="18" color="#C80909"
+                                        class="transition-all hover:stroke-[#F86363]" />
+                                    </Link>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="flex justify-between items-center px-4 py-4">
+                <div class="text-sm text-slate-500">
+                    Showing <b>1-5</b> of 45
+                </div>
+                <div class="flex space-x-1">
+                    <button
+                        class="px-3 py-1 min-w-9 min-h-9 text-sm font-normal text-slate-500 bg-white border border-slate-200 rounded hover:bg-slate-50 hover:border-slate-400 transition duration-200 ease">
+                        Prev
+                    </button>
+                    <button
+                        class="px-3 py-1 min-w-9 min-h-9 text-sm font-normal text-white bg-primary border border-slate-800 rounded hover:bg-slate-600 hover:border-slate-600 transition duration-200 ease">
+                        1
+                    </button>
+                    <button
+                        class="px-3 py-1 min-w-9 min-h-9 text-sm font-normal text-slate-500 bg-white border border-slate-200 rounded hover:bg-slate-50 hover:border-slate-400 transition duration-200 ease">
+                        2
+                    </button>
+                    <button
+                        class="px-3 py-1 min-w-9 min-h-9 text-sm font-normal text-slate-500 bg-white border border-slate-200 rounded hover:bg-slate-50 hover:border-slate-400 transition duration-200 ease">
+                        3
+                    </button>
+                    <button
+                        class="px-3 py-1 min-w-9 min-h-9 text-sm font-normal text-slate-500 bg-white border border-slate-200 rounded hover:bg-slate-50 hover:border-slate-400 transition duration-200 ease">
+                        Next
+                    </button>
+                </div>
+            </div>
+        </div>
     </AppLayout>
 </template>
