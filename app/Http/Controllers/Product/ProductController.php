@@ -75,9 +75,31 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Product $product)
     {
-        //
+        $request->validate([
+            'barcode' => 'required',
+            'description' => 'required'
+        ]);
+
+        $product -> update([
+            'barcode' => $request -> input('barcode'),
+            'description' => $request -> input('description'),
+            'category' => $request -> input('category'),
+            'unit' => $request -> input('unit'),
+            'supplier' => $request -> input('supplier'),
+            'purchase_price' => $request -> input('purchase_price'),
+            'sale_price' => $request -> input('sale_price'),
+            'validity' => $request -> input('validity'),
+            'minimum_stock' => $request -> input('minimum_stock'),
+            'maximum_stock' => $request -> input('maximum_stock'),
+            'available_stock' => $request -> input('available_stock'),
+            'location' => $request -> input('location'),
+            'image' => $request -> input('image'),
+            'is_active' => $request -> input('is_active')
+        ]);
+
+        return redirect()->route('products.index')->with('success', 'Actualizado com sucesso!');
     }
 
     /**
