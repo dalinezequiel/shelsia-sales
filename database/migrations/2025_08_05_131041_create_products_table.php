@@ -22,8 +22,8 @@ return new class extends Migration
             $table->decimal('sale_price',10,2);
             $table->date('validity');
             $table->integer('minimum_stock');
-            $table->integer('maximum stock');
-            $table->integer('available stock');
+            $table->integer('maximum_stock');
+            $table->integer('available_stock');
             $table->string('location')->unique();
             $table->string('image');
             $table->boolean('is_active')->default(false);
