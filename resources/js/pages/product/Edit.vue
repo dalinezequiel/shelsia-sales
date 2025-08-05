@@ -75,7 +75,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                     <div>
                         <h5
                             class="text-blue-gray-900 block font-sans text-xl leading-snug font-semibold tracking-normal antialiased">
-                            New Product
+                            Edit Product
                         </h5>
                     </div>
                 </div>
