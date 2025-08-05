@@ -17,7 +17,7 @@ const form = useForm({
     phone: '',
     email: '',
     address: '',
-    status: false
+    is_active: false
 });
 
 const submit = () => {
@@ -112,7 +112,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 
                         <div class="flex items-center space-x-2 ">
                             <label class="inline-flex items-center cursor-pointer">
-                                <input type="checkbox" id="is_active" v-model="form.status" class="sr-only peer">
+                                <input type="checkbox" id="is_active" v-model="form.is_active" class="sr-only peer">
                                 <div
                                     class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-gray-900 dark:peer-checked:bg-blue-600">
                                 </div>
@@ -141,11 +141,6 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <path d="M7 3v4a1 1 0 0 0 1 1h7" />
                                 </svg>
                                 Save</Button>
-
-                            <Transition enter-active-class="transition ease-in-out" enter-from-class="opacity-0"
-                                leave-active-class="transition ease-in-out" leave-to-class="opacity-0">
-                                <p class="text-sm text-neutral-600">Saved.</p>
-                            </Transition>
                         </div>
                     </form>
                 </div>
