@@ -29,7 +29,7 @@ const form = useForm({
 });
 
 const submit = () => {
-    form.post(route('customers.store'), {
+    form.post(route('products.store'), {
         preserveScroll: true,
         onSuccess: () => toast.success('Producto cadastrado com sucesso.'),
         onError: () => toast.error('Ocorreu um erro ao tentar cadastrar producto.')
