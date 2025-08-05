@@ -179,11 +179,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <div class="flex flex-col">
                                         <p
                                             class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                                            {{ product.description }}
-                                        </p>
-                                        <p
-                                            class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900 opacity-70">
-                                            john@creative-tim.com
+                                            {{ product.barcode }}
                                         </p>
                                     </div>
                                 </div>
@@ -192,26 +188,27 @@ const breadcrumbs: BreadcrumbItem[] = [
                                 <div class="flex flex-col">
                                     <p
                                         class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                                        Manager
+                                        {{ product.description }}
                                     </p>
                                     <p
                                         class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900 opacity-70">
-                                        Organization
+                                        {{ product.category }}
                                     </p>
                                 </div>
                             </td>
                             <td class="p-4 border-b border-blue-gray-50">
                                 <div class="w-max">
-                                    <div
-                                        class="relative grid items-center px-2 py-1 font-sans text-xs font-bold text-green-900 uppercase rounded-md select-none whitespace-nowrap bg-green-500/20">
-                                        <span class="">online</span>
+                                    <div :class="product.is_active ? 'bg-green-500/20' : 'bg-slate-100 text-slate-600'"
+                                        class="relative grid items-center rounded-md  px-2 py-1 font-sans text-xs font-bold whitespace-nowrap text-green-900 uppercase select-none">
+                                        <span v-if="product.is_active" class="">Activo</span>
+                                        <span v-else class="">Inactivo</span>
                                     </div>
                                 </div>
                             </td>
                             <td class="p-4 border-b border-blue-gray-50">
                                 <p
                                     class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                                    23/04/18
+                                    {{ product.validity }}
                                 </p>
                             </td>
                             <td class="p-4 border-b border-blue-gray-50 text-center">
@@ -231,7 +228,8 @@ const breadcrumbs: BreadcrumbItem[] = [
                                 </button>
 
                                 <AlertDialog>
-                                    <AlertDialogTrigger>
+                                    <AlertDialogTrigger
+                                        class="relative cursor-pointer rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
                                         <Trash2 width="18" height="18" color="#C80909"
                                             class="transition-all hover:stroke-[#F86363]" />
                                     </AlertDialogTrigger>
@@ -246,8 +244,9 @@ const breadcrumbs: BreadcrumbItem[] = [
                                             </AlertDialogDescription>
                                         </AlertDialogHeader>
                                         <AlertDialogFooter>
-                                            <AlertDialogCancel>Cancel</AlertDialogCancel>
-                                            <AlertDialogAction class="bg-[#EC3636]" @click="deleteProduct(product.id)">
+                                            <AlertDialogCancel class="cursor-pointer">Cancel</AlertDialogCancel>
+                                            <AlertDialogAction class="cursor-pointer bg-[#EC3636]"
+                                                @click="deleteProduct(product.id)">
                                                 Yes, Delete
                                             </AlertDialogAction>
                                         </AlertDialogFooter>
