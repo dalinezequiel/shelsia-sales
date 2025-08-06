@@ -99,8 +99,9 @@ class FinancialController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Account $account)
     {
-        //
+        $account -> delete();
+        return redirect()->route('accounts.index')->with('success', 'Deleted com sucesso!');
     }
 }
