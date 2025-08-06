@@ -207,6 +207,10 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
                                     {{ product.supplier }}
                                 </p>
+                                <p
+                                    class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900 opacity-70">
+                                    support@handling.co.mz
+                                </p>
                             </td>
                             <td class="p-4 border-b border-blue-gray-50">
                                 <div class="w-max">
