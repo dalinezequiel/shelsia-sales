@@ -86,8 +86,8 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <SelectValue placeholder="Select category" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem value="Foods"> Foods </SelectItem>
-                                    <SelectItem value="Drinks"> Drinks </SelectItem>
+                                    <SelectItem value="Income"> Income </SelectItem>
+                                    <SelectItem value="Expense"> Expense </SelectItem>
                                 </SelectContent>
                             </Select>
                             <InputError :message="form.errors.category" class="mt-2" />
