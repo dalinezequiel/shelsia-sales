@@ -93,7 +93,7 @@ class FinancialController extends Controller
             'is_active' => $request -> input('is_active')
         ]);
 
-        return redirect()->route('accounts.index')->with('success', 'Actualizado com sucesso!');
+        return redirect()->route('financial.index')->with('success', 'Actualizado com sucesso!');
     }
 
     /**
