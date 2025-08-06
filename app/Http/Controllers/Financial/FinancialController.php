@@ -102,6 +102,6 @@ class FinancialController extends Controller
     public function destroy(Account $account)
     {
         $account -> delete();
-        return redirect()->route('accounts.index')->with('success', 'Deleted com sucesso!');
+        return redirect()->route('financial.index')->with('success', 'Deleted com sucesso!');
     }
 }
