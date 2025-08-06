@@ -40,7 +40,7 @@ const form = useForm({
 });
 
 const submit = () => {
-    form.post(route('financial.update', props.account), {
+    form.put(route('financial.update', props.account), {
         preserveScroll: true,
         onSuccess: () => toast.success('Conta actualizada com sucesso.'),
         onError: () => toast.error('Ocorreu um erro ao tentar actualizar conta.')
@@ -61,7 +61,6 @@ const breadcrumbs: BreadcrumbItem[] = [
 <template>
 
     <Head title="Products" />
-    <p>{{ account }}</p>
 
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="relative flex h-full lg:pr-40 w-full flex-col bg-white bg-clip-border text-gray-700">
