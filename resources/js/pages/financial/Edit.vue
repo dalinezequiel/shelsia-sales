@@ -10,7 +10,7 @@ import { Head, Link, useForm } from '@inertiajs/vue3';
 import { toast } from 'vue-sonner';
 
 interface Account {
-    account_plan: number;
+    account_plan: string;
     description: string;
     category: string;
     supplier: string;
@@ -61,6 +61,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 <template>
 
     <Head title="Products" />
+    <p>{{ account }}</p>
 
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="relative flex h-full lg:pr-40 w-full flex-col bg-white bg-clip-border text-gray-700">
@@ -69,7 +70,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                     <div>
                         <h5
                             class="text-blue-gray-900 block font-sans text-xl leading-snug font-semibold tracking-normal antialiased">
-                            New Account
+                            Edit Account
                         </h5>
                     </div>
                 </div>
