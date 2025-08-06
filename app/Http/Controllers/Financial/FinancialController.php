@@ -64,22 +64,22 @@ class FinancialController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Account $account)
+    public function edit(Account $financial)
     {
-        return Inertia::render('financial/Edit', compact('account'));
+        return Inertia::render('financial/Edit', compact('financial'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Account $account)
+    public function update(Request $request, Account $financial)
     {
         $request->validate([
             'account_plan' => 'required',
             'description' => 'required'
         ]);
 
-        $account -> update([
+        $financial -> update([
             'account_plan' => $request -> input('account_plan'),
             'description' => $request -> input('description'),
             'category' => $request -> input('category'),
@@ -99,9 +99,9 @@ class FinancialController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Account $account)
+    public function destroy(Account $financial)
     {
-        $account -> delete();
+        $financial -> delete();
         return redirect()->route('financial.index')->with('success', 'Deleted com sucesso!');
     }
 }
