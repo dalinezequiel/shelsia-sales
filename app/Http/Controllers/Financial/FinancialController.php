@@ -14,8 +14,8 @@ class FinancialController extends Controller
      */
     public function index()
     {
-        //
-        return Inertia::render('financial/Index');
+        $accounts = Account::get();
+        return Inertia::render('financial/Index', compact('accounts'));
     }
 
     /**
