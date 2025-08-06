@@ -22,7 +22,7 @@ class FinancialController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('financial/Create');
     }
 
     /**
