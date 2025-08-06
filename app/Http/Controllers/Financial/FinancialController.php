@@ -72,9 +72,28 @@ class FinancialController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Account $account)
     {
-        //
+        $request->validate([
+            'account_plan' => 'required',
+            'description' => 'required'
+        ]);
+
+        $account -> update([
+            'account_plan' => $request -> input('account_plan'),
+            'description' => $request -> input('description'),
+            'category' => $request -> input('category'),
+            'supplier' => $request -> input('supplier'),
+            'due_date' => $request -> input('due_date'),
+            'amount' => $request -> input('amount'),
+            'date_of_issue' => $request -> input('date_of_issue'),
+            'document_number' => $request -> input('document_number'),
+            'occurrence' => $request -> input('occurrence'),
+            'observation' => $request -> input('observation'),
+            'is_active' => $request -> input('is_active')
+        ]);
+
+        return redirect()->route('accounts.index')->with('success', 'Actualizado com sucesso!');
     }
 
     /**
