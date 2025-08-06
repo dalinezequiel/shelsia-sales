@@ -49,7 +49,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="relative flex flex-col w-full h-full text-gray-700 bg-white shadow-md rounded-xl bg-clip-border">
-            <div class="relative mx-4 mt-4 overflow-hidden text-gray-700 bg-white rounded-none bg-clip-border">
+            <div class="relative mx-4 mt-4 text-gray-700 bg-white rounded-none bg-clip-border">
                 <div class="flex items-center justify-between gap-8 mb-8">
                     <div>
                         <h5
@@ -133,7 +133,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                     </div>
                 </div>
             </div>
-            <div class="p-6 px-0 overflow-auto">
+            <div class="p-6 px-0 overflow-auto h-full">
                 <table class="w-full mt-4 text-left table-auto min-w-max">
                     <thead>
                         <tr>
