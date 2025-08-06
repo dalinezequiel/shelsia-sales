@@ -37,6 +37,10 @@ const breadcrumbs: BreadcrumbItem[] = [
         title: 'Financial',
         href: '/financial',
     },
+    {
+        title: 'List',
+        href: '/financial',
+    },
 ];
 </script>
 
