@@ -49,7 +49,7 @@ class ProductController extends Controller
             'maximum_stock' => $request -> maximum_stock,
             'available_stock' => $request -> available_stock,
             'location' => $request -> location,
-            'image' => $request -> image,
+            'image' => 'C:\Users\dell\Pictures\resize.png',
             'is_active' => $request -> is_active
         ]);
 
@@ -95,7 +95,7 @@ class ProductController extends Controller
             'maximum_stock' => $request -> input('maximum_stock'),
             'available_stock' => $request -> input('available_stock'),
             'location' => $request -> input('location'),
-            'image' => $request -> input('image'),
+            'image' => 'C:\Users\dell\Pictures\resize.png',
             'is_active' => $request -> input('is_active')
         ]);
 

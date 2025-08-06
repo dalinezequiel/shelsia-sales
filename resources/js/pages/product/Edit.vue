@@ -41,7 +41,7 @@ const form = useForm({
     maximum_stock: props.product.maximum_stock,
     available_stock: props.product.available_stock,
     location: props.product.location,
-    image: props.product.image,
+    // image: props.product.image,
     is_active: Boolean(props.product.is_active)
 });
 
@@ -106,8 +106,8 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <SelectValue placeholder="Select category" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem value="foods"> Foods </SelectItem>
-                                    <SelectItem value="drinks"> Drinks </SelectItem>
+                                    <SelectItem value="Foods"> Foods </SelectItem>
+                                    <SelectItem value="Drinks"> Drinks </SelectItem>
                                 </SelectContent>
                             </Select>
                             <InputError :message="form.errors.category" class="mt-2" />
@@ -200,8 +200,8 @@ const breadcrumbs: BreadcrumbItem[] = [
 
                         <div class="grid gap-2 mb-6 lg:mb-0">
                             <Label for="image">Image</Label>
-                            <Input id="image" v-model="form.image" type="file" class="mt-1 block w-full" />
-                            <InputError :message="form.errors.image" class="mt-2" />
+                            <Input id="image" type="file" class="mt-1 block w-full" />
+                            <InputError class="mt-2" />
                         </div>
                     </div>
 
