@@ -46,7 +46,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="relative flex flex-col w-full h-full text-gray-700 bg-white shadow-md rounded-xl bg-clip-border">
-            <div class="relative mx-4 mt-4 overflow-hidden text-gray-700 bg-white rounded-none bg-clip-border">
+            <div class="relative mx-4 mt-4 text-gray-700 bg-white rounded-none bg-clip-border">
                 <div class="flex items-center justify-between gap-8 mb-8">
                     <div>
                         <h5
