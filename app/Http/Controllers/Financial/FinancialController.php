@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Financial;
 
 use App\Http\Controllers\Controller;
+use App\Models\Account\Account;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -30,7 +31,26 @@ class FinancialController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'account_plan' => 'required',
+            'description' => 'required'
+        ]);
+
+        Account::create([
+            'account_plan' => $request -> account_plan,
+            'description' => $request -> description,
+            'category' => $request -> category,
+            'supplier' => $request -> supplier,
+            'due_date' => $request -> due_date,
+            'amount' => $request -> amount,
+            'date_of_issue' => $request -> date_of_issue,
+            'document_number' => $request -> document_number,
+            'occurrence' => $request -> occurrence,
+            'observation' => $request -> observation,
+            'is_active' => $request -> is_active
+        ]);
+
+        return redirect()->route('accounts.index')->with('success', 'Cadastrado com sucesso!');
     }
 
     /**
