@@ -23,24 +23,24 @@ interface Account {
     is_active: boolean;
 }
 
-const props = defineProps<{ account: Account }>();
+const props = defineProps<{ financial: Account }>();
 
 const form = useForm({
-    account_plan: props.account.account_plan,
-    description: props.account.description,
-    category: props.account.category,
-    supplier: props.account.supplier,
-    due_date: props.account.due_date.toString(),
-    amount: props.account.amount,
-    date_of_issue: props.account.date_of_issue.toString(),
-    document_number: props.account.document_number,
-    occurrence: props.account.occurrence,
-    observation: props.account.observation,
-    is_active: Boolean(props.account.is_active)
+    account_plan: props.financial.account_plan,
+    description: props.financial.description,
+    category: props.financial.category,
+    supplier: props.financial.supplier,
+    due_date: props.financial.due_date.toString(),
+    amount: props.financial.amount,
+    date_of_issue: props.financial.date_of_issue.toString(),
+    document_number: props.financial.document_number,
+    occurrence: props.financial.occurrence,
+    observation: props.financial.observation,
+    is_active: Boolean(props.financial.is_active)
 });
 
 const submit = () => {
-    form.put(route('financial.update', props.account), {
+    form.put(route('financial.update', props.financial), {
         preserveScroll: true,
         onSuccess: () => toast.success('Conta actualizada com sucesso.'),
         onError: () => toast.error('Ocorreu um erro ao tentar actualizar conta.')
