@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
-import { Head, Link } from '@inertiajs/vue3';
+import { Head, Link, router } from '@inertiajs/vue3';
 import { File, Pencil, Trash2 } from 'lucide-vue-next';
 import {
     AlertDialog,
@@ -15,6 +15,7 @@ import {
     AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
 import Avatar from '@/components/additional/Avatar.vue';
+import { toast } from 'vue-sonner';
 
 defineProps({
     accounts: {
@@ -22,6 +23,14 @@ defineProps({
         required: true
     }
 });
+
+const deleteAccount = (id: number) => {
+    router.delete(route('financial.destroy', id), {
+        preserveScroll: true,
+        onSuccess: () => toast.success('Conta excluída com sucesso.'),
+        onError: () => toast.error('Ocorreu um erro ao tentar excluir conta.')
+    })
+}
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -263,7 +272,8 @@ const breadcrumbs: BreadcrumbItem[] = [
                                         </AlertDialogHeader>
                                         <AlertDialogFooter>
                                             <AlertDialogCancel class="cursor-pointer">Cancel</AlertDialogCancel>
-                                            <AlertDialogAction class="cursor-pointer bg-[#EC3636]" @click="">
+                                            <AlertDialogAction class="cursor-pointer bg-[#EC3636]"
+                                                @click="deleteAccount(account.id)">
                                                 Yes, Delete
                                             </AlertDialogAction>
                                         </AlertDialogFooter>
