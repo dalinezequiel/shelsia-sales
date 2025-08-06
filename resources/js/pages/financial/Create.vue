@@ -12,19 +12,16 @@ import { toast } from 'vue-sonner';
 
 
 const form = useForm({
-    barcode: '',
+    account_plan: '',
     description: '',
     category: '',
-    unit: '',
     supplier: '',
-    purchase_price: '',
-    sale_price: '',
-    validity: '',
-    minimum_stock: '',
-    maximum_stock: '',
-    available_stock: '',
-    location: '',
-    image: '',
+    due_date: '',
+    amount: '',
+    date_of_issue: '',
+    document_number: '',
+    occurrence: '',
+    observation: '',
     is_active: false
 });
 
@@ -67,10 +64,10 @@ const breadcrumbs: BreadcrumbItem[] = [
                 <form @submit.prevent="submit" class="space-y-6">
                     <div class="grid lg:grid-cols-2 lg:gap-4 ">
                         <div class="grid gap-2 mb-6 lg:mb-0">
-                            <Label for="barcode">Barcode</Label>
-                            <Input id="barcode" v-model="form.barcode" type="number" class="mt-1 block w-full" required
-                                autocomplete="barcode" placeholder="Barcode" />
-                            <InputError :message="form.errors.barcode" class="mt-2" />
+                            <Label for="account_plan">Account plan</Label>
+                            <Input id="account_plan" v-model="form.account_plan" type="number" class="mt-1 block w-full"
+                                required placeholder="Account plan: x-xxx-xx-x" />
+                            <InputError :message="form.errors.account_plan" class="mt-2" />
                         </div>
 
                         <div class="grid gap-2 mb-6 lg:mb-0">
@@ -96,21 +93,6 @@ const breadcrumbs: BreadcrumbItem[] = [
                             <InputError :message="form.errors.category" class="mt-2" />
                         </div>
 
-                        <div class="grid gap-2 mb-6 lg:mb-0">
-                            <Label for="unit">Unit</Label>
-                            <Select id="unit" v-model="form.unit">
-                                <SelectTrigger class="w-auto mt-1">
-                                    <SelectValue placeholder="Select unit" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectItem value="ml"> ml </SelectItem>
-                                    <SelectItem value="l"> l </SelectItem>
-                                    <SelectItem value="kg"> Kg </SelectItem>
-                                </SelectContent>
-                            </Select>
-                            <InputError :message="form.errors.unit" class="mt-2" />
-                        </div>
-
                         <div class="grid gap-2">
                             <Label for="supplier">Supplier</Label>
                             <Select id="supplier" v-model="form.supplier">
@@ -127,64 +109,57 @@ const breadcrumbs: BreadcrumbItem[] = [
                     </div>
 
                     <div class="grid lg:grid-cols-3 lg:gap-4 ">
-                        <div class="grid gap-2 mb-6 lg:mb-0">
-                            <Label for="purchase_price">Purchase price</Label>
-                            <Input id="purchase_price" v-model="form.purchase_price" type="number"
-                                class="mt-1 block w-full" required placeholder="Purchase price" />
-                            <InputError :message="form.errors.purchase_price" class="mt-2" />
-                        </div>
-
-                        <div class="grid gap-2 mb-6 lg:mb-0">
-                            <Label for="sale_price">Sale price</Label>
-                            <Input id="sale_price" v-model="form.sale_price" type="number" class="mt-1 block w-full"
-                                required placeholder="Sale price" />
-                            <InputError :message="form.errors.sale_price" class="mt-2" />
-                        </div>
-
                         <div class="grid gap-2">
-                            <Label for="validity">Validity</Label>
-                            <Input id="validity" v-model="form.validity" type="date" class="mt-1 block w-full" required
-                                autocomplete="validity" placeholder="Validity" />
-                            <InputError :message="form.errors.validity" class="mt-2" />
+                            <Label for="due_date">Due date</Label>
+                            <Input id="due_date" v-model="form.due_date" type="date" class="mt-1 block w-full" required
+                                placeholder="Due date" />
+                            <InputError :message="form.errors.due_date" class="mt-2" />
+                        </div>
+
+                        <div class="grid gap-2 mb-6 lg:mb-0">
+                            <Label for="amount">Amount</Label>
+                            <Input id="amount" v-model="form.amount" type="number" class="mt-1 block w-full" required
+                                placeholder="Amount" />
+                            <InputError :message="form.errors.amount" class="mt-2" />
                         </div>
                     </div>
 
                     <div class="grid lg:grid-cols-3 lg:gap-4 ">
-                        <div class="grid gap-2 mb-6 lg:mb-0">
-                            <Label for="minimum_stock">Minimum stock</Label>
-                            <Input id="minimum_stock" v-model="form.minimum_stock" type="number"
-                                class="mt-1 block w-full" required autocomplete="minimum_stock"
-                                placeholder="Minimum stock" />
-                            <InputError :message="form.errors.minimum_stock" class="mt-2" />
+                        <div class="grid gap-2">
+                            <Label for="date_of_issue">Date of issue</Label>
+                            <Input id="date_of_issue" v-model="form.date_of_issue" type="date" class="mt-1 block w-full"
+                                required placeholder="Validity" />
+                            <InputError :message="form.errors.date_of_issue" class="mt-2" />
                         </div>
 
                         <div class="grid gap-2 mb-6 lg:mb-0">
-                            <Label for="maximum_stock">Maximum stock</Label>
-                            <Input id="maximum_stock" v-model="form.maximum_stock" type="number"
-                                class="mt-1 block w-full" required autocomplete="maximum_stock"
-                                placeholder="Maximum stock" />
-                            <InputError :message="form.errors.maximum_stock" class="mt-2" />
+                            <Label for="document_number">Document number</Label>
+                            <Input id="document_number" v-model="form.document_number" type="number"
+                                class="mt-1 block w-full" required placeholder="Document number" />
+                            <InputError :message="form.errors.document_number" class="mt-2" />
+                        </div>
+
+                        <div class="grid gap-2">
+                            <Label for="occurrence">Occurrence</Label>
+                            <Select id="occurrence" v-model="form.occurrence">
+                                <SelectTrigger class="w-auto mt-1">
+                                    <SelectValue placeholder="Select occurrence" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="Monthly"> Monthly </SelectItem>
+                                    <SelectItem value="Semi-Annual"> Semi-Annual </SelectItem>
+                                    <SelectItem value="Annual"> Annual </SelectItem>
+                                </SelectContent>
+                            </Select>
+                            <InputError :message="form.errors.occurrence" class="mt-2" />
                         </div>
 
                         <div class="grid gap-2 mb-6 lg:mb-0">
-                            <Label for="available_stock">Available stock</Label>
-                            <Input id="available_stock" v-model="form.available_stock" type="number"
-                                class="mt-1 block w-full" autocomplete="available_stock"
-                                placeholder="Available stock" />
-                            <InputError :message="form.errors.available_stock" class="mt-2" />
-                        </div>
-
-                        <div class="grid gap-2 mb-6 lg:mb-0">
-                            <Label for="location">Location</Label>
-                            <Input id="location" v-model="form.location" class="mt-1 block w-full"
-                                autocomplete="location" placeholder="Location" />
-                            <InputError :message="form.errors.location" class="mt-2" />
-                        </div>
-
-                        <div class="grid gap-2 mb-6 lg:mb-0">
-                            <Label for="image">Image</Label>
-                            <Input id="image" v-model="form.image" type="file" class="mt-1 block w-full" />
-                            <InputError :message="form.errors.image" class="mt-2" />
+                            <Label for="observation">Observation</Label>
+                            <textarea id="observation" rows="4" v-model="form.observation"
+                                class="block p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="Write your observation here..."></textarea>
+                            <InputError :message="form.errors.observation" class="mt-2" />
                         </div>
                     </div>
 
