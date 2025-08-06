@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Financial;
 
 use App\Http\Controllers\Controller;
-use App\Models\Account\Account;
+use App\Models\Financial\Account;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -50,7 +50,7 @@ class FinancialController extends Controller
             'is_active' => $request -> is_active
         ]);
 
-        return redirect()->route('accounts.index')->with('success', 'Cadastrado com sucesso!');
+        return redirect()->route('financial.index')->with('success', 'Cadastrado com sucesso!');
     }
 
     /**
