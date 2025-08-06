@@ -56,9 +56,9 @@ class FinancialController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Account $financial)
     {
-        //
+        return Inertia::render('financial/Show', compact('financial'));
     }
 
     /**
