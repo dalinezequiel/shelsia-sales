@@ -14,6 +14,7 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
+import Avatar from '@/components/additional/Avatar.vue';
 
 defineProps({
     accounts: {
@@ -127,7 +128,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                             <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
                                 <p
                                     class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
-                                    Member
+                                    Account plan
                                 </p>
                             </th>
                             <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
@@ -139,13 +140,25 @@ const breadcrumbs: BreadcrumbItem[] = [
                             <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
                                 <p
                                     class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                                    Amount
+                                </p>
+                            </th>
+                            <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
+                                <p
+                                    class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                                    Supplier
+                                </p>
+                            </th>
+                            <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
+                                <p
+                                    class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
                                     Status
                                 </p>
                             </th>
                             <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
                                 <p
                                     class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
-                                    Employed
+                                    Due Date
                                 </p>
                             </th>
                             <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
@@ -160,13 +173,11 @@ const breadcrumbs: BreadcrumbItem[] = [
                         <tr v-for="account in accounts" :key="account.id">
                             <td class="p-4 border-b border-blue-gray-50">
                                 <div class="flex items-center gap-3">
-                                    <img src="https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg"
-                                        alt="John Michael"
-                                        class="relative inline-block h-9 w-9 !rounded-full object-cover object-center" />
+                                    <Avatar name="P" />
                                     <div class="flex flex-col">
                                         <p
                                             class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                                            {{ account.description }}
+                                            {{ account.account_plan }}
                                         </p>
                                     </div>
                                 </div>
@@ -179,6 +190,26 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     </p>
                                     <p
                                         class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900 opacity-70">
+                                        {{ account.occurrence }}
+                                    </p>
+                                </div>
+                            </td>
+                            <td class="p-4 border-b border-blue-gray-50">
+                                <div class="flex flex-col">
+                                    <p
+                                        class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                                        {{ account.amount }}
+                                    </p>
+                                </div>
+                            </td>
+                            <td class="p-4 border-b border-blue-gray-50">
+                                <div class="flex flex-col">
+                                    <p
+                                        class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                                        {{ account.supplier }}
+                                    </p>
+                                    <p
+                                        class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900 opacity-70">
                                         {{ account.category }}
                                     </p>
                                 </div>
@@ -187,15 +218,15 @@ const breadcrumbs: BreadcrumbItem[] = [
                                 <div class="w-max">
                                     <div :class="account.is_active ? 'bg-green-500/20' : 'bg-slate-100 text-slate-600'"
                                         class="relative grid items-center rounded-md  px-2 py-1 font-sans text-xs font-bold whitespace-nowrap text-green-900 uppercase select-none">
-                                        <span v-if="account.is_active" class="">Activo</span>
-                                        <span v-else class="">Inactivo</span>
+                                        <span v-if="account.is_active" class="">Pago</span>
+                                        <span v-else class="">Não Pago</span>
                                     </div>
                                 </div>
                             </td>
                             <td class="p-4 border-b border-blue-gray-50">
                                 <p
                                     class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                                    {{ account.validity }}
+                                    {{ account.created_at }}
                                 </p>
                             </td>
                             <td class="p-4 border-b border-blue-gray-50 text-center">
