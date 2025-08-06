@@ -26,7 +26,7 @@ const form = useForm({
 });
 
 const submit = () => {
-    form.post(route('accounts.store'), {
+    form.post(route('financial.store'), {
         preserveScroll: true,
         onSuccess: () => toast.success('Conta cadastrado com sucesso.'),
         onError: () => toast.error('Ocorreu um erro ao tentar cadastrar conta.')
