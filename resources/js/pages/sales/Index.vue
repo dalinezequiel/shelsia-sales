@@ -134,25 +134,25 @@ const breadcrumbs: BreadcrumbItem[] = [
                 </div>
             </div>
             <div class="p-6 px-0 overflow-auto h-full">
-                <table class="w-full mt-4 text-left table-auto min-w-max">
+                <table class="w-full text-left table-auto min-w-max">
                     <thead>
                         <tr>
                             <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
                                 <p
                                     class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
-                                    Identification
+                                    Transaction
                                 </p>
                             </th>
                             <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
                                 <p
                                     class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
-                                    Description
+                                    Amount
                                 </p>
                             </th>
                             <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
                                 <p
                                     class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
-                                    Supplier
+                                    Date
                                 </p>
                             </th>
                             <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
@@ -164,77 +164,80 @@ const breadcrumbs: BreadcrumbItem[] = [
                             <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
                                 <p
                                     class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
-                                    Validity
+                                    Account
                                 </p>
                             </th>
                             <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
                                 <p
-                                    class="block font-sans text-center text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
-                                    Action
+                                    class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
                                 </p>
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="product in sales" :key="product.id">
+                        <tr>
                             <td class="p-4 border-b border-blue-gray-50">
                                 <div class="flex items-center gap-3">
-                                    <img src="https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg"
-                                        alt="John Michael"
-                                        class="relative inline-block h-9 w-9 !rounded-full object-cover object-center" />
-                                    <div class="flex flex-col">
-                                        <p
-                                            class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                                            {{ product.barcode }}
-                                        </p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="p-4 border-b border-blue-gray-50">
-                                <div class="flex flex-col">
+                                    <img src="https://docs.material-tailwind.com/img/logos/logo-spotify.svg"
+                                        alt="Spotify"
+                                        class="relative inline-block h-12 w-12 !rounded-full border border-blue-gray-50 bg-blue-gray-50/50 object-contain object-center p-1" />
                                     <p
-                                        class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                                        {{ product.description }}
-                                    </p>
-                                    <p
-                                        class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900 opacity-70">
-                                        {{ product.category }}
+                                        class="block font-sans text-sm antialiased font-bold leading-normal text-blue-gray-900">
+                                        Spotify
                                     </p>
                                 </div>
                             </td>
                             <td class="p-4 border-b border-blue-gray-50">
                                 <p
                                     class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                                    {{ product.supplier }}
+                                    $2,500
+                                </p>
+                            </td>
+                            <td class="p-4 border-b border-blue-gray-50">
+                                <p
+                                    class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                                    Wed 3:00pm
                                 </p>
                             </td>
                             <td class="p-4 border-b border-blue-gray-50">
                                 <div class="w-max">
-                                    <div :class="product.is_active ? 'bg-green-500/20' : 'bg-slate-100 text-slate-600'"
-                                        class="relative grid items-center rounded-md  px-2 py-1 font-sans text-xs font-bold whitespace-nowrap text-green-900 uppercase select-none">
-                                        <span v-if="product.is_active" class="">Activo</span>
-                                        <span v-else class="">Inactivo</span>
+                                    <div
+                                        class="relative grid items-center px-2 py-1 font-sans text-xs font-bold text-green-900 uppercase rounded-md select-none whitespace-nowrap bg-green-500/20">
+                                        <span class="">paid</span>
                                     </div>
                                 </div>
                             </td>
                             <td class="p-4 border-b border-blue-gray-50">
-                                <p
-                                    class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                                    {{ product.validity }}
-                                </p>
+                                <div class="flex items-center gap-3">
+                                    <div class="w-12 p-1 border rounded-md h-9 border-blue-gray-50">
+                                        <img src="https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/logos/visa.png"
+                                            alt="visa"
+                                            class="relative inline-block h-full w-full !rounded-none  object-contain object-center p-1" />
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <p
+                                            class="block font-sans text-sm antialiased font-normal leading-normal capitalize text-blue-gray-900">
+                                            visa 1234
+                                        </p>
+                                        <p
+                                            class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900 opacity-70">
+                                            06/2026
+                                        </p>
+                                    </div>
+                                </div>
                             </td>
                             <td class="p-4 border-b border-blue-gray-50 text-center">
                                 <button
                                     class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                     type="button">
-                                    <Link :href="route('products.edit', product.id)">
+                                    <Link :href="route('sales.edit', 1)">
                                     <Pencil width="18" height="18" color="#1C7005" class="hover:stroke-[#33C809]" />
                                     </Link>
                                 </button>
                                 <button
                                     class="relative rounded-lg text-center mx-2 align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                     type="button">
-                                    <Link :href="route('products.show', product.id)">
+                                    <Link :href="route('sales.show', 1)">
                                     <File width="18" height="18" color="#393B3C" class="hover:stroke-[#949799]" />
                                     </Link>
                                 </button>
@@ -257,19 +260,296 @@ const breadcrumbs: BreadcrumbItem[] = [
                                         </AlertDialogHeader>
                                         <AlertDialogFooter>
                                             <AlertDialogCancel class="cursor-pointer">Cancel</AlertDialogCancel>
-                                            <AlertDialogAction class="cursor-pointer bg-[#EC3636]"
-                                                @click="deleteSale(product.id)">
+                                            <AlertDialogAction class="cursor-pointer bg-[#EC3636]" @click="">
                                                 Yes, Delete
                                             </AlertDialogAction>
                                         </AlertDialogFooter>
                                     </AlertDialogContent>
                                 </AlertDialog>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 border-b border-blue-gray-50">
+                                <div class="flex items-center gap-3">
+                                    <img src="https://docs.material-tailwind.com/img/logos/logo-amazon.svg" alt="Amazon"
+                                        class="relative inline-block h-12 w-12 !rounded-full  border border-blue-gray-50 bg-blue-gray-50/50 object-contain object-center p-1" />
+                                    <p
+                                        class="block font-sans text-sm antialiased font-bold leading-normal text-blue-gray-900">
+                                        Amazon
+                                    </p>
+                                </div>
+                            </td>
+                            <td class="p-4 border-b border-blue-gray-50">
+                                <p
+                                    class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                                    $5,000
+                                </p>
+                            </td>
+                            <td class="p-4 border-b border-blue-gray-50">
+                                <p
+                                    class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                                    Wed 1:00pm
+                                </p>
+                            </td>
+                            <td class="p-4 border-b border-blue-gray-50">
+                                <div class="w-max">
+                                    <div
+                                        class="relative grid items-center px-2 py-1 font-sans text-xs font-bold text-green-900 uppercase rounded-md select-none whitespace-nowrap bg-green-500/20">
+                                        <span class="">paid</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="p-4 border-b border-blue-gray-50">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-12 p-1 border rounded-md h-9 border-blue-gray-50">
+                                        <img src="https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/logos/mastercard.png"
+                                            alt="master-card"
+                                            class="relative inline-block h-full w-full !rounded-none  object-contain object-center p-1" />
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <p
+                                            class="block font-sans text-sm antialiased font-normal leading-normal capitalize text-blue-gray-900">
+                                            master card 1234
+                                        </p>
+                                        <p
+                                            class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900 opacity-70">
+                                            06/2026
+                                        </p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="p-4 border-b border-blue-gray-50 text-center">
+                                <button
+                                    class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                                    type="button">
+                                    <Link :href="route('sales.edit', 1)">
+                                    <Pencil width="18" height="18" color="#1C7005" class="hover:stroke-[#33C809]" />
+                                    </Link>
+                                </button>
+                                <button
+                                    class="relative rounded-lg text-center mx-2 align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                                    type="button">
+                                    <Link :href="route('sales.show', 1)">
+                                    <File width="18" height="18" color="#393B3C" class="hover:stroke-[#949799]" />
+                                    </Link>
+                                </button>
 
+                                <AlertDialog>
+                                    <AlertDialogTrigger
+                                        class="relative cursor-pointer rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
+                                        <Trash2 width="18" height="18" color="#C80909"
+                                            class="transition-all hover:stroke-[#F86363]" />
+                                    </AlertDialogTrigger>
+
+                                    <AlertDialogContent>
+                                        <AlertDialogHeader>
+                                            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                                            <AlertDialogDescription>
+                                                This action cannot be undone. This will permanently delete your
+                                                account
+                                                and remove your data from our servers.
+                                            </AlertDialogDescription>
+                                        </AlertDialogHeader>
+                                        <AlertDialogFooter>
+                                            <AlertDialogCancel class="cursor-pointer">Cancel</AlertDialogCancel>
+                                            <AlertDialogAction class="cursor-pointer bg-[#EC3636]" @click="">
+                                                Yes, Delete
+                                            </AlertDialogAction>
+                                        </AlertDialogFooter>
+                                    </AlertDialogContent>
+                                </AlertDialog>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 border-b border-blue-gray-50">
+                                <div class="flex items-center gap-3">
+                                    <img src="https://docs.material-tailwind.com/img/logos/logo-pinterest.svg"
+                                        alt="Pinterest"
+                                        class="relative inline-block h-12 w-12 !rounded-full  border border-blue-gray-50 bg-blue-gray-50/50 object-contain object-center p-1" />
+                                    <p
+                                        class="block font-sans text-sm antialiased font-bold leading-normal text-blue-gray-900">
+                                        Pinterest
+                                    </p>
+                                </div>
+                            </td>
+                            <td class="p-4 border-b border-blue-gray-50">
+                                <p
+                                    class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                                    $3,400
+                                </p>
+                            </td>
+                            <td class="p-4 border-b border-blue-gray-50">
+                                <p
+                                    class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                                    Mon 7:40pm
+                                </p>
+                            </td>
+                            <td class="p-4 border-b border-blue-gray-50">
+                                <div class="w-max">
+                                    <div
+                                        class="relative grid items-center px-2 py-1 font-sans text-xs font-bold uppercase rounded-md select-none whitespace-nowrap bg-amber-500/20 text-amber-900">
+                                        <span class="">pending</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="p-4 border-b border-blue-gray-50">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-12 p-1 border rounded-md h-9 border-blue-gray-50">
+                                        <img src="https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/logos/mastercard.png"
+                                            alt="master-card"
+                                            class="relative inline-block h-full w-full !rounded-none object-contain object-center p-1" />
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <p
+                                            class="block font-sans text-sm antialiased font-normal leading-normal capitalize text-blue-gray-900">
+                                            master card 1234
+                                        </p>
+                                        <p
+                                            class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900 opacity-70">
+                                            06/2026
+                                        </p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="p-4 border-b border-blue-gray-50 text-center">
+                                <button
+                                    class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                                    type="button">
+                                    <Link :href="route('sales.edit', 1)">
+                                    <Pencil width="18" height="18" color="#1C7005" class="hover:stroke-[#33C809]" />
+                                    </Link>
+                                </button>
+                                <button
+                                    class="relative rounded-lg text-center mx-2 align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                                    type="button">
+                                    <Link :href="route('sales.show', 1)">
+                                    <File width="18" height="18" color="#393B3C" class="hover:stroke-[#949799]" />
+                                    </Link>
+                                </button>
+
+                                <AlertDialog>
+                                    <AlertDialogTrigger
+                                        class="relative cursor-pointer rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
+                                        <Trash2 width="18" height="18" color="#C80909"
+                                            class="transition-all hover:stroke-[#F86363]" />
+                                    </AlertDialogTrigger>
+
+                                    <AlertDialogContent>
+                                        <AlertDialogHeader>
+                                            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                                            <AlertDialogDescription>
+                                                This action cannot be undone. This will permanently delete your
+                                                account
+                                                and remove your data from our servers.
+                                            </AlertDialogDescription>
+                                        </AlertDialogHeader>
+                                        <AlertDialogFooter>
+                                            <AlertDialogCancel class="cursor-pointer">Cancel</AlertDialogCancel>
+                                            <AlertDialogAction class="cursor-pointer bg-[#EC3636]" @click="">
+                                                Yes, Delete
+                                            </AlertDialogAction>
+                                        </AlertDialogFooter>
+                                    </AlertDialogContent>
+                                </AlertDialog>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="p-4">
+                                <div class="flex items-center gap-3">
+                                    <img src="https://docs.material-tailwind.com/img/logos/logo-netflix.svg"
+                                        alt="netflix"
+                                        class="relative inline-block h-12 w-12 !rounded-full  border border-blue-gray-50 bg-blue-gray-50/50 object-contain object-center p-1" />
+                                    <p
+                                        class="block font-sans text-sm antialiased font-bold leading-normal text-blue-gray-900">
+                                        netflix
+                                    </p>
+                                </div>
+                            </td>
+                            <td class="p-4">
+                                <p
+                                    class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                                    $14,000
+                                </p>
+                            </td>
+                            <td class="p-4">
+                                <p
+                                    class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                                    Wed 3:30am
+                                </p>
+                            </td>
+                            <td class="p-4">
+                                <div class="w-max">
+                                    <div
+                                        class="relative grid items-center px-2 py-1 font-sans text-xs font-bold text-red-900 uppercase rounded-md select-none whitespace-nowrap bg-red-500/20">
+                                        <span class="">cancelled</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="p-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-12 p-1 border rounded-md h-9 border-blue-gray-50">
+                                        <img src="https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/logos/visa.png"
+                                            alt="visa"
+                                            class="relative inline-block h-full w-full !rounded-none  object-contain object-center p-1" />
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <p
+                                            class="block font-sans text-sm antialiased font-normal leading-normal capitalize text-blue-gray-900">
+                                            visa 1234
+                                        </p>
+                                        <p
+                                            class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900 opacity-70">
+                                            06/2026
+                                        </p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="p-4 border-b border-blue-gray-50 text-center">
+                                <button
+                                    class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                                    type="button">
+                                    <Link :href="route('sales.edit', 1)">
+                                    <Pencil width="18" height="18" color="#1C7005" class="hover:stroke-[#33C809]" />
+                                    </Link>
+                                </button>
+                                <button
+                                    class="relative rounded-lg text-center mx-2 align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                                    type="button">
+                                    <Link :href="route('sales.show', 1)">
+                                    <File width="18" height="18" color="#393B3C" class="hover:stroke-[#949799]" />
+                                    </Link>
+                                </button>
+
+                                <AlertDialog>
+                                    <AlertDialogTrigger
+                                        class="relative cursor-pointer rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
+                                        <Trash2 width="18" height="18" color="#C80909"
+                                            class="transition-all hover:stroke-[#F86363]" />
+                                    </AlertDialogTrigger>
+
+                                    <AlertDialogContent>
+                                        <AlertDialogHeader>
+                                            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                                            <AlertDialogDescription>
+                                                This action cannot be undone. This will permanently delete your
+                                                account
+                                                and remove your data from our servers.
+                                            </AlertDialogDescription>
+                                        </AlertDialogHeader>
+                                        <AlertDialogFooter>
+                                            <AlertDialogCancel class="cursor-pointer">Cancel</AlertDialogCancel>
+                                            <AlertDialogAction class="cursor-pointer bg-[#EC3636]" @click="">
+                                                Yes, Delete
+                                            </AlertDialogAction>
+                                        </AlertDialogFooter>
+                                    </AlertDialogContent>
+                                </AlertDialog>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
+
             <div class="flex justify-between items-center px-4 py-4">
                 <div class="text-sm text-slate-500">
                     Showing <b>1-5</b> of 45
