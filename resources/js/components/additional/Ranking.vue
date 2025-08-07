@@ -1,5 +1,5 @@
 <template>
-    <div class="block w-full overflow-x-auto max-w-xl border">
+    <div class="block w-full h-full mt-6 overflow-x-auto rounded-2xl border">
         <table class="items-center w-full bg-transparent border-collapse">
             <thead>
                 <tr>
@@ -11,6 +11,7 @@
                         Users</th>
                     <th
                         class="px-4 bg-gray-50 text-gray-700 align-middle py-3 text-xs font-semibold text-left uppercase border-l-0 border-r-0 whitespace-nowrap min-w-140-px">
+                        Ranking
                     </th>
                 </tr>
             </thead>
