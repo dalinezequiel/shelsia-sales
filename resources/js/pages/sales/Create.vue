@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import AppLayout from '@/layouts/AppLayout.vue';
-import { Input } from '@/components/ui/input';
 import { type BreadcrumbItem } from '@/types';
-import { Head } from '@inertiajs/vue3';
-import Cart from '@/components/additional/Cart.vue';
+import { Head, Link } from '@inertiajs/vue3';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -142,14 +140,27 @@ const breadcrumbs: BreadcrumbItem[] = [
                             </tr>
                         </tbody>
                         <tfoot>
-                            <button
-                                class="inline-flex items-center gap-x-2 rounded-lg border border-gray-200 bg-white mr-4 px-3 py-2 text-sm font-medium text-gray-800 shadow-2xs hover:bg-gray-50 focus:bg-gray-50 focus:outline-hidden disabled:pointer-events-none disabled:opacity-50 dark:border-neutral-700 dark:bg-transparent dark:text-neutral-300 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800">
-                                Back
-                            </button>
-                            <button
-                                class="inline-flex items-center gap-x-2 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-800 shadow-2xs hover:bg-gray-50 focus:bg-gray-50 focus:outline-hidden disabled:pointer-events-none disabled:opacity-50 dark:border-neutral-700 dark:bg-transparent dark:text-neutral-300 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800">
-                                Add Product
-                            </button>
+                            <div class="flex items-center gap-2 mt-10">
+                                <Link :href="route('sales.index')"
+                                    class="px-4 py-2 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-900 bg-white text-gray-800 shadow-2xs hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden focus:bg-gray-50 dark:bg-transparent dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="lucide lucide-arrow-left-icon lucide-arrow-left">
+                                    <path d="m12 19-7-7 7-7" />
+                                    <path d="M19 12H5" />
+                                </svg>
+                                Back</Link>
+
+                                <Link href=""
+                                    class="px-4 py-2 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-900 bg-white text-gray-800 shadow-2xs hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden focus:bg-gray-50 dark:bg-transparent dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="lucide lucide-plus-icon lucide-plus">
+                                    <path d="M5 12h14" />
+                                    <path d="M12 5v14" />
+                                </svg>
+                                Add Product</Link>
+                            </div>
                         </tfoot>
                     </table>
                 </div>
@@ -172,7 +183,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                             class="text-[#191919] text-sm font-medium leading-[21px]">MZN 84.00</span>
                     </div>
                     <button
-                        class="w-[376px] text-white mt-5 px-10 py-4 bg-primary rounded-[44px] gap-4 text-base font-semibold leading-tight">
+                        class="w-full cursor-pointer text-white mt-5 px-10 py-4 bg-primary rounded-[40px] gap-4 text-base font-semibold leading-tight">
                         Proceed to checkout
                     </button>
                 </div>
