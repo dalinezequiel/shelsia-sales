@@ -179,8 +179,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                         <tr v-for="product in products" :key="product.id">
                             <td class="p-4 border-b border-blue-gray-50">
                                 <div class="flex items-center gap-3">
-                                    <img src="https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg"
-                                        alt="John Michael"
+                                    <img :src="'/storage/' + product.image" :alt="product.image"
                                         class="relative inline-block h-9 w-9 !rounded-full object-cover object-center" />
                                     <div class="flex flex-col">
                                         <p
