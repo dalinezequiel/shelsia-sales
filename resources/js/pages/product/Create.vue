@@ -64,7 +64,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                 </div>
             </div>
             <div class="mx-4">
-                <form @submit.prevent="submit" class="space-y-6">
+                <form @submit.prevent="submit" enctype="multipart/form-data" class="space-y-6">
                     <div class="grid lg:grid-cols-2 lg:gap-4 ">
                         <div class="grid gap-2 mb-6 lg:mb-0">
                             <Label for="barcode">Barcode</Label>
@@ -183,7 +183,8 @@ const breadcrumbs: BreadcrumbItem[] = [
 
                         <div class="grid gap-2 mb-6 lg:mb-0">
                             <Label for="image">Image</Label>
-                            <Input id="image" v-model="form.image" type="file" class="mt-1 block w-full" />
+                            <Input id="image" type="file" name="image" @input="form.image = $event.target.files[0]"
+                                class="mt-1 block w-full" />
                             <InputError :message="form.errors.image" class="mt-2" />
                         </div>
                     </div>
