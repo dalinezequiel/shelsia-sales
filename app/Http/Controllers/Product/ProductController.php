@@ -35,6 +35,12 @@ class ProductController extends Controller
             'barcode' => 'required',
             'description' => 'required'
         ]);
+        
+        $image_path = null;
+        if($request->hasFile('image')){
+            $file_name = rand(0, 9999999) . '-' . $request->file('image')->getClientOriginalName();
+            $image_path = $request->file('image')->storeAs('products', $file_name);
+        }
 
         Product::create([
             'barcode' => $request -> barcode,
@@ -49,7 +55,7 @@ class ProductController extends Controller
             'maximum_stock' => $request -> maximum_stock,
             'available_stock' => $request -> available_stock,
             'location' => $request -> location,
-            'image' => 'C:\Users\dell\Pictures\resize.png',
+            'image' => $image_path,
             'is_active' => $request -> is_active
         ]);
 
