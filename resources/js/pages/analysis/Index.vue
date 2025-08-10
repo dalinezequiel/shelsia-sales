@@ -10,7 +10,7 @@ const breadcrumbs: BreadcrumbItem[] = [
         href: '/analysis',
     },
     {
-        title: 'Predictions',
+        title: 'Prediction',
         href: '/analysis',
     }
 ];
