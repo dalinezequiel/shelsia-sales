@@ -41,7 +41,7 @@ const form = useForm({
     maximum_stock: props.product.maximum_stock,
     available_stock: props.product.available_stock,
     location: props.product.location,
-    // image: props.product.image,
+    image: props.product.image,
     is_active: Boolean(props.product.is_active)
 });
 
@@ -200,7 +200,8 @@ const breadcrumbs: BreadcrumbItem[] = [
 
                         <div class="grid gap-2 mb-6 lg:mb-0">
                             <Label for="image">Image</Label>
-                            <Input id="image" type="file" class="mt-1 block w-full" />
+                            <Input id="image" type="file" name="image" @input="form.image = $event.target.files[0]"
+                                accept="image/*" class="mt-1 block w-full" />
                             <InputError class="mt-2" />
                         </div>
                     </div>
