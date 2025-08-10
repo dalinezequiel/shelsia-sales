@@ -182,7 +182,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                         </div>
 
                         <div class="grid gap-2 mb-6 lg:mb-0">
-                            <Label for="image">Image</Label>
+                            <Label for="image">Image </Label>
                             <Input id="image" type="file" name="image" @input="form.image = $event.target.files[0]"
                                 accept="image/*" class="mt-1 block w-full" />
                             <InputError :message="form.errors.image" class="mt-2" />
