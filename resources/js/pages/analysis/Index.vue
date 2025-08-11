@@ -21,6 +21,10 @@ const breadcrumbs: BreadcrumbItem[] = [
     <Head title="Products" />
 
     <AppLayout :breadcrumbs="breadcrumbs">
-        <h1>Predictions Index</h1>
+        <div class="relative flex flex-col w-full h-full text-gray-700 bg-white shadow-md rounded-xl bg-clip-border">
+            <div class="relative mx-4 mt-4 text-gray-700 bg-white rounded-none bg-clip-border">
+                <h1>Predictions Index</h1>
+            </div>
+        </div>
     </AppLayout>
 </template>
