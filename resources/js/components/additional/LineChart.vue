@@ -1,32 +1,32 @@
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-    var ctx = document.getElementById('myChart').getContext('2d');
-      var chart = new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-          datasets: [{
-            label: 'Sales',
-            data: [12, 19, 3, 5, 2, 3, 14],
-            backgroundColor: 'rgba(255, 99, 132, 0.2)',
-            borderColor: 'rgba(255, 99, 132, 1)',
-            borderWidth: 1
-          }]
+<script setup>
+import { ref, reactive, watch } from 'vue';
+import { LineChart } from 'vue-chart-3';
+import { Chart, registerables } from 'chart.js';
+
+Chart.register(...registerables);
+const chartData = reactive({
+    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    datasets: [
+        {
+            label: 'My First Dataset',
+            backgroundColor: '#f87979',
+            data: [40, 20, 12, 39, 10, 40, 39],
         },
-        options: {
-          responsive: true,
-          scales: {
-            yAxes: [{
-              ticks: {
-                beginAtZero: true
-              }
-            }]
-          }
-        }
-      });
+        {
+            label: 'My First Dataset',
+            backgroundColor: '#f87979',
+            data: [45, 10, 12, 29, 1, 30, 49],
+        },
+    ],
+});
+
+const chartOptions = ref({
+    responsive: true,
+    maintainAspectRatio: false,
+    // ... other chart.js options
+});
 </script>
+
 <template>
-    <div class="container mx-auto px-4 py-8 mt-16">
-        <canvas id="myChart"></canvas>
-    </div>
+    <LineChart :chartData="chartData" :options="chartOptions" />
 </template>
