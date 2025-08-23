@@ -8,21 +8,65 @@ const chartData = reactive({
     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
     datasets: [
         {
-            label: 'My First Dataset',
-            backgroundColor: '#f87979',
-            data: [40, 20, 12, 39, 10, 40, 39],
+            label: 'History',
+            backgroundColor: '#696969',
+            borderColor: '#696969',
+            data: [35, 25, 17, 30, 14],
+            pointStyle: 'circle',
+            pointRadius: 6,
         },
         {
-            label: 'My First Dataset',
-            backgroundColor: '#f87979',
-            data: [45, 10, 12, 29, 1, 30, 49],
+            label: 'Future',
+            backgroundColor: '#CD8232',
+            borderColor: '#CD8232',
+            data: [40, 20, 12, 39, 20],
+            pointStyle: 'circle',
+            pointRadius: 6,
+        },
+        {
+            label: 'Predicted',
+            backgroundColor: '#36AD5E',
+            borderColor: '#36AD5E',
+            data: [, , , , 20, 30, 49],
+            pointStyle: 'circle',
+            pointRadius: 6,
         },
     ],
 });
 
 const chartOptions = ref({
+    type: 'line',
     responsive: true,
     maintainAspectRatio: false,
+    interaction: {
+        mode: 'index',
+        intersect: false,
+    },
+    plugins: {
+        legend: {
+            position: 'top',
+        },
+        title: {
+            display: true,
+            text: (ctx) => 'Point Style: ' + ctx.chart.data.datasets[0].pointStyle,
+        }
+    },
+    scales: {
+        x: {
+            display: true,
+            title: {
+                display: true,
+                text: 'Month'
+            }
+        },
+        y: {
+            display: true,
+            title: {
+                display: true,
+                text: 'Value'
+            }
+        }
+    }
     // ... other chart.js options
 });
 </script>
