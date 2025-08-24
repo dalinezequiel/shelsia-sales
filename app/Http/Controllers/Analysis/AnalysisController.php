@@ -41,7 +41,7 @@ class AnalysisController extends Controller
                 ]
             ]
         ];
-
+        
         $forecasts = Http::post($forecast_endpoint, [$sales]) -> json();
         return Inertia::render('analysis/Index', compact('forecasts'));
     }
