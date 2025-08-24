@@ -22,7 +22,7 @@ import { ShoppingCart } from 'lucide-vue-next';
             <span
                 class="absolute top-4 left-4 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded-full animate-pulse-slow">NEW</span>
         </div>
-        <div class="p-5">
+        <div class="px-4 py-5">
             <div class="flex justify-between items-start">
                 <div>
                     <h3 class="text-lg font-bold text-gray-800">Premium Smart Watch</h3>
