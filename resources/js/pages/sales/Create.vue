@@ -1,7 +1,11 @@
 <script setup lang="ts">
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import Product from '@/components/additional/Product.vue';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
-import { Head, Link } from '@inertiajs/vue3';
+import { Head } from '@inertiajs/vue3';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -9,7 +13,7 @@ const breadcrumbs: BreadcrumbItem[] = [
         href: '/sales',
     },
     {
-        title: 'PDV',
+        title: 'Sell',
         href: '/sales/Create',
     }
 ];
@@ -18,5 +22,86 @@ const breadcrumbs: BreadcrumbItem[] = [
 
     <Head title="Products" />
     <AppLayout :breadcrumbs="breadcrumbs">
+        <div class="grid grid-cols-1 gap-4 p-4">
+            <div class="grid grid-cols-1 gap-2 pr-128">
+                <div class="">
+                    <Input id="description" class="block w-full" required autocomplete="description"
+                        placeholder="Search..." />
+                </div>
+                <div class="grid grid-cols-3 gap-2">
+                    <Product />
+                    <Product />
+                    <Product />
+                    <Product />
+                    <Product />
+                </div>
+            </div>
+
+            <div class="absolute right-1/7 md:col-span-1 w-full max-w-xs">
+                <div class="bg-white rounded-md border border-gray-200  p-4 sm:p-6">
+                    <div class="flex justify-between">
+                        <h2 class="text-xl font-bold mb-4">Order Summary</h2>
+                        <div class="relative w-fit">
+                            <button
+                                class="p-2 text-gray-600 cursor-pointer hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="20" fill="black">
+                                    <path
+                                        d="M24 48C10.7 48 0 58.7 0 72C0 85.3 10.7 96 24 96L69.3 96C73.2 96 76.5 98.8 77.2 102.6L129.3 388.9C135.5 423.1 165.3 448 200.1 448L456 448C469.3 448 480 437.3 480 424C480 410.7 469.3 400 456 400L200.1 400C188.5 400 178.6 391.7 176.5 380.3L171.4 352L475 352C505.8 352 532.2 330.1 537.9 299.8L568.9 133.9C572.6 114.2 557.5 96 537.4 96L124.7 96L124.3 94C119.5 67.4 96.3 48 69.2 48L24 48zM208 576C234.5 576 256 554.5 256 528C256 501.5 234.5 480 208 480C181.5 480 160 501.5 160 528C160 554.5 181.5 576 208 576zM432 576C458.5 576 480 554.5 480 528C480 501.5 458.5 480 432 480C405.5 480 384 501.5 384 528C384 554.5 405.5 576 432 576z" />
+                                </svg>
+                                <span
+                                    class="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">3</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="grid gap-2 py-8 lg:mb-0">
+                        <Label for="category">Payment Form</Label>
+                        <Select id="category">
+                            <SelectTrigger class="w-auto mt-1">
+                                <SelectValue placeholder="Select payment form" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="Mpesa"> Mpesa </SelectItem>
+                                <SelectItem value="Emola"> Emola </SelectItem>
+                                <SelectItem value="Mkesh"> Mkesh </SelectItem>
+                            </SelectContent>
+                        </Select>
+                    </div>
+                    <div class="space-y-3 mb-4">
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Subtotal</span>
+                            <span class="font-medium">0.00</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Shipping</span>
+                            <span class="font-medium">0.00</span>
+                        </div>
+                        <div x-show="discount > 0" class="flex justify-between">
+                            <span>Discount</span>
+                            <span class="font-medium">0.00</span>
+                        </div>
+                        <div class="flex justify-between text-gray-600">
+                            <span>Tax</span>
+                            <span class="font-medium">0.00</span>
+                        </div>
+                        <div class="border-t py-4 mt-3">
+                            <div class="flex justify-between font-bold text-lg">
+                                <span>Total</span>
+                                <span>0.00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button
+                        class="w-full bg-blue-600 text-white py-3 mb-2 rounded-md cursor-pointer font-medium hover:bg-blue-700 transition flex items-center justify-center">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#FFFFFF"
+                            viewBox="0 0 640 640" class="mr-1">
+                            <path
+                                d="M256 160L256 224L384 224L384 160C384 124.7 355.3 96 320 96C284.7 96 256 124.7 256 160zM192 224L192 160C192 89.3 249.3 32 320 32C390.7 32 448 89.3 448 160L448 224C483.3 224 512 252.7 512 288L512 512C512 547.3 483.3 576 448 576L192 576C156.7 576 128 547.3 128 512L128 288C128 252.7 156.7 224 192 224z" />
+                        </svg> Proceed to Checkout
+                    </button>
+                </div>
+            </div>
+
+        </div>
     </AppLayout>
 </template>
