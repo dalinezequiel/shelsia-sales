@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Sales;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product\Product;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -22,7 +23,8 @@ class SalesController extends Controller
      */
     public function create()
     {
-        return Inertia::render('sales/Create');
+        $products = Product::get();
+        return Inertia::render('sales/Create', compact('products'));
     }
 
     /**
