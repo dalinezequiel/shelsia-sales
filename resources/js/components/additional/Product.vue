@@ -21,7 +21,7 @@ import Countdown from './Countdown.vue';
                 </button>
             </div>
             <span
-                class="absolute top-4 left-4 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded-full animate-pulse-slow">NEW</span>
+                class="absolute top-4 left-4 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded-full animate-pulse-slow">10</span>
         </div>
         <div class="px-4 py-5">
             <div class="flex justify-between items-start">
