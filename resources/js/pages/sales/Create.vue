@@ -160,10 +160,10 @@ const breadcrumbs: BreadcrumbItem[] = [
                         </div>
                     </div>
                     <div class="grid gap-2 py-8 lg:mb-0">
-                        <Label for="category">Payment Form</Label>
+                        <Label for="category">Payment Method</Label>
                         <Select id="category">
                             <SelectTrigger class="w-auto mt-1">
-                                <SelectValue placeholder="Select payment form" />
+                                <SelectValue placeholder="Select payment method" />
                             </SelectTrigger>
                             <SelectContent>
                                 <SelectItem value="Mpesa"> Mpesa </SelectItem>

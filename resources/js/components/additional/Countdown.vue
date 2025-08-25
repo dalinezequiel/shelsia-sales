@@ -1,8 +1,22 @@
 <script setup>
+import { ref } from 'vue';
+
+const count = ref(1);
+
+function increment() {
+    count.value++;
+}
+
+function decrement() {
+    if (count.value > 1) {
+        count.value--;
+    }
+}
+
 </script>
 <template>
     <div class="rounded-lg inline-flex items-center">
-        <button
+        <button @click="decrement"
             class="bg-white rounded-l border text-gray-600 cursor-pointer hover:bg-gray-100 active:bg-gray-200 disabled:opacity-50 inline-flex items-center px-2 py-1 border-r border-gray-200">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-4" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
@@ -11,9 +25,9 @@
         </button>
         <div
             class="bg-gray-100 border-t border-b border-gray-100 text-gray-600 hover:bg-gray-100 inline-flex items-center px-4 py-1 select-none">
-            2
+            {{ count }}
         </div>
-        <button
+        <button @click="increment"
             class="bg-white rounded-r border text-gray-600 cursor-pointer hover:bg-gray-100 active:bg-gray-200 disabled:opacity-50 inline-flex items-center px-2 py-1 border-r border-gray-200">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-4" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
