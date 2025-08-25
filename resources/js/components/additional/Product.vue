@@ -17,7 +17,7 @@ import Countdown from './Countdown.vue';
                 <Countdown />
                 <button
                     class="w-full bg-indigo-600 text-white px-0 text-sm rounded-sm font-medium cursor-pointer hover:bg-indigo-700 transition-colors duration-300 flex items-center justify-center gap-2">
-                    <ShoppingCart width="16px" /> Add to Cart
+                    <ShoppingCart width="16px" />
                 </button>
             </div>
             <span
@@ -26,8 +26,8 @@ import Countdown from './Countdown.vue';
         <div class="px-4 py-5">
             <div class="flex justify-between items-start">
                 <div>
-                    <h3 class="text-lg font-bold text-gray-800">Premium Smart Watch</h3>
-                    <p class="text-gray-500 text-sm">Fitness Tracker, Heart Rate Monitor</p>
+                    <h3 class="text-md font-bold text-gray-800">Premium Smart Watch</h3>
+                    <p class="text-gray-500 text-sm">Fitness Tracker</p>
                 </div>
                 <div class="text-right">
                     <p class="text-lg font-bold text-indigo-600">$199.99</p>
