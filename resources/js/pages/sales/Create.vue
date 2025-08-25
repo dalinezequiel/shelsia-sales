@@ -19,6 +19,13 @@ import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
 import { Head, Link } from '@inertiajs/vue3';
 
+defineProps({
+    products: {
+        type: Object,
+        required: true
+    }
+})
+
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Sales',
@@ -41,12 +48,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                         placeholder="Search..." />
                 </div>
                 <div class="grid grid-cols-4 gap-2">
-                    <Product />
-                    <Product />
-                    <Product />
-                    <Product />
-                    <Product />
-                    <Product />
+                    <Product v-for="product in products" :key="product.id" :product="product" />
                 </div>
             </div>
 
