@@ -1,8 +1,29 @@
-<script setup>
+<script setup lang="ts">
 import { ShoppingCart } from 'lucide-vue-next';
 import Countdown from './Countdown.vue';
+import { ref } from 'vue';
+
+interface Product {
+    id: number;
+    name: string;
+    category: string;
+    price: number
+}
+
+defineProps({
+    product: {
+        type: Object,
+        required: false
+    }
+})
+
+const cart = ref<Product[]>([]);
+function product_list(product: Product) {
+    cart.value.push({ id: product.id, name: product.name, category: product.category, price: product.price })
+}
 </script>
 <template>
+    <p v-for="item in cart" :key="item.id">{{ item.name }}</p>
     <div
         class="group relative bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
         <div class="relative overflow-hidden h-43">
@@ -15,7 +36,7 @@ import Countdown from './Countdown.vue';
             <div
                 class="flex gap-2 absolute bottom-0 left-0 right-0 p-4 translate-y-10 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
                 <Countdown />
-                <button
+                <button @click="product_list({ id: 1, name: 'a', category: 'u', price: 45.88 })"
                     class="w-full bg-indigo-600 text-white px-0 text-sm rounded-sm font-medium cursor-pointer hover:bg-indigo-700 transition-colors duration-300 flex items-center justify-center gap-2">
                     <ShoppingCart width="16px" />
                 </button>
@@ -37,4 +58,5 @@ import Countdown from './Countdown.vue';
             </div>
         </div>
     </div>
+
 </template>
