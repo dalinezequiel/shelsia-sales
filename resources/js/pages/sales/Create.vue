@@ -161,18 +161,28 @@ const breadcrumbs: BreadcrumbItem[] = [
                             </AlertDialog>
                         </div>
                     </div>
-                    <div class="grid gap-2 py-8 lg:mb-0">
-                        <Label for="category">Payment Method</Label>
-                        <Select id="category">
-                            <SelectTrigger class="w-auto mt-1">
-                                <SelectValue placeholder="Select payment method" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectItem value="Mpesa"> Mpesa </SelectItem>
-                                <SelectItem value="Emola"> Emola </SelectItem>
-                                <SelectItem value="Mkesh"> Debit Card </SelectItem>
-                            </SelectContent>
-                        </Select>
+                    <div class="py-8 ">
+                        <div class="grid gap-2 pb-4 lg:mb-0">
+                            <Label for="category">Payment Method</Label>
+                            <Select id="category">
+                                <SelectTrigger class="w-auto">
+                                    <SelectValue placeholder="Select payment method" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="Mpesa"> Mpesa </SelectItem>
+                                    <SelectItem value="Emola"> Emola </SelectItem>
+                                    <SelectItem value="Mkesh"> Debit Card </SelectItem>
+                                </SelectContent>
+                            </Select>
+                        </div>
+                        <div class="grid gap-2 pb-4 lg:mb-0">
+                            <Label for="shipping">Shipping</Label>
+                            <Input id="shipping" type="number" class="block w-full" required placeholder="Shipping" />
+                        </div>
+                        <div class="grid gap-2 lg:mb-0">
+                            <Label for="discount">Discount</Label>
+                            <Input id="discount" type="number" class="block w-full" required placeholder="Discount" />
+                        </div>
                     </div>
                     <div class="space-y-3 mb-4">
                         <div class="flex justify-between">
@@ -187,11 +197,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                             <span>Discount</span>
                             <span class="font-medium">0.00</span>
                         </div>
-                        <div class="flex justify-between text-gray-600">
-                            <span>Tax</span>
-                            <span class="font-medium">0.00</span>
-                        </div>
-                        <div class="border-t py-4 mt-3">
+                        <div class="border-t py-2 mt-3">
                             <div class="flex justify-between font-bold text-lg">
                                 <span>Total</span>
                                 <span>0.00</span>
@@ -208,7 +214,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                         </svg> Proceed to Checkout
                     </button>
 
-                    <div class="flex items-center gap-2 mt-10">
+                    <div class="flex items-center gap-2 mt-8">
                         <Link :href="route('sales.index')"
                             class="w-full px-4 py-2 inline-flex justify-center gap-x-2 text-sm font-medium rounded-lg border border-gray-100 bg-white text-gray-800 shadow-2xs hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden focus:bg-gray-50 dark:bg-transparent dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
