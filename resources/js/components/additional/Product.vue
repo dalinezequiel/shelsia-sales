@@ -13,7 +13,7 @@ interface Product {
 defineProps({
     product: {
         type: Object,
-        required: false
+        required: true
     }
 })
 
@@ -23,12 +23,10 @@ function product_list(product: Product) {
 }
 </script>
 <template>
-    <p v-for="item in cart" :key="item.id">{{ item.name }}</p>
     <div
         class="group relative bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
         <div class="relative overflow-hidden h-43">
-            <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80"
-                alt="Smart Watch"
+            <img :src="'/storage/'.concat(product.image)" :alt="product.image"
                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
             <div
                 class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
@@ -41,18 +39,18 @@ function product_list(product: Product) {
                     <ShoppingCart width="16px" />
                 </button>
             </div>
-            <span
-                class="absolute top-4 left-4 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded-full animate-pulse-slow">10</span>
+            <span :class="product.available_stock >= product.minimum_stock ? 'bg-green-500' : 'bg-red-500'"
+                class="absolute top-4 left-4 text-white text-xs font-bold px-2 py-1 rounded-full animate-pulse-slow">{{
+                    product.available_stock }}</span>
         </div>
-        <!-- bg-red-500 -->
         <div class="px-4 py-5">
             <div class="flex justify-between items-start">
                 <div>
-                    <h3 class="text-md font-bold text-gray-800">Premium Smart Watch</h3>
-                    <p class="text-gray-500 text-sm">Fitness Tracker</p>
+                    <h3 class="text-md font-bold text-gray-800">{{ product.description }}</h3>
+                    <p class="text-gray-500 text-sm">{{ product.category }}</p>
                 </div>
                 <div class="text-right">
-                    <p class="text-lg font-bold text-indigo-600">$199.99</p>
+                    <p class="text-lg font-bold text-indigo-600">${{ product.sale_price }}</p>
                     <p class="text-xs text-gray-400 line-through">$249.99</p>
                 </div>
             </div>
