@@ -2,6 +2,18 @@
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+} from '@/components/ui/alert-dialog'
+import { Trash2 } from 'lucide-vue-next';
 import Product from '@/components/additional/Product.vue';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
@@ -23,12 +35,12 @@ const breadcrumbs: BreadcrumbItem[] = [
     <Head title="Products" />
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="grid grid-cols-1 gap-6 p-4">
-            <div class="grid grid-cols-1 gap-2 pr-110">
+            <div class="grid grid-cols-1 gap-2 pr-88">
                 <div class="">
                     <Input id="description" class="block w-full" required autocomplete="description"
                         placeholder="Search..." />
                 </div>
-                <div class="grid grid-cols-3 gap-2">
+                <div class="grid grid-cols-4 gap-2">
                     <Product />
                     <Product />
                     <Product />
@@ -38,20 +50,113 @@ const breadcrumbs: BreadcrumbItem[] = [
                 </div>
             </div>
 
-            <div class="absolute right-1/11 md:col-span-1 w-full max-w-xs">
+            <div class="absolute right-1/46 md:col-span-1 w-full max-w-xs">
                 <div class="bg-white rounded-md border border-gray-200  p-4 sm:p-6">
                     <div class="flex justify-between">
                         <h2 class="text-xl font-bold mb-4">Order Summary</h2>
                         <div class="relative w-fit">
-                            <button
-                                class="p-2 text-gray-600 cursor-pointer hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="20" fill="black">
-                                    <path
-                                        d="M24 48C10.7 48 0 58.7 0 72C0 85.3 10.7 96 24 96L69.3 96C73.2 96 76.5 98.8 77.2 102.6L129.3 388.9C135.5 423.1 165.3 448 200.1 448L456 448C469.3 448 480 437.3 480 424C480 410.7 469.3 400 456 400L200.1 400C188.5 400 178.6 391.7 176.5 380.3L171.4 352L475 352C505.8 352 532.2 330.1 537.9 299.8L568.9 133.9C572.6 114.2 557.5 96 537.4 96L124.7 96L124.3 94C119.5 67.4 96.3 48 69.2 48L24 48zM208 576C234.5 576 256 554.5 256 528C256 501.5 234.5 480 208 480C181.5 480 160 501.5 160 528C160 554.5 181.5 576 208 576zM432 576C458.5 576 480 554.5 480 528C480 501.5 458.5 480 432 480C405.5 480 384 501.5 384 528C384 554.5 405.5 576 432 576z" />
-                                </svg>
-                                <span
-                                    class="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">0</span>
-                            </button>
+                            <AlertDialog>
+                                <AlertDialogTrigger
+                                    class="relative cursor-pointer rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
+
+                                    <button
+                                        class="p-2 text-gray-600 cursor-pointer hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="20"
+                                            fill="black">
+                                            <path
+                                                d="M24 48C10.7 48 0 58.7 0 72C0 85.3 10.7 96 24 96L69.3 96C73.2 96 76.5 98.8 77.2 102.6L129.3 388.9C135.5 423.1 165.3 448 200.1 448L456 448C469.3 448 480 437.3 480 424C480 410.7 469.3 400 456 400L200.1 400C188.5 400 178.6 391.7 176.5 380.3L171.4 352L475 352C505.8 352 532.2 330.1 537.9 299.8L568.9 133.9C572.6 114.2 557.5 96 537.4 96L124.7 96L124.3 94C119.5 67.4 96.3 48 69.2 48L24 48zM208 576C234.5 576 256 554.5 256 528C256 501.5 234.5 480 208 480C181.5 480 160 501.5 160 528C160 554.5 181.5 576 208 576zM432 576C458.5 576 480 554.5 480 528C480 501.5 458.5 480 432 480C405.5 480 384 501.5 384 528C384 554.5 405.5 576 432 576z" />
+                                        </svg>
+                                        <span
+                                            class="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">0</span>
+                                    </button>
+
+                                </AlertDialogTrigger>
+                                <AlertDialogContent class="min-w-240">
+                                    <AlertDialogHeader>
+                                        <AlertDialogTitle>Shopping Cart</AlertDialogTitle>
+                                        <AlertDialogDescription>
+
+                                            <section
+                                                class="rounded-lg border border-gray-200 bg-white m-4 p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:px-6">
+                                                <div
+                                                    class="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
+                                                    <a href="#" class="shrink-0 md:order-1">
+                                                        <img class="h-10 w-20 dark:hidden"
+                                                            src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front.svg"
+                                                            alt="imac image" />
+                                                        <img class="hidden h-20 w-20 dark:block"
+                                                            src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front-dark.svg"
+                                                            alt="imac image" />
+                                                    </a>
+
+                                                    <label for="counter-input" class="sr-only">Choose
+                                                        quantity:</label>
+                                                    <div
+                                                        class="flex items-center justify-between md:order-3 md:justify-end">
+                                                        <div class="flex items-center">
+                                                            <button type="button" id="decrement-button"
+                                                                data-input-counter-decrement="counter-input"
+                                                                class="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700">
+                                                                <svg class="h-2.5 w-2.5 text-gray-900 dark:text-white"
+                                                                    aria-hidden="true"
+                                                                    xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                                    viewBox="0 0 18 2">
+                                                                    <path stroke="currentColor" stroke-linecap="round"
+                                                                        stroke-linejoin="round" stroke-width="2"
+                                                                        d="M1 1h16" />
+                                                                </svg>
+                                                            </button>
+                                                            <input type="text" id="counter-input" data-input-counter
+                                                                class="w-10 shrink-0 border-0 bg-transparent text-center text-sm font-medium text-gray-900 focus:outline-none focus:ring-0 dark:text-white"
+                                                                placeholder="" value="2" required />
+                                                            <button type="button" id="increment-button"
+                                                                data-input-counter-increment="counter-input"
+                                                                class="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700">
+                                                                <svg class="h-2.5 w-2.5 text-gray-900 dark:text-white"
+                                                                    aria-hidden="true"
+                                                                    xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                                    viewBox="0 0 18 18">
+                                                                    <path stroke="currentColor" stroke-linecap="round"
+                                                                        stroke-linejoin="round" stroke-width="2"
+                                                                        d="M9 1v16M1 9h16" />
+                                                                </svg>
+                                                            </button>
+                                                        </div>
+                                                        <div class="text-end md:order-4 md:w-32">
+                                                            <p
+                                                                class="text-base font-bold text-gray-900 dark:text-white">
+                                                                1,499.00</p>
+                                                        </div>
+                                                        <div
+                                                            class="flex items-center gap-4 md:order-5 md:w-32 justify-end">
+
+                                                            <button type="button"
+                                                                class="inline-flex p-2 items-center cursor-pointer rounded-md border border-gray-200 hover:bg-[#F5F0F0] hover:border-[#F5F0F0] text-sm font-medium text-red-600 dark:text-red-500">
+                                                                <Trash2 width="18" height="18" color="#C80909"
+                                                                    class="transition-all" />
+                                                            </button>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="w-full min-w-0 flex-1 space-y-2 md:order-2 md:max-w-md">
+                                                        <p class="text-base font-medium text-gray-900 dark:text-white">
+                                                            Apple M3, 24" Retina 4.5K, 8GB, SSD 256GB
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </section>
+
+
+                                        </AlertDialogDescription>
+                                    </AlertDialogHeader>
+                                    <AlertDialogFooter>
+                                        <AlertDialogCancel class="cursor-pointer">Cancel</AlertDialogCancel>
+                                        <AlertDialogAction class="cursor-pointer bg-[#212121]" @click="">
+                                            Confirm
+                                        </AlertDialogAction>
+                                    </AlertDialogFooter>
+                                </AlertDialogContent>
+                            </AlertDialog>
                         </div>
                     </div>
                     <div class="grid gap-2 py-8 lg:mb-0">
@@ -63,7 +168,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                             <SelectContent>
                                 <SelectItem value="Mpesa"> Mpesa </SelectItem>
                                 <SelectItem value="Emola"> Emola </SelectItem>
-                                <SelectItem value="Mkesh"> Mkesh </SelectItem>
+                                <SelectItem value="Mkesh"> Debit Card </SelectItem>
                             </SelectContent>
                         </Select>
                     </div>
