@@ -2,7 +2,10 @@ import { createStore } from 'vuex';
 
 export default createStore({
     state: {
-        cart: [],
+        cart: {
+            items: [],
+            total: 0,
+        },
     },
     mutations: {
         storeCart(state, product) {
