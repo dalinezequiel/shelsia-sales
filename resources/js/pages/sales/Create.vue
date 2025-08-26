@@ -47,7 +47,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                     <Input id="description" class="block w-full" required autocomplete="description"
                         placeholder="Search..." />
                 </div>
-                <div class="grid grid-cols-4 gap-2">
+                <div class="grid grid-cols-4 pt-2 gap-2">
                     <Product v-for="product in products" :key="product.id" :product="product" />
                 </div>
             </div>
