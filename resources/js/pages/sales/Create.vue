@@ -135,13 +135,18 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                                 </svg>
                                                             </button>
                                                         </div>
-                                                        <div class="text-end md:order-4 md:w-32">
+                                                        <div class="text-end md:order-4 md:w-30">
                                                             <p
                                                                 class="text-base font-bold text-gray-900 dark:text-white">
                                                                 {{ product.price }}</p>
                                                         </div>
+                                                        <div class="text-end md:order-5 md:w-30">
+                                                            <p
+                                                                class="text-base font-bold text-gray-900 dark:text-white">
+                                                                {{ store.subtotal?.toFixed(2) }}</p>
+                                                        </div>
                                                         <div
-                                                            class="flex items-center gap-4 md:order-5 md:w-32 justify-end">
+                                                            class="flex items-center gap-4 md:order-6 md:w-30 justify-end">
 
                                                             <button type="button" @click="deleteItem(product.id)"
                                                                 class="inline-flex p-2 items-center cursor-pointer rounded-md border border-gray-200 hover:bg-[#F5F0F0] hover:border-[#F5F0F0] text-sm font-medium text-red-600 dark:text-red-500">
