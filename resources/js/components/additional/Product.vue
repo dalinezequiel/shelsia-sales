@@ -20,7 +20,8 @@ interface Product {
     id: number;
     name: string;
     category: string;
-    price: number
+    price: number;
+    image: string;
 }
 
 defineProps({
@@ -31,7 +32,7 @@ defineProps({
 })
 
 function product_list(product: Product) {
-    store.items.push({ id: product.id, name: product.name, price: product.price, quantity: quantity.value })
+    store.items.push({ id: product.id, name: product.name, price: product.price, quantity: quantity.value, image: product.image })
     toast.success(product.name)
 }
 </script>
@@ -70,7 +71,7 @@ function product_list(product: Product) {
                 </div>
 
                 <button
-                    @click="product_list({ id: product.id, name: product.description, category: product.category, price: product.sale_price })"
+                    @click="product_list({ id: product.id, name: product.description, category: product.category, price: product.sale_price, image: product.image })"
                     class="w-full bg-indigo-600 text-white px-0 text-sm rounded-sm font-medium cursor-pointer hover:bg-indigo-700 transition-colors duration-300 flex items-center justify-center gap-2">
                     <ShoppingCart width="16px" />
                 </button>
