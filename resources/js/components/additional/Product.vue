@@ -32,7 +32,8 @@ defineProps({
 })
 
 function product_list(product: Product) {
-    store.items.push({ id: product.id, name: product.name, price: product.price, quantity: quantity.value, image: product.image })
+    const total = quantity.value * product.price
+    store.items.push({ id: product.id, name: product.name, price: product.price, quantity: quantity.value, total: total, image: product.image })
     toast.success(product.name)
 }
 </script>
