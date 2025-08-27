@@ -18,6 +18,7 @@ import Product from '@/components/additional/Product.vue';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
 import { Head, Link } from '@inertiajs/vue3';
+import { store } from '@/store'
 
 defineProps({
     products: {
@@ -78,7 +79,8 @@ const breadcrumbs: BreadcrumbItem[] = [
                                         <AlertDialogTitle>Shopping Cart</AlertDialogTitle>
                                         <AlertDialogDescription>
 
-                                            <section
+                                            <section v-if="store.items.length !== 0" v-for="product in store.items"
+                                                :key="product.id"
                                                 class="rounded-lg border border-gray-200 bg-white m-4 p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:px-6">
                                                 <div
                                                     class="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
@@ -86,10 +88,13 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                         <img class="h-10 w-20 dark:hidden"
                                                             src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front.svg"
                                                             alt="imac image" />
-                                                        <img class="hidden h-20 w-20 dark:block"
-                                                            src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front-dark.svg"
-                                                            alt="imac image" />
                                                     </a>
+
+                                                    <div class="w-full min-w-0 flex-1 space-y-2 md:order-2 md:max-w-md">
+                                                        <p class="text-base font-medium text-gray-900 dark:text-white">
+                                                            {{ product.name }}
+                                                        </p>
+                                                    </div>
 
                                                     <label for="counter-input" class="sr-only">Choose
                                                         quantity:</label>
@@ -110,7 +115,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                             </button>
                                                             <input type="text" id="counter-input" data-input-counter
                                                                 class="w-10 shrink-0 border-0 bg-transparent text-center text-sm font-medium text-gray-900 focus:outline-none focus:ring-0 dark:text-white"
-                                                                placeholder="" value="2" required />
+                                                                placeholder="" v-model="product.quantity" required />
                                                             <button type="button" id="increment-button"
                                                                 data-input-counter-increment="counter-input"
                                                                 class="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700">
@@ -127,7 +132,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                         <div class="text-end md:order-4 md:w-32">
                                                             <p
                                                                 class="text-base font-bold text-gray-900 dark:text-white">
-                                                                1,499.00</p>
+                                                                {{ product.price }}</p>
                                                         </div>
                                                         <div
                                                             class="flex items-center gap-4 md:order-5 md:w-32 justify-end">
@@ -139,14 +144,9 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                             </button>
                                                         </div>
                                                     </div>
-
-                                                    <div class="w-full min-w-0 flex-1 space-y-2 md:order-2 md:max-w-md">
-                                                        <p class="text-base font-medium text-gray-900 dark:text-white">
-                                                            Apple M3, 24" Retina 4.5K, 8GB, SSD 256GB
-                                                        </p>
-                                                    </div>
                                                 </div>
                                             </section>
+                                            <p v-else>Carinha vazia.</p>
 
 
                                         </AlertDialogDescription>
