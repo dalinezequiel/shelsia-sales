@@ -27,6 +27,11 @@ defineProps({
     }
 })
 
+const deleteItem = (id: number) => {
+    const index = store.items.findIndex(product => product.id == id);
+    store.items.splice(index, 1)
+}
+
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Sales',
@@ -71,7 +76,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                         </svg>
                                         <span
                                             class="absolute -top-1 -right-1 w-5 h-5 bg-indigo-600 text-white text-xs rounded-full flex items-center justify-center">{{
-                                            store.items.length }}</span>
+                                                store.items.length }}</span>
                                     </button>
 
                                 </AlertDialogTrigger>
@@ -138,7 +143,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                         <div
                                                             class="flex items-center gap-4 md:order-5 md:w-32 justify-end">
 
-                                                            <button type="button"
+                                                            <button type="button" @click="deleteItem(product.id)"
                                                                 class="inline-flex p-2 items-center cursor-pointer rounded-md border border-gray-200 hover:bg-[#F5F0F0] hover:border-[#F5F0F0] text-sm font-medium text-red-600 dark:text-red-500">
                                                                 <Trash2 width="18" height="18" color="#C80909"
                                                                     class="transition-all" />
