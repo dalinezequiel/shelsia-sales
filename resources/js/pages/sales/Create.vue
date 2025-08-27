@@ -152,7 +152,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                     </div>
                                                 </div>
                                             </section>
-                                            <p v-else>Carinha vazia.</p>
+                                            <p v-else>Seu carrinho está vazio.</p>
 
 
                                         </AlertDialogDescription>
