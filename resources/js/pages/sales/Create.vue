@@ -81,12 +81,12 @@ const breadcrumbs: BreadcrumbItem[] = [
 
                                             <section v-if="store.items.length !== 0" v-for="product in store.items"
                                                 :key="product.id"
-                                                class="rounded-lg border border-gray-200 bg-white m-4 p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:px-6">
+                                                class="rounded-lg border border-gray-200 bg-white mx-4 my-2 p-2 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:px-6">
                                                 <div
                                                     class="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
                                                     <a href="#" class="shrink-0 md:order-1">
-                                                        <img class="h-10 w-20 dark:hidden"
-                                                            src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front.svg"
+                                                        <img class="h-10 dark:hidden"
+                                                            :src="'/storage/'.concat(product.image)" :alt="product.image"
                                                             alt="imac image" />
                                                     </a>
 
