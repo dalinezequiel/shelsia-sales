@@ -143,7 +143,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                         <div class="text-end md:order-5 md:w-30">
                                                             <p
                                                                 class="text-base font-bold text-gray-900 dark:text-white">
-                                                                {{ store.subtotal?.toFixed(2) }}</p>
+                                                                {{ product.total.toFixed(2) }}</p>
                                                         </div>
                                                         <div
                                                             class="flex items-center gap-4 md:order-6 md:w-30 justify-end">
