@@ -1,8 +1,20 @@
 <script setup lang="ts">
 import { ShoppingCart } from 'lucide-vue-next';
-import Countdown from './Countdown.vue';
 import { ref } from 'vue';
 import { toast } from 'vue-sonner';
+import { store } from '@/store'
+
+const quantity = ref(1);
+
+function increment() {
+    quantity.value++;
+}
+
+function decrement() {
+    if (quantity.value > 1) {
+        quantity.value--;
+    }
+}
 
 interface Product {
     id: number;
@@ -18,9 +30,8 @@ defineProps({
     }
 })
 
-const cart = ref<Product[]>([]);
 function product_list(product: Product) {
-    cart.value.push({ id: product.id, name: product.name, category: product.category, price: product.price })
+    store.items.push({ id: product.id, name: product.name, price: product.price, quantity: quantity.value })
     toast.success(product.name)
 }
 </script>
@@ -35,7 +46,29 @@ function product_list(product: Product) {
             </div>
             <div
                 class="flex gap-2 absolute bottom-0 left-0 right-0 p-4 translate-y-10 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-                <Countdown />
+
+                <!-- <Countdown /> -->
+                <div class="rounded-lg inline-flex items-center">
+                    <button @click="decrement"
+                        class="bg-white rounded-l border text-gray-600 cursor-pointer hover:bg-gray-100 active:bg-gray-200 disabled:opacity-50 inline-flex items-center px-2 py-1 border-r border-gray-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-4" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
+                        </svg>
+                    </button>
+                    <div
+                        class="bg-gray-100 border-t border-b border-gray-100 text-gray-600 hover:bg-gray-100 inline-flex items-center px-4 py-1 select-none">
+                        {{ quantity }}
+                    </div>
+                    <button @click="increment"
+                        class="bg-white rounded-r border text-gray-600 cursor-pointer hover:bg-gray-100 active:bg-gray-200 disabled:opacity-50 inline-flex items-center px-2 py-1 border-r border-gray-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-4" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                        </svg>
+                    </button>
+                </div>
+
                 <button
                     @click="product_list({ id: product.id, name: product.description, category: product.category, price: product.sale_price })"
                     class="w-full bg-indigo-600 text-white px-0 text-sm rounded-sm font-medium cursor-pointer hover:bg-indigo-700 transition-colors duration-300 flex items-center justify-center gap-2">
