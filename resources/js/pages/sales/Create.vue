@@ -88,10 +88,36 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <AlertDialogHeader>
                                         <AlertDialogTitle>Shopping Cart</AlertDialogTitle>
                                         <AlertDialogDescription>
+                                            <section v-if="store.items.length !== 0"
+                                                class="bg-white mx-4 my-2 dark:border-gray-700 dark:bg-gray-800 md:px-6">
+                                                <div
+                                                    class="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
+                                                    <div class="w-full min-w-0 flex-1 space-y-2 md:order-2 md:max-w-md">
+                                                        <p>Produto</p>
+                                                    </div>
+                                                    <div
+                                                        class="flex items-center justify-between md:order-3 md:justify-end">
+                                                        <div class="flex items-center">
+                                                            <p>Quantidade</p>
+                                                        </div>
+                                                        <div class="text-end md:order-4 md:w-30">
+                                                            <p>Valor Unitário</p>
+                                                        </div>
+                                                        <div class="text-end md:order-5 md:w-30">
+                                                            <p>Valor Total</p>
+                                                        </div>
+                                                        <div
+                                                            class="flex items-center gap-4 md:order-6 md:w-30 justify-end">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </section>
+
+
 
                                             <section v-if="store.items.length !== 0" v-for="product in store.items"
                                                 :key="product.id"
-                                                class="rounded-lg border border-gray-200 bg-white mx-4 my-2 p-2 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:px-6">
+                                                class="rounded-lg border border-gray-200 bg-white mx-4 my-2 p-2 dark:border-gray-700 dark:bg-gray-800 md:px-6">
                                                 <div
                                                     class="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
                                                     <a href="#" class="shrink-0 md:order-1">
