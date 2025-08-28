@@ -19,6 +19,7 @@ import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
 import { Head, Link } from '@inertiajs/vue3';
 import { store } from '@/store'
+import { ref } from 'vue';
 
 defineProps({
     products: {
@@ -26,6 +27,14 @@ defineProps({
         required: true
     }
 })
+
+const shipping = ref(0);
+const discount = ref(0);
+const total = () => {
+    store.shipping = shipping.value
+    store.discount = discount.value
+    store.total
+}
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -185,30 +194,32 @@ const breadcrumbs: BreadcrumbItem[] = [
                         </div>
                         <div class="grid gap-2 pb-4 lg:mb-0">
                             <Label for="shipping">Shipping</Label>
-                            <Input id="shipping" type="number" class="block w-full" required placeholder="Shipping" />
+                            <Input id="shipping" type="number" v-model="shipping" @input="total()" step="0.01"
+                                class="block w-full" required placeholder="Shipping" />
                         </div>
                         <div class="grid gap-2 lg:mb-0">
                             <Label for="discount">Discount</Label>
-                            <Input id="discount" type="number" class="block w-full" required placeholder="Discount" />
+                            <Input id="discount" type="number" v-model="discount" @input="total()" class="block w-full"
+                                required placeholder="Discount" />
                         </div>
                     </div>
                     <div class="space-y-3 mb-4">
                         <div class="flex justify-between">
                             <span class="text-gray-600">Subtotal</span>
-                            <span class="font-medium">0.00</span>
+                            <span class="font-medium">{{ store.subtotal().toFixed(2) }}</span>
                         </div>
                         <div class="flex justify-between">
                             <span class="text-gray-600">Shipping</span>
-                            <span class="font-medium">0.00</span>
+                            <span class="font-medium">{{ shipping.toFixed(2) }}</span>
                         </div>
                         <div x-show="discount > 0" class="flex justify-between">
                             <span>Discount</span>
-                            <span class="font-medium">0.00</span>
+                            <span class="font-medium">{{ discount.toFixed(2) }}</span>
                         </div>
                         <div class="border-t py-2 mt-3">
                             <div class="flex justify-between font-bold text-lg">
                                 <span>Total</span>
-                                <span>0.00</span>
+                                <span>{{ store.total().toFixed(2) }}</span>
                             </div>
                         </div>
                     </div>

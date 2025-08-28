@@ -11,10 +11,10 @@ interface Product {
 
 interface Cart {
     items: Product[];
-    total?: number;
-    subtotal?: number;
-    shipping?: number;
-    discount?: number;
+    total(): number;
+    subtotal(): number;
+    shipping: number;
+    discount: number;
     increment(id: number): void;
     decrement(id: number): void;
     delete(id: number): void;
@@ -22,8 +22,12 @@ interface Cart {
 
 export const store: Cart = reactive({
     items: [],
-    total: 0,
-    subtotal: 0,
+    total: () => {
+        return store.shipping + store.subtotal() - store.discount;
+    },
+    subtotal: () => {
+        return store.items.reduce((sum, value) => sum + value.total, 0);
+    },
     shipping: 0,
     discount: 0,
     increment: (id: number) => {
