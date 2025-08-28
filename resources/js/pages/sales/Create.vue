@@ -27,11 +27,6 @@ defineProps({
     }
 })
 
-const deleteItem = (id: number) => {
-    const index = store.items.findIndex(product => product.id == id);
-    store.items.splice(index, 1)
-}
-
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Sales',
@@ -108,6 +103,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                         class="flex items-center justify-between md:order-3 md:justify-end">
                                                         <div class="flex items-center">
                                                             <button type="button" id="decrement-button"
+                                                                @click="store.decrement(product.id)"
                                                                 data-input-counter-decrement="counter-input"
                                                                 class="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700">
                                                                 <svg class="h-2.5 w-2.5 text-gray-900 dark:text-white"
@@ -123,6 +119,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                                 class="w-10 shrink-0 border-0 bg-transparent text-center text-sm font-medium text-gray-900 focus:outline-none focus:ring-0 dark:text-white"
                                                                 placeholder="" v-model="product.quantity" required />
                                                             <button type="button" id="increment-button"
+                                                                @click="store.increment(product.id)"
                                                                 data-input-counter-increment="counter-input"
                                                                 class="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700">
                                                                 <svg class="h-2.5 w-2.5 text-gray-900 dark:text-white"
@@ -148,7 +145,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                         <div
                                                             class="flex items-center gap-4 md:order-6 md:w-30 justify-end">
 
-                                                            <button type="button" @click="deleteItem(product.id)"
+                                                            <button type="button" @click="store.delete(product.id)"
                                                                 class="inline-flex p-2 items-center cursor-pointer rounded-md border border-gray-200 hover:bg-[#F5F0F0] hover:border-[#F5F0F0] text-sm font-medium text-red-600 dark:text-red-500">
                                                                 <Trash2 width="18" height="18" color="#C80909"
                                                                     class="transition-all" />

@@ -15,6 +15,9 @@ interface Cart {
     subtotal?: number;
     shipping?: number;
     discount?: number;
+    increment(id: number): void;
+    decrement(id: number): void;
+    delete(id: number): void;
 }
 
 export const store: Cart = reactive({
@@ -23,4 +26,20 @@ export const store: Cart = reactive({
     subtotal: 0,
     shipping: 0,
     discount: 0,
+    increment: (id: number) => {
+        const index = store.items.findIndex((product) => product.id == id);
+        store.items[index].quantity++;
+        store.items[index].total = store.items[index].quantity * store.items[index].price;
+    },
+    decrement: (id: number) => {
+        const index = store.items.findIndex((product) => product.id == id);
+        if (store.items[index].quantity > 1) {
+            store.items[index].quantity--;
+            store.items[index].total = store.items[index].quantity * store.items[index].price;
+        }
+    },
+    delete: (id: number) => {
+        const index = store.items.findIndex((product) => product.id == id);
+        store.items.splice(index, 1);
+    },
 });
