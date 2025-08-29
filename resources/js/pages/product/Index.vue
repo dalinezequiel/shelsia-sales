@@ -15,6 +15,7 @@ import {
     AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
 import { toast } from 'vue-sonner';
+import { ref } from 'vue';
 
 defineProps({
     products: {
@@ -31,6 +32,18 @@ const deleteProduct = (id: number) => {
     })
 }
 
+const handleUpload = ref('');
+const form = new FormData();
+
+const upload = (id: number, delete_photo: string) => {
+    form.append('id', id.toString());
+    form.append('deletePhoto', delete_photo);
+    form.append('newPhoto', handleUpload.value);
+
+    router.post('products/photo', form), {
+        preserveScroll: true
+    }
+}
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Products',
@@ -179,8 +192,42 @@ const breadcrumbs: BreadcrumbItem[] = [
                         <tr v-for="product in products" :key="product.id">
                             <td class="p-4 border-b border-blue-gray-50">
                                 <div class="flex items-center gap-3">
-                                    <img :src="'/storage/'.concat(product.image)" :alt="product.image"
-                                        class="relative inline-block h-12 w-12 !rounded-full border border-blue-gray-50 bg-blue-gray-50/50 object-contain object-center p-1" />
+
+
+                                    <AlertDialog>
+                                        <AlertDialogTrigger
+                                            class="relative cursor-pointer rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
+                                            <img :src="'/storage/'.concat(product.image)" :alt="product.image"
+                                                class="relative inline-block h-12 w-12 !rounded-full border border-blue-gray-50 bg-blue-gray-50/50 object-contain object-center p-1" />
+                                        </AlertDialogTrigger>
+
+                                        <AlertDialogContent>
+                                            <AlertDialogHeader>
+                                                <AlertDialogTitle>Nova imagem</AlertDialogTitle>
+                                                <AlertDialogDescription>
+                                                    <div class="grid gap-2 mb-6 lg:mb-0">
+                                                        <Input id="image" type="file" name="image"
+                                                            @input="handleUpload = $event.target.files[0]"
+                                                            accept="image/*" class="mt-1 block w-full" />
+                                                    </div>
+                                                </AlertDialogDescription>
+                                            </AlertDialogHeader>
+                                            <AlertDialogFooter>
+                                                <AlertDialogCancel class="cursor-pointer">Cancelar</AlertDialogCancel>
+                                                <AlertDialogAction class="cursor-pointer bg-primary"
+                                                    @click="upload(product.id, product.image)">
+                                                    Actualizar
+                                                </AlertDialogAction>
+                                            </AlertDialogFooter>
+                                        </AlertDialogContent>
+                                    </AlertDialog>
+
+
+
+
+
+
+
                                     <div class="flex flex-col">
                                         <p
                                             class="block font-sans text-sm antialiased font-bold leading-normal text-blue-gray-900">
