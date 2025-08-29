@@ -195,7 +195,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="product in products" :key="product.id">
+                        <tr v-for="product in products.data" :key="product.id">
                             <td class="p-4 border-b border-blue-gray-50">
                                 <div class="flex items-center gap-3">
 
