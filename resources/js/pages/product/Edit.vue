@@ -22,7 +22,6 @@ interface Product {
     maximum_stock: number;
     available_stock: number;
     location: string;
-    image: string;
     is_active: boolean;
 }
 
@@ -41,7 +40,6 @@ const form = useForm({
     maximum_stock: props.product.maximum_stock,
     available_stock: props.product.available_stock,
     location: props.product.location,
-    image: props.product.image,
     is_active: Boolean(props.product.is_active)
 });
 
@@ -197,23 +195,16 @@ const breadcrumbs: BreadcrumbItem[] = [
                             <InputError :message="form.errors.location" class="mt-2" />
                         </div>
 
-                        <div class="grid gap-2 mb-6 lg:mb-0">
-                            <Label for="image">Image</Label>
-                            <Input id="image" type="file" name="image" @input="form.image = $event.target.files[0]"
-                                accept="image/*" class="mt-1 block w-full" />
-                            <InputError class="mt-2" />
+                        <div class="flex items-center space-x-2 ">
+                            <label class="inline-flex items-center cursor-pointer mt-6">
+                                <input type="checkbox" id="is_active" v-model="form.is_active" class="sr-only peer">
+                                <div
+                                    class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-gray-900 dark:peer-checked:bg-blue-600">
+                                </div>
+                                <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Product
+                                    status</span>
+                            </label>
                         </div>
-                    </div>
-
-                    <div class="flex items-center space-x-2 ">
-                        <label class="inline-flex items-center cursor-pointer">
-                            <input type="checkbox" id="is_active" v-model="form.is_active" class="sr-only peer">
-                            <div
-                                class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-gray-900 dark:peer-checked:bg-blue-600">
-                            </div>
-                            <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Product
-                                status</span>
-                        </label>
                     </div>
 
                     <div class="flex items-center gap-2 mt-10">
