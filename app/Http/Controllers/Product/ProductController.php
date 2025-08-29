@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Product;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Product\Product;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -84,12 +85,13 @@ class ProductController extends Controller
     public function photo(Request $request)
     {
         $image_path = null;
-        if ($request->hasFile('image')) {
-            $file_name = rand(0, 9999999) . '-' . $request->file('image')->getClientOriginalName();
-            $image_path = $request->file('image')->storeAs('products', $file_name);
+        if ($request->hasFile('newPhoto')) {
+            $file_name = rand(0, 9999999) . '-' . $request->file('newPhoto')->getClientOriginalName();
+            $image_path = $request->file('newPhoto')->storeAs('products', $file_name);
             $product = Product::where('id', $request->id)->first();
             $product->image = $image_path;
             $product->save();
+            Storage::delete($request->deletePhoto);
         }
 
         return redirect()->route('products.index')->with('success', 'Imagem actualizada com sucesso!');
