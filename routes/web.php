@@ -19,14 +19,16 @@ Route::get('dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::resource('products', ProductController::class);
+Route::post('products/photo', [ProductController::class, 'photo']);
+
 Route::resource('financial', FinancialController::class);
 Route::resource('sales', SalesController::class);
 Route::resource('analysis', AnalysisController::class);
-Route::prefix('parameters')->group(function(){
+Route::prefix('parameters')->group(function () {
     Route::resource('/customers', CustomerController::class);
     Route::resource('/suppliers', SupplierController::class);
     Route::resource('/accounts', AccountController::class);
 });
 
-require __DIR__.'/settings.php';
-require __DIR__.'/auth.php';
+require __DIR__ . '/settings.php';
+require __DIR__ . '/auth.php';
