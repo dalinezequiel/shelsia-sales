@@ -153,37 +153,43 @@ const breadcrumbs: BreadcrumbItem[] = [
                             <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
                                 <p
                                     class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
-                                    Identification
+                                    Descrição
                                 </p>
                             </th>
                             <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
                                 <p
                                     class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
-                                    Description
+                                    Preço
                                 </p>
                             </th>
                             <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
                                 <p
                                     class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
-                                    Supplier
+                                    Fornecedor
                                 </p>
                             </th>
                             <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
                                 <p
                                     class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
-                                    Status
+                                    Estoque
                                 </p>
                             </th>
                             <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
                                 <p
                                     class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
-                                    Validity
+                                    Situação
+                                </p>
+                            </th>
+                            <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
+                                <p
+                                    class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                                    Validade
                                 </p>
                             </th>
                             <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
                                 <p
                                     class="block font-sans text-center text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
-                                    Action
+                                    Ação
                                 </p>
                             </th>
                         </tr>
@@ -231,6 +237,10 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <div class="flex flex-col">
                                         <p
                                             class="block font-sans text-sm antialiased font-bold leading-normal text-blue-gray-900">
+                                            {{ product.description }}
+                                        </p>
+                                        <p
+                                            class="block font-sans text-xs antialiased font-normal leading-normal text-blue-gray-900 opacity-70">
                                             {{ product.barcode }}
                                         </p>
                                     </div>
@@ -240,11 +250,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                 <div class="flex flex-col">
                                     <p
                                         class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                                        {{ product.description }}
-                                    </p>
-                                    <p
-                                        class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900 opacity-70">
-                                        {{ product.category }}
+                                        MZN {{ product.sale_price }}
                                     </p>
                                 </div>
                             </td>
@@ -253,9 +259,11 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
                                     {{ product.supplier }}
                                 </p>
+                            </td>
+                            <td class="p-4 border-b border-blue-gray-50">
                                 <p
-                                    class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900 opacity-70">
-                                    support@handling.co.mz
+                                    class="pl-4 block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                                    {{ product.available_stock }}
                                 </p>
                             </td>
                             <td class="p-4 border-b border-blue-gray-50">
