@@ -146,7 +146,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                     </div>
                 </div>
             </div>
-            <div class="p-6 px-0 overflow-auto h-full">
+            <div class="p-4 px-0 overflow-auto h-full">
                 <table class="w-full mt-4 text-left table-auto min-w-max">
                     <thead>
                         <tr>
@@ -328,7 +328,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                     </tbody>
                 </table>
             </div>
-            <div class="flex justify-between items-center px-4 py-4">
+            <div class="flex justify-between items-center px-4 pb-4">
                 <div class="text-sm text-slate-500">
                     Showing <b>1-5</b> of 45
                 </div>
