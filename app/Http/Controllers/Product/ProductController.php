@@ -107,12 +107,6 @@ class ProductController extends Controller
             'description' => 'required'
         ]);
 
-        $image_path = null;
-        if ($request->hasFile('image')) {
-            $file_name = rand(0, 9999999) . '-' . $request->file('image')->getClientOriginalName();
-            $image_path = $request->file('image')->storeAs('products', $file_name);
-        }
-
         $product->update([
             'barcode' => $request->input('barcode'),
             'description' => $request->input('description'),
@@ -126,7 +120,6 @@ class ProductController extends Controller
             'maximum_stock' => $request->input('maximum_stock'),
             'available_stock' => $request->input('available_stock'),
             'location' => $request->input('location'),
-            'image' => $image_path,
             'is_active' => $request->input('is_active')
         ]);
 
