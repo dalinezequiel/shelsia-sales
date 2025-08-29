@@ -35,28 +35,28 @@ class ProductController extends Controller
             'barcode' => 'required',
             'description' => 'required'
         ]);
-        
+
         $image_path = null;
-        if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $file_name = rand(0, 9999999) . '-' . $request->file('image')->getClientOriginalName();
             $image_path = $request->file('image')->storeAs('products', $file_name);
         }
 
         Product::create([
-            'barcode' => $request -> barcode,
-            'description' => $request -> description,
-            'category' => $request -> category,
-            'unit' => $request -> unit,
-            'supplier' => $request -> supplier,
-            'purchase_price' => $request -> purchase_price,
-            'sale_price' => $request -> sale_price,
-            'validity' => $request -> validity,
-            'minimum_stock' => $request -> minimum_stock,
-            'maximum_stock' => $request -> maximum_stock,
-            'available_stock' => $request -> available_stock,
-            'location' => $request -> location,
+            'barcode' => $request->barcode,
+            'description' => $request->description,
+            'category' => $request->category,
+            'unit' => $request->unit,
+            'supplier' => $request->supplier,
+            'purchase_price' => $request->purchase_price,
+            'sale_price' => $request->sale_price,
+            'validity' => $request->validity,
+            'minimum_stock' => $request->minimum_stock,
+            'maximum_stock' => $request->maximum_stock,
+            'available_stock' => $request->available_stock,
+            'location' => $request->location,
             'image' => $image_path,
-            'is_active' => $request -> is_active
+            'is_active' => $request->is_active
         ]);
 
         return redirect()->route('products.index')->with('success', 'Cadastrado com sucesso!');
@@ -79,6 +79,23 @@ class ProductController extends Controller
     }
 
     /**
+     * Update the specified image in storage.
+     */
+    public function photo(Request $request)
+    {
+        $image_path = null;
+        if ($request->hasFile('image')) {
+            $file_name = rand(0, 9999999) . '-' . $request->file('image')->getClientOriginalName();
+            $image_path = $request->file('image')->storeAs('products', $file_name);
+            $product = Product::where('id', $request->id)->first();
+            $product->image = $image_path;
+            $product->save();
+        }
+
+        return redirect()->route('products.index')->with('success', 'Imagem actualizada com sucesso!');
+    }
+
+    /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Product $product)
@@ -89,26 +106,26 @@ class ProductController extends Controller
         ]);
 
         $image_path = null;
-        if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $file_name = rand(0, 9999999) . '-' . $request->file('image')->getClientOriginalName();
             $image_path = $request->file('image')->storeAs('products', $file_name);
         }
 
-        $product -> update([
-            'barcode' => $request -> input('barcode'),
-            'description' => $request -> input('description'),
-            'category' => $request -> input('category'),
-            'unit' => $request -> input('unit'),
-            'supplier' => $request -> input('supplier'),
-            'purchase_price' => $request -> input('purchase_price'),
-            'sale_price' => $request -> input('sale_price'),
-            'validity' => $request -> input('validity'),
-            'minimum_stock' => $request -> input('minimum_stock'),
-            'maximum_stock' => $request -> input('maximum_stock'),
-            'available_stock' => $request -> input('available_stock'),
-            'location' => $request -> input('location'),
+        $product->update([
+            'barcode' => $request->input('barcode'),
+            'description' => $request->input('description'),
+            'category' => $request->input('category'),
+            'unit' => $request->input('unit'),
+            'supplier' => $request->input('supplier'),
+            'purchase_price' => $request->input('purchase_price'),
+            'sale_price' => $request->input('sale_price'),
+            'validity' => $request->input('validity'),
+            'minimum_stock' => $request->input('minimum_stock'),
+            'maximum_stock' => $request->input('maximum_stock'),
+            'available_stock' => $request->input('available_stock'),
+            'location' => $request->input('location'),
             'image' => $image_path,
-            'is_active' => $request -> input('is_active')
+            'is_active' => $request->input('is_active')
         ]);
 
         return redirect()->route('products.index')->with('success', 'Actualizado com sucesso!');
@@ -119,7 +136,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        $product -> delete();
+        $product->delete();
         return redirect()->route('products.index')->with('success', 'Deleted com sucesso!');
     }
 }
