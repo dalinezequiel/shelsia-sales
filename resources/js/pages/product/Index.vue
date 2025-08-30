@@ -18,17 +18,12 @@ import { toast } from 'vue-sonner';
 import { computed, ref } from 'vue';
 import Pagination from '@/components/additional/Pagination.vue';
 
-const props = defineProps({
+defineProps({
     products: {
         type: Object,
         required: true
     }
 });
-
-const newLinks = computed(() => {
-    const length: number = props.products.links.length;
-    return props.products.links.slice(1, length == 0 ? 0 : length - 1);
-})
 
 const deleteProduct = (id: number) => {
     router.delete(route('products.destroy', id), {
