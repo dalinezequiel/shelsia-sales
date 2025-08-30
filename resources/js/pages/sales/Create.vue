@@ -86,7 +86,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                 </AlertDialogTrigger>
                                 <AlertDialogContent class="min-w-240">
                                     <AlertDialogHeader>
-                                        <AlertDialogTitle>Shopping Cart</AlertDialogTitle>
+                                        <AlertDialogTitle>Carrinho de compras</AlertDialogTitle>
                                         <AlertDialogDescription>
                                             <section v-if="store.items.length !== 0"
                                                 class="bg-white mx-4 my-2 dark:border-gray-700 dark:bg-gray-800 md:px-6">
@@ -195,9 +195,8 @@ const breadcrumbs: BreadcrumbItem[] = [
                                         </AlertDialogDescription>
                                     </AlertDialogHeader>
                                     <AlertDialogFooter>
-                                        <AlertDialogCancel class="cursor-pointer">Cancel</AlertDialogCancel>
                                         <AlertDialogAction class="cursor-pointer bg-[#212121]" @click="">
-                                            Confirm
+                                            Confirmar
                                         </AlertDialogAction>
                                     </AlertDialogFooter>
                                 </AlertDialogContent>
