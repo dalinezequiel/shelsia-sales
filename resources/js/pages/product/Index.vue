@@ -15,7 +15,7 @@ import {
     AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
 import { toast } from 'vue-sonner';
-import { computed, ref } from 'vue';
+import { ref } from 'vue';
 import Pagination from '@/components/additional/Pagination.vue';
 
 defineProps({
