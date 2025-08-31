@@ -1,16 +1,8 @@
+import { ICart } from '@/interfaces';
 import { reactive } from 'vue';
 
-interface Product {
-    id: number;
-    name: string;
-    price: number;
-    quantity: number;
-    total: number;
-    image: string;
-}
-
 interface Cart {
-    items: Product[];
+    items: ICart[];
     total(): number;
     subtotal(): number;
     shipping: number;
