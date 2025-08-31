@@ -13,3 +13,12 @@ export interface IProduct {
     location: string;
     is_active: boolean;
 }
+
+export interface ICart {
+    id: number;
+    name: string;
+    price: number;
+    quantity: number;
+    total: number;
+    image: string;
+}
