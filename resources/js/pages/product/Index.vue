@@ -104,7 +104,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                 <div class="flex flex-col items-center justify-between gap-4 md:flex-row">
                     <div class="block w-full overflow-hidden md:w-max">
                         <nav>
-                            <Tablist :statistics="{ total: 5, active: 3, inactive: 2 }" />
+                            <Tablist :list="products" />
                         </nav>
                     </div>
                     <div class="w-full md:w-72">

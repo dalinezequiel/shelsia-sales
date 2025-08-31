@@ -1,10 +1,20 @@
 <script setup lang="ts">
-defineProps({
-    statistics: {
+import { IProduct } from '@/interfaces';
+
+const props = defineProps({
+    list: {
         type: Object,
         required: true
     }
 });
+
+const stats = {
+    total: props.list.total,
+    active: props.list.data.filter((item: IProduct) => item.is_active).length,
+    inactive: function () {
+        return this.total - this.active
+    }
+}
 </script>
 <template>
     <section>
@@ -12,7 +22,7 @@ defineProps({
             <li>
                 <button
                     class="focus:outline-none p-2 rounded-l-md border border-r-0 bg-white flex space-x-1 items-center w-24">
-                    <p class="font-semibold text-md">{{ statistics.total }}</p>
+                    <p class="font-semibold text-md">{{ stats.total }}</p>
                     <p class="text-gray-600 text-sm">
                         Registros
                     </p>
@@ -20,7 +30,7 @@ defineProps({
             </li>
             <li>
                 <button class="focus:outline-none p-2 border border-r-0 bg-white flex space-x-1 items-center w-24">
-                    <p class="font-semibold text-md">{{ statistics.active }}</p>
+                    <p class="font-semibold text-md">{{ stats.active }}</p>
                     <p class="text-gray-600 text-sm">
                         Activos
                     </p>
@@ -29,7 +39,7 @@ defineProps({
 
             <li>
                 <button class="focus:outline-none p-2 border rounded-r-md bg-white flex space-x-1 items-center w-24">
-                    <p class="font-semibold text-md">{{ statistics.inactive }}</p>
+                    <p class="font-semibold text-md">{{ stats.inactive() }}</p>
                     <p class="text-gray-600 text-sm">
                         Inactivos
                     </p>
