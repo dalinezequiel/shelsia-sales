@@ -17,6 +17,7 @@ import {
 import { toast } from 'vue-sonner';
 import { ref } from 'vue';
 import Pagination from '@/components/additional/Pagination.vue';
+import Tablist from '@/components/additional/Tablist.vue';
 
 defineProps({
     products: {
@@ -103,31 +104,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                 <div class="flex flex-col items-center justify-between gap-4 md:flex-row">
                     <div class="block w-full overflow-hidden md:w-max">
                         <nav>
-                            <ul role="tablist"
-                                class="relative flex flex-row p-1 rounded-lg bg-blue-gray-50 bg-opacity-60">
-                                <li role="tab"
-                                    class="relative flex items-center justify-center w-full h-full px-2 py-1 font-sans text-base antialiased font-normal leading-relaxed text-center bg-transparent cursor-pointer select-none text-blue-gray-900"
-                                    data-value="all">
-                                    <div class="z-20 text-inherit">
-                                        &nbsp;&nbsp;All&nbsp;&nbsp;
-                                    </div>
-                                    <div class="absolute inset-0 z-10 h-full bg-white rounded-md shadow"></div>
-                                </li>
-                                <li role="tab"
-                                    class="relative flex items-center justify-center w-full h-full px-2 py-1 font-sans text-base antialiased font-normal leading-relaxed text-center bg-transparent cursor-pointer select-none text-blue-gray-900"
-                                    data-value="monitored">
-                                    <div class="z-20 text-inherit">
-                                        &nbsp;&nbsp;Monitored&nbsp;&nbsp;
-                                    </div>
-                                </li>
-                                <li role="tab"
-                                    class="relative flex items-center justify-center w-full h-full px-2 py-1 font-sans text-base antialiased font-normal leading-relaxed text-center bg-transparent cursor-pointer select-none text-blue-gray-900"
-                                    data-value="unmonitored">
-                                    <div class="z-20 text-inherit">
-                                        &nbsp;&nbsp;Unmonitored&nbsp;&nbsp;
-                                    </div>
-                                </li>
-                            </ul>
+                            <Tablist :statistics="{ total: 5, active: 3, inactive: 2 }" />
                         </nav>
                     </div>
                     <div class="w-full md:w-72">
