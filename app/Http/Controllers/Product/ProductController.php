@@ -13,9 +13,10 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::paginate(5);
+        $description = $request->query('description');
+        $products = Product::where('description', 'like', '%' . $description . '%')->paginate(5);
         return Inertia::render('product/Index', compact('products'));
     }
 
