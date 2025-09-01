@@ -62,8 +62,9 @@ class PaymentMethod extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Payment $paymentMethod)
     {
-        //
+        $paymentMethod->delete();
+        return redirect()->route('payment_methods.index')->with('success', 'Deleted com sucesso!');
     }
 }
