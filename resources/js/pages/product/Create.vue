@@ -38,11 +38,11 @@ const submit = () => {
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Products',
+        title: 'Produtos',
         href: '/products',
     },
     {
-        title: 'Registration',
+        title: 'Cadastro',
         href: '/product/Create',
     }
 ];
@@ -58,7 +58,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                     <div>
                         <h5
                             class="text-blue-gray-900 block font-sans text-xl leading-snug font-semibold tracking-normal antialiased">
-                            New Product
+                            Cadastrar Produto
                         </h5>
                     </div>
                 </div>
@@ -67,23 +67,23 @@ const breadcrumbs: BreadcrumbItem[] = [
                 <form @submit.prevent="submit" enctype="multipart/form-data" class="space-y-6">
                     <div class="grid lg:grid-cols-2 lg:gap-4 ">
                         <div class="grid gap-2 mb-6 lg:mb-0">
-                            <Label for="barcode">Barcode</Label>
+                            <Label for="barcode">Código de barras</Label>
                             <Input id="barcode" v-model="form.barcode" type="number" class="mt-1 block w-full" required
-                                autocomplete="barcode" placeholder="Barcode" />
+                                autocomplete="barcode" placeholder="Código de barras" />
                             <InputError :message="form.errors.barcode" class="mt-2" />
                         </div>
 
                         <div class="grid gap-2 mb-6 lg:mb-0">
-                            <Label for="description">Description</Label>
+                            <Label for="description">Descrição</Label>
                             <Input id="description" v-model="form.description" class="mt-1 block w-full" required
-                                autocomplete="description" placeholder="Description" />
+                                autocomplete="description" placeholder="Descrição" />
                             <InputError :message="form.errors.description" class="mt-2" />
                         </div>
                     </div>
 
                     <div class="grid lg:grid-cols-2 lg:gap-4 ">
                         <div class="grid gap-2 mb-6 lg:mb-0">
-                            <Label for="category">Category</Label>
+                            <Label for="category">Categoria</Label>
                             <Select id="category" v-model="form.category">
                                 <SelectTrigger class="w-auto mt-1">
                                     <SelectValue placeholder="Select category" />
@@ -97,7 +97,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                         </div>
 
                         <div class="grid gap-2 mb-6 lg:mb-0">
-                            <Label for="unit">Unit</Label>
+                            <Label for="unit">Unidade</Label>
                             <Select id="unit" v-model="form.unit">
                                 <SelectTrigger class="w-auto mt-1">
                                     <SelectValue placeholder="Select unit" />
@@ -112,7 +112,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                         </div>
 
                         <div class="grid gap-2">
-                            <Label for="supplier">Supplier</Label>
+                            <Label for="supplier">Fornecedor</Label>
                             <Select id="supplier" v-model="form.supplier">
                                 <SelectTrigger class="w-auto mt-1">
                                     <SelectValue placeholder="Select supplier" />
@@ -128,61 +128,61 @@ const breadcrumbs: BreadcrumbItem[] = [
 
                     <div class="grid lg:grid-cols-3 lg:gap-4 ">
                         <div class="grid gap-2 mb-6 lg:mb-0">
-                            <Label for="purchase_price">Purchase price</Label>
+                            <Label for="purchase_price">Preço de compra</Label>
                             <Input id="purchase_price" v-model="form.purchase_price" type="number"
-                                class="mt-1 block w-full" required placeholder="Purchase price" />
+                                class="mt-1 block w-full" required placeholder="Preço de compra" />
                             <InputError :message="form.errors.purchase_price" class="mt-2" />
                         </div>
 
                         <div class="grid gap-2 mb-6 lg:mb-0">
-                            <Label for="sale_price">Sale price</Label>
+                            <Label for="sale_price">Preço de venda</Label>
                             <Input id="sale_price" v-model="form.sale_price" type="number" class="mt-1 block w-full"
-                                required placeholder="Sale price" />
+                                required placeholder="Preço de venda" />
                             <InputError :message="form.errors.sale_price" class="mt-2" />
                         </div>
 
                         <div class="grid gap-2">
-                            <Label for="validity">Validity</Label>
+                            <Label for="validity">Validade</Label>
                             <Input id="validity" v-model="form.validity" type="date" class="mt-1 block w-full" required
-                                autocomplete="validity" placeholder="Validity" />
+                                autocomplete="validity" placeholder="Validade" />
                             <InputError :message="form.errors.validity" class="mt-2" />
                         </div>
                     </div>
 
                     <div class="grid lg:grid-cols-3 lg:gap-4 ">
                         <div class="grid gap-2 mb-6 lg:mb-0">
-                            <Label for="minimum_stock">Minimum stock</Label>
+                            <Label for="minimum_stock">Estoque minimo</Label>
                             <Input id="minimum_stock" v-model="form.minimum_stock" type="number"
                                 class="mt-1 block w-full" required autocomplete="minimum_stock"
-                                placeholder="Minimum stock" />
+                                placeholder="Estoque minimo" />
                             <InputError :message="form.errors.minimum_stock" class="mt-2" />
                         </div>
 
                         <div class="grid gap-2 mb-6 lg:mb-0">
-                            <Label for="maximum_stock">Maximum stock</Label>
+                            <Label for="maximum_stock">Estoque máximo</Label>
                             <Input id="maximum_stock" v-model="form.maximum_stock" type="number"
                                 class="mt-1 block w-full" required autocomplete="maximum_stock"
-                                placeholder="Maximum stock" />
+                                placeholder="Estoque máximo" />
                             <InputError :message="form.errors.maximum_stock" class="mt-2" />
                         </div>
 
                         <div class="grid gap-2 mb-6 lg:mb-0">
-                            <Label for="available_stock">Available stock</Label>
+                            <Label for="available_stock">Estoque disponível</Label>
                             <Input id="available_stock" v-model="form.available_stock" type="number"
                                 class="mt-1 block w-full" autocomplete="available_stock"
-                                placeholder="Available stock" />
+                                placeholder="Estoque disponível" />
                             <InputError :message="form.errors.available_stock" class="mt-2" />
                         </div>
 
                         <div class="grid gap-2 mb-6 lg:mb-0">
-                            <Label for="location">Location</Label>
+                            <Label for="location">Localização</Label>
                             <Input id="location" v-model="form.location" class="mt-1 block w-full"
-                                autocomplete="location" placeholder="Location" />
+                                autocomplete="location" placeholder="Localização" />
                             <InputError :message="form.errors.location" class="mt-2" />
                         </div>
 
                         <div class="grid gap-2 mb-6 lg:mb-0">
-                            <Label for="image">Image </Label>
+                            <Label for="image">Imagem </Label>
                             <Input id="image" type="file" name="image" @input="form.image = $event.target.files[0]"
                                 accept="image/*" class="mt-1 block w-full" />
                             <InputError :message="form.errors.image" class="mt-2" />
@@ -195,8 +195,8 @@ const breadcrumbs: BreadcrumbItem[] = [
                             <div
                                 class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-gray-900 dark:peer-checked:bg-blue-600">
                             </div>
-                            <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Product
-                                status</span>
+                            <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Situação do
+                                produto</span>
                         </label>
                     </div>
 
@@ -209,7 +209,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                             <path d="m12 19-7-7 7-7" />
                             <path d="M19 12H5" />
                         </svg>
-                        Back</Link>
+                        Voltar</Link>
                         <Button class="cursor-pointer">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -219,7 +219,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                 <path d="M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7" />
                                 <path d="M7 3v4a1 1 0 0 0 1 1h7" />
                             </svg>
-                            Save</Button>
+                            Salvar</Button>
                     </div>
                 </form>
             </div>
