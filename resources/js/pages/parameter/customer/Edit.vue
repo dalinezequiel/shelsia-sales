@@ -44,11 +44,11 @@ const submit = () => {
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Customers',
+        title: 'Clientes',
         href: '/customers',
     },
     {
-        title: 'Update',
+        title: 'Actualização',
         href: '/customers/Edit',
     },
 ];
@@ -65,7 +65,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                         <div>
                             <h5
                                 class="text-blue-gray-900 block font-sans text-xl leading-snug font-semibold tracking-normal antialiased">
-                                Edit Customer
+                                Editar Cliente
                             </h5>
                         </div>
                     </div>
@@ -73,28 +73,28 @@ const breadcrumbs: BreadcrumbItem[] = [
                 <div class="mx-4">
                     <form @submit.prevent="submit" class="space-y-6">
                         <div class="grid gap-2">
-                            <Label for="name">Name</Label>
+                            <Label for="name">Nome</Label>
                             <Input id="name" v-model="form.name" class="mt-1 block w-full" required autocomplete="name"
-                                placeholder="Full name" />
+                                placeholder="Nome" />
                             <InputError :message="form.errors.name" class="mt-2" />
                         </div>
 
                         <div class="grid gap-2">
-                            <Label for="surname">Surname</Label>
+                            <Label for="surname">Apelido</Label>
                             <Input id="surname" v-model="form.surname" class="mt-1 block w-full" required
-                                autocomplete="surname" placeholder="Surname" />
+                                autocomplete="surname" placeholder="Apelido" />
                             <InputError :message="form.errors.surname" class="mt-2" />
                         </div>
 
                         <div class="grid gap-2">
-                            <Label for="gender">Gender</Label>
+                            <Label for="gender">Gênero</Label>
                             <Select id="gender" v-model="form.gender">
                                 <SelectTrigger class="w-auto mt-1">
-                                    <SelectValue placeholder="Select gender" />
+                                    <SelectValue placeholder="Selecionar gênero" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem value="male"> Male </SelectItem>
-                                    <SelectItem value="female"> Female </SelectItem>
+                                    <SelectItem value="Masculino"> Masculino </SelectItem>
+                                    <SelectItem value="Feminino"> Feminino </SelectItem>
                                 </SelectContent>
                             </Select>
                             <InputError :message="form.errors.gender" class="mt-2" />
@@ -102,24 +102,24 @@ const breadcrumbs: BreadcrumbItem[] = [
 
                         <div class="grid lg:grid-cols-2 lg:gap-4 ">
                             <div class="grid gap-2 mb-6 lg:mb-0">
-                                <Label for="phone">Phone</Label>
+                                <Label for="phone">Telefone</Label>
                                 <Input id="phone" v-model="form.phone" type="number" class="mt-1 block w-full" required
-                                    autocomplete="phone" placeholder="Phone" />
+                                    autocomplete="phone" placeholder="Telefone ex: +258 xx xxxx xxx" />
                                 <InputError :message="form.errors.phone" class="mt-2" />
                             </div>
 
                             <div class="grid gap-2">
                                 <Label for="email">Email</Label>
                                 <Input id="email" v-model="form.email" type="email" class="mt-1 block w-full" required
-                                    autocomplete="email" placeholder="Email address" />
+                                    autocomplete="email" placeholder="Email" />
                                 <InputError :message="form.errors.email" class="mt-2" />
                             </div>
                         </div>
 
                         <div class="grid gap-2">
-                            <Label for="address">Address</Label>
+                            <Label for="address">Endereço</Label>
                             <Input id="address" v-model="form.address" class="mt-1 block w-full" required
-                                autocomplete="username" placeholder="Address" />
+                                autocomplete="username" placeholder="Endereço" />
                             <InputError :message="form.errors.address" class="mt-2" />
                         </div>
 
@@ -129,8 +129,8 @@ const breadcrumbs: BreadcrumbItem[] = [
                                 <div
                                     class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-gray-900 dark:peer-checked:bg-blue-600">
                                 </div>
-                                <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Customer
-                                    status</span>
+                                <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Situação do
+                                    cliente</span>
                             </label>
                         </div>
 
@@ -144,7 +144,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                 <path d="m12 19-7-7 7-7" />
                                 <path d="M19 12H5" />
                             </svg>
-                            Back</Link>
+                            Voltar</Link>
                             <Button class="cursor-pointer">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -152,7 +152,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
                                     <path d="M3 3v5h5" />
                                 </svg>
-                                Save Changes</Button>
+                                Actualizar</Button>
                         </div>
                     </form>
                 </div>
