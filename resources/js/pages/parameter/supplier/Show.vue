@@ -97,7 +97,7 @@ const breadcrumbs: BreadcrumbItem[] = [
             </div>
 
             <div class="mt-6 flex cursor-pointer justify-start gap-x-3">
-                <Link :href="route('supplier.index')"
+                <Link :href="route('suppliers.index')"
                     class="inline-flex items-center gap-x-2 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-800 shadow-2xs hover:bg-gray-50 focus:bg-gray-50 focus:outline-hidden disabled:pointer-events-none disabled:opacity-50 dark:border-neutral-700 dark:bg-transparent dark:text-neutral-300 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
