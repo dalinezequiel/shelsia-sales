@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Models\Payment_Method;
+namespace App\Models\PaymentMethod;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Payment_Method extends Model
+class PaymentMethod extends Model
 {
     protected $fillable = [
         'id',
