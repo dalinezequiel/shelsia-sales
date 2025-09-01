@@ -14,7 +14,7 @@ const form = useForm({
     description: '',
     abbreviation: '',
     observation: '',
-    is_active: false
+    is_active: true
 });
 
 const submit = () => {
