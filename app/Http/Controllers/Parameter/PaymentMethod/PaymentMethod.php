@@ -38,9 +38,9 @@ class PaymentMethod extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(PaymentMethod $paymentMethod)
     {
-        //
+        return Inertia::render('parameter/paymentMethod/Show', compact('paymentMethod'));
     }
 
     /**
