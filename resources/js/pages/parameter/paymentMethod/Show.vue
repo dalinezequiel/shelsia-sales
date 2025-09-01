@@ -7,6 +7,7 @@ import { Head, Link } from '@inertiajs/vue3';
 interface PaymentMethod {
     id: number;
     description: string;
+    operation_type: string;
     observation: string;
     is_active: boolean;
 }
@@ -51,8 +52,16 @@ const breadcrumbs: BreadcrumbItem[] = [
                         <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Descrição</dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{ paymentMethod.description
-                            }}</dd>
+                                }}</dd>
                         </div>
+
+                        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <dt class="text-sm font-medium text-gray-500">Tipo de Operação</dt>
+                            <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{ paymentMethod.operation_type
+                                }}
+                            </dd>
+                        </div>
+
                         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Observação</dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{ paymentMethod.observation }}
