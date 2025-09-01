@@ -32,7 +32,18 @@ class PaymentMethod extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'surname' => 'required'
+        ]);
+
+        Payment::create([
+            'description' => $request->description,
+            'observation' => $request->observation,
+            'is_active' => $request->is_active
+        ]);
+
+        return redirect()->route('payment_methods.index')->with('success', 'Cadastrado com sucesso!');
     }
 
     /**
