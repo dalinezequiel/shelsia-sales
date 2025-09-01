@@ -64,7 +64,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 
                         <div class="grid gap-2">
                             <Label for="surname">Observação</Label>
-                            <Textarea id="observation" v-model="form.observation" class="mt-1 block w-full" required
+                            <Textarea id="observation" v-model="form.observation" class="mt-1 block w-full"
                                 placeholder="Observação" />
                         </div>
 
