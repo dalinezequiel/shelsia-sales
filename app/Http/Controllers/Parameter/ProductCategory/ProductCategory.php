@@ -24,7 +24,7 @@ class ProductCategory extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('parameter/productCategory/Create');
     }
 
     /**
