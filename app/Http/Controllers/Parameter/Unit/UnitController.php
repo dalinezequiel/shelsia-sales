@@ -24,7 +24,7 @@ class UnitController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('parameter/unit/Create');
     }
 
     /**
