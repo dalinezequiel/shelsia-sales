@@ -164,7 +164,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                         <Avatar :name="letter(customer.name, customer.surname)" />
                                         <div class="flex flex-col">
                                             <p
-                                                class="text-blue-gray-900 block font-sans text-sm leading-normal font-normal antialiased">
+                                                class="text-blue-gray-900 block font-sans text-sm leading-normal font-bold antialiased">
                                                 {{ customer.name }}</p>
                                             <p
                                                 class="text-blue-gray-900 block font-sans text-sm leading-normal font-normal antialiased opacity-70">
