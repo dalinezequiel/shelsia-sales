@@ -29,19 +29,15 @@ defineProps({
     }
 });
 
-const name = ref('');
+const description = ref('');
 const search = () => {
-    router.get(route('payment_methods.index', { name: name.value }, {
+    router.get(route('payment_methods.index', { name: description.value }, {
         preserveState: true,
         replace: true
     }))
 };
 
-const letter = (name: string, surname: string) => {
-    const first = name.charAt(0);
-    const last = surname.length === 0 ? name.charAt(name.length - 1) : surname.charAt(0)
-    return first + last;
-}
+const letter = (description: string) => description.charAt(0)
 
 const deletePaymentMethod = (id: number) => {
     router.delete(route('payment_methods.destroy', id), {
@@ -120,7 +116,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                         </svg>
                                     </Button>
                                 </div>
-                                <input v-model="name" @keyup.enter="search"
+                                <input v-model="description" @keyup.enter="search"
                                     class="peer border-blue-gray-200 text-blue-gray-700 placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 disabled:bg-blue-gray-50 h-full w-full rounded-[7px] border border-t-transparent bg-transparent px-3 py-2.5 !pr-9 font-sans text-sm font-normal outline outline-0 transition-all placeholder-shown:border focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0"
                                     placeholder=" " />
                                 <label
@@ -135,15 +131,10 @@ const breadcrumbs: BreadcrumbItem[] = [
                     <table class="mt-4 w-full min-w-max table-auto text-left">
                         <thead>
                             <tr>
-                                <th class="border-blue-gray-100 bg-blue-gray-50/50 border-y p-4">
+                                <th class="border-blue-gray-100 bg-blue-gray-50/50 border-y p-4 lg:w-100">
                                     <p
                                         class="text-blue-gray-900 block font-sans text-sm leading-none font-normal antialiased opacity-70">
-                                        Nome</p>
-                                </th>
-                                <th class="border-blue-gray-100 bg-blue-gray-50/50 border-y p-4">
-                                    <p
-                                        class="text-blue-gray-900 block font-sans text-sm leading-none font-normal antialiased opacity-70">
-                                        Contacto</p>
+                                        Descrição</p>
                                 </th>
                                 <th class="border-blue-gray-100 bg-blue-gray-50/50 border-y p-4">
                                     <p
@@ -161,27 +152,12 @@ const breadcrumbs: BreadcrumbItem[] = [
                             <tr v-for="paymentMethod in paymentMethods.data" :key="paymentMethod.id">
                                 <td class="border-blue-gray-50 border-b p-4">
                                     <div class="flex items-center gap-3">
-                                        <Avatar :name="letter(paymentMethod.name, paymentMethod.surname)" />
+                                        <Avatar :name="letter(paymentMethod.description)" />
                                         <div class="flex flex-col">
                                             <p
                                                 class="text-blue-gray-900 block font-sans text-sm leading-normal font-bold antialiased">
-                                                {{ paymentMethod.name }}</p>
-                                            <p
-                                                class="text-blue-gray-900 block font-sans text-sm leading-normal font-normal antialiased opacity-70">
-                                                {{ paymentMethod.surname }}
-                                            </p>
+                                                {{ paymentMethod.description }}</p>
                                         </div>
-                                    </div>
-                                </td>
-                                <td class="border-blue-gray-50 border-b p-4">
-                                    <div class="flex flex-col">
-                                        <p
-                                            class="text-blue-gray-900 block font-sans text-sm leading-normal font-normal antialiased">
-                                            {{ paymentMethod.phone }}</p>
-                                        <p
-                                            class="text-blue-gray-900 block font-sans text-sm leading-normal font-normal antialiased opacity-70">
-                                            {{ paymentMethod.email }}
-                                        </p>
                                     </div>
                                 </td>
                                 <td class="border-blue-gray-50 border-b p-4">
@@ -204,7 +180,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <button
                                         class="relative rounded-lg text-center mx-2 align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                         type="button">
-                                        <Link :href="route('payment_methos.show', paymentMethod.id)">
+                                        <Link :href="route('payment_methods.show', paymentMethod.id)">
                                         <File width="18" height="18" color="#393B3C" class="hover:stroke-[#949799]" />
                                         </Link>
                                     </button>
@@ -222,7 +198,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                     Continuar com está operação implicará a exclusão permanente do/a
                                                     fornecedor
                                                     <strong> <span class="text-[#EC3636]">{{ paymentMethod.name
-                                                            }}</span>
+                                                    }}</span>
                                                     </strong>.
                                                 </AlertDialogDescription>
                                             </AlertDialogHeader>
