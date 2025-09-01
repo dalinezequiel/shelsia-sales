@@ -32,7 +32,18 @@ class UnitController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'description' => 'required'
+        ]);
+
+        Unit::create([
+            'description' => $request->description,
+            'abbreviation' => $request->abbreviation,
+            'observation' => $request->observation,
+            'is_active' => $request->is_active
+        ]);
+
+        return redirect()->route('units.index')->with('success', 'Cadastrado com sucesso!');
     }
 
     /**
