@@ -15,7 +15,7 @@ const form = useForm({
     description: '',
     operation_type: 'Pagamento',
     observation: '',
-    is_active: false
+    is_active: true
 });
 
 const submit = () => {
