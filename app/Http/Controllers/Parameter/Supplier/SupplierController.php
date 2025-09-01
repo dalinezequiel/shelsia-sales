@@ -32,7 +32,22 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'surname' => 'required'
+        ]);
+
+        Supplier::create([
+            'name' => $request->name,
+            'surname' => $request->surname,
+            'gender' => $request->gender,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'address' => $request->address,
+            'is_active' => $request->is_active
+        ]);
+
+        return redirect()->route('suppliers.index')->with('success', 'Cadastrado com sucesso!');
     }
 
     /**
