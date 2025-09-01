@@ -28,7 +28,7 @@ function printButton(elementId: string): void {
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Categoria de Produto',
+        title: 'Categoria',
         href: '/product_categories',
     },
     {
@@ -44,7 +44,7 @@ const breadcrumbs: BreadcrumbItem[] = [
         <div class="px-12">
             <div id="printableArea" class="max-w-4xl overflow-hidden bg-white sm:rounded-lg">
                 <div class="px-0 py-5 sm:px-6">
-                    <h3 class="text-lg leading-6 font-medium text-gray-900">Detalhes de categoria de produto</h3>
+                    <h3 class="text-lg leading-6 font-medium text-gray-900">Categoria de produto</h3>
                 </div>
                 <div class="border-t border-gray-200">
                     <dl>
