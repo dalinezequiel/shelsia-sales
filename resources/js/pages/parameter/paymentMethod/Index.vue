@@ -195,10 +195,10 @@ const breadcrumbs: BreadcrumbItem[] = [
                                             <AlertDialogHeader>
                                                 <AlertDialogTitle>Confirma está exclusão?</AlertDialogTitle>
                                                 <AlertDialogDescription>
-                                                    Continuar com está operação implicará a exclusão da
+                                                    Continuar com está operação implicará a exclusão permanente da
                                                     forma de pagamento
                                                     <strong> <span class="text-[#EC3636]">{{ paymentMethod.description
-                                                            }}</span>
+                                                    }}</span>
                                                     </strong>.
                                                 </AlertDialogDescription>
                                             </AlertDialogHeader>
