@@ -26,12 +26,12 @@ const submit = () => {
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Fornecedores',
-        href: '/suppliers',
+        title: 'Formas de Pagar',
+        href: '/payment_methods',
     },
     {
         title: 'Cadastro',
-        href: '/suppliers/Create',
+        href: '/payment_methods/Create',
     },
 ];
 </script>
