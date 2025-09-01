@@ -37,6 +37,12 @@ const search = () => {
     }))
 };
 
+const letter = (name: string, surname: string) => {
+    const first = name.charAt(0);
+    const last = surname.length === 0 ? name.charAt(name.length - 1) : surname.charAt(0)
+    return first + last;
+}
+
 const deleteCustomer = (id: number) => {
     router.delete(route('customers.destroy', id), {
         preserveScroll: true,
@@ -156,7 +162,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                             <tr v-for="customer in customers.data" :key="customer.id">
                                 <td class="border-blue-gray-50 border-b p-4">
                                     <div class="flex items-center gap-3">
-                                        <Avatar name="JL" />
+                                        <Avatar :name="letter(customer.name, customer.surname)" />
                                         <div class="flex flex-col">
                                             <p
                                                 class="text-blue-gray-900 block font-sans text-sm leading-normal font-normal antialiased">
