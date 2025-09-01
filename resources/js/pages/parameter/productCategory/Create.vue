@@ -4,7 +4,6 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import Textarea from '@/components/ui/textarea/Textarea.vue';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import AppLayout from '@/layouts/AppLayout.vue';
 import ParameterLayout from '@/pages/parameter/Layout.vue';
 import { type BreadcrumbItem } from '@/types';
@@ -14,7 +13,7 @@ import { toast } from 'vue-sonner';
 const form = useForm({
     description: '',
     observation: '',
-    is_active: false
+    is_active: true
 });
 
 const submit = () => {
@@ -27,7 +26,7 @@ const submit = () => {
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Categorias de Produto',
+        title: 'Categorias',
         href: '/product_categories',
     },
     {
