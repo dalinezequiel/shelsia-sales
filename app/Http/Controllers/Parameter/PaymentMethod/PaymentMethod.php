@@ -38,6 +38,7 @@ class PaymentMethod extends Controller
 
         Payment::create([
             'description' => $request->description,
+            'operation_type' => $request->operation_type,
             'observation' => $request->observation,
             'is_active' => $request->is_active
         ]);
@@ -72,6 +73,7 @@ class PaymentMethod extends Controller
 
         $paymentMethod->update([
             'description' => $request->input('description'),
+            'operation_type' => $request->input('operation_type'),
             'observation' => $request->input('observation'),
             'is_active' => $request->input('is_active')
         ]);
