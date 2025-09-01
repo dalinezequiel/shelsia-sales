@@ -9,6 +9,7 @@ use App\Http\Controllers\Analysis\AnalysisController;
 use App\Http\Controllers\Parameter\Customer\CustomerController;
 use App\Http\Controllers\Parameter\Supplier\SupplierController;
 use App\Http\Controllers\Parameter\Account\AccountController;
+use App\Http\Controllers\Parameter\PaymentMethod\PaymentMethod;
 
 Route::get('/', function () {
     return Inertia::render('Welcome');
@@ -28,6 +29,7 @@ Route::prefix('parameters')->group(function () {
     Route::resource('/customers', CustomerController::class);
     Route::resource('/suppliers', SupplierController::class);
     Route::resource('/accounts', AccountController::class);
+    Route::resource('/payment_methods', PaymentMethod::class);
 });
 
 require __DIR__ . '/settings.php';
