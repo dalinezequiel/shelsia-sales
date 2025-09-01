@@ -17,7 +17,7 @@ const form = useForm({
     phone: '',
     email: '',
     address: '',
-    is_active: false
+    is_active: true
 });
 
 const submit = () => {
