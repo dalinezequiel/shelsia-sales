@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import Textarea from '@/components/ui/textarea/Textarea.vue';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import AppLayout from '@/layouts/AppLayout.vue';
 import ParameterLayout from '@/pages/parameter/Layout.vue';
 import { type BreadcrumbItem } from '@/types';
@@ -12,6 +13,7 @@ import { toast } from 'vue-sonner';
 
 const form = useForm({
     description: '',
+    payment_type: '',
     observation: '',
     is_active: false
 });
@@ -60,6 +62,19 @@ const breadcrumbs: BreadcrumbItem[] = [
                             <Input id="name" v-model="form.description" class="mt-1 block w-full" required
                                 autocomplete="name" placeholder="Descrição" />
                             <InputError :message="form.errors.description" class="mt-2" />
+                        </div>
+
+                        <div class="grid gap-2">
+                            <Label for="gender">Tipo de operação</Label>
+                            <Select id="gender" v-model="form.payment_type">
+                                <SelectTrigger class="w-auto mt-1">
+                                    <SelectValue placeholder="Selecionar tipo" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="Pagamento"> Pagamento </SelectItem>
+                                    <SelectItem value="Recebimento"> Recebimento </SelectItem>
+                                </SelectContent>
+                            </Select>
                         </div>
 
                         <div class="grid gap-2">
