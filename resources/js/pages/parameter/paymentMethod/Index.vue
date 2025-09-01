@@ -31,7 +31,7 @@ defineProps({
 
 const description = ref('');
 const search = () => {
-    router.get(route('payment_methods.index', { name: description.value }, {
+    router.get(route('payment_methods.index', { description: description.value }, {
         preserveState: true,
         replace: true
     }))
@@ -198,7 +198,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                     Continuar com está operação implicará a exclusão permanente do/a
                                                     fornecedor
                                                     <strong> <span class="text-[#EC3636]">{{ paymentMethod.name
-                                                    }}</span>
+                                                            }}</span>
                                                     </strong>.
                                                 </AlertDialogDescription>
                                             </AlertDialogHeader>
