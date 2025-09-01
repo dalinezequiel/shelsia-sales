@@ -13,7 +13,7 @@ import { toast } from 'vue-sonner';
 
 const form = useForm({
     description: '',
-    payment_type: '',
+    operation_type: '',
     observation: '',
     is_active: false
 });
@@ -25,6 +25,8 @@ const submit = () => {
         onError: () => toast.error('Ocorreu um erro ao tentar cadastrar forma de pagamento.')
     });
 };
+
+const operation = () => form.operation_type === 'Recebimento' ? 'receber' : 'pagar'
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -50,7 +52,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                         <div>
                             <h5
                                 class="text-blue-gray-900 block font-sans text-xl leading-snug font-semibold tracking-normal antialiased">
-                                Cadastrar forma de pagar
+                                Cadastrar forma de {{ operation() }}
                             </h5>
                         </div>
                     </div>
@@ -66,7 +68,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 
                         <div class="grid gap-2">
                             <Label for="gender">Tipo de operação</Label>
-                            <Select id="gender" v-model="form.payment_type">
+                            <Select id="gender" v-model="form.operation_type">
                                 <SelectTrigger class="w-auto mt-1">
                                     <SelectValue placeholder="Selecionar tipo" />
                                 </SelectTrigger>
