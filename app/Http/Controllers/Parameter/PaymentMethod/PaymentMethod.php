@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Parameter\PaymentMethod;
 
 use App\Http\Controllers\Controller;
-use App\Models\PaymentMethod\PaymentMethod as PaymentMethodPaymentMethod;
+use App\Models\PaymentMethod\PaymentMethod as Payment;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -15,7 +15,7 @@ class PaymentMethod extends Controller
     public function index(Request $request)
     {
         $description = $request->query('description');
-        $paymentMethods = PaymentMethodPaymentMethod::where('description', 'like', '%' . $description . '%')->paginate(5);
+        $paymentMethods = Payment::where('description', 'like', '%' . $description . '%')->paginate(5);
         return Inertia::render('parameter/paymentMethod/Index', compact('paymentMethods'));
     }
 
