@@ -8,12 +8,12 @@ import { Box, Landmark, CreditCard, User, SlidersHorizontal } from 'lucide-vue-n
 
 const sidebarNavItems: NavItem[] = [
     {
-        title: 'Customers',
+        title: 'Clientes',
         href: '/parameters/customers',
         icon: User
     },
     {
-        title: 'Suppliers',
+        title: 'Fornecedores',
         href: '/parameters/suppliers',
         icon: Box
     },
