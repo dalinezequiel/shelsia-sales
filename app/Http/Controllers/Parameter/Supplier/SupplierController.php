@@ -15,8 +15,8 @@ class SupplierController extends Controller
     public function index(Request $request)
     {
         $name = $request->query('name');
-        $customers = Supplier::where('name', 'like', '%' . $name . '%')->paginate(5);
-        return Inertia::render('parameter/supplier/Index', compact('customers'));
+        $suppliers = Supplier::where('name', 'like', '%' . $name . '%')->paginate(5);
+        return Inertia::render('parameter/supplier/Index', compact('suppliers'));
     }
 
     /**
