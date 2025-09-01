@@ -38,9 +38,9 @@ class ProductCategory extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Category $productCategory)
     {
-        //
+        return Inertia::render('parameter/productCategory/Show', compact('productCategory'));
     }
 
     /**
