@@ -291,18 +291,17 @@ const breadcrumbs: BreadcrumbItem[] = [
 
                                     <AlertDialogContent>
                                         <AlertDialogHeader>
-                                            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                                            <AlertDialogTitle>Confirma está exclusão?</AlertDialogTitle>
                                             <AlertDialogDescription>
-                                                This action cannot be undone. This will permanently delete your
-                                                account
-                                                and remove your data from our servers.
+                                                Continuar com está operação implicará a exclusão permanente do produto
+                                                <strong> {{ product.description }} </strong>.
                                             </AlertDialogDescription>
                                         </AlertDialogHeader>
                                         <AlertDialogFooter>
-                                            <AlertDialogCancel class="cursor-pointer">Cancel</AlertDialogCancel>
+                                            <AlertDialogCancel class="cursor-pointer">Cancelar</AlertDialogCancel>
                                             <AlertDialogAction class="cursor-pointer bg-[#EC3636]"
                                                 @click="deleteProduct(product.id)">
-                                                Yes, Delete
+                                                Sim, Excluir
                                             </AlertDialogAction>
                                         </AlertDialogFooter>
                                     </AlertDialogContent>
