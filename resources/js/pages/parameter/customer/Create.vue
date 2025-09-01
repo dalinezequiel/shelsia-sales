@@ -98,7 +98,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                             <div class="grid gap-2">
                                 <Label for="email">Email</Label>
                                 <Input id="email" v-model="form.email" type="email" class="mt-1 block w-full" required
-                                    autocomplete="email" placeholder="Email address" />
+                                    autocomplete="email" placeholder="Email" />
                                 <InputError :message="form.errors.email" class="mt-2" />
                             </div>
                         </div>
