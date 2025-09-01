@@ -28,7 +28,7 @@ const form = useForm({
 });
 
 const submit = () => {
-    form.put(route('units.update'), {
+    form.put(route('units.update', props.unit), {
         preserveScroll: true,
         onSuccess: () => toast.success('Unidade de medida actualizada com sucesso.'),
         onError: () => toast.error('Ocorreu um erro ao tentar actualizar unidade de medida.')
