@@ -35,7 +35,7 @@ const submit = () => {
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Categorias de Produto',
+        title: 'Categorias',
         href: '/product_categories',
     },
     {
