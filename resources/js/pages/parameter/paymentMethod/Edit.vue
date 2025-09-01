@@ -14,7 +14,7 @@ interface PaymentMethod {
     id: number;
     description: string;
     observation: string;
-    is_active: boolean
+    is_active: boolean;
 }
 
 const props = defineProps<{ paymentMethod: PaymentMethod }>();
@@ -22,7 +22,7 @@ const props = defineProps<{ paymentMethod: PaymentMethod }>();
 const form = useForm({
     description: props.paymentMethod.description,
     observation: props.paymentMethod.observation,
-    is_active: props.paymentMethod.is_active
+    is_active: Boolean(props.paymentMethod.is_active)
 });
 
 const submit = () => {
