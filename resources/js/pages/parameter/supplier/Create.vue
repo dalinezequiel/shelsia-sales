@@ -47,12 +47,12 @@ const breadcrumbs: BreadcrumbItem[] = [
     <AppLayout :breadcrumbs="breadcrumbs">
         <ParameterLayout>
             <div class="relative flex h-full w-full flex-col bg-white bg-clip-border text-gray-700">
-                <div class="relative mx-4 mt-2 overflow-hidden rounded-none bg-white bg-clip-border text-gray-700">
+                <div class="relative mx-4 mt-1 overflow-hidden rounded-none bg-white bg-clip-border text-gray-700">
                     <div class="mb-8 flex items-center justify-between gap-8">
                         <div>
                             <h5
                                 class="text-blue-gray-900 block font-sans text-xl leading-snug font-semibold tracking-normal antialiased">
-                                Cadastrar fornecedor
+                                Fornecedor
                             </h5>
                         </div>
                     </div>
