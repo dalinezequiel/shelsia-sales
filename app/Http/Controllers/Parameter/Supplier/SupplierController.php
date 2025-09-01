@@ -12,10 +12,11 @@ class SupplierController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-        return Inertia::render('parameter/supplier/Index');
+        $name = $request->query('name');
+        $customers = Supplier::where('name', 'like', '%' . $name . '%')->paginate(5);
+        return Inertia::render('parameter/supplier/Index', compact('customers'));
     }
 
     /**
