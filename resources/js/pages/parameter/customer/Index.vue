@@ -19,6 +19,7 @@ import {
 } from '@/components/ui/alert-dialog'
 import { toast } from 'vue-sonner';
 import Pagination from '@/components/additional/Pagination.vue';
+import Tablist from '@/components/additional/Tablist.vue';
 
 defineProps({
     customers: {
@@ -89,25 +90,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                     <div class="flex flex-col items-center justify-between gap-4 md:flex-row">
                         <div class="block w-full overflow-hidden md:w-max">
                             <nav>
-                                <ul role="tablist"
-                                    class="bg-gray-100 bg-opacity-60 relative flex flex-row rounded-lg p-1">
-                                    <li role="tab"
-                                        class="text-blue-gray-900 relative flex h-full w-full cursor-pointer items-center justify-center bg-transparent px-2 py-1 text-center font-sans text-base leading-relaxed font-normal antialiased select-none"
-                                        data-value="all">
-                                        <div class="z-20 text-inherit">&nbsp;&nbsp;All&nbsp;&nbsp;</div>
-                                        <div class="absolute inset-0 z-10 h-full rounded-md bg-white shadow"></div>
-                                    </li>
-                                    <li role="tab"
-                                        class="text-blue-gray-900 relative flex h-full w-full cursor-pointer items-center justify-center bg-transparent px-2 py-1 text-center font-sans text-base leading-relaxed font-normal antialiased select-none"
-                                        data-value="monitored">
-                                        <div class="z-20 text-inherit">&nbsp;&nbsp;Monitored&nbsp;&nbsp;</div>
-                                    </li>
-                                    <li role="tab"
-                                        class="text-blue-gray-900 relative flex h-full w-full cursor-pointer items-center justify-center bg-transparent px-2 py-1 text-center font-sans text-base leading-relaxed font-normal antialiased select-none"
-                                        data-value="unmonitored">
-                                        <div class="z-20 text-inherit">&nbsp;&nbsp;Unmonitored&nbsp;&nbsp;</div>
-                                    </li>
-                                </ul>
+                                <Tablist :list="customers" />
                             </nav>
                         </div>
                         <div class="w-full md:w-72">
