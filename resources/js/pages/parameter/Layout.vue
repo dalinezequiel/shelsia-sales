@@ -24,12 +24,12 @@ const sidebarNavItems: NavItem[] = [
     },
     {
         title: 'Categories',
-        href: '/settings/appearance',
+        href: '/parameters/product_categories',
         icon: SlidersHorizontal
     },
     {
         title: 'Payments',
-        href: '/settings/appearance',
+        href: '/parameters/payment_methods',
         icon: CreditCard
     }
 ];
