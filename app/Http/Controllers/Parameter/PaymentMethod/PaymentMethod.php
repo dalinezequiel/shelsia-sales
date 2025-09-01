@@ -46,9 +46,9 @@ class PaymentMethod extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(PaymentMethod $paymentMethod)
     {
-        //
+        return Inertia::render('parameter/paymentMethod/Show', compact('paymentMethod'));
     }
 
     /**
