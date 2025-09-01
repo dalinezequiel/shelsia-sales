@@ -24,7 +24,7 @@ class PaymentMethod extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('parameter/paymentMethod/Create');
     }
 
     /**
