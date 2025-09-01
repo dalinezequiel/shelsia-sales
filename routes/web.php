@@ -10,6 +10,7 @@ use App\Http\Controllers\Parameter\Customer\CustomerController;
 use App\Http\Controllers\Parameter\Supplier\SupplierController;
 use App\Http\Controllers\Parameter\Account\AccountController;
 use App\Http\Controllers\Parameter\PaymentMethod\PaymentMethod;
+use App\Http\Controllers\Parameter\ProductCategory\ProductCategory;
 
 Route::get('/', function () {
     return Inertia::render('Welcome');
@@ -29,6 +30,7 @@ Route::prefix('parameters')->group(function () {
     Route::resource('/customers', CustomerController::class);
     Route::resource('/suppliers', SupplierController::class);
     Route::resource('/accounts', AccountController::class);
+    Route::resource('/product_categories', ProductCategory::class);
     Route::resource('/payment_methods', PaymentMethod::class);
 });
 
