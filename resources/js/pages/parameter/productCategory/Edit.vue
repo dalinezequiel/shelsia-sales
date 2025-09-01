@@ -26,7 +26,7 @@ const form = useForm({
 });
 
 const submit = () => {
-    form.put(route('product_categories.store'), {
+    form.put(route('product_categories.update', props.productCategory), {
         preserveScroll: true,
         onSuccess: () => toast.success('Categoria de produto actualizado com sucesso.'),
         onError: () => toast.error('Ocorreu um erro ao tentar actualizar categoria de produto.')
