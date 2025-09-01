@@ -12,9 +12,10 @@ class CustomerController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $customers = Customer::get();
+        $name = $request->query('name');
+        $customers = Customer::where('name', 'like', '%' . $name . '%')->paginate(5);
         return Inertia::render('parameter/customer/Index', compact('customers'));
     }
 
