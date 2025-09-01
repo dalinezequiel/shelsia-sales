@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { type NavItem } from '@/types';
 import { Link, usePage } from '@inertiajs/vue3';
-import { Box, Landmark, CreditCard, User, SlidersHorizontal } from 'lucide-vue-next';
+import { Box, PencilRuler, CreditCard, User, SlidersHorizontal } from 'lucide-vue-next';
 
 const sidebarNavItems: NavItem[] = [
     {
@@ -18,9 +18,9 @@ const sidebarNavItems: NavItem[] = [
         icon: Box
     },
     {
-        title: 'Accounts',
-        href: '/parameters/accounts',
-        icon: Landmark
+        title: 'Unidades',
+        href: '/parameters/units',
+        icon: PencilRuler
     },
     {
         title: 'Categorias',
