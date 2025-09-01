@@ -219,7 +219,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                             <AlertDialogHeader>
                                                 <AlertDialogTitle>Confirma está exclusão?</AlertDialogTitle>
                                                 <AlertDialogDescription>
-                                                    Continuar com está operação implicará a exclusão permanente do
+                                                    Continuar com está operação implicará a exclusão permanente do/a
                                                     cliente
                                                     <strong> <span class="text-[#EC3636]">{{ customer.name }}</span>
                                                     </strong>.
