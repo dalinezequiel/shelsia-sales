@@ -13,6 +13,7 @@ import { toast } from 'vue-sonner';
 interface PaymentMethod {
     id: number;
     description: string;
+    operation_type: string;
     observation: string;
     is_active: boolean;
 }
@@ -22,6 +23,7 @@ const props = defineProps<{ paymentMethod: PaymentMethod }>();
 const form = useForm({
     description: props.paymentMethod.description,
     observation: props.paymentMethod.observation,
+    operation_type: props.paymentMethod.operation_type,
     is_active: Boolean(props.paymentMethod.is_active)
 });
 
@@ -69,6 +71,19 @@ const breadcrumbs: BreadcrumbItem[] = [
                             <Input id="name" v-model="form.description" class="mt-1 block w-full" required
                                 autocomplete="name" placeholder="Descrição" />
                             <InputError :message="form.errors.description" class="mt-2" />
+                        </div>
+
+                        <div class="grid gap-2">
+                            <Label for="gender">Tipo de operação</Label>
+                            <Select id="gender" v-model="form.operation_type">
+                                <SelectTrigger class="w-auto mt-1">
+                                    <SelectValue placeholder="Selecionar tipo" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="Pagamento"> Pagamento </SelectItem>
+                                    <SelectItem value="Recebimento"> Recebimento </SelectItem>
+                                </SelectContent>
+                            </Select>
                         </div>
 
                         <div class="grid gap-2">
