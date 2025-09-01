@@ -20,6 +20,7 @@ import {
 import { toast } from 'vue-sonner';
 import Pagination from '@/components/additional/Pagination.vue';
 import Tablist from '@/components/additional/Tablist.vue';
+import { ref } from 'vue';
 
 defineProps({
     customers: {
@@ -27,6 +28,14 @@ defineProps({
         required: true
     }
 });
+
+const name = ref('');
+const search = () => {
+    router.get(route('customers.index', { name: name.value }, {
+        preserveState: true,
+        replace: true
+    }))
+};
 
 const deleteCustomer = (id: number) => {
     router.delete(route('customers.destroy', id), {
@@ -97,14 +106,16 @@ const breadcrumbs: BreadcrumbItem[] = [
                             <div class="relative h-10 w-full min-w-[200px]">
                                 <div
                                     class="text-blue-gray-500 absolute top-2/4 right-3 grid h-5 w-5 -translate-y-2/4 place-items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        stroke-width="1.5" stroke="currentColor" aria-hidden="true" class="h-5 w-5">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z">
-                                        </path>
-                                    </svg>
+                                    <Button @click="search" class="cursor-pointer">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" aria-hidden="true" class="h-5 w-5">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z">
+                                            </path>
+                                        </svg>
+                                    </Button>
                                 </div>
-                                <input
+                                <input v-model="name" @keyup.enter="search"
                                     class="peer border-blue-gray-200 text-blue-gray-700 placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 disabled:bg-blue-gray-50 h-full w-full rounded-[7px] border border-t-transparent bg-transparent px-3 py-2.5 !pr-9 font-sans text-sm font-normal outline outline-0 transition-all placeholder-shown:border focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0"
                                     placeholder=" " />
                                 <label
