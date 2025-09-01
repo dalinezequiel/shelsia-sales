@@ -184,7 +184,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                             <Label for="available_stock">Estoque disponível</Label>
                             <Input id="available_stock" v-model="form.available_stock" type="number"
                                 class="mt-1 block w-full" autocomplete="available_stock"
-                                placeholder="Available stock" />
+                                placeholder="Estoque disponível" />
                             <InputError :message="form.errors.available_stock" class="mt-2" />
                         </div>
 
