@@ -65,9 +65,19 @@ class PaymentMethod extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Payment $paymentMethod)
     {
-        //
+        $request->validate([
+            'description' => 'required'
+        ]);
+
+        $paymentMethod->update([
+            'description' => $request->input('description'),
+            'observation' => $request->input('observation'),
+            'is_active' => $request->input('is_active')
+        ]);
+
+        return redirect()->route('payment_methods.index')->with('success', 'Actualizado com sucesso!');
     }
 
     /**
