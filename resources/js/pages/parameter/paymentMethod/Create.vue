@@ -26,7 +26,7 @@ const submit = () => {
     });
 };
 
-const operation = () => form.operation_type === 'Recebimento' ? 'receber' : 'pagar'
+const operation = () => form.operation_type === 'Recebimento' ? form.operation_type : form.operation_type
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -52,7 +52,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                         <div>
                             <h5
                                 class="text-blue-gray-900 block font-sans text-xl leading-snug font-semibold tracking-normal antialiased">
-                                Cadastrar forma de {{ operation() }}
+                                Forma de {{ operation() }}
                             </h5>
                         </div>
                     </div>
