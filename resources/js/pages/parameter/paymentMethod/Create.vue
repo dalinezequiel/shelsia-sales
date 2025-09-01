@@ -17,10 +17,10 @@ const form = useForm({
 });
 
 const submit = () => {
-    form.post(route('suppliers.store'), {
+    form.post(route('payment_methods.store'), {
         preserveScroll: true,
-        onSuccess: () => toast.success('Fornecedor cadastrado com sucesso.'),
-        onError: () => toast.error('Ocorreu um erro ao tentar cadastrar fornecedor.')
+        onSuccess: () => toast.success('Forma de pagamento cadastrado com sucesso.'),
+        onError: () => toast.error('Ocorreu um erro ao tentar cadastrar forma de pagamento.')
     });
 };
 

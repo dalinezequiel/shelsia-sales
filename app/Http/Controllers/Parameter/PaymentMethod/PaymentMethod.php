@@ -33,8 +33,7 @@ class PaymentMethod extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'surname' => 'required'
+            'description' => 'required'
         ]);
 
         Payment::create([
