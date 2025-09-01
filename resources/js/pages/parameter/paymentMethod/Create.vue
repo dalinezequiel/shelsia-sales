@@ -13,7 +13,7 @@ import { toast } from 'vue-sonner';
 
 const form = useForm({
     description: '',
-    operation_type: '',
+    operation_type: 'Pagamento',
     observation: '',
     is_active: false
 });
@@ -67,13 +67,13 @@ const breadcrumbs: BreadcrumbItem[] = [
                         </div>
 
                         <div class="grid gap-2">
-                            <Label for="gender">Tipo de operação</Label>
-                            <Select id="gender" v-model="form.operation_type">
+                            <Label for="operation_type">Tipo de operação</Label>
+                            <Select defaultValue="Pagamento" id="operation_type" v-model="form.operation_type">
                                 <SelectTrigger class="w-auto mt-1">
-                                    <SelectValue placeholder="Selecionar tipo" />
+                                    <SelectValue placeholder="Selecionar tipo de operação" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem value="Pagamento"> Pagamento </SelectItem>
+                                    <SelectItem value="Pagamento" selected> Pagamento </SelectItem>
                                     <SelectItem value="Recebimento"> Recebimento </SelectItem>
                                 </SelectContent>
                             </Select>
