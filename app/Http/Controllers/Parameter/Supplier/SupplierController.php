@@ -69,9 +69,24 @@ class SupplierController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Supplier $supplier)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'surname' => 'required'
+        ]);
+
+        $supplier->update([
+            'name' => $request->input('name'),
+            'surname' => $request->input('surname'),
+            'gender' => $request->input('gender'),
+            'phone' => $request->input('phone'),
+            'email' => $request->input('email'),
+            'address' => $request->input('address'),
+            'is_active' => $request->input('is_active')
+        ]);
+
+        return redirect()->route('suppliers.index')->with('success', 'Actualizado com sucesso!');
     }
 
     /**
