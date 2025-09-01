@@ -294,7 +294,8 @@ const breadcrumbs: BreadcrumbItem[] = [
                                             <AlertDialogTitle>Confirma está exclusão?</AlertDialogTitle>
                                             <AlertDialogDescription>
                                                 Continuar com está operação implicará a exclusão permanente do produto
-                                                <strong> {{ product.description }} </strong>.
+                                                <strong> <span class="text-[#EC3636]">{{ product.description }}</span>
+                                                </strong>.
                                             </AlertDialogDescription>
                                         </AlertDialogHeader>
                                         <AlertDialogFooter>
