@@ -49,7 +49,7 @@ const deleteProductCategory = (id: number) => {
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Categorias de Produtos',
+        title: 'Categorias',
         href: '/product_categories',
     },
     {
@@ -198,7 +198,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                     Continuar com está operação implicará a exclusão permanente da
                                                     categoria
                                                     <strong> <span class="text-[#EC3636]">{{ productCategory.description
-                                                    }}</span>
+                                                            }}</span>
                                                     </strong>.
                                                 </AlertDialogDescription>
                                             </AlertDialogHeader>
