@@ -36,11 +36,11 @@ const deleteCustomer = (id: number) => {
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Customers',
+        title: 'Clientes',
         href: '/customers',
     },
     {
-        title: 'List',
+        title: 'Lista',
         href: '/customers',
     },
 ];
@@ -57,18 +57,18 @@ const breadcrumbs: BreadcrumbItem[] = [
                         <div>
                             <h5
                                 class="text-blue-gray-900 block font-sans text-xl leading-snug font-semibold tracking-normal antialiased">
-                                Customers list
+                                Lista de clientes
                             </h5>
                             <p
                                 class="mt-1 block font-sans text-base leading-relaxed font-normal text-gray-700 antialiased">
-                                See information about all customers
+                                Veja informações sobre todos os clientes
                             </p>
                         </div>
                         <div class="flex shrink-0 flex-col gap-2 sm:flex-row">
                             <button
                                 class="rounded-lg border border-gray-900 px-4 py-2 text-center align-middle font-sans text-xs font-bold text-gray-900 uppercase transition-all select-none hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                 type="button">
-                                view all
+                                Listar
                             </button>
                             <button
                                 class="flex items-center gap-3 rounded-lg bg-gray-900 px-4 py-2 text-center align-middle font-sans text-xs font-bold text-white uppercase shadow-md shadow-gray-900/10 transition-all select-none hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
@@ -80,7 +80,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                         d="M6.25 6.375a4.125 4.125 0 118.25 0 4.125 4.125 0 01-8.25 0zM3.25 19.125a7.125 7.125 0 0114.25 0v.003l-.001.119a.75.75 0 01-.363.63 13.067 13.067 0 01-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 01-.364-.63l-.001-.122zM19.75 7.5a.75.75 0 00-1.5 0v2.25H16a.75.75 0 000 1.5h2.25v2.25a.75.75 0 001.5 0v-2.25H22a.75.75 0 000-1.5h-2.25V7.5z">
                                     </path>
                                 </svg>
-                                Add Customer
+                                Adicionar
                                 </Link>
                             </button>
                         </div>
@@ -125,7 +125,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     placeholder=" " />
                                 <label
                                     class="before:content[' '] after:content[' '] before:border-blue-gray-200 after:border-blue-gray-200 peer-placeholder-shown:text-blue-gray-500 peer-disabled:peer-placeholder-shown:text-blue-gray-500 pointer-events-none absolute -top-1.5 left-0 flex h-full w-full truncate !overflow-visible text-[11px] leading-tight font-normal text-gray-500 transition-all select-none peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-gray-900 peer-disabled:text-transparent before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:transition-all peer-placeholder-shown:before:border-transparent peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:!border-gray-900 peer-disabled:before:border-transparent after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:transition-all peer-placeholder-shown:after:border-transparent peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:!border-gray-900 peer-disabled:after:border-transparent">
-                                    Search
+                                    Buscar
                                 </label>
                             </div>
                         </div>
@@ -138,22 +138,22 @@ const breadcrumbs: BreadcrumbItem[] = [
                                 <th class="border-blue-gray-100 bg-blue-gray-50/50 border-y p-4">
                                     <p
                                         class="text-blue-gray-900 block font-sans text-sm leading-none font-normal antialiased opacity-70">
-                                        Member</p>
+                                        Nome</p>
                                 </th>
                                 <th class="border-blue-gray-100 bg-blue-gray-50/50 border-y p-4">
                                     <p
                                         class="text-blue-gray-900 block font-sans text-sm leading-none font-normal antialiased opacity-70">
-                                        Function</p>
+                                        Contacto</p>
                                 </th>
                                 <th class="border-blue-gray-100 bg-blue-gray-50/50 border-y p-4">
                                     <p
                                         class="text-blue-gray-900 block font-sans text-sm leading-none font-normal antialiased opacity-70">
-                                        Status</p>
+                                        Situação</p>
                                 </th>
                                 <th class="border-blue-gray-100 bg-blue-gray-50/50 border-y p-4">
                                     <p
                                         class="text-blue-gray-900 block font-sans text-center text-sm leading-none font-normal antialiased opacity-70">
-                                        Action</p>
+                                        Ação</p>
                                 </th>
                             </tr>
                         </thead>
@@ -186,10 +186,10 @@ const breadcrumbs: BreadcrumbItem[] = [
                                 </td>
                                 <td class="border-blue-gray-50 border-b p-4">
                                     <div class="w-max">
-                                        <div :class="customer.is_active ? 'bg-green-500/20' : 'bg-slate-100 text-slate-600'"
+                                        <div :class="customer.is_active ? 'bg-green-500/20' : 'bg-red-500/20'"
                                             class="relative grid items-center rounded-md  px-2 py-1 font-sans text-xs font-bold whitespace-nowrap text-green-900 uppercase select-none">
                                             <span v-if="customer.is_active" class="">Activo</span>
-                                            <span v-else class="">Inactivo</span>
+                                            <span v-else class="text-red-900">Inactivo</span>
                                         </div>
                                     </div>
                                 </td>
@@ -211,25 +211,24 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <AlertDialog>
                                         <AlertDialogTrigger
                                             class="relative cursor-pointer rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
-                                            <!-- <Link href=""> -->
                                             <Trash2 width="18" height="18" color="#C80909"
                                                 class="transition-all hover:stroke-[#F86363]" />
-                                            <!-- </Link> -->
                                         </AlertDialogTrigger>
 
                                         <AlertDialogContent>
                                             <AlertDialogHeader>
-                                                <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                                                <AlertDialogTitle>Confirma está exclusão?</AlertDialogTitle>
                                                 <AlertDialogDescription>
-                                                    This action cannot be undone. This will permanently delete your
-                                                    account
-                                                    and remove your data from our servers.
+                                                    Continuar com está operação implicará a exclusão permanente do
+                                                    cliente
+                                                    <strong> <span class="text-[#EC3636]">{{ customer.name }}</span>
+                                                    </strong>.
                                                 </AlertDialogDescription>
                                             </AlertDialogHeader>
                                             <AlertDialogFooter>
-                                                <AlertDialogCancel>Cancel</AlertDialogCancel>
-                                                <AlertDialogAction class="bg-[#EC3636]"
-                                                    @click="deleteCustomer(customer.id)">Yes, Delete
+                                                <AlertDialogCancel class="cursor-pointer">Cancelar</AlertDialogCancel>
+                                                <AlertDialogAction class="cursor-pointer bg-[#EC3636]"
+                                                    @click="deleteCustomer(customer.id)">Sim, Excluir
                                                 </AlertDialogAction>
                                             </AlertDialogFooter>
                                         </AlertDialogContent>
