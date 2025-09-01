@@ -59,7 +59,7 @@ class UnitController extends Controller
      */
     public function edit(Unit $unit)
     {
-        return Inertia::render('parameter/unit/Show', compact('unit'));
+        return Inertia::render('parameter/unit/Edit', compact('unit'));
     }
 
     /**
