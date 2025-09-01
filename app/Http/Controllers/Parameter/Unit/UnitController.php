@@ -65,9 +65,20 @@ class UnitController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Unit $unit)
     {
-        //
+        $request->validate([
+            'description' => 'required'
+        ]);
+
+        $unit->update([
+            'description' => $request->input('description'),
+            'abbreviation' => $request->input('abbreviation'),
+            'observation' => $request->input('observation'),
+            'is_active' => $request->input('is_active')
+        ]);
+
+        return redirect()->route('units.index')->with('success', 'Actualizado com sucesso!');
     }
 
     /**
