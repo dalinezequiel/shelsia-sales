@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Parameter\Supplier;
 
 use App\Http\Controllers\Controller;
+use App\Models\Supplier\Supplier;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -36,9 +37,9 @@ class SupplierController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Supplier $supplier)
     {
-        //
+        return Inertia::render('parameter/supplier/Show', compact('supplier'));
     }
 
     /**
