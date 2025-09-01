@@ -10,27 +10,27 @@ import AppLogo from './AppLogo.vue';
 
 const mainNavItems: NavItem[] = [
     {
-        title: 'Dashboard',
+        title: 'Painel',
         href: '/dashboard',
         icon: LayoutGrid,
     },
     {
-        title: 'Products',
+        title: 'Produtos',
         href: '/products',
         icon: Barcode,
     },
     {
-        title: 'Financial',
+        title: 'Financeiro',
         href: '/financial',
         icon: WalletMinimal,
     },
     {
-        title: 'Sales',
+        title: 'Vendas',
         href: '/sales',
         icon: ShoppingBag,
     },
     {
-        title: 'Analysis',
+        title: 'Análises',
         href: '/analysis',
         icon: ChartSpline,
     },
@@ -38,7 +38,7 @@ const mainNavItems: NavItem[] = [
 
 const footerNavItems: NavItem[] = [
     {
-        title: 'Parameters',
+        title: 'Parâmetros',
         href: '/parameters/customers',
         icon: SlidersHorizontal,
     },
