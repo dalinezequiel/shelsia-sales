@@ -53,7 +53,7 @@ const deletePaymentMethod = (id: number) => {
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Formas de Pagamento',
+        title: 'Formas de Pagar',
         href: '/payment_methods',
     },
     {
@@ -222,7 +222,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                     Continuar com está operação implicará a exclusão permanente do/a
                                                     fornecedor
                                                     <strong> <span class="text-[#EC3636]">{{ paymentMethod.name
-                                                    }}</span>
+                                                            }}</span>
                                                     </strong>.
                                                 </AlertDialogDescription>
                                             </AlertDialogHeader>
