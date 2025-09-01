@@ -26,10 +26,10 @@ const form = useForm({
 });
 
 const submit = () => {
-    form.post(route('paymentMethods.store'), {
+    form.put(route('payment_methods.update', props.paymentMethod), {
         preserveScroll: true,
-        onSuccess: () => toast.success('Forma de pagamento cadastrado com sucesso.'),
-        onError: () => toast.error('Ocorreu um erro ao tentar cadastrar forma de pagamento.')
+        onSuccess: () => toast.success('Forma de pagamento actualizada com sucesso.'),
+        onError: () => toast.error('Ocorreu um erro ao tentar actualizar forma de pagamento.')
     });
 };
 
@@ -57,7 +57,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                         <div>
                             <h5
                                 class="text-blue-gray-900 block font-sans text-xl leading-snug font-semibold tracking-normal antialiased">
-                                Cadastrar forma de pagar
+                                Editar forma de pagar
                             </h5>
                         </div>
                     </div>
@@ -73,7 +73,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 
                         <div class="grid gap-2">
                             <Label for="surname">Observação</Label>
-                            <Textarea id="observation" v-model="form.observation" class="mt-1 block w-full" required
+                            <Textarea id="observation" v-model="form.observation" class="mt-1 block w-full"
                                 placeholder="Observação" />
                         </div>
 
