@@ -23,12 +23,12 @@ const sidebarNavItems: NavItem[] = [
         icon: Landmark
     },
     {
-        title: 'Categories',
+        title: 'Categorias',
         href: '/parameters/product_categories',
         icon: SlidersHorizontal
     },
     {
-        title: 'Payments',
+        title: 'Pagamentos',
         href: '/parameters/payment_methods',
         icon: CreditCard
     }
