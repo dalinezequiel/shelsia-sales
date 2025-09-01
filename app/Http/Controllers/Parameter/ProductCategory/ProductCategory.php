@@ -64,9 +64,19 @@ class ProductCategory extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Category $productCategory)
     {
-        //
+        $request->validate([
+            'description' => 'required'
+        ]);
+
+        $productCategory->update([
+            'description' => $request->input('description'),
+            'observation' => $request->input('observation'),
+            'is_active' => $request->input('is_active')
+        ]);
+
+        return redirect()->route('product_categories.index')->with('success', 'Actualizado com sucesso!');
     }
 
     /**
