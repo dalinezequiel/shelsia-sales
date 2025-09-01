@@ -3,7 +3,7 @@ import InputError from '@/components/InputError.vue';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import Textarea from '@/components/ui/textarea/Textarea.vue';
 import AppLayout from '@/layouts/AppLayout.vue';
 import ParameterLayout from '@/pages/parameter/Layout.vue';
 import { type BreadcrumbItem } from '@/types';
@@ -11,12 +11,8 @@ import { Head, Link, useForm } from '@inertiajs/vue3';
 import { toast } from 'vue-sonner';
 
 const form = useForm({
-    name: '',
-    surname: '',
-    gender: '',
-    phone: '',
-    email: '',
-    address: '',
+    description: '',
+    observation: '',
     is_active: false
 });
 
@@ -61,16 +57,15 @@ const breadcrumbs: BreadcrumbItem[] = [
                     <form @submit.prevent="submit" class="space-y-6">
                         <div class="grid gap-2">
                             <Label for="name">Descrição</Label>
-                            <Input id="name" v-model="form.name" class="mt-1 block w-full" required autocomplete="name"
-                                placeholder="Descrição" />
-                            <InputError :message="form.errors.name" class="mt-2" />
+                            <Input id="name" v-model="form.description" class="mt-1 block w-full" required
+                                autocomplete="name" placeholder="Descrição" />
+                            <InputError :message="form.errors.description" class="mt-2" />
                         </div>
 
                         <div class="grid gap-2">
                             <Label for="surname">Observação</Label>
-                            <Input id="surname" v-model="form.surname" class="mt-1 block w-full" required
-                                autocomplete="surname" placeholder="Observação" />
-                            <InputError :message="form.errors.surname" class="mt-2" />
+                            <Textarea id="observation" v-model="form.observation" class="mt-1 block w-full" required
+                                placeholder="Observação" />
                         </div>
 
                         <div class="flex items-center space-x-2 ">
