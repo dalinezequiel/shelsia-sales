@@ -3,16 +3,20 @@
 namespace App\Http\Controllers\Parameter\ProductCategory;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product\ProductCategory as Category;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class ProductCategory extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $description = $request->query('description');
+        $productCategories = Category::where('description', 'like', '%' . $description . '%')->paginate(5);
+        return Inertia::render('parameter/productCategory/Index', compact('productCategories'));
     }
 
     /**
