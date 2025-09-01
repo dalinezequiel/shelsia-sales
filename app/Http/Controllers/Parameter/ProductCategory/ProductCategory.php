@@ -46,9 +46,9 @@ class ProductCategory extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Category $productCategory)
     {
-        //
+        return Inertia::render('parameter/productCategory/Edit', compact('productCategory'));
     }
 
     /**
