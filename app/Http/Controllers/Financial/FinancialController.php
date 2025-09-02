@@ -12,9 +12,10 @@ class FinancialController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $accounts = Account::get();
+        $description = $request->query('description');
+        $accounts = Account::where('description', 'like', '%' . $description . '%')->paginate(5);
         return Inertia::render('financial/Index', compact('accounts'));
     }
 
@@ -37,17 +38,17 @@ class FinancialController extends Controller
         ]);
 
         Account::create([
-            'account_plan' => $request -> account_plan,
-            'description' => $request -> description,
-            'category' => $request -> category,
-            'supplier' => $request -> supplier,
-            'due_date' => $request -> due_date,
-            'amount' => $request -> amount,
-            'date_of_issue' => $request -> date_of_issue,
-            'document_number' => $request -> document_number,
-            'occurrence' => $request -> occurrence,
-            'observation' => $request -> observation,
-            'is_active' => $request -> is_active
+            'account_plan' => $request->account_plan,
+            'description' => $request->description,
+            'category' => $request->category,
+            'supplier' => $request->supplier,
+            'due_date' => $request->due_date,
+            'amount' => $request->amount,
+            'date_of_issue' => $request->date_of_issue,
+            'document_number' => $request->document_number,
+            'occurrence' => $request->occurrence,
+            'observation' => $request->observation,
+            'is_active' => $request->is_active
         ]);
 
         return redirect()->route('financial.index')->with('success', 'Cadastrado com sucesso!');
@@ -79,18 +80,18 @@ class FinancialController extends Controller
             'description' => 'required'
         ]);
 
-        $financial -> update([
-            'account_plan' => $request -> input('account_plan'),
-            'description' => $request -> input('description'),
-            'category' => $request -> input('category'),
-            'supplier' => $request -> input('supplier'),
-            'due_date' => $request -> input('due_date'),
-            'amount' => $request -> input('amount'),
-            'date_of_issue' => $request -> input('date_of_issue'),
-            'document_number' => $request -> input('document_number'),
-            'occurrence' => $request -> input('occurrence'),
-            'observation' => $request -> input('observation'),
-            'is_active' => $request -> input('is_active')
+        $financial->update([
+            'account_plan' => $request->input('account_plan'),
+            'description' => $request->input('description'),
+            'category' => $request->input('category'),
+            'supplier' => $request->input('supplier'),
+            'due_date' => $request->input('due_date'),
+            'amount' => $request->input('amount'),
+            'date_of_issue' => $request->input('date_of_issue'),
+            'document_number' => $request->input('document_number'),
+            'occurrence' => $request->input('occurrence'),
+            'observation' => $request->input('observation'),
+            'is_active' => $request->input('is_active')
         ]);
 
         return redirect()->route('financial.index')->with('success', 'Actualizado com sucesso!');
@@ -101,7 +102,7 @@ class FinancialController extends Controller
      */
     public function destroy(Account $financial)
     {
-        $financial -> delete();
+        $financial->delete();
         return redirect()->route('financial.index')->with('success', 'Deleted com sucesso!');
     }
 }
