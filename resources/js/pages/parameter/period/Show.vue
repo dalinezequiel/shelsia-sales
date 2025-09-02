@@ -28,7 +28,7 @@ function printButton(elementId: string): void {
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Categoria',
+        title: 'Período',
         href: '/periods',
     },
     {
