@@ -15,7 +15,7 @@ class Account extends Model
         'due_date',
         'amount',
         'date_of_issue',
-        'document_number',
+        'payment_method',
         'occurrence',
         'observation',
         'is_active'
