@@ -64,9 +64,19 @@ class PeriodController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Period $period)
     {
-        //
+        $request->validate([
+            'description' => 'required'
+        ]);
+
+        $period->update([
+            'description' => $request->input('description'),
+            'observation' => $request->input('observation'),
+            'is_active' => $request->input('is_active')
+        ]);
+
+        return redirect()->route('periods.index')->with('success', 'Actualizado com sucesso!');
     }
 
     /**
