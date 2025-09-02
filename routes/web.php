@@ -8,8 +8,8 @@ use App\Http\Controllers\Sales\SalesController;
 use App\Http\Controllers\Analysis\AnalysisController;
 use App\Http\Controllers\Parameter\Customer\CustomerController;
 use App\Http\Controllers\Parameter\Supplier\SupplierController;
-use App\Http\Controllers\Parameter\Account\AccountController;
 use App\Http\Controllers\Parameter\PaymentMethod\PaymentMethod;
+use App\Http\Controllers\Parameter\Period\PeriodController;
 use App\Http\Controllers\Parameter\ProductCategory\ProductCategory;
 use App\Http\Controllers\Parameter\Unit\UnitController;
 
@@ -33,6 +33,7 @@ Route::prefix('parameters')->group(function () {
     Route::resource('/units', UnitController::class);
     Route::resource('/product_categories', ProductCategory::class);
     Route::resource('/payment_methods', PaymentMethod::class);
+    Route::resource('/periods', PeriodController::class);
 });
 
 require __DIR__ . '/settings.php';
