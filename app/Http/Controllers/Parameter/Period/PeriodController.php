@@ -62,8 +62,9 @@ class PeriodController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Period $period)
     {
-        //
+        $period->delete();
+        return redirect()->route('periods.index')->with('success', 'Deleted com sucesso!');
     }
 }
