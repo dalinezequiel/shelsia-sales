@@ -10,6 +10,20 @@ import { Head, Link, useForm } from '@inertiajs/vue3';
 import { toast } from 'vue-sonner';
 
 
+defineProps({
+    suppliers: {
+        type: Object,
+        required: true
+    },
+    paymentMethods: {
+        type: Object,
+        required: true
+    },
+    periods: {
+        type: Object,
+        required: true
+    }
+});
 
 const form = useForm({
     account_plan: '',
@@ -100,8 +114,8 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <SelectValue placeholder="Selecionar fornecedor" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem value="Handling Mozambique"> Handling Mozambique </SelectItem>
-                                    <SelectItem value="Wholesale Zimpeto Market"> Wholesale Zimpeto Market </SelectItem>
+                                    <SelectItem v-for="supplier in suppliers" :key="supplier.id" :value="supplier.name">
+                                        {{ supplier.name }}</SelectItem>
                                 </SelectContent>
                             </Select>
                             <InputError :message="form.errors.supplier" class="mt-2" />
@@ -139,8 +153,8 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <SelectValue placeholder="Selecionar forma de pagamento" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem value="Handling Mozambique"> Handling Mozambique </SelectItem>
-                                    <SelectItem value="Wholesale Zimpeto Market"> Wholesale Zimpeto Market </SelectItem>
+                                    <SelectItem v-for="paymentMethod in paymentMethods" :key="paymentMethod.id"
+                                        :value="paymentMethod.description">{{ paymentMethod.description }}</SelectItem>
                                 </SelectContent>
                             </Select>
                             <InputError :message="form.errors.supplier" class="mt-2" />
@@ -153,9 +167,8 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <SelectValue placeholder="Selecionar periodicidade" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem value="Monthly"> Monthly </SelectItem>
-                                    <SelectItem value="Semi-Annual"> Semi-Annual </SelectItem>
-                                    <SelectItem value="Annual"> Annual </SelectItem>
+                                    <SelectItem v-for="period in periods" :key="period.id" :value="period.description">
+                                        {{ period.description }}</SelectItem>
                                 </SelectContent>
                             </Select>
                             <InputError :message="form.errors.occurrence" class="mt-2" />
