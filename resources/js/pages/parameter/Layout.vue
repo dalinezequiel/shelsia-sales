@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { type NavItem } from '@/types';
 import { Link, usePage } from '@inertiajs/vue3';
-import { Box, PencilRuler, CreditCard, User, SlidersHorizontal } from 'lucide-vue-next';
+import { Box, CalendarCog, PencilRuler, CreditCard, User, SlidersHorizontal } from 'lucide-vue-next';
 
 const sidebarNavItems: NavItem[] = [
     {
@@ -31,6 +31,11 @@ const sidebarNavItems: NavItem[] = [
         title: 'Pagamentos',
         href: '/parameters/payment_methods',
         icon: CreditCard
+    },
+    {
+        title: 'Períodos',
+        href: '/parameters/periods',
+        icon: CalendarCog
     }
 ];
 
