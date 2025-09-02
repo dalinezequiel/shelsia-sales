@@ -77,7 +77,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                 Lista de fornecedores
                             </h5>
                             <p
-                                class="mt-1 block font-sans text-base leading-relaxed font-normal text-gray-700 antialiased">
+                                class="mt-1 block font-sans text-sm leading-relaxed font-normal text-gray-700 antialiased">
                                 Veja informações sobre todos os fornecedores
                             </p>
                         </div>
