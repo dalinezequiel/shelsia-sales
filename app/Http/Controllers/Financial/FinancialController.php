@@ -53,7 +53,7 @@ class FinancialController extends Controller
             'due_date' => $request->due_date,
             'amount' => $request->amount,
             'date_of_issue' => $request->date_of_issue,
-            'document_number' => $request->document_number,
+            'payment_method' => $request->payment_method,
             'occurrence' => $request->occurrence,
             'observation' => $request->observation,
             'is_active' => $request->is_active
