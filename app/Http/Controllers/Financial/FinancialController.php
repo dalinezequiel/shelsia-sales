@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Financial;
 
 use App\Http\Controllers\Controller;
 use App\Models\Financial\Account;
+use App\Models\PaymentMethod\PaymentMethod;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -16,7 +17,9 @@ class FinancialController extends Controller
     {
         $description = $request->query('description');
         $accounts = Account::where('description', 'like', '%' . $description . '%')->paginate(5);
-        return Inertia::render('financial/Index', compact('accounts'));
+
+        $paymentMethods = PaymentMethod::where('is_active', True)->get();
+        return Inertia::render('financial/Index', compact('accounts', 'paymentMethods'));
     }
 
     /**
