@@ -24,7 +24,7 @@ class PeriodController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('parameter/period/Create');
     }
 
     /**
