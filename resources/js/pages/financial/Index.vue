@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
-import { Head, Link, router } from '@inertiajs/vue3';
+import { Head, Link, router, useForm } from '@inertiajs/vue3';
 import { File, Pencil, Trash2, ArrowDownUp, Check } from 'lucide-vue-next';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Input } from '@/components/ui/input';
@@ -26,8 +26,64 @@ defineProps({
     accounts: {
         type: Object,
         required: true
+    },
+    paymentMethods: {
+        type: Object,
+        required: true
     }
 });
+
+interface Account {
+    id: number;
+    account_plan: string;
+    description: string;
+    category: string;
+    supplier: string;
+    due_date: Date;
+    amount: number;
+    date_of_issue: Date;
+    document_number: string;
+    occurrence: string;
+    observation: string;
+    is_active: boolean;
+}
+const form = useForm({
+    id: '',
+    account_plan: '',
+    description: '',
+    category: '',
+    supplier: '',
+    due_date: '',
+    amount: '',
+    date_of_issue: '',
+    document_number: '',
+    occurrence: '',
+    observation: '',
+    is_active: true
+});
+
+const payBill = (bill: Account) => {
+    form.id = bill.id.toString();
+    form.account_plan = bill.account_plan;
+    form.description = bill.description;
+    form.category = bill.category;
+    form.supplier = bill.supplier;
+    form.due_date = bill.due_date.toString();
+    form.amount = bill.amount.toString();
+    form.date_of_issue = bill.date_of_issue.toString();
+    form.document_number = bill.document_number;
+    form.occurrence = bill.occurrence;
+    form.observation = bill.observation;
+    form.is_active = true
+}
+
+const submit = () => {
+    form.put(route('financial.update', { financial: form }), {
+        preserveScroll: true,
+        onSuccess: () => toast.success('Pagamento efectuado com sucesso.'),
+        onError: () => toast.error('Ocorreu um erro ao tentar pagar conta.')
+    });
+};
 
 const description = ref('');
 const search = () => {
@@ -244,35 +300,37 @@ const breadcrumbs: BreadcrumbItem[] = [
                                         <AlertDialogHeader>
                                             <AlertDialogTitle>{{ account.category }}</AlertDialogTitle>
                                             <AlertDialogDescription>
-                                                <form>
-                                                    <input v-model="account.id" hidden />
+                                                <form id="payment" @submit.prevent="submit">
                                                     <div class="grid gap-y-4 mt-4">
                                                         <div class="grid gap-1  lg:mb-0">
-                                                            <Label for="description">Descrição</Label>
-                                                            <Input id="description"
+                                                            <Label for="account_description">Descrição</Label>
+                                                            <Input id="account_description"
                                                                 class="text-primary mt-1 block w-full" required
                                                                 v-model="account.description"
-                                                                placeholder="Descrição da conta" />
+                                                                placeholder="Descrição da conta" readonly />
                                                         </div>
 
                                                         <div class="grid gap-1  lg:mb-0">
-                                                            <Label for="amount">Valor</Label>
-                                                            <Input id="amount" type="number"
+                                                            <Label for="amount_to_pay">Valor</Label>
+                                                            <Input id="amount_to_pay" type="number"
                                                                 class="text-primary mt-1 block w-full"
                                                                 v-model="account.amount" required
-                                                                placeholder="Valor da conta" />
+                                                                placeholder="Valor da conta" readonly />
                                                         </div>
 
                                                         <div class="grid gap-1 lg:mb-0">
-                                                            <Label for="category">Forma de pagamento</Label>
-                                                            <Select id="category" v-model="account.category" required>
+                                                            <Label for="payment_method">Forma de pagamento</Label>
+                                                            <Select id="payment_method" v-model="account.category"
+                                                                disabled>
                                                                 <SelectTrigger class="w-auto mt-1">
                                                                     <SelectValue class="text-primary"
                                                                         placeholder="Selecionar forma de pagamento" />
                                                                 </SelectTrigger>
                                                                 <SelectContent>
-                                                                    <SelectItem value="Income"> Income </SelectItem>
-                                                                    <SelectItem value="Expense"> Expense </SelectItem>
+                                                                    <SelectItem v-for="paymentMethod in paymentMethods"
+                                                                        :key="paymentMethod.id"
+                                                                        :value="paymentMethod.description">{{
+                                                                            paymentMethod.description }}</SelectItem>
                                                                 </SelectContent>
                                                             </Select>
                                                         </div>
@@ -282,9 +340,12 @@ const breadcrumbs: BreadcrumbItem[] = [
                                         </AlertDialogHeader>
                                         <AlertDialogFooter>
                                             <AlertDialogCancel class="cursor-pointer">Cancelar</AlertDialogCancel>
-                                            <AlertDialogAction class="cursor-pointer">
-                                                <Check width="20" />
-                                                Liquidar
+                                            <AlertDialogAction>
+                                                <button @click="payBill(account)" type="submit" form="payment"
+                                                    class="flex items-center cursor-pointer">
+                                                    <Check width="20" class="mr-1" />
+                                                    Liquidar
+                                                </button>
                                             </AlertDialogAction>
                                         </AlertDialogFooter>
                                     </AlertDialogContent>
