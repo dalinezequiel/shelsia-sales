@@ -73,7 +73,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                 Categorias de produtos
                             </h5>
                             <p
-                                class="mt-1 block font-sans text-base leading-relaxed font-normal text-gray-700 antialiased">
+                                class="mt-1 block font-sans text-sm leading-relaxed font-normal text-gray-700 antialiased">
                                 Veja informações sobre categorias de produtos
                             </p>
                         </div>
@@ -196,7 +196,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                     Continuar com está operação implicará a exclusão permanente da
                                                     categoria
                                                     <strong> <span class="text-[#EC3636]">{{ productCategory.description
-                                                    }}</span>
+                                                            }}</span>
                                                     </strong>.
                                                 </AlertDialogDescription>
                                             </AlertDialogHeader>
