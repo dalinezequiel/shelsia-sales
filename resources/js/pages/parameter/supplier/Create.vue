@@ -82,6 +82,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                 <SelectContent>
                                     <SelectItem value="Masculino"> Masculino </SelectItem>
                                     <SelectItem value="Feminino"> Feminino </SelectItem>
+                                    <SelectItem value="Indefinido"> Indefinido </SelectItem>
                                 </SelectContent>
                             </Select>
                             <InputError :message="form.errors.gender" class="mt-2" />
