@@ -75,7 +75,10 @@ class FinancialController extends Controller
      */
     public function edit(Account $financial)
     {
-        return Inertia::render('financial/Edit', compact('financial'));
+        $suppliers = Supplier::where('is_active', True)->get();
+        $paymentMethods = PaymentMethod::where('is_active', True)->get();
+        $periods = Period::where('is_active', True)->get();
+        return Inertia::render('financial/Edit', compact('financial', 'suppliers', 'paymentMethods', 'periods'));
     }
 
     /**
