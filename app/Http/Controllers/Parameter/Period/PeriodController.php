@@ -3,16 +3,20 @@
 namespace App\Http\Controllers\Parameter\Period;
 
 use App\Http\Controllers\Controller;
+use App\Models\Period\Period;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class PeriodController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $description = $request->query('description');
+        $periods = Period::where('description', 'like', '%' . $description . '%')->paginate(5);
+        return Inertia::render('parameter/period/Index', compact('periods'));
     }
 
     /**
