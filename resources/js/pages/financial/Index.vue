@@ -18,6 +18,7 @@ import {
     AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
 import { toast } from 'vue-sonner';
+import { ref } from 'vue';
 
 defineProps({
     accounts: {
@@ -25,6 +26,14 @@ defineProps({
         required: true
     }
 });
+
+const description = ref('');
+const search = () => {
+    router.get(route('financial.index', { description: description.value }, {
+        preserveState: true,
+        replace: true
+    }))
+};
 
 const deleteAccount = (id: number) => {
     router.delete(route('financial.destroy', id), {
@@ -64,11 +73,11 @@ const breadcrumbs: BreadcrumbItem[] = [
                         </p>
                     </div>
                     <div class="flex flex-col gap-2 shrink-0 sm:flex-row">
-                        <button
+                        <Link :href="route('financial.index')"
                             class="select-none rounded-lg border border-gray-900 py-2 px-4 text-center align-middle font-sans text-xs font-bold uppercase text-gray-900 transition-all hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                             type="button">
-                            Listar
-                        </button>
+                        Listar
+                        </Link>
                         <button
                             class="flex select-none items-center gap-3 rounded-lg bg-gray-900 py-2 px-4 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                             type="button">
@@ -123,7 +132,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     </path>
                                 </svg>
                             </div>
-                            <input
+                            <input v-model="description" @keyup.enter="search"
                                 class="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 !pr-9 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                                 placeholder=" " />
                             <label
@@ -183,7 +192,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="account in accounts" :key="account.id">
+                        <tr v-for="account in accounts.data" :key="account.id">
                             <td class="p-4 border-b border-blue-gray-50">
                                 <div class="flex items-center gap-3">
                                     <div class="pl-2">
