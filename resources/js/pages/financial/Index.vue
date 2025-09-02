@@ -206,7 +206,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                 <div class="flex flex-col">
                                     <p
                                         class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                                        {{ account.amount }}
+                                        MZN {{ account.amount }}
                                     </p>
                                 </div>
                             </td>
