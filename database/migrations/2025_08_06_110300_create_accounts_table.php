@@ -18,11 +18,11 @@ return new class extends Migration
             $table->string('category');
             $table->string('supplier');
             $table->date('due_date');
-            $table->decimal('amount','10','2');
+            $table->decimal('amount', '10', '2');
             $table->date('date_of_issue');
-            $table->string('document_number');
+            $table->string('payment_method');
             $table->string('occurrence');
-            $table->string('observation');
+            $table->string('observation')->nullable();
             $table->boolean('is_active')->default(false);
             $table->timestamps();
         });
