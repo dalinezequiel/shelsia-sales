@@ -32,7 +32,17 @@ class PeriodController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'description' => 'required'
+        ]);
+
+        Period::create([
+            'description' => $request->description,
+            'observation' => $request->observation,
+            'is_active' => $request->is_active
+        ]);
+
+        return redirect()->route('periods.index')->with('success', 'Cadastrado com sucesso!');
     }
 
     /**
