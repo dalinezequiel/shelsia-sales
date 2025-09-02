@@ -2,7 +2,10 @@
 import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
 import { Head, Link, router } from '@inertiajs/vue3';
-import { File, Pencil, Trash2 } from 'lucide-vue-next';
+import { File, Pencil, Trash2, ArrowDownUp, Check } from 'lucide-vue-next';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 import {
     AlertDialog,
     AlertDialogAction,
@@ -14,7 +17,6 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
-import Avatar from '@/components/additional/Avatar.vue';
 import { toast } from 'vue-sonner';
 
 defineProps({
@@ -34,11 +36,11 @@ const deleteAccount = (id: number) => {
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Financial',
+        title: 'Financeiro',
         href: '/financial',
     },
     {
-        title: 'List',
+        title: 'Lista',
         href: '/financial',
     },
 ];
@@ -55,29 +57,27 @@ const breadcrumbs: BreadcrumbItem[] = [
                     <div>
                         <h5
                             class="block font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
-                            Account list
+                            Contas financeiras
                         </h5>
                         <p class="block mt-1 font-sans text-base antialiased font-normal leading-relaxed text-gray-700">
-                            See information about all accounts
+                            Veja informações sobre todas contas financeiras
                         </p>
                     </div>
                     <div class="flex flex-col gap-2 shrink-0 sm:flex-row">
                         <button
                             class="select-none rounded-lg border border-gray-900 py-2 px-4 text-center align-middle font-sans text-xs font-bold uppercase text-gray-900 transition-all hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                             type="button">
-                            view all
+                            Listar
                         </button>
                         <button
                             class="flex select-none items-center gap-3 rounded-lg bg-gray-900 py-2 px-4 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                             type="button">
                             <Link :href="route('financial.create')" class="flex gap-y-3 gap-x-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                aria-hidden="true" stroke-width="2" class="w-4 h-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="16" fill="#ffffff">
                                 <path
-                                    d="M6.25 6.375a4.125 4.125 0 118.25 0 4.125 4.125 0 01-8.25 0zM3.25 19.125a7.125 7.125 0 0114.25 0v.003l-.001.119a.75.75 0 01-.363.63 13.067 13.067 0 01-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 01-.364-.63l-.001-.122zM19.75 7.5a.75.75 0 00-1.5 0v2.25H16a.75.75 0 000 1.5h2.25v2.25a.75.75 0 001.5 0v-2.25H22a.75.75 0 000-1.5h-2.25V7.5z">
-                                </path>
+                                    d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z" />
                             </svg>
-                            Add account
+                            Adicionar
                             </Link>
                         </button>
                     </div>
@@ -128,7 +128,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                 placeholder=" " />
                             <label
                                 class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight text-gray-500 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-gray-900 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:!border-gray-900 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:!border-gray-900 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                                Search
+                                Buscar
                             </label>
                         </div>
                     </div>
@@ -141,43 +141,43 @@ const breadcrumbs: BreadcrumbItem[] = [
                             <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
                                 <p
                                     class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
-                                    Account plan
+                                    Descrição
                                 </p>
                             </th>
                             <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
                                 <p
                                     class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
-                                    Function
+                                    Categoria
                                 </p>
                             </th>
                             <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
                                 <p
                                     class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
-                                    Amount
+                                    Valor
                                 </p>
                             </th>
                             <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
                                 <p
                                     class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
-                                    Supplier
+                                    Ocorrência
                                 </p>
                             </th>
                             <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
                                 <p
                                     class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
-                                    Status
+                                    Situação
                                 </p>
                             </th>
                             <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
                                 <p
                                     class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
-                                    Due Date
+                                    Vencimento
                                 </p>
                             </th>
                             <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
                                 <p
                                     class="block font-sans text-center text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
-                                    Action
+                                    Ação
                                 </p>
                             </th>
                         </tr>
@@ -186,12 +186,24 @@ const breadcrumbs: BreadcrumbItem[] = [
                         <tr v-for="account in accounts" :key="account.id">
                             <td class="p-4 border-b border-blue-gray-50">
                                 <div class="flex items-center gap-3">
-                                    <Avatar name="P" />
+                                    <div class="pl-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="18"
+                                            :fill="account.is_active ? '#218230' : '#D94629'">
+                                            <path
+                                                d="M64 320C64 178.6 178.6 64 320 64C461.4 64 576 178.6 576 320C576 461.4 461.4 576 320 576C178.6 576 64 461.4 64 320z" />
+                                        </svg>
+                                    </div>
                                     <div class="flex flex-col">
-                                        <p
-                                            class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                                            {{ account.account_plan }}
-                                        </p>
+                                        <div class="flex flex-col">
+                                            <p
+                                                class="block font-sans text-sm font-bold antialiased leading-normal text-blue-gray-900">
+                                                {{ account.description }}
+                                            </p>
+                                            <p
+                                                class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900 opacity-70">
+                                                {{ account.account_plan }}
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                             </td>
@@ -199,11 +211,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                 <div class="flex flex-col">
                                     <p
                                         class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                                        {{ account.description }}
-                                    </p>
-                                    <p
-                                        class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900 opacity-70">
-                                        {{ account.occurrence }}
+                                        {{ account.category }}
                                     </p>
                                 </div>
                             </td>
@@ -219,20 +227,16 @@ const breadcrumbs: BreadcrumbItem[] = [
                                 <div class="flex flex-col">
                                     <p
                                         class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                                        {{ account.supplier }}
-                                    </p>
-                                    <p
-                                        class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900 opacity-70">
-                                        {{ account.category }}
+                                        {{ account.occurrence }}
                                     </p>
                                 </div>
                             </td>
                             <td class="p-4 border-b border-blue-gray-50">
                                 <div class="w-max">
-                                    <div :class="account.is_active ? 'bg-green-500/20' : 'bg-slate-100 text-slate-600'"
+                                    <div :class="account.is_active ? 'bg-green-500/20' : 'bg-red-500/20'"
                                         class="relative grid items-center rounded-md  px-2 py-1 font-sans text-xs font-bold whitespace-nowrap text-green-900 uppercase select-none">
                                         <span v-if="account.is_active" class="">Pago</span>
-                                        <span v-else class="">Não Pago</span>
+                                        <span v-else class="text-red-900">Não Pago</span>
                                     </div>
                                 </div>
                             </td>
@@ -243,6 +247,63 @@ const breadcrumbs: BreadcrumbItem[] = [
                                 </p>
                             </td>
                             <td class="p-4 border-b border-blue-gray-50 text-center">
+                                <AlertDialog>
+                                    <AlertDialogTrigger
+                                        class="relative mr-2 cursor-pointer rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
+                                        <ArrowDownUp width="20" color="#696969" class="hover:stroke-[#C4C4C4]" />
+                                    </AlertDialogTrigger>
+
+                                    <AlertDialogContent>
+                                        <AlertDialogHeader>
+                                            <AlertDialogTitle>{{ account.category }}</AlertDialogTitle>
+                                            <AlertDialogDescription>
+                                                <form>
+                                                    <input v-model="account.id" hidden />
+                                                    <div class="grid gap-y-4 mt-4">
+                                                        <div class="grid gap-1  lg:mb-0">
+                                                            <Label for="description">Descrição</Label>
+                                                            <Input id="description"
+                                                                class="text-primary mt-1 block w-full" required
+                                                                v-model="account.description"
+                                                                placeholder="Descrição da conta" />
+                                                        </div>
+
+                                                        <div class="grid gap-1  lg:mb-0">
+                                                            <Label for="amount">Valor</Label>
+                                                            <Input id="amount" type="number"
+                                                                class="text-primary mt-1 block w-full"
+                                                                v-model="account.amount" required
+                                                                placeholder="Valor da conta" />
+                                                        </div>
+
+                                                        <div class="grid gap-1 lg:mb-0">
+                                                            <Label for="category">Forma de pagamento</Label>
+                                                            <Select id="category" v-model="account.category" required>
+                                                                <SelectTrigger class="w-auto mt-1">
+                                                                    <SelectValue class="text-primary"
+                                                                        placeholder="Selecionar forma de pagamento" />
+                                                                </SelectTrigger>
+                                                                <SelectContent>
+                                                                    <SelectItem value="Income"> Income </SelectItem>
+                                                                    <SelectItem value="Expense"> Expense </SelectItem>
+                                                                </SelectContent>
+                                                            </Select>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </AlertDialogDescription>
+                                        </AlertDialogHeader>
+                                        <AlertDialogFooter>
+                                            <AlertDialogCancel class="cursor-pointer">Cancelar</AlertDialogCancel>
+                                            <AlertDialogAction class="cursor-pointer">
+                                                <Check width="20" />
+                                                Liquidar
+                                            </AlertDialogAction>
+                                        </AlertDialogFooter>
+                                    </AlertDialogContent>
+                                </AlertDialog>
+
+
                                 <button
                                     class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                     type="button">
