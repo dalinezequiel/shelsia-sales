@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Financial;
 use App\Http\Controllers\Controller;
 use App\Models\Financial\Account;
 use App\Models\PaymentMethod\PaymentMethod;
+use App\Models\Period\Period;
+use App\Models\Supplier\Supplier;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -27,7 +29,10 @@ class FinancialController extends Controller
      */
     public function create()
     {
-        return Inertia::render('financial/Create');
+        $suppliers = Supplier::where('is_active', True)->get();
+        $paymentMethods = PaymentMethod::where('is_active', True)->get();
+        $periods = Period::where('is_active', True)->get();
+        return Inertia::render('financial/Create', compact('suppliers', 'paymentMethods', 'periods'));
     }
 
     /**
