@@ -25,7 +25,8 @@ class SalesController extends Controller
     public function pos(Request $request)
     {
         $paymentMethods = PaymentMethod::where('is_active', True)->get();
-        $products = Product::where('is_active', True)->get();
+        $description = $request->query('description');
+        $products = Product::where('is_active', True)->where('description', 'like', '%' . $description . '%')->inRandomOrder()->limit(8)->get();
         return Inertia::render('sales/Create', compact('products', 'paymentMethods'));
     }
 
