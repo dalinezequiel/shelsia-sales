@@ -372,18 +372,18 @@ const breadcrumbs: BreadcrumbItem[] = [
 
                                     <AlertDialogContent>
                                         <AlertDialogHeader>
-                                            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                                            <AlertDialogTitle>Confirma está exclusão?</AlertDialogTitle>
                                             <AlertDialogDescription>
-                                                This action cannot be undone. This will permanently delete your
-                                                account
-                                                and remove your data from our servers.
+                                                Continuar com está operação implicará a exclusão permanente<br>da conta
+                                                <strong> <span class="text-[#EC3636]">{{ account.description }}</span>
+                                                </strong>.
                                             </AlertDialogDescription>
                                         </AlertDialogHeader>
                                         <AlertDialogFooter>
-                                            <AlertDialogCancel class="cursor-pointer">Cancel</AlertDialogCancel>
+                                            <AlertDialogCancel class="cursor-pointer">Cancelar</AlertDialogCancel>
                                             <AlertDialogAction class="cursor-pointer bg-[#EC3636]"
                                                 @click="deleteAccount(account.id)">
-                                                Yes, Delete
+                                                Sim, Excluir
                                             </AlertDialogAction>
                                         </AlertDialogFooter>
                                     </AlertDialogContent>
