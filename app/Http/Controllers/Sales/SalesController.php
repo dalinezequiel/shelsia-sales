@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Sales;
 
 use App\Http\Controllers\Controller;
+use App\Models\PaymentMethod\PaymentMethod;
 use App\Models\Product\Product;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -16,6 +17,16 @@ class SalesController extends Controller
     {
         //
         return Inertia::render('sales/Index');
+    }
+
+    /**
+     * Display a listing of the pos resource.
+     */
+    public function pos(Request $request)
+    {
+        $paymentMethods = PaymentMethod::where('is_active', True)->get();
+        $products = Product::where('is_active', True)->get();
+        return Inertia::render('sales/Create', compact('products', 'paymentMethods'));
     }
 
     /**
