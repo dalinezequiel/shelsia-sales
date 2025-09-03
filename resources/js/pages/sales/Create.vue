@@ -17,12 +17,16 @@ import { Trash2 } from 'lucide-vue-next';
 import Product from '@/components/additional/Product.vue';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
-import { Head, Link } from '@inertiajs/vue3';
+import { Head, Link, router } from '@inertiajs/vue3';
 import { store } from '@/store'
 import { ref } from 'vue';
 
 defineProps({
     products: {
+        type: Object,
+        required: true
+    },
+    paymentMethods: {
         type: Object,
         required: true
     }
@@ -33,16 +37,23 @@ const discount = ref(0);
 const total = () => {
     store.shipping = shipping.value
     store.discount = discount.value
-    store.total
 }
+
+const description = ref('');
+const search = () => {
+    router.get(route('products.index', { description: description.value }, {
+        preserveState: true,
+        replace: true
+    }))
+};
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Sales',
+        title: 'Vandas',
         href: '/sales',
     },
     {
-        title: 'Sell',
+        title: 'Caixa',
         href: '/sales/Create',
     }
 ];
@@ -53,11 +64,22 @@ const breadcrumbs: BreadcrumbItem[] = [
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="grid grid-cols-1 gap-6 p-4">
             <div class="grid grid-cols-1 gap-2 pr-88">
-                <div class="">
-                    <Input id="description" class="block w-full" required autocomplete="description"
-                        placeholder="Search..." />
+                <div class="relative h-10 w-full min-w-[200px]">
+                    <div
+                        class="absolute grid w-5 h-5 top-2/4 right-3 -translate-y-2/4 place-items-center text-blue-gray-500">
+                        <Button @click="search" class="cursor-pointer">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" aria-hidden="true" class="w-5 h-5">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z">
+                                </path>
+                            </svg>
+                        </Button>
+                    </div>
+                    <Input v-model="description" @keyup.enter="search"
+                        class="rounded-lg h-full w-full font-sans text-sm " placeholder="Buscar..." />
                 </div>
-                <div class="grid grid-cols-4 pt-2 gap-2">
+                <div class="grid grid-cols-4 pt-1 gap-2">
                     <Product v-for="product in products" :key="product.id" :product="product" />
                 </div>
             </div>
@@ -65,7 +87,7 @@ const breadcrumbs: BreadcrumbItem[] = [
             <div class="absolute right-1/46 md:col-span-1 w-full max-w-xs">
                 <div class="bg-white rounded-md border border-gray-200  p-4 sm:p-6">
                     <div class="flex justify-between">
-                        <h2 class="text-xl font-bold mb-4">Order Summary</h2>
+                        <h2 class="text-xl font-bold mb-4">Resumo do Pedido</h2>
                         <div class="relative w-fit">
                             <AlertDialog>
                                 <AlertDialogTrigger
@@ -205,27 +227,26 @@ const breadcrumbs: BreadcrumbItem[] = [
                     </div>
                     <div class="py-8 ">
                         <div class="grid gap-2 pb-4 lg:mb-0">
-                            <Label for="category">Payment Method</Label>
-                            <Select id="category">
+                            <Label for="payment_method">Forma de pagamento</Label>
+                            <Select id="payment_method">
                                 <SelectTrigger class="w-auto">
-                                    <SelectValue placeholder="Select payment method" />
+                                    <SelectValue placeholder="Selecionar forma de pagamento" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem value="Mpesa"> Mpesa </SelectItem>
-                                    <SelectItem value="Emola"> Emola </SelectItem>
-                                    <SelectItem value="Mkesh"> Debit Card </SelectItem>
+                                    <SelectItem v-for="paymentMethod in paymentMethods" :key="paymentMethod.id"
+                                        :value="paymentMethod.description">{{ paymentMethod.description }}</SelectItem>
                                 </SelectContent>
                             </Select>
                         </div>
                         <div class="grid gap-2 pb-4 lg:mb-0">
-                            <Label for="shipping">Shipping</Label>
-                            <Input id="shipping" type="number" v-model="shipping" @input="total()" step="0.01"
-                                class="block w-full" required placeholder="Shipping" />
+                            <Label for="shipping">Taxa de entrega</Label>
+                            <Input id="shipping" type="number" v-model="shipping" @input="total()" class="block w-full"
+                                required placeholder="Taxa de entrega" />
                         </div>
                         <div class="grid gap-2 lg:mb-0">
-                            <Label for="discount">Discount</Label>
+                            <Label for="discount">Desconto total</Label>
                             <Input id="discount" type="number" v-model="discount" @input="total()" class="block w-full"
-                                required placeholder="Discount" />
+                                required placeholder="Desconto total" />
                         </div>
                     </div>
                     <div class="space-y-3 mb-4">
@@ -234,11 +255,11 @@ const breadcrumbs: BreadcrumbItem[] = [
                             <span class="font-medium">{{ store.subtotal().toFixed(2) }}</span>
                         </div>
                         <div class="flex justify-between">
-                            <span class="text-gray-600">Shipping</span>
+                            <span class="text-gray-600">Taxa de entrega</span>
                             <span class="font-medium">{{ shipping.toFixed(2) }}</span>
                         </div>
                         <div x-show="discount > 0" class="flex justify-between">
-                            <span>Discount</span>
+                            <span>Desconto total</span>
                             <span class="font-medium">{{ discount.toFixed(2) }}</span>
                         </div>
                         <div class="border-t py-2 mt-3">
@@ -255,7 +276,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                             viewBox="0 0 640 640" class="mr-1">
                             <path
                                 d="M256 160L256 224L384 224L384 160C384 124.7 355.3 96 320 96C284.7 96 256 124.7 256 160zM192 224L192 160C192 89.3 249.3 32 320 32C390.7 32 448 89.3 448 160L448 224C483.3 224 512 252.7 512 288L512 512C512 547.3 483.3 576 448 576L192 576C156.7 576 128 547.3 128 512L128 288C128 252.7 156.7 224 192 224z" />
-                        </svg> Proceed to Checkout
+                        </svg> Finalizar a Venda
                     </button>
 
                     <div class="flex items-center gap-2 mt-8">
@@ -267,7 +288,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                             <path d="m12 19-7-7 7-7" />
                             <path d="M19 12H5" />
                         </svg>
-                        Back</Link>
+                        Voltar</Link>
                         <Link :href="route('sales.index')"
                             class="w-full px-4 py-2 inline-flex justify-center gap-x-2 text-sm font-medium rounded-lg border border-gray-100 bg-white text-gray-800 shadow-2xs hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden focus:bg-gray-50 dark:bg-transparent dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="16px">
