@@ -43,7 +43,7 @@ interface Account {
     due_date: Date;
     amount: number;
     date_of_issue: Date;
-    document_number: string;
+    payment_method: string;
     occurrence: string;
     observation: string;
     is_active: boolean;
@@ -57,7 +57,7 @@ const form = useForm({
     due_date: '',
     amount: '',
     date_of_issue: '',
-    document_number: '',
+    payment_method: '',
     occurrence: '',
     observation: '',
     is_active: true
@@ -74,7 +74,7 @@ const payBill = (bill: Account) => {
     form.due_date = bill.due_date.toString();
     form.amount = bill.amount.toString();
     form.date_of_issue = bill.date_of_issue.toString();
-    form.document_number = bill.document_number;
+    form.payment_method = bill.payment_method;
     form.occurrence = bill.occurrence;
     form.observation = bill.observation;
     form.is_active = true
@@ -323,21 +323,12 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                                 placeholder="Valor da conta" readonly />
                                                         </div>
 
-                                                        <div class="grid gap-1 lg:mb-0">
+                                                        <div class="grid gap-1  lg:mb-0">
                                                             <Label for="payment_method">Forma de pagamento</Label>
-                                                            <Select id="payment_method" v-model="account.category"
-                                                                disabled>
-                                                                <SelectTrigger class="w-auto mt-1">
-                                                                    <SelectValue class="text-primary"
-                                                                        placeholder="Selecionar forma de pagamento" />
-                                                                </SelectTrigger>
-                                                                <SelectContent>
-                                                                    <SelectItem v-for="paymentMethod in paymentMethods"
-                                                                        :key="paymentMethod.id"
-                                                                        :value="paymentMethod.description">{{
-                                                                            paymentMethod.description }}</SelectItem>
-                                                                </SelectContent>
-                                                            </Select>
+                                                            <Input id="payment_method"
+                                                                class="text-primary mt-1 block w-full"
+                                                                v-model="account.payment_method" required
+                                                                placeholder="Valor da conta" readonly />
                                                         </div>
                                                     </div>
                                                 </form>
