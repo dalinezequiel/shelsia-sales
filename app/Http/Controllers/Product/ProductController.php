@@ -31,8 +31,8 @@ class ProductController extends Controller
     {
         $units = Unit::where('is_active', True)->get();
         $suppliers = Supplier::where('is_active', True)->get();
-        $productCatories = ProductCategory::where('is_active', True)->get();
-        return Inertia::render('product/Create', compact('productCatories', 'suppliers', 'units'));
+        $productCategories = ProductCategory::where('is_active', True)->get();
+        return Inertia::render('product/Create', compact('productCategories', 'suppliers', 'units'));
     }
 
     /**
