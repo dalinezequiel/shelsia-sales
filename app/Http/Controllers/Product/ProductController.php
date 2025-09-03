@@ -84,7 +84,10 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return Inertia::render('product/Edit', compact('product'));
+        $units = Unit::where('is_active', True)->get();
+        $suppliers = Supplier::where('is_active', True)->get();
+        $productCategories = ProductCategory::where('is_active', True)->get();
+        return Inertia::render('product/Edit', compact('product', 'productCategories', 'suppliers', 'units'));
     }
 
     /**
