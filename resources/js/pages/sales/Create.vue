@@ -5,7 +5,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import {
     AlertDialog,
     AlertDialogAction,
-    AlertDialogCancel,
     AlertDialogContent,
     AlertDialogDescription,
     AlertDialogFooter,
@@ -41,7 +40,7 @@ const total = () => {
 
 const description = ref('');
 const search = () => {
-    router.get(route('products.index', { description: description.value }, {
+    router.get(route('sales.pos', { description: description.value }, {
         preserveState: true,
         replace: true
     }))
