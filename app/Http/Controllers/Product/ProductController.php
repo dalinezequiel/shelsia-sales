@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Product;
 
 use App\Http\Controllers\Controller;
+use App\Models\PaymentMethod\PaymentMethod;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Product\Product;
+use App\Models\Product\ProductCategory;
+use App\Models\Product\Unit;
+use App\Models\Supplier\Supplier;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -25,7 +29,10 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return Inertia::render('product/Create');
+        $units = Unit::where('is_active', True)->get();
+        $suppliers = Supplier::where('is_active', True)->get();
+        $productCatories = ProductCategory::where('is_active', True)->get();
+        return Inertia::render('product/Create', compact('productCatories', 'suppliers', 'units'));
     }
 
     /**
