@@ -26,7 +26,7 @@ Route::post('products/photo', [ProductController::class, 'photo']);
 
 Route::resource('financial', FinancialController::class);
 Route::resource('sales', SalesController::class);
-Route::get('sales/pos', [SalesController::class, 'pos']);
+Route::get('transactions/pos', [SalesController::class, 'pos'])->name('sales.pos');
 
 Route::resource('analysis', AnalysisController::class);
 Route::prefix('parameters')->group(function () {
