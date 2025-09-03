@@ -180,7 +180,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                     </div>
                 </div>
             </div>
-            <div class="p-6 px-0 overflow-auto h-full">
+            <div class="p-4 px-0 overflow-auto h-full">
                 <table class="w-full mt-4 text-left table-auto min-w-max">
                     <thead>
                         <tr>
