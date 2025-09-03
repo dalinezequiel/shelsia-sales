@@ -7,6 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
 import { Head, Link, useForm } from '@inertiajs/vue3';
+import { PropType } from 'vue';
 import { toast } from 'vue-sonner';
 
 interface Product {
@@ -25,7 +26,24 @@ interface Product {
     is_active: boolean;
 }
 
-const props = defineProps<{ product: Product }>();
+const props = defineProps({
+    product: {
+        type: Object as PropType<Product>,
+        required: true
+    },
+    productCategories: {
+        type: Object,
+        required: true
+    },
+    suppliers: {
+        type: Object,
+        required: true
+    },
+    units: {
+        type: Object,
+        required: true
+    }
+});
 
 const form = useForm({
     barcode: props.product.barcode,
@@ -100,11 +118,12 @@ const breadcrumbs: BreadcrumbItem[] = [
                             <Label for="category">Categoria</Label>
                             <Select id="category" v-model="form.category">
                                 <SelectTrigger class="w-auto mt-1">
-                                    <SelectValue placeholder="Select category" />
+                                    <SelectValue placeholder="Selecionar categoria" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem value="Foods"> Foods </SelectItem>
-                                    <SelectItem value="Drinks"> Drinks </SelectItem>
+                                    <SelectItem v-for="productCategory in productCategories" :key="productCategory.id"
+                                        :value="productCategory.description">{{ productCategory.description }}
+                                    </SelectItem>
                                 </SelectContent>
                             </Select>
                             <InputError :message="form.errors.category" class="mt-2" />
@@ -114,12 +133,11 @@ const breadcrumbs: BreadcrumbItem[] = [
                             <Label for="unit">Unidade</Label>
                             <Select id="unit" v-model="form.unit">
                                 <SelectTrigger class="w-auto mt-1">
-                                    <SelectValue placeholder="Select unit" />
+                                    <SelectValue placeholder="Selecionar unidade" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem value="ml"> ml </SelectItem>
-                                    <SelectItem value="l"> l </SelectItem>
-                                    <SelectItem value="kg"> Kg </SelectItem>
+                                    <SelectItem v-for="unit in units" :key="unit.id" :value="unit.description">{{
+                                        unit.description }}</SelectItem>
                                 </SelectContent>
                             </Select>
                             <InputError :message="form.errors.unit" class="mt-2" />
@@ -129,11 +147,11 @@ const breadcrumbs: BreadcrumbItem[] = [
                             <Label for="supplier">Fornecedor</Label>
                             <Select id="supplier" v-model="form.supplier">
                                 <SelectTrigger class="w-auto mt-1">
-                                    <SelectValue placeholder="Select supplier" />
+                                    <SelectValue placeholder="Selecionar fornecedor" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem value="Handling Mozambique"> Handling Mozambique </SelectItem>
-                                    <SelectItem value="Wholesale Zimpeto Market"> Wholesale Zimpeto Market </SelectItem>
+                                    <SelectItem v-for="supplier in suppliers" :key="supplier.id" :value="supplier.name">
+                                        {{ supplier.name }}</SelectItem>
                                 </SelectContent>
                             </Select>
                             <InputError :message="form.errors.supplier" class="mt-2" />
