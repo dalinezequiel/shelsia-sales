@@ -9,7 +9,20 @@ import { type BreadcrumbItem } from '@/types';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 import { toast } from 'vue-sonner';
 
-
+defineProps({
+    productCategories: {
+        type: Object,
+        required: true
+    },
+    suppliers: {
+        type: Object,
+        required: true
+    },
+    units: {
+        type: Object,
+        required: true
+    }
+});
 
 const form = useForm({
     barcode: '',
@@ -60,6 +73,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                             class="text-blue-gray-900 block font-sans text-xl leading-snug font-semibold tracking-normal antialiased">
                             Cadastrar Produto
                         </h5>
+                        {{ productCategories }}
                     </div>
                 </div>
             </div>
