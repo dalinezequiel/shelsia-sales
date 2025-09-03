@@ -21,6 +21,7 @@ import { toast } from 'vue-sonner';
 import { ref } from 'vue';
 import Tablist from '@/components/additional/Tablist.vue';
 import Pagination from '@/components/additional/Pagination.vue';
+import Avatar from '@/components/additional/Avatar.vue';
 
 defineProps({
     accounts: {
@@ -61,6 +62,8 @@ const form = useForm({
     observation: '',
     is_active: true
 });
+
+const letter = (description: string) => description.charAt(0)
 
 const payBill = (bill: Account) => {
     form.id = bill.id.toString();
@@ -229,13 +232,8 @@ const breadcrumbs: BreadcrumbItem[] = [
                         <tr v-for="account in accounts.data" :key="account.id">
                             <td class="p-4 border-b border-blue-gray-50">
                                 <div class="flex items-center gap-3">
-                                    <div class="pl-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="18"
-                                            :fill="account.is_active ? '#218230' : '#D94629'">
-                                            <path
-                                                d="M64 320C64 178.6 178.6 64 320 64C461.4 64 576 178.6 576 320C576 461.4 461.4 576 320 576C178.6 576 64 461.4 64 320z" />
-                                        </svg>
-                                    </div>
+                                    <img src="https://placehold.co/600x400/transparent/F00"
+                                        class="relative inline-block h-12 w-12 !rounded-full border border-blue-gray-50 bg-blue-gray-50/50 object-contain object-center p-1" />
                                     <div class="flex flex-col">
                                         <div class="flex flex-col">
                                             <p
@@ -251,7 +249,14 @@ const breadcrumbs: BreadcrumbItem[] = [
                                 </div>
                             </td>
                             <td class="p-4 border-b border-blue-gray-50">
-                                <div class="flex flex-col">
+                                <div class="flex">
+                                    <div class="pr-1 flex justify-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="18"
+                                            :fill="account.category === 'Receitas' ? '#218230' : '#D94629'">
+                                            <path
+                                                d="M64 320C64 178.6 178.6 64 320 64C461.4 64 576 178.6 576 320C576 461.4 461.4 576 320 576C178.6 576 64 461.4 64 320z" />
+                                        </svg>
+                                    </div>
                                     <p
                                         class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
                                         {{ account.category }}
