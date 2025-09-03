@@ -26,6 +26,8 @@ Route::post('products/photo', [ProductController::class, 'photo']);
 
 Route::resource('financial', FinancialController::class);
 Route::resource('sales', SalesController::class);
+Route::get('sales/pos', [SalesController::class, 'pos']);
+
 Route::resource('analysis', AnalysisController::class);
 Route::prefix('parameters')->group(function () {
     Route::resource('/customers', CustomerController::class);
