@@ -129,7 +129,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                             class="block font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
                             Contas financeiras
                         </h5>
-                        <p class="block mt-1 font-sans text-base antialiased font-normal leading-relaxed text-gray-700">
+                        <p class="block mt-1 font-sans text-sm antialiased font-normal leading-relaxed text-gray-700">
                             Veja informações sobre todas contas financeiras
                         </p>
                     </div>
