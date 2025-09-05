@@ -247,7 +247,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                         <div class="py-8 ">
                             <div class="grid gap-2 pb-4 lg:mb-0">
                                 <Label for="payment_method">Forma de pagamento</Label>
-                                <Select id="payment_method" v-model="form.payment_method">
+                                <Select id="payment_method" v-model="form.payment_method" required>
                                     <SelectTrigger class="w-auto">
                                         <SelectValue placeholder="Selecionar forma de pagamento" />
                                     </SelectTrigger>
@@ -260,13 +260,13 @@ const breadcrumbs: BreadcrumbItem[] = [
                             </div>
                             <div class="grid gap-2 pb-4 lg:mb-0">
                                 <Label for="shipping">Taxa de entrega</Label>
-                                <Input id="shipping" type="number" v-model="shipping" @input="total()"
-                                    class="block w-full" required placeholder="Taxa de entrega" />
+                                <Input id="shipping" type="number" v-model="form.shipping" @input="total()"
+                                    class="block w-full" placeholder="Taxa de entrega" />
                             </div>
                             <div class="grid gap-2 lg:mb-0">
                                 <Label for="discount">Desconto total</Label>
-                                <Input id="discount" type="number" v-model="discount" @input="total()"
-                                    class="block w-full" required placeholder="Desconto total" />
+                                <Input id="discount" type="number" v-model="form.discount" @input="total()"
+                                    class="block w-full" placeholder="Desconto total" />
                             </div>
                         </div>
                         <div class="space-y-3 mb-4">
