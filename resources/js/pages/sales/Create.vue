@@ -54,11 +54,10 @@ const form = useForm({
     shipping: 0.0,
     payment_method: '',
     details: [{
-        id: '',
-        name: '',
+        product_id: '',
+        product_name: '',
         price: 0.0,
-        quantity: 0.0,
-        image: ''
+        quantity: 0.0
     }],
     is_paid: true
 });
@@ -67,11 +66,10 @@ const submit = () => {
     form.discount = discount.value
     form.shipping = shipping.value
     form.details = store.items.map(item => ({
-        id: item.id.toString(),
-        name: item.name,
+        product_id: item.id.toString(),
+        product_name: item.name,
         price: item.price,
-        quantity: item.quantity,
-        image: item.image
+        quantity: item.quantity
     }))
     form.post(route('sales.store'), {
         preserveScroll: true,
