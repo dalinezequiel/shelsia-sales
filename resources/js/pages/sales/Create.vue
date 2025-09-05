@@ -53,12 +53,26 @@ const form = useForm({
     discount: 0.0,
     shipping: 0.0,
     payment_method: '',
+    details: [{
+        id: '',
+        name: '',
+        price: 0.0,
+        quantity: 0.0,
+        image: ''
+    }],
     is_paid: true
 });
 
 const submit = () => {
     form.discount = discount.value
     form.shipping = shipping.value
+    form.details = store.items.map(item => ({
+        id: item.id.toString(),
+        name: item.name,
+        price: item.price,
+        quantity: item.quantity,
+        image: item.image
+    }))
     form.post(route('sales.store'), {
         preserveScroll: true,
         onSuccess: () => toast.success('Venda realizada com sucesso.'),
