@@ -35,8 +35,7 @@ class SalesController extends Controller
      */
     public function create()
     {
-        $products = Product::get();
-        return Inertia::render('sales/Create', compact('products'));
+        return Inertia::render('sales/Create');
     }
 
     /**
