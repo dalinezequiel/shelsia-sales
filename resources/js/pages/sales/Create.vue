@@ -50,13 +50,15 @@ const search = () => {
 const form = useForm({
     description: 'VD00018837',
     customer_name: 'Consumidor final',
-    discount: '',
-    shipping: '',
+    discount: 0.0,
+    shipping: 0.0,
     payment_method: '',
     is_paid: true
 });
 
 const submit = () => {
+    form.discount = discount.value
+    form.shipping = shipping.value
     form.post(route('sales.store'), {
         preserveScroll: true,
         onSuccess: () => toast.success('Venda realizada com sucesso.'),
@@ -260,12 +262,12 @@ const breadcrumbs: BreadcrumbItem[] = [
                             </div>
                             <div class="grid gap-2 pb-4 lg:mb-0">
                                 <Label for="shipping">Taxa de entrega</Label>
-                                <Input id="shipping" type="number" v-model="form.shipping" @input="total()"
+                                <Input id="shipping" type="number" v-model="shipping" @input="total()"
                                     class="block w-full" placeholder="Taxa de entrega" />
                             </div>
                             <div class="grid gap-2 lg:mb-0">
                                 <Label for="discount">Desconto total</Label>
-                                <Input id="discount" type="number" v-model="form.discount" @input="total()"
+                                <Input id="discount" type="number" v-model="discount" @input="total()"
                                     class="block w-full" placeholder="Desconto total" />
                             </div>
                         </div>
