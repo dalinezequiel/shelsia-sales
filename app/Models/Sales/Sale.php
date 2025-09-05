@@ -16,4 +16,9 @@ class Sale extends Model
         'is_paid',
         'created_at'
     ];
+
+    public function hasDetails()
+    {
+        return $this->hasMany(SaleDetail::class);
+    }
 }
