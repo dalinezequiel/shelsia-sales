@@ -16,9 +16,10 @@ import { Trash2 } from 'lucide-vue-next';
 import Product from '@/components/additional/Product.vue';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
-import { Head, Link, router } from '@inertiajs/vue3';
+import { Head, Link, router, useForm } from '@inertiajs/vue3';
 import { store } from '@/store'
 import { ref } from 'vue';
+import { toast } from 'vue-sonner';
 
 defineProps({
     products: {
@@ -45,6 +46,24 @@ const search = () => {
         replace: true
     }))
 };
+
+const form = useForm({
+    description: 'VD00018837',
+    customer_name: 'Consumidor final',
+    discount: '',
+    shipping: '',
+    payment_method: '',
+    is_paid: true
+});
+
+const submit = () => {
+    form.post(route('sales.store'), {
+        preserveScroll: true,
+        onSuccess: () => toast.success('Venda realizada com sucesso.'),
+        onError: () => toast.error('Ocorreu um erro ao tentar realizar venda.')
+    });
+};
+
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -224,79 +243,82 @@ const breadcrumbs: BreadcrumbItem[] = [
                             </AlertDialog>
                         </div>
                     </div>
-                    <div class="py-8 ">
-                        <div class="grid gap-2 pb-4 lg:mb-0">
-                            <Label for="payment_method">Forma de pagamento</Label>
-                            <Select id="payment_method">
-                                <SelectTrigger class="w-auto">
-                                    <SelectValue placeholder="Selecionar forma de pagamento" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectItem v-for="paymentMethod in paymentMethods" :key="paymentMethod.id"
-                                        :value="paymentMethod.description">{{ paymentMethod.description }}</SelectItem>
-                                </SelectContent>
-                            </Select>
-                        </div>
-                        <div class="grid gap-2 pb-4 lg:mb-0">
-                            <Label for="shipping">Taxa de entrega</Label>
-                            <Input id="shipping" type="number" v-model="shipping" @input="total()" class="block w-full"
-                                required placeholder="Taxa de entrega" />
-                        </div>
-                        <div class="grid gap-2 lg:mb-0">
-                            <Label for="discount">Desconto total</Label>
-                            <Input id="discount" type="number" v-model="discount" @input="total()" class="block w-full"
-                                required placeholder="Desconto total" />
-                        </div>
-                    </div>
-                    <div class="space-y-3 mb-4">
-                        <div class="flex justify-between">
-                            <span class="text-gray-600">Subtotal</span>
-                            <span class="font-medium">{{ store.subtotal().toFixed(2) }}</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span class="text-gray-600">Taxa de entrega</span>
-                            <span class="font-medium">{{ shipping.toFixed(2) }}</span>
-                        </div>
-                        <div x-show="discount > 0" class="flex justify-between">
-                            <span>Desconto total</span>
-                            <span class="font-medium">{{ discount.toFixed(2) }}</span>
-                        </div>
-                        <div class="border-t py-2 mt-3">
-                            <div class="flex justify-between font-bold text-lg">
-                                <span>Total</span>
-                                <span>{{ store.total().toFixed(2) }}</span>
+                    <form @submit.prevent="submit">
+                        <div class="py-8 ">
+                            <div class="grid gap-2 pb-4 lg:mb-0">
+                                <Label for="payment_method">Forma de pagamento</Label>
+                                <Select id="payment_method" v-model="form.payment_method">
+                                    <SelectTrigger class="w-auto">
+                                        <SelectValue placeholder="Selecionar forma de pagamento" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem v-for="paymentMethod in paymentMethods" :key="paymentMethod.id"
+                                            :value="paymentMethod.description">{{ paymentMethod.description }}
+                                        </SelectItem>
+                                    </SelectContent>
+                                </Select>
+                            </div>
+                            <div class="grid gap-2 pb-4 lg:mb-0">
+                                <Label for="shipping">Taxa de entrega</Label>
+                                <Input id="shipping" type="number" v-model="shipping" @input="total()"
+                                    class="block w-full" required placeholder="Taxa de entrega" />
+                            </div>
+                            <div class="grid gap-2 lg:mb-0">
+                                <Label for="discount">Desconto total</Label>
+                                <Input id="discount" type="number" v-model="discount" @input="total()"
+                                    class="block w-full" required placeholder="Desconto total" />
                             </div>
                         </div>
-                    </div>
-                    <button
-                        class="w-full bg-indigo-600 text-white py-2 mb-2 rounded-md cursor-pointer font-medium hover:bg-indigo-700 transition flex items-center justify-center">
+                        <div class="space-y-3 mb-4">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Subtotal</span>
+                                <span class="font-medium">{{ store.subtotal().toFixed(2) }}</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Taxa de entrega</span>
+                                <span class="font-medium">{{ shipping.toFixed(2) }}</span>
+                            </div>
+                            <div x-show="discount > 0" class="flex justify-between">
+                                <span>Desconto total</span>
+                                <span class="font-medium">{{ discount.toFixed(2) }}</span>
+                            </div>
+                            <div class="border-t py-2 mt-3">
+                                <div class="flex justify-between font-bold text-lg">
+                                    <span>Total</span>
+                                    <span>{{ store.total().toFixed(2) }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button
+                            class="w-full bg-indigo-600 text-white py-2 mb-2 rounded-md cursor-pointer font-medium hover:bg-indigo-700 transition flex items-center justify-center">
 
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#FFFFFF"
-                            viewBox="0 0 640 640" class="mr-1">
-                            <path
-                                d="M256 160L256 224L384 224L384 160C384 124.7 355.3 96 320 96C284.7 96 256 124.7 256 160zM192 224L192 160C192 89.3 249.3 32 320 32C390.7 32 448 89.3 448 160L448 224C483.3 224 512 252.7 512 288L512 512C512 547.3 483.3 576 448 576L192 576C156.7 576 128 547.3 128 512L128 288C128 252.7 156.7 224 192 224z" />
-                        </svg> Finalizar a Venda
-                    </button>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#FFFFFF"
+                                viewBox="0 0 640 640" class="mr-1">
+                                <path
+                                    d="M256 160L256 224L384 224L384 160C384 124.7 355.3 96 320 96C284.7 96 256 124.7 256 160zM192 224L192 160C192 89.3 249.3 32 320 32C390.7 32 448 89.3 448 160L448 224C483.3 224 512 252.7 512 288L512 512C512 547.3 483.3 576 448 576L192 576C156.7 576 128 547.3 128 512L128 288C128 252.7 156.7 224 192 224z" />
+                            </svg> Finalizar a Venda
+                        </button>
 
-                    <div class="flex items-center gap-2 mt-8">
-                        <Link :href="route('sales.index')"
-                            class="w-full px-4 py-2 inline-flex justify-center gap-x-2 text-sm font-medium rounded-lg border border-gray-100 bg-white text-gray-800 shadow-2xs hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden focus:bg-gray-50 dark:bg-transparent dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="lucide lucide-arrow-left-icon lucide-arrow-left">
-                            <path d="m12 19-7-7 7-7" />
-                            <path d="M19 12H5" />
-                        </svg>
-                        Voltar</Link>
-                        <Link :href="route('sales.index')"
-                            class="w-full px-4 py-2 inline-flex justify-center gap-x-2 text-sm font-medium rounded-lg border border-gray-100 bg-white text-gray-800 shadow-2xs hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden focus:bg-gray-50 dark:bg-transparent dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="16px">
-                            <path
-                                d="M96 160C96 142.3 110.3 128 128 128L512 128C529.7 128 544 142.3 544 160C544 177.7 529.7 192 512 192L128 192C110.3 192 96 177.7 96 160zM96 320C96 302.3 110.3 288 128 288L512 288C529.7 288 544 302.3 544 320C544 337.7 529.7 352 512 352L128 352C110.3 352 96 337.7 96 320zM544 480C544 497.7 529.7 512 512 512L128 512C110.3 512 96 497.7 96 480C96 462.3 110.3 448 128 448L512 448C529.7 448 544 462.3 544 480z" />
-                        </svg>
+                        <div class="flex items-center gap-2 mt-8">
+                            <Link :href="route('sales.index')"
+                                class="w-full px-4 py-2 inline-flex justify-center gap-x-2 text-sm font-medium rounded-lg border border-gray-100 bg-white text-gray-800 shadow-2xs hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden focus:bg-gray-50 dark:bg-transparent dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="lucide lucide-arrow-left-icon lucide-arrow-left">
+                                <path d="m12 19-7-7 7-7" />
+                                <path d="M19 12H5" />
+                            </svg>
+                            Voltar</Link>
+                            <Link :href="route('sales.index')"
+                                class="w-full px-4 py-2 inline-flex justify-center gap-x-2 text-sm font-medium rounded-lg border border-gray-100 bg-white text-gray-800 shadow-2xs hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden focus:bg-gray-50 dark:bg-transparent dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="16px">
+                                <path
+                                    d="M96 160C96 142.3 110.3 128 128 128L512 128C529.7 128 544 142.3 544 160C544 177.7 529.7 192 512 192L128 192C110.3 192 96 177.7 96 160zM96 320C96 302.3 110.3 288 128 288L512 288C529.7 288 544 302.3 544 320C544 337.7 529.7 352 512 352L128 352C110.3 352 96 337.7 96 320zM544 480C544 497.7 529.7 512 512 512L128 512C110.3 512 96 497.7 96 480C96 462.3 110.3 448 128 448L512 448C529.7 448 544 462.3 544 480z" />
+                            </svg>
 
-                        History</Link>
-                    </div>
+                            History</Link>
+                        </div>
+                    </form>
                 </div>
 
             </div>
