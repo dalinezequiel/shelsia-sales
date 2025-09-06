@@ -72,6 +72,14 @@ class SalesController extends Controller
                     'quantity' => $detail['quantity'],
                     'price' => $detail['price'],
                 ]);
+
+                $product = Product::find($detail['product_id']);
+                $current_stock = $product->available_stock;
+                $quantity = $detail['quantity'];
+
+                $new_stock = $current_stock - $quantity;
+                $product->available_stock = $new_stock;
+                $product->save();
             }
 
             $sale->hasDetails()->saveMany($items);
@@ -79,7 +87,7 @@ class SalesController extends Controller
             return redirect()->route('sales.pos')->with('success', 'Venda realizada com sucesso!');
         } catch (Exception $ex) {
             DB::rollback();
-            return redirect()->route('sales.create')->with('error', $ex);
+            return redirect()->route('sales.pos')->with('error', $ex);
         }
     }
 
