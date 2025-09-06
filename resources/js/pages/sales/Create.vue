@@ -81,7 +81,7 @@ const submit = () => {
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Vandas',
+        title: 'Vendas',
         href: '/sales',
     },
     {
