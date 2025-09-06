@@ -8,6 +8,7 @@ import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 import { toast } from 'vue-sonner';
+import { Loader } from 'lucide-vue-next';
 
 
 defineProps({
@@ -64,11 +65,11 @@ const breadcrumbs: BreadcrumbItem[] = [
 
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="relative flex h-full lg:pr-40 w-full flex-col bg-white bg-clip-border text-gray-700">
-            <div class="relative mx-4 mt-2 overflow-hidden rounded-none bg-white bg-clip-border text-gray-700">
+            <div class="relative mx-4 mt-4 overflow-hidden rounded-none bg-white bg-clip-border text-gray-700">
                 <div class="mb-8 flex items-center justify-between gap-8">
                     <div>
                         <h5
-                            class="text-blue-gray-900 block font-sans text-xl leading-snug font-semibold tracking-normal antialiased">
+                            class="text-blue-gray-900 block font-sans text-lg leading-snug font-semibold tracking-normal antialiased">
                             Cadastrar Conta
                         </h5>
                     </div>
@@ -206,6 +207,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                         </svg>
                         Voltar</Link>
                         <Button class="cursor-pointer">
+                            <Loader class="animate-spin" v-if="form.processing" />
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" class="lucide lucide-save-icon lucide-save">
@@ -214,7 +216,8 @@ const breadcrumbs: BreadcrumbItem[] = [
                                 <path d="M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7" />
                                 <path d="M7 3v4a1 1 0 0 0 1 1h7" />
                             </svg>
-                            Salvar</Button>
+                            Salvar
+                        </Button>
                     </div>
                 </form>
             </div>
