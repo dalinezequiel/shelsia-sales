@@ -5,8 +5,12 @@ namespace App\Http\Controllers\Sales;
 use App\Http\Controllers\Controller;
 use App\Models\PaymentMethod\PaymentMethod;
 use App\Models\Product\Product;
+use App\Models\Sales\Sale;
+use App\Models\Sales\SaleDetail;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Exception;
+use Illuminate\Support\Facades\DB;
 
 class SalesController extends Controller
 {
@@ -43,7 +47,39 @@ class SalesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'payment_method' => 'required'
+        ]);
+
+        $sale_details = $request->details;
+        try {
+            DB::beginTransaction();
+            $sale = Sale::create([
+                'description' => $request->description,
+                'customer_name' => $request->customer_name,
+                'discount' => $request->discount,
+                'shipping' => $request->shipping,
+                'payment_method' => $request->payment_method,
+                'is_paid' => $request->is_paid
+            ]);
+
+            $sale_details = $request->details;
+            $items = [];
+            foreach ($sale_details as $detail) {
+                $items[] = new SaleDetail([
+                    'product_name' => $detail['product_name'],
+                    'quantity' => $detail['quantity'],
+                    'price' => $detail['price'],
+                ]);
+            }
+
+            $sale->hasDetails()->saveMany($items);
+            DB::commit();
+            return redirect()->route('sales.pos')->with('success', 'Venda realizada com sucesso!');
+        } catch (Exception $ex) {
+            DB::rollback();
+            return redirect()->route('sales.create')->with('error', $ex);
+        }
     }
 
     /**
