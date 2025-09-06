@@ -13,4 +13,9 @@ class SaleDetail extends Model
         'price',
         'created_at'
     ];
+
+    function belongsToSale()
+    {
+        return $this->belongsTo(Sale::class);
+    }
 }
