@@ -21,7 +21,6 @@ import { toast } from 'vue-sonner';
 import { ref } from 'vue';
 import Tablist from '@/components/additional/Tablist.vue';
 import Pagination from '@/components/additional/Pagination.vue';
-import Avatar from '@/components/additional/Avatar.vue';
 
 defineProps({
     accounts: {
@@ -62,8 +61,6 @@ const form = useForm({
     observation: '',
     is_active: true
 });
-
-const letter = (description: string) => description.charAt(0)
 
 const payBill = (bill: Account) => {
     form.id = bill.id.toString();
@@ -126,10 +123,10 @@ const breadcrumbs: BreadcrumbItem[] = [
                 <div class="flex items-center justify-between gap-8 mb-8">
                     <div>
                         <h5
-                            class="block font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
+                            class="block font-sans text-lg antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
                             Contas financeiras
                         </h5>
-                        <p class="block mt-1 font-sans text-sm antialiased font-normal leading-relaxed text-gray-700">
+                        <p class="block font-sans text-sm antialiased font-normal leading-relaxed text-gray-700">
                             Veja informações sobre todas contas financeiras
                         </p>
                     </div>
