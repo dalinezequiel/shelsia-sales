@@ -17,10 +17,11 @@ class SalesController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-        return Inertia::render('sales/Index');
+        $description = $request->query('description');
+        $sales = Sale::where('description', 'like', '%' . $description . '%')->paginate(5);
+        return Inertia::render('sales/Index', compact('sales'));
     }
 
     /**
