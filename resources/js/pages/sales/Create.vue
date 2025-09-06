@@ -21,7 +21,7 @@ import { store } from '@/store'
 import { ref } from 'vue';
 import { toast } from 'vue-sonner';
 
-defineProps({
+const props = defineProps({
     products: {
         type: Object,
         required: true
@@ -29,6 +29,9 @@ defineProps({
     paymentMethods: {
         type: Object,
         required: true
+    }, description: {
+        type: String,
+        required: false
     }
 })
 
@@ -39,7 +42,7 @@ const total = () => {
     store.discount = discount.value
 }
 
-const description = ref('');
+const description = ref(props.description);
 const search = () => {
     router.get(route('sales.pos', { description: description.value }, {
         preserveState: true,
