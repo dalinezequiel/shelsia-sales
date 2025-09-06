@@ -20,7 +20,7 @@ class SalesController extends Controller
     public function index(Request $request)
     {
         $description = $request->query('description');
-        $sales = Sale::where('description', 'like', '%' . $description . '%')->paginate(5);
+        $sales = Sale::where('description', 'like', '%' . $description . '%')->with('hasDetails')->paginate(5);
         return Inertia::render('sales/Index', compact('sales'));
     }
 
