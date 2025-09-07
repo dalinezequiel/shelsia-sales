@@ -122,7 +122,7 @@ const breadcrumbs: BreadcrumbItem[] = [
             <div class="absolute right-1/46 md:col-span-1 w-full max-w-xs">
                 <div class="bg-white rounded-md border border-gray-200  p-4 sm:p-6">
                     <div class="flex justify-between">
-                        <h2 class="text-xl font-bold mb-4">Resumo do Pedido</h2>
+                        <h2 class="text-lg font-bold mb-4">Resumo do Pedido</h2>
                         <div class="relative w-fit">
                             <AlertDialog>
                                 <AlertDialogTrigger
