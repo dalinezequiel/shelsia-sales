@@ -5,6 +5,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import {
     AlertDialog,
     AlertDialogAction,
+    AlertDialogCancel,
     AlertDialogContent,
     AlertDialogDescription,
     AlertDialogFooter,
@@ -252,8 +253,14 @@ const breadcrumbs: BreadcrumbItem[] = [
                                         </AlertDialogDescription>
                                     </AlertDialogHeader>
                                     <AlertDialogFooter>
+                                        <AlertDialogCancel class="cursor-pointer">Cancelar</AlertDialogCancel>
                                         <AlertDialogAction class="cursor-pointer bg-[#212121]" @click="">
-                                            Confirmar
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"
+                                                fill="#FFFFFF">
+                                                <path
+                                                    d="M176 96C149.5 96 128 117.5 128 144L128 496C128 522.5 149.5 544 176 544L240 544C266.5 544 288 522.5 288 496L288 144C288 117.5 266.5 96 240 96L176 96zM400 96C373.5 96 352 117.5 352 144L352 496C352 522.5 373.5 544 400 544L464 544C490.5 544 512 522.5 512 496L512 144C512 117.5 490.5 96 464 96L400 96z" />
+                                            </svg>
+                                            Reservar
                                         </AlertDialogAction>
                                     </AlertDialogFooter>
                                 </AlertDialogContent>
@@ -276,17 +283,24 @@ const breadcrumbs: BreadcrumbItem[] = [
                                 </Select>
                             </div>
                             <div class="grid gap-2 pb-4 lg:mb-0">
-                                <Label for="shipping">Taxa de entrega</Label>
-                                <Input id="shipping" type="number" v-model="shipping" @input="total()"
-                                    class="block w-full" placeholder="Taxa de entrega" />
+                                <Label for="customer_name">Cliente</Label>
+                                <Input id="customer_name" class="block w-full" v-model="form.customer_name"
+                                    placeholder="Nome do cliente" />
                             </div>
-                            <div class="grid gap-2 lg:mb-0">
-                                <Label for="discount">Desconto total</Label>
-                                <Input id="discount" type="number" v-model="discount" @input="total()"
-                                    class="block w-full" placeholder="Desconto total" />
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="grid gap-2 lg:mb-0">
+                                    <Label for="shipping">Taxa de entrega</Label>
+                                    <Input id="shipping" type="number" v-model="shipping" @input="total()"
+                                        class="block w-full" placeholder="Taxa de entrega" />
+                                </div>
+                                <div class="grid gap-2 lg:mb-0">
+                                    <Label for="discount">Desconto total</Label>
+                                    <Input id="discount" type="number" v-model="discount" @input="total()"
+                                        class="block w-full" placeholder="Desconto total" />
+                                </div>
                             </div>
                         </div>
-                        <div class="space-y-3 mb-4">
+                        <div class="space-y-3 mb-3">
                             <div class="flex justify-between">
                                 <span class="text-gray-600">Subtotal</span>
                                 <span class="font-medium">{{ store.subtotal().toFixed(2) }}</span>
@@ -306,17 +320,45 @@ const breadcrumbs: BreadcrumbItem[] = [
                                 </div>
                             </div>
                         </div>
-                        <button
-                            class="w-full bg-indigo-600 text-white py-2 mb-2 rounded-md cursor-pointer font-medium hover:bg-indigo-700 transition flex items-center justify-center">
 
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#FFFFFF"
-                                viewBox="0 0 640 640" class="mr-1">
+
+                        <button
+                            class="w-full bg-indigo-600 text-white py-2 mb-2 gap-x-2 rounded-md cursor-pointer font-medium hover:bg-indigo-700 transition flex items-center justify-center">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" fill="#FFFFFF" viewBox="0 0 640 640">
                                 <path
                                     d="M256 160L256 224L384 224L384 160C384 124.7 355.3 96 320 96C284.7 96 256 124.7 256 160zM192 224L192 160C192 89.3 249.3 32 320 32C390.7 32 448 89.3 448 160L448 224C483.3 224 512 252.7 512 288L512 512C512 547.3 483.3 576 448 576L192 576C156.7 576 128 547.3 128 512L128 288C128 252.7 156.7 224 192 224z" />
                             </svg> Finalizar a Venda
                         </button>
 
-                        <div class="flex items-center gap-2 mt-8">
+                        <AlertDialog>
+                            <AlertDialogTrigger
+                                class="w-full py-2 inline-flex cursor-pointer justify-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-2xs hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden focus:bg-gray-50 dark:bg-transparent dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="18">
+                                    <path
+                                        d="M272 112C272 85.5 293.5 64 320 64C346.5 64 368 85.5 368 112C368 138.5 346.5 160 320 160C293.5 160 272 138.5 272 112zM272 528C272 501.5 293.5 480 320 480C346.5 480 368 501.5 368 528C368 554.5 346.5 576 320 576C293.5 576 272 554.5 272 528zM112 272C138.5 272 160 293.5 160 320C160 346.5 138.5 368 112 368C85.5 368 64 346.5 64 320C64 293.5 85.5 272 112 272zM480 320C480 293.5 501.5 272 528 272C554.5 272 576 293.5 576 320C576 346.5 554.5 368 528 368C501.5 368 480 346.5 480 320zM139 433.1C157.8 414.3 188.1 414.3 206.9 433.1C225.7 451.9 225.7 482.2 206.9 501C188.1 519.8 157.8 519.8 139 501C120.2 482.2 120.2 451.9 139 433.1zM139 139C157.8 120.2 188.1 120.2 206.9 139C225.7 157.8 225.7 188.1 206.9 206.9C188.1 225.7 157.8 225.7 139 206.9C120.2 188.1 120.2 157.8 139 139zM501 433.1C519.8 451.9 519.8 482.2 501 501C482.2 519.8 451.9 519.8 433.1 501C414.3 482.2 414.3 451.9 433.1 433.1C451.9 414.3 482.2 414.3 501 433.1z" />
+                                </svg>
+                                Vendas Reservadas
+                            </AlertDialogTrigger>
+
+                            <AlertDialogContent>
+                                <AlertDialogHeader>
+                                    <AlertDialogTitle>Vendas Reservadas</AlertDialogTitle>
+                                    <AlertDialogDescription>
+                                        Continuar com está operação implicará a exclusão permanente<br>da
+                                        venda
+                                        <strong> <span class="text-[#EC3636]">test</span>
+                                        </strong>.
+                                    </AlertDialogDescription>
+                                </AlertDialogHeader>
+                                <AlertDialogFooter>
+                                    <AlertDialogCancel class="cursor-pointer">Cancelar</AlertDialogCancel>
+                                </AlertDialogFooter>
+                            </AlertDialogContent>
+                        </AlertDialog>
+
+
+                        <div class="flex items-center gap-2 mt-4">
                             <Link :href="route('sales.index')"
                                 class="w-full px-4 py-2 inline-flex justify-center gap-x-2 text-sm font-medium rounded-lg border border-gray-100 bg-white text-gray-800 shadow-2xs hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden focus:bg-gray-50 dark:bg-transparent dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
@@ -333,7 +375,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     d="M96 160C96 142.3 110.3 128 128 128L512 128C529.7 128 544 142.3 544 160C544 177.7 529.7 192 512 192L128 192C110.3 192 96 177.7 96 160zM96 320C96 302.3 110.3 288 128 288L512 288C529.7 288 544 302.3 544 320C544 337.7 529.7 352 512 352L128 352C110.3 352 96 337.7 96 320zM544 480C544 497.7 529.7 512 512 512L128 512C110.3 512 96 497.7 96 480C96 462.3 110.3 448 128 448L512 448C529.7 448 544 462.3 544 480z" />
                             </svg>
 
-                            History</Link>
+                            Balanço</Link>
                         </div>
                     </form>
                 </div>
