@@ -74,7 +74,10 @@ const submit = () => {
         product_name: item.name,
         price: item.price,
         quantity: item.quantity
-    }))
+    }));
+
+    store.items = [];
+
     form.post(route('sales.store'), {
         preserveScroll: true,
         onSuccess: () => toast.success('Venda realizada com sucesso.'),
