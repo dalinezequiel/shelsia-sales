@@ -217,14 +217,98 @@ const breadcrumbs: BreadcrumbItem[] = [
                                 </div>
                             </td>
                             <td class="p-4 border-b border-blue-gray-50 text-center">
-                                <button
-                                    class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                    type="button">
-                                    <Link :href="route('sales.edit', sale.id)">
-                                    <ShoppingBag width="18" height="18" color="#1C7005"
-                                        class="hover:stroke-[#33C809]" />
-                                    </Link>
-                                </button>
+
+                                <AlertDialog>
+                                    <AlertDialogTrigger
+                                        class="relative cursor-pointer rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
+
+                                        <ShoppingBag width="18" height="18" color="#1C7005"
+                                            class="hover:stroke-[#33C809]" />
+
+                                    </AlertDialogTrigger>
+                                    <AlertDialogContent class="min-w-240">
+                                        <AlertDialogHeader>
+                                            <AlertDialogTitle>Lista de produtos</AlertDialogTitle>
+                                            <AlertDialogDescription>
+                                                <section v-if="sale.has_details.length !== 0"
+                                                    class="bg-white mx-4 my-2 dark:border-gray-700 dark:bg-gray-800 md:px-6">
+                                                    <div
+                                                        class="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
+                                                        <div
+                                                            class="w-full min-w-0 flex-1 space-y-2 md:order-2 md:max-w-md">
+                                                            <p>Descrição</p>
+                                                        </div>
+                                                        <div
+                                                            class="flex items-center justify-between md:order-3 md:justify-end">
+                                                            <div class="flex items-center">
+                                                                <p>Quantidade</p>
+                                                            </div>
+                                                            <div class="text-end md:order-4 md:w-30">
+                                                                <p>Valor Unitário</p>
+                                                            </div>
+                                                            <div class="text-end md:order-5 md:w-30">
+                                                                <p>Valor Total</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </section>
+
+
+
+                                                <section v-if="sale.has_details.length !== 0"
+                                                    v-for="product in sale.has_details" :key="product.id"
+                                                    class="rounded-lg border border-gray-200 bg-white mx-4 my-2 p-2 dark:border-gray-700 dark:bg-gray-800 md:px-6">
+                                                    <div
+                                                        class="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
+
+                                                        <div class="w-full min-w-0 flex-1 space-y-2 md:max-w-md">
+                                                            <p
+                                                                class="text-base font-medium text-gray-900 dark:text-white">
+                                                                {{ product.product_name }}
+                                                            </p>
+                                                        </div>
+
+                                                        <div class="text-end md:w-30">
+                                                            <p
+                                                                class="text-base font-bold text-gray-900 dark:text-white">
+                                                                {{ product.quantity }}</p>
+                                                        </div>
+                                                        <div class="flex items-center justify-between md:justify-end">
+
+                                                            <div class="text-end md:order-4 md:w-30">
+                                                                <p
+                                                                    class="text-base font-bold text-gray-900 dark:text-white">
+                                                                    {{ product.price }}</p>
+                                                            </div>
+                                                            <div class="text-end md:order-4 md:w-30">
+                                                                <p
+                                                                    class="text-base font-bold text-gray-900 dark:text-white">
+                                                                    {{ (product.quantity *
+                                                                        product.price).toFixed(2) }}
+                                                                </p>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </section>
+                                                <p v-else>A lista está vazia.</p>
+
+
+                                            </AlertDialogDescription>
+                                        </AlertDialogHeader>
+                                        <AlertDialogFooter>
+                                            <AlertDialogCancel class="cursor-pointer">Cancelar</AlertDialogCancel>
+                                            <AlertDialogAction class="cursor-pointer bg-[#EC3636]">
+                                                Cancelar Venda
+                                            </AlertDialogAction>
+                                        </AlertDialogFooter>
+                                    </AlertDialogContent>
+                                </AlertDialog>
+
+
+
+
+
                                 <button
                                     class="relative rounded-lg text-center mx-2 align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                     type="button">
