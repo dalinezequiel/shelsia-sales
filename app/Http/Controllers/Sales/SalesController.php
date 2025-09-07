@@ -56,7 +56,7 @@ class SalesController extends Controller
         try {
             DB::beginTransaction();
             $sale = Sale::create([
-                'description' => $request->description,
+                'description' => 'VD' . rand(10000000, 99999999),
                 'customer_name' => $request->customer_name,
                 'discount' => $request->discount,
                 'shipping' => $request->shipping,
