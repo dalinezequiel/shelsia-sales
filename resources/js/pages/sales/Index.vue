@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
-import { Head, Link, router } from '@inertiajs/vue3';
+import { Head, Link, router, useForm } from '@inertiajs/vue3';
 import { File, ShoppingBag, Trash2 } from 'lucide-vue-next';
 import {
     AlertDialog,
@@ -41,6 +41,21 @@ const deleteSale = (id: number) => {
         onError: () => toast.error('Ocorreu um erro ao tentar excluir venda.')
     })
 }
+const form = useForm({
+    sale_id: '',
+    has_details: [
+        { id: 0, quantity: 0 }
+    ]
+})
+const updateSale = (sale_id: number, has_details: [{ id: number; quantity: number; }]) => {
+    form.sale_id = sale_id.toString(),
+        form.has_details = has_details,
+        form.put(route('sales.update', { id: 0 }), {
+            preserveScroll: true,
+            onSuccess: () => toast.success('Venda cancelada com sucesso.'),
+            onError: () => toast.error('Ocorreu um erro ao tentar cancelar venda.')
+        });
+};
 
 const calculate = (subtotal: number, shipping: number, discount: number) => subtotal + shipping - discount;
 
@@ -304,7 +319,8 @@ const breadcrumbs: BreadcrumbItem[] = [
                                         </AlertDialogHeader>
                                         <AlertDialogFooter>
                                             <AlertDialogCancel class="cursor-pointer">Cancelar</AlertDialogCancel>
-                                            <AlertDialogAction class="cursor-pointer bg-[#EC3636] hover:bg-[#D4563F]">
+                                            <AlertDialogAction @click="updateSale(sale.id, sale.has_details)"
+                                                class="cursor-pointer bg-[#EC3636] hover:bg-[#D4563F]">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"
                                                     fill="#FFFFFF">
                                                     <path
@@ -315,8 +331,6 @@ const breadcrumbs: BreadcrumbItem[] = [
                                         </AlertDialogFooter>
                                     </AlertDialogContent>
                                 </AlertDialog>
-
-
 
 
 
