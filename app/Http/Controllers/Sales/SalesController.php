@@ -112,7 +112,9 @@ class SalesController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $sale = Sale::find($request->sale_id);
+        $sale->status = 'cancel';
+        $sale->save();
     }
 
     /**
