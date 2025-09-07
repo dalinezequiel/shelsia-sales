@@ -42,6 +42,8 @@ const deleteSale = (id: number) => {
     })
 }
 
+const calculate = (subtotal: number, shipping: number, discount: number) => subtotal + shipping - discount;
+
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Sales',
@@ -178,9 +180,10 @@ const breadcrumbs: BreadcrumbItem[] = [
                             <td class="p-4 border-b border-blue-gray-50">
                                 <p
                                     class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                                    MZN {{sale.has_details.reduce((acc: number, item: {
+                                    MZN {{calculate(sale.has_details.reduce((acc: number, item: {
                                         price: number; quantity: number;
-                                    }) => acc + item.price * item.quantity, 0).toFixed(2)}}
+                                    }) => acc + item.price * item.quantity,
+                                        0), Number(sale.shipping), Number(sale.discount)).toFixed(2)}}
                                 </p>
                             </td>
                             <td class="p-4 border-b border-blue-gray-50">
@@ -292,7 +295,10 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                     </div>
                                                 </section>
                                                 <p v-else>A lista está vazia.</p>
-
+                                                <div class="flex flex-col mx-10">
+                                                    <p>Taxa de entrega: <strong>{{ sale.shipping }}</strong></p>
+                                                    <p>Desconto: <strong>{{ sale.discount }}</strong></p>
+                                                </div>
 
                                             </AlertDialogDescription>
                                         </AlertDialogHeader>
