@@ -344,14 +344,36 @@ const breadcrumbs: BreadcrumbItem[] = [
                                 Vendas Reservadas
                             </AlertDialogTrigger>
 
-                            <AlertDialogContent>
+                            <AlertDialogContent  class="min-w-240">
                                 <AlertDialogHeader>
                                     <AlertDialogTitle>Vendas Reservadas</AlertDialogTitle>
                                     <AlertDialogDescription>
-                                        Continuar com está operação implicará a exclusão permanente<br>da
-                                        venda
-                                        <strong> <span class="text-[#EC3636]">test</span>
-                                        </strong>.
+
+                                       <section 
+                                                class="bg-white mx-4 my-2 dark:border-gray-700 dark:bg-gray-800 md:px-6">
+                                                <div
+                                                    class="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
+                                                    <div class="w-full min-w-0 flex-1 space-y-2 md:order-2 md:max-w-md">
+                                                        <p>Descrição da venda</p>
+                                                    </div>
+                                                    <div
+                                                        class="flex items-center justify-between md:order-3 md:justify-end">
+                                                        <div class="flex items-center">
+                                                            <p>Cliente</p>
+                                                        </div>
+                                                        <div class="text-end md:order-4 md:w-30">
+                                                            <!-- <p>Valor Unitário</p> -->
+                                                        </div>
+                                                        <div class="text-end md:order-5 md:w-30">
+                                                            <p>Valor Total</p>
+                                                        </div>
+                                                        <div
+                                                            class="flex items-center gap-4 md:order-6 md:w-30 justify-end">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </section>
+
                                     </AlertDialogDescription>
                                 </AlertDialogHeader>
                                 <AlertDialogFooter>
