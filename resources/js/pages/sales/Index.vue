@@ -209,10 +209,10 @@ const breadcrumbs: BreadcrumbItem[] = [
                             </td>
                             <td class="p-4 border-b border-blue-gray-50">
                                 <div class="w-max">
-                                    <div :class="sale.status ? 'bg-green-500/20' : (sale.status == 'pending' ? 'bg-amber-500/20' : 'bg-red-500/20')"
+                                    <div :class="sale.status === 'paid' ? 'bg-green-500/20' : (sale.status === 'pending' ? 'bg-amber-500/20' : 'bg-red-500/20')"
                                         class="relative grid items-center px-2 py-1 font-sans text-xs font-bold text-green-900 uppercase rounded-md select-none whitespace-nowrap bg-green-500/20">
-                                        <span v-if="sale.status == 'paid'" class="">Pago</span>
-                                        <span v-else-if="sale.status == 'pending'" class="text-red-900">Pendente</span>
+                                        <span v-if="sale.status === 'paid'" class="">Pago</span>
+                                        <span v-else-if="sale.status === 'pending'" class="text-red-900">Pendente</span>
                                         <span v-else class="text-red-900">Cancelado</span>
                                     </div>
                                 </div>
