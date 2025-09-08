@@ -18,7 +18,7 @@ return new class extends Migration
             $table->decimal('discount', '10', '2');
             $table->decimal('shipping', '10', '2');
             $table->string('payment_method');
-            $table->enum('status', ['paid', 'canceled', 'pending'])->default('paid');
+            $table->enum('status', ['paid', 'cancelled', 'pending'])->default('paid');
             $table->timestamps();
         });
     }
