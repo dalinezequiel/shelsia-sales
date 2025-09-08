@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('description');
             $table->string('customer_name');
-            $table->decimal('discount','10','2');
-            $table->decimal('shipping','10','2');
+            $table->decimal('discount', '10', '2');
+            $table->decimal('shipping', '10', '2');
             $table->string('payment_method');
-            $table->boolean('is_paid')->default(false);
+            $table->enum('status', ['paid', 'canceled', 'pending'])->default('paid');
             $table->timestamps();
         });
     }

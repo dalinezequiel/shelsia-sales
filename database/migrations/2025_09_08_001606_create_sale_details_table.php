@@ -17,6 +17,10 @@ return new class extends Migration
                 ->constrained()
                 ->onDelete('CASCADE')
                 ->onUpdate('CASCADE');
+            $table->foreignId('product_id')
+                ->constrained()
+                ->onDelete('CASCADE')
+                ->onUpdate('CASCADE');
             $table->string('product_name');
             $table->integer('quantity');
             $table->decimal('price', '10', '2');
