@@ -3,6 +3,7 @@ import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
 import { Head, Link, router } from '@inertiajs/vue3';
 import { File, Pencil, Trash2 } from 'lucide-vue-next';
+import { Input } from '@/components/ui/input';
 import {
     AlertDialog,
     AlertDialogAction,
@@ -200,7 +201,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                     <div class="grid gap-2 mb-6 lg:mb-0">
                                                         <Input id="image" type="file" name="image"
                                                             @input="handleUpload = $event.target.files[0]"
-                                                            accept="image/*" class="mt-1 block w-full" />
+                                                            accept="image/*" class="mt-1 block cursor-pointer w-full" />
                                                     </div>
                                                 </AlertDialogDescription>
                                             </AlertDialogHeader>
@@ -208,6 +209,14 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                 <AlertDialogCancel class="cursor-pointer">Cancelar</AlertDialogCancel>
                                                 <AlertDialogAction class="cursor-pointer bg-primary"
                                                     @click="upload(product.id, product.image)">
+
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                        class="lucide lucide-rotate-ccw-icon lucide-rotate-ccw">
+                                                        <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+                                                        <path d="M3 3v5h5" />
+                                                    </svg>
                                                     Actualizar
                                                 </AlertDialogAction>
                                             </AlertDialogFooter>
