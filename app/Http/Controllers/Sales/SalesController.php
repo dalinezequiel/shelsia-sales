@@ -63,39 +63,33 @@ class SalesController extends Controller
                 'payment_method' => $request->payment_method
             ]);
 
-            $sale_details = $request->details;
             $items = [];
-            foreach ($sale_details as $detail) {
-                $dt = new SaleDetail([
-                    // 'product_id' => $detail['product_id'],
+            foreach ($request->details as $detail) {
+                $sale_detail = new SaleDetail([
                     'product_name' => $detail['product_name'],
                     'quantity' => $detail['quantity'],
                     'price' => $detail['price'],
                 ]);
-                // $dt->belongsToProduct()->associate()
-                // $items[]=$dt;
-                
+
                 $product = Product::find($detail['product_id']);
                 $current_stock = $product->available_stock;
                 $quantity = $detail['quantity'];
-                
+
                 $new_stock = $current_stock - $quantity;
                 $product->available_stock = $new_stock;
-                // $detail = new SaleDetail(['product_id' => $detail['product_id']]);
-                $dt->belongsToProduct()->associate($product);
-                $items[]=$dt;
 
-                //  dd($items);
+                $sale_detail->product()->associate($product);
+                $items[] = $sale_detail;
 
                 $product->save();
             }
-            // dd($sale);
 
             $sale->hasDetails()->saveMany($items);
             DB::commit();
             return redirect()->route('sales.pos')->with('success', 'Venda realizada com sucesso!');
         } catch (Exception $ex) {
             DB::rollback();
+            echo $ex;
             return redirect()->route('sales.pos')->with('error', $ex);
         }
     }
