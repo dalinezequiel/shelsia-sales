@@ -18,6 +18,7 @@ import { toast } from 'vue-sonner';
 import { ref } from 'vue';
 import Pagination from '@/components/additional/Pagination.vue';
 import Tablist from '@/components/additional/Tablist.vue';
+import { dateFormat } from '@/store';
 
 defineProps({
     products: {
@@ -263,7 +264,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                             <td class="p-4 border-b border-blue-gray-50">
                                 <p
                                     class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                                    {{ product.validity }}
+                                    {{ dateFormat(product.validity) }}
                                 </p>
                             </td>
                             <td class="p-4 border-b border-blue-gray-50 text-center">
