@@ -117,7 +117,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                         <div class="relative h-10 w-full min-w-[200px]">
                             <div
                                 class="absolute grid w-5 h-5 top-2/4 right-3 -translate-y-2/4 place-items-center text-blue-gray-500">
-                                <Button>
+                                <Button @click="search" class="cursor-pointer">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke-width="1.5" stroke="currentColor" aria-hidden="true" class="w-5 h-5">
                                         <path stroke-linecap="round" stroke-linejoin="round"
