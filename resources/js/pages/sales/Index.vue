@@ -226,8 +226,8 @@ const breadcrumbs: BreadcrumbItem[] = [
                                             {{ sale.payment_method }}
                                         </p>
                                         <p
-                                            class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900 opacity-70">
-                                            {{ new Date(sale.created_at).toLocaleTimeString() }}
+                                            class="block font-sans text-xs antialiased font-normal leading-normal text-blue-gray-900 opacity-70">
+                                            {{ new Date(sale.created_at).toISOString().slice(0, 19) }}
                                         </p>
                                     </div>
                                 </div>
