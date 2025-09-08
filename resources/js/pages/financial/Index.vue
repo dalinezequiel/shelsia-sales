@@ -239,7 +239,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                 {{ account.description }}
                                             </p>
                                             <p
-                                                class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900 opacity-70">
+                                                class="block font-sans text-xs antialiased font-normal leading-normal text-blue-gray-900 opacity-70">
                                                 {{ account.account_plan }}
                                             </p>
                                         </div>
