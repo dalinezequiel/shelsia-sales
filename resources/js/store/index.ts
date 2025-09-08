@@ -1,6 +1,9 @@
 import { ICart } from '@/interfaces';
 import { reactive } from 'vue';
 
+export const dateFormat = (date: Date) =>
+    new Intl.DateTimeFormat('en-US', { month: 'short', day: '2-digit', year: 'numeric' }).format(new Date(date));
+
 interface Cart {
     items: ICart[];
     total(): number;
