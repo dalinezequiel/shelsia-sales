@@ -278,11 +278,15 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                     class="rounded-lg border border-gray-200 bg-white mx-4 my-2 p-2 dark:border-gray-700 dark:bg-gray-800 md:px-6">
                                                     <div
                                                         class="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
-
+                                                        <a href="#" class="shrink-0">
+                                                            <img class="h-10 dark:hidden"
+                                                                :src="'/storage/'.concat(product.product.image)"
+                                                                :alt="product.image" />
+                                                        </a>
                                                         <div class="w-full min-w-0 flex-1 space-y-2 md:max-w-md">
                                                             <p
                                                                 class="text-base font-medium text-gray-900 dark:text-white">
-                                                                {{ product.product_name }}
+                                                                {{ product.product.description }}
                                                             </p>
                                                         </div>
 
