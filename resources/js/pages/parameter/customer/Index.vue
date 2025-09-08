@@ -73,11 +73,10 @@ const breadcrumbs: BreadcrumbItem[] = [
                     <div class="mb-8 flex items-center justify-between gap-8">
                         <div>
                             <h5
-                                class="text-blue-gray-900 block font-sans text-xl leading-snug font-semibold tracking-normal antialiased">
+                                class="text-blue-gray-900 block font-sans text-lg leading-snug font-semibold tracking-normal antialiased">
                                 Lista de clientes
                             </h5>
-                            <p
-                                class="mt-1 block font-sans text-sm leading-relaxed font-normal text-gray-700 antialiased">
+                            <p class="block font-sans text-sm leading-relaxed font-normal text-gray-700 antialiased">
                                 Veja informações sobre todos os clientes
                             </p>
                         </div>
