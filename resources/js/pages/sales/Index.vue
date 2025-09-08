@@ -156,7 +156,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                             <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
                                 <p
                                     class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
-                                    Date
+                                    Data da venda
                                 </p>
                             </th>
                             <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
@@ -168,7 +168,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                             <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
                                 <p
                                     class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
-                                    Account
+                                    Forma de pagamento
                                 </p>
                             </th>
                             <th class="p-4 text-center border-y border-blue-gray-100 bg-blue-gray-50/50">
@@ -204,7 +204,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                             <td class="p-4 border-b border-blue-gray-50">
                                 <p
                                     class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                                    Wed 3:00pm
+                                    {{ new Date(sale.created_at).toLocaleDateString() }}
                                 </p>
                             </td>
                             <td class="p-4 border-b border-blue-gray-50">
@@ -219,11 +219,6 @@ const breadcrumbs: BreadcrumbItem[] = [
                             </td>
                             <td class="p-4 border-b border-blue-gray-50">
                                 <div class="flex items-center gap-3">
-                                    <div class="w-12 p-1 border rounded-md h-9 border-blue-gray-50">
-                                        <img src="https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/logos/visa.png"
-                                            alt="visa"
-                                            class="relative inline-block h-full w-full !rounded-none  object-contain object-center p-1" />
-                                    </div>
                                     <div class="flex flex-col">
                                         <p
                                             class="block font-sans text-sm antialiased font-normal leading-normal capitalize text-blue-gray-900">
@@ -231,7 +226,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                         </p>
                                         <p
                                             class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900 opacity-70">
-                                            06/2026
+                                            {{ new Date(sale.created_at).toLocaleTimeString() }}
                                         </p>
                                     </div>
                                 </div>
