@@ -15,11 +15,11 @@ class SaleDetail extends Model
         'created_at'
     ];
 
-    function belongsToSale()
+    public function belongsToSale()
     {
         return $this->belongsTo(Sale::class);
     }
-    
+
     public function belongsToProduct()
     {
         return $this->belongsTo(Product::class);
