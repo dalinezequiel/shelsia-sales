@@ -67,6 +67,7 @@ const submit = () => {
     form.discount = discount.value
     form.shipping = shipping.value
     form.details = store.items.map(item => ({
+        product_id: item.id.toString(),
         price: item.price,
         quantity: item.quantity
     }));
