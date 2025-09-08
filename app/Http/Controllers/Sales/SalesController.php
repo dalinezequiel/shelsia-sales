@@ -7,6 +7,7 @@ use App\Models\PaymentMethod\PaymentMethod;
 use App\Models\Product\Product;
 use App\Models\Sales\Sale;
 use App\Models\Sales\SaleDetail;
+use App\SaleStatus;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Exception;
@@ -114,7 +115,7 @@ class SalesController extends Controller
     public function update(Request $request, string $id)
     {
         $sale = Sale::find($request->sale_id);
-        $sale->status = 'cancel';
+        $sale->status = SaleStatus::CANCELLED;
         $sale->save();
     }
 
