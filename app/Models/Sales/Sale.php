@@ -13,7 +13,7 @@ class Sale extends Model
         'discount',
         'shipping',
         'payment_method',
-        'is_paid',
+        'status',
         'created_at'
     ];
 
