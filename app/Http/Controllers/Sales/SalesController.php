@@ -52,7 +52,6 @@ class SalesController extends Controller
             'payment_method' => 'required'
         ]);
 
-        $sale_details = $request->details;
         try {
             DB::beginTransaction();
             $sale = Sale::create([
@@ -66,7 +65,6 @@ class SalesController extends Controller
             $items = [];
             foreach ($request->details as $detail) {
                 $sale_detail = new SaleDetail([
-                    'product_name' => $detail['product_name'],
                     'quantity' => $detail['quantity'],
                     'price' => $detail['price'],
                 ]);
