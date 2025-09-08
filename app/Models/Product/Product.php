@@ -2,6 +2,7 @@
 
 namespace App\Models\Product;
 
+use App\Models\Sales\SaleDetail;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
@@ -23,4 +24,9 @@ class Product extends Model
         'image',
         'is_active'
     ];
+
+    public function hasSaleDetail()
+    {
+        return $this->hasOne(SaleDetail::class);
+    }
 }
