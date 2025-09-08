@@ -388,14 +388,63 @@ const breadcrumbs: BreadcrumbItem[] = [
                                 <path d="M19 12H5" />
                             </svg>
                             Voltar</Link>
-                            <Link :href="route('sales.index')"
+                            <!-- <Link :href="route('sales.index')"
                                 class="w-full px-4 py-2 inline-flex justify-center gap-x-2 text-sm font-medium rounded-lg border border-gray-100 bg-white text-gray-800 shadow-2xs hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden focus:bg-gray-50 dark:bg-transparent dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="16px">
                                 <path
                                     d="M96 160C96 142.3 110.3 128 128 128L512 128C529.7 128 544 142.3 544 160C544 177.7 529.7 192 512 192L128 192C110.3 192 96 177.7 96 160zM96 320C96 302.3 110.3 288 128 288L512 288C529.7 288 544 302.3 544 320C544 337.7 529.7 352 512 352L128 352C110.3 352 96 337.7 96 320zM544 480C544 497.7 529.7 512 512 512L128 512C110.3 512 96 497.7 96 480C96 462.3 110.3 448 128 448L512 448C529.7 448 544 462.3 544 480z" />
                             </svg>
 
-                            Balanço</Link>
+                            Balanço</Link> -->
+                            <AlertDialog>
+                                <AlertDialogTrigger
+                                    class="w-full px-4 py-2 inline-flex justify-center cursor-pointer gap-x-2 text-sm font-medium rounded-lg border border-gray-100 bg-white text-gray-800 shadow-2xs hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden focus:bg-gray-50 dark:bg-transparent dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="16px">
+                                        <path
+                                            d="M96 160C96 142.3 110.3 128 128 128L512 128C529.7 128 544 142.3 544 160C544 177.7 529.7 192 512 192L128 192C110.3 192 96 177.7 96 160zM96 320C96 302.3 110.3 288 128 288L512 288C529.7 288 544 302.3 544 320C544 337.7 529.7 352 512 352L128 352C110.3 352 96 337.7 96 320zM544 480C544 497.7 529.7 512 512 512L128 512C110.3 512 96 497.7 96 480C96 462.3 110.3 448 128 448L512 448C529.7 448 544 462.3 544 480z" />
+                                    </svg>
+                                    Balanço
+                                </AlertDialogTrigger>
+
+                                <AlertDialogContent>
+                                    <AlertDialogHeader>
+                                        <AlertDialogTitle>Balanço Diário</AlertDialogTitle>
+                                        <AlertDialogDescription>
+
+                                            <div>
+
+                                                <div
+                                                    class="w-full justify-between min-w-0 flex text-center  rounded-lg border border-gray-200 bg-white my-2 p-2 dark:border-gray-700 dark:bg-gray-800 md:px-4">
+                                                    <p class="font-bold text-gray-900 dark:text-white">
+                                                        Pago (6)
+                                                    </p>
+                                                    <p class="font-bold text-gray-900">0.00</p>
+                                                </div>
+                                                <div
+                                                    class="w-full justify-between min-w-0 flex text-center  rounded-lg border border-gray-200 bg-white my-2 p-2 dark:border-gray-700 dark:bg-gray-800 md:px-4">
+                                                    <p class="font-bold text-gray-900 dark:text-white">
+                                                        Pendente (6)
+                                                    </p>
+                                                    <p class="font-bold text-gray-900">0.00</p>
+                                                </div>
+                                                <div
+                                                    class="w-full justify-between min-w-0 flex text-center  rounded-lg border border-gray-200 bg-white mt-2 p-2 dark:border-gray-700 dark:bg-gray-800 md:px-4">
+                                                    <p class="font-bold text-gray-900 dark:text-white">
+                                                        Cancelado (6)
+                                                    </p>
+                                                    <p class="font-bold text-gray-900">0.00</p>
+                                                </div>
+
+                                            </div>
+
+                                        </AlertDialogDescription>
+                                    </AlertDialogHeader>
+                                    <AlertDialogFooter>
+                                        <AlertDialogCancel class="cursor-pointer">Cancelar</AlertDialogCancel>
+                                    </AlertDialogFooter>
+                                </AlertDialogContent>
+                            </AlertDialog>
+
                         </div>
                     </form>
                 </div>
