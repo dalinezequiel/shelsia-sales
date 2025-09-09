@@ -113,10 +113,10 @@ class SalesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
         $sale = Sale::find($request->sale_id);
-        $sale->status = SaleStatus::CANCELLED;
+        $sale->status = $request->status;
         $sale->save();
     }
 
