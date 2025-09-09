@@ -321,7 +321,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                         </AlertDialogHeader>
                                         <AlertDialogFooter>
                                             <AlertDialogCancel class="cursor-pointer">Cancelar</AlertDialogCancel>
-                                            <AlertDialogAction
+                                            <AlertDialogAction v-if="sale.status === 'pending'"
                                                 class="cursor-pointer  border border-gray-200 bg-white text-gray-800 shadow-2xs hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden focus:bg-gray-50 dark:bg-transparent dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
                                                     <path
