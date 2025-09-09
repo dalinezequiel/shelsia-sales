@@ -8,6 +8,7 @@ use App\Models\Product\Product;
 use App\Models\Sales\Sale;
 use App\Models\Sales\SaleDetail;
 use App\SaleStatus;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Exception;
@@ -32,8 +33,9 @@ class SalesController extends Controller
     {
         $paymentMethods = PaymentMethod::where('is_active', True)->get();
         $description = $request->query('description');
+        $sales = Sale::where('created_at', Carbon::now()->toDateTimeString())->with(['hasDetails', 'hasDetails.product'])->paginate(5);
         $products = Product::where('is_active', True)->where('description', 'like', '%' . $description . '%')->inRandomOrder()->limit(8)->get();
-        return Inertia::render('sales/Create', compact('products', 'paymentMethods', 'description'));
+        return Inertia::render('sales/Create', compact('products', 'paymentMethods', 'description', 'sales'));
     }
 
     /**
