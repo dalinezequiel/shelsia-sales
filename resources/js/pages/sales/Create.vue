@@ -412,7 +412,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                     </div>
                                                     <div class="flex items-center gap-2 md:order-6 md:w-30 justify-end">
                                                         <button type="button" @click="store.delete(sale.id)"
-                                                            class="inline-flex p-2 items-center cursor-pointer rounded-md border border-gray-200 hover:bg-[#F5F0F0] hover:border-[#F5F0F0] text-sm font-medium text-red-600 dark:text-red-500">
+                                                            class="inline-flex p-2 items-center cursor-pointer rounded-md border border-gray-200 hover:bg-[#EFF2F5] hover:border-[#EFF2F5] text-sm font-medium text-red-600 dark:text-red-500">
                                                             <Check width="18" height="18" color="#3560BD"
                                                                 class="transition-all" />
                                                         </button>
