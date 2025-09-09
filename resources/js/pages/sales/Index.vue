@@ -62,11 +62,11 @@ const calculate = (subtotal: number, shipping: number, discount: number) => subt
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Sales',
+        title: 'Vendas',
         href: '/sales',
     },
     {
-        title: 'List',
+        title: 'Lista',
         href: '/sales',
     }
 ];
@@ -184,8 +184,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                         <tr v-for="sale in sales.data" :key="sale.id">
                             <td class="p-4 border-b border-blue-gray-50">
                                 <div class="flex items-center gap-3">
-                                    <img src="https://placehold.co/600x400/transparent/F00?text=$"
-                                        alt="Spotify"
+                                    <img src="https://placehold.co/600x400/transparent/F00?text=$" alt="Spotify"
                                         class="relative inline-block h-12 w-12 !rounded-full border border-blue-gray-50 bg-blue-gray-50/50 object-contain object-center p-1" />
                                     <p
                                         class="block font-sans text-sm antialiased font-bold leading-normal text-blue-gray-900">
