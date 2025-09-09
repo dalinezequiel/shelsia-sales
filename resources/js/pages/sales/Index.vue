@@ -184,7 +184,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                         <tr v-for="sale in sales.data" :key="sale.id">
                             <td class="p-4 border-b border-blue-gray-50">
                                 <div class="flex items-center gap-3">
-                                    <img src="https://placehold.co/600x400/transparent/F00?text=$" alt="Spotify"
+                                    <img :src="sale.status === 'paid' ? 'https://placehold.co/600x400/transparent/429657?text=$' : (sale.status === 'pending' ? 'https://placehold.co/600x400/transparent/BAB436?text=$' : 'https://placehold.co/600x400/transparent/F00?text=$')"
                                         class="relative inline-block h-12 w-12 !rounded-full border border-blue-gray-50 bg-blue-gray-50/50 object-contain object-center p-1" />
                                     <p
                                         class="block font-sans text-sm antialiased font-bold leading-normal text-blue-gray-900">
@@ -210,9 +210,10 @@ const breadcrumbs: BreadcrumbItem[] = [
                             <td class="p-4 border-b border-blue-gray-50">
                                 <div class="w-max">
                                     <div :class="sale.status === 'paid' ? 'bg-green-500/20' : (sale.status === 'pending' ? 'bg-amber-500/20' : 'bg-red-500/20')"
-                                        class="relative grid items-center px-2 py-1 font-sans text-xs font-bold text-green-900 uppercase rounded-md select-none whitespace-nowrap bg-green-500/20">
+                                        class="relative grid items-center px-2 py-1 font-sans text-xs font-bold text-green-900 uppercase rounded-md select-none whitespace-nowrap">
                                         <span v-if="sale.status === 'paid'" class="">Pago</span>
-                                        <span v-else-if="sale.status === 'pending'" class="text-red-900">Pendente</span>
+                                        <span v-else-if="sale.status === 'pending'"
+                                            class="text-amber-900">Pendente</span>
                                         <span v-else class="text-red-900">Cancelado</span>
                                     </div>
                                 </div>
