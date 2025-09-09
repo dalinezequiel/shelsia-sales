@@ -60,7 +60,7 @@ const form = useForm({
         price: 0.0,
         quantity: 0.0
     }],
-    is_paid: true
+    status: 'paid'
 });
 
 const submit = () => {
@@ -81,6 +81,10 @@ const submit = () => {
     });
 };
 
+const reservation = () => {
+    form.status = 'pending';
+    submit();
+}
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -180,7 +184,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                     <a href="#" class="shrink-0 md:order-1">
                                                         <img class="h-10 dark:hidden"
                                                             :src="'/storage/'.concat(product.image)"
-                                                            :alt="product.image" alt="imac image" />
+                                                            :alt="product.image" />
                                                     </a>
 
                                                     <div class="w-full min-w-0 flex-1 space-y-2 md:order-2 md:max-w-md">
@@ -253,7 +257,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     </AlertDialogHeader>
                                     <AlertDialogFooter>
                                         <AlertDialogCancel class="cursor-pointer">Cancelar</AlertDialogCancel>
-                                        <AlertDialogAction class="cursor-pointer bg-[#212121]" @click="">
+                                        <AlertDialogAction class="cursor-pointer bg-[#212121]" @click="reservation">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"
                                                 fill="#FFFFFF">
                                                 <path
