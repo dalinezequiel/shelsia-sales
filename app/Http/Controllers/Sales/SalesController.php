@@ -33,9 +33,34 @@ class SalesController extends Controller
     {
         $paymentMethods = PaymentMethod::where('is_active', True)->get();
         $description = $request->query('description');
-        $sales = Sale::where('status', SaleStatus::PENDING)->whereDate('created_at', Carbon::now()->toDateString())->with(['hasDetails', 'hasDetails.product'])->get();
-        $products = Product::where('is_active', True)->where('description', 'like', '%' . $description . '%')->inRandomOrder()->limit(8)->get();
-        return Inertia::render('sales/Create', compact('products', 'paymentMethods', 'description', 'sales'));
+        $sales = Sale::where('status', SaleStatus::PENDING)->whereDate('created_at', Carbon::now()->toDateString())
+            ->with(['hasDetails', 'hasDetails.product'])->get();
+        $sale_stats = [
+            'paid' => [
+                'total' => Sale::where('status', SaleStatus::PAID)->count(),
+                'items' => Sale::where('status', SaleStatus::PAID)
+                    ->whereDate('created_at', Carbon::now()
+                        ->toDateString())->with('hasDetails')
+                    ->get()
+            ],
+            'pending' => [
+                'total' => Sale::where('status', SaleStatus::PENDING)->count(),
+                'items' => Sale::where('status', SaleStatus::PENDING)
+                    ->whereDate('created_at', Carbon::now()
+                        ->toDateString())->with('hasDetails')
+                    ->get()
+            ],
+            'cancelled' => [
+                'total' => Sale::where('status', SaleStatus::CANCELLED)->count(),
+                'sum' => Sale::where('status', SaleStatus::CANCELLED)
+                    ->whereDate('created_at', Carbon::now()
+                        ->toDateString())->with('hasDetails')
+                    ->get()
+            ]
+        ];
+        $products = Product::where('is_active', True)->where('description', 'like', '%' . $description . '%')
+            ->inRandomOrder()->limit(8)->get();
+        return Inertia::render('sales/Create', compact('products', 'paymentMethods', 'description', 'sales', 'sale_stats'));
     }
 
     /**
