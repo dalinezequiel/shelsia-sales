@@ -33,6 +33,10 @@ const props = defineProps({
     }, description: {
         type: String,
         required: false
+    },
+    sales: {
+        type: Object,
+        required: true
     }
 })
 
