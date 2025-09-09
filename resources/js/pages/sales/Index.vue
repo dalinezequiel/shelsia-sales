@@ -321,7 +321,10 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                 </section>
                                                 <p v-else>A lista está vazia.</p>
                                                 <div class="flex flex-col mx-10">
-                                                    <p>Taxa de entrega: <strong>{{ sale.shipping }}</strong></p>
+                                                    <div class="flex gap-4">
+                                                        <p>Taxa de entrega: <strong>{{ sale.shipping }}</strong></p>
+                                                        <p>Cliente: <strong>{{ sale.customer_name }}</strong></p>
+                                                    </div>
                                                     <p>Desconto: <strong>{{ sale.discount }}</strong></p>
                                                 </div>
 
