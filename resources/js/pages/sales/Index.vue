@@ -33,7 +33,7 @@ const search = () => {
         preserveState: true,
         replace: true
     }))
-};
+}
 
 const deleteSale = (id: number) => {
     router.delete(route('sales.destroy', id), {
@@ -42,14 +42,22 @@ const deleteSale = (id: number) => {
         onError: () => toast.error('Ocorreu um erro ao tentar excluir venda.')
     })
 }
+
+enum Status {
+    PAID = "paid",
+    CANCELLED = "cancelled"
+}
+
 const form = useForm({
     sale_id: '',
+    status: '',
     has_details: [
         { id: 0, quantity: 0 }
     ]
 })
-const updateSale = (sale_id: number, has_details: [{ id: number; quantity: number; }]) => {
+const updateSale = (sale_id: number, status: string, has_details: [{ id: number; quantity: number; }]) => {
     form.sale_id = sale_id.toString(),
+        form.status = status,
         form.has_details = has_details,
         form.put(route('sales.update', { id: 0 }), {
             preserveScroll: true,
@@ -322,6 +330,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                         <AlertDialogFooter>
                                             <AlertDialogCancel class="cursor-pointer">Cancelar</AlertDialogCancel>
                                             <AlertDialogAction v-if="sale.status === 'pending'"
+                                                @click="updateSale(sale.id, Status.PAID, sale.has_details)"
                                                 class="cursor-pointer  border border-gray-200 bg-white text-gray-800 shadow-2xs hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden focus:bg-gray-50 dark:bg-transparent dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
                                                     <path
@@ -329,7 +338,8 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                 </svg>
                                                 Pagar
                                             </AlertDialogAction>
-                                            <AlertDialogAction @click="updateSale(sale.id, sale.has_details)"
+                                            <AlertDialogAction
+                                                @click="updateSale(sale.id, Status.CANCELLED, sale.has_details)"
                                                 class="cursor-pointer bg-[#EC3636] hover:bg-[#D4563F]">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"
                                                     fill="#FFFFFF">
