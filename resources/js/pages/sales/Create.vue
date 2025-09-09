@@ -13,7 +13,7 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
-import { Trash2 } from 'lucide-vue-next';
+import { Trash2, Check } from 'lucide-vue-next';
 import Product from '@/components/additional/Product.vue';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
@@ -53,7 +53,9 @@ const search = () => {
         preserveState: true,
         replace: true
     }))
-};
+}
+
+const calculate = (subtotal: number, shipping: number, discount: number) => subtotal + shipping - discount;
 
 const form = useForm({
     customer_name: 'Consumidor final',
@@ -362,10 +364,11 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                 </div>
                                                 <div
                                                     class="flex items-center justify-between md:order-3 md:justify-end">
-                                                    <div class="flex items-center">
+                                                    <div class="flex items-center md:w-60">
                                                         <p>Cliente</p>
                                                     </div>
-                                                    <div class="text-end md:order-4 md:w-30">
+                                                    <div class="md:order-4 md:w-40">
+                                                        <p>Forma de pagamento</p>
                                                     </div>
                                                     <div class="text-end md:order-5 md:w-30">
                                                         <p>Valor Total</p>
@@ -375,6 +378,56 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                 </div>
                                             </div>
                                         </section>
+
+
+                                        <section v-if="sales.length !== 0" v-for="sale in sales" :key="sale.id"
+                                            class="rounded-lg border border-gray-200 bg-white mx-4 my-2 p-2 dark:border-gray-700 dark:bg-gray-800 md:px-6">
+                                            <div
+                                                class="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
+
+                                                <div class="w-full min-w-0 flex-1 space-y-2 md:order-2 md:max-w-md">
+                                                    <p class="text-base font-medium text-gray-900 dark:text-white">
+                                                        {{ sale.description }}
+                                                    </p>
+                                                </div>
+
+                                                <div
+                                                    class="flex items-center justify-between md:order-3 md:justify-end">
+                                                    <div class=" md:order-4 md:w-60">
+                                                        <p class="text-base font-bold text-gray-900 dark:text-white">
+                                                            {{ sale.customer_name }}</p>
+                                                    </div>
+                                                    <div class=" md:order-4 md:w-40">
+                                                        <p class="text-base font-bold text-gray-900 dark:text-white">
+                                                            {{ sale.payment_method }}</p>
+                                                    </div>
+                                                    <div class="text-end md:order-5 md:w-30">
+                                                        <p class="text-base font-bold text-gray-900 dark:text-white">
+                                                            {{calculate(sale.has_details.reduce((acc: number, item:
+                                                                {
+                                                                    price: number; quantity: number;
+                                                                }) => acc + item.price * item.quantity,
+                                                                0), Number(sale.shipping),
+                                                                Number(sale.discount)).toFixed(2)}}</p>
+                                                    </div>
+                                                    <div class="flex items-center gap-2 md:order-6 md:w-30 justify-end">
+                                                        <button type="button" @click="store.delete(sale.id)"
+                                                            class="inline-flex p-2 items-center cursor-pointer rounded-md border border-gray-200 hover:bg-[#F5F0F0] hover:border-[#F5F0F0] text-sm font-medium text-red-600 dark:text-red-500">
+                                                            <Check width="18" height="18" color="#3560BD"
+                                                                class="transition-all" />
+                                                        </button>
+
+                                                        <button type="button" @click="store.delete(sale.id)"
+                                                            class="inline-flex p-2 items-center cursor-pointer rounded-md border border-gray-200 hover:bg-[#F5F0F0] hover:border-[#F5F0F0] text-sm font-medium text-red-600 dark:text-red-500">
+                                                            <Trash2 width="18" height="18" color="#C80909"
+                                                                class="transition-all" />
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </section>
+                                        <p v-else>Sem vendas reservadas.</p>
+
 
                                     </AlertDialogDescription>
                                 </AlertDialogHeader>
