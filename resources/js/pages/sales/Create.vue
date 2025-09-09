@@ -358,7 +358,6 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                         <p>Cliente</p>
                                                     </div>
                                                     <div class="text-end md:order-4 md:w-30">
-                                                        <!-- <p>Valor Unitário</p> -->
                                                     </div>
                                                     <div class="text-end md:order-5 md:w-30">
                                                         <p>Valor Total</p>
@@ -388,14 +387,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                 <path d="M19 12H5" />
                             </svg>
                             Voltar</Link>
-                            <!-- <Link :href="route('sales.index')"
-                                class="w-full px-4 py-2 inline-flex justify-center gap-x-2 text-sm font-medium rounded-lg border border-gray-100 bg-white text-gray-800 shadow-2xs hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden focus:bg-gray-50 dark:bg-transparent dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="16px">
-                                <path
-                                    d="M96 160C96 142.3 110.3 128 128 128L512 128C529.7 128 544 142.3 544 160C544 177.7 529.7 192 512 192L128 192C110.3 192 96 177.7 96 160zM96 320C96 302.3 110.3 288 128 288L512 288C529.7 288 544 302.3 544 320C544 337.7 529.7 352 512 352L128 352C110.3 352 96 337.7 96 320zM544 480C544 497.7 529.7 512 512 512L128 512C110.3 512 96 497.7 96 480C96 462.3 110.3 448 128 448L512 448C529.7 448 544 462.3 544 480z" />
-                            </svg>
 
-                            Balanço</Link> -->
                             <AlertDialog>
                                 <AlertDialogTrigger
                                     class="w-full px-4 py-2 inline-flex justify-center cursor-pointer gap-x-2 text-sm font-medium rounded-lg border border-gray-100 bg-white text-gray-800 shadow-2xs hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden focus:bg-gray-50 dark:bg-transparent dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800">
@@ -414,22 +406,37 @@ const breadcrumbs: BreadcrumbItem[] = [
                                             <div>
 
                                                 <div
-                                                    class="w-full justify-between min-w-0 flex text-center  rounded-lg border border-gray-200 bg-white my-2 p-2 dark:border-gray-700 dark:bg-gray-800 md:px-4">
-                                                    <p class="font-bold text-gray-900 dark:text-white">
+                                                    class="w-full justify-between min-w-0 flex text-center  rounded-lg border border-gray-200 bg-white my-2 p-2 dark:border-gray-700 dark:bg-gray-800 md:px-3">
+                                                    <p class="flex gap-1 font-bold text-gray-900 dark:text-white">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"
+                                                            width="18">
+                                                            <path
+                                                                d="M530.8 134.1C545.1 144.5 548.3 164.5 537.9 178.8L281.9 530.8C276.4 538.4 267.9 543.1 258.5 543.9C249.1 544.7 240 541.2 233.4 534.6L105.4 406.6C92.9 394.1 92.9 373.8 105.4 361.3C117.9 348.8 138.2 348.8 150.7 361.3L252.2 462.8L486.2 141.1C496.6 126.8 516.6 123.6 530.9 134z" />
+                                                        </svg>
                                                         Pago (6)
                                                     </p>
                                                     <p class="font-bold text-gray-900">0.00</p>
                                                 </div>
                                                 <div
-                                                    class="w-full justify-between min-w-0 flex text-center  rounded-lg border border-gray-200 bg-white my-2 p-2 dark:border-gray-700 dark:bg-gray-800 md:px-4">
-                                                    <p class="font-bold text-gray-900 dark:text-white">
+                                                    class="w-full justify-between min-w-0 flex text-center  rounded-lg border border-gray-200 bg-white my-2 p-2 dark:border-gray-700 dark:bg-gray-800 md:px-3">
+                                                    <p class="flex gap-1 font-bold text-gray-900 dark:text-white">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"
+                                                            width="18">
+                                                            <path
+                                                                d="M431.2 476.5L163.5 208.8C141.1 240.2 128 278.6 128 320C128 426 214 512 320 512C361.5 512 399.9 498.9 431.2 476.5zM476.5 431.2C498.9 399.8 512 361.4 512 320C512 214 426 128 320 128C278.5 128 240.1 141.1 208.8 163.5L476.5 431.2zM64 320C64 178.6 178.6 64 320 64C461.4 64 576 178.6 576 320C576 461.4 461.4 576 320 576C178.6 576 64 461.4 64 320z" />
+                                                        </svg>
                                                         Pendente (6)
                                                     </p>
                                                     <p class="font-bold text-gray-900">0.00</p>
                                                 </div>
                                                 <div
-                                                    class="w-full justify-between min-w-0 flex text-center  rounded-lg border border-gray-200 bg-white mt-2 p-2 dark:border-gray-700 dark:bg-gray-800 md:px-4">
-                                                    <p class="font-bold text-gray-900 dark:text-white">
+                                                    class="w-full justify-between min-w-0 flex text-center  rounded-lg border border-gray-200 bg-white mt-2 p-2 dark:border-gray-700 dark:bg-gray-800 md:px-3">
+                                                    <p class="flex gap-1 font-bold text-gray-900 dark:text-white">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"
+                                                            width="18">
+                                                            <path
+                                                                d="M183.1 137.4C170.6 124.9 150.3 124.9 137.8 137.4C125.3 149.9 125.3 170.2 137.8 182.7L275.2 320L137.9 457.4C125.4 469.9 125.4 490.2 137.9 502.7C150.4 515.2 170.7 515.2 183.2 502.7L320.5 365.3L457.9 502.6C470.4 515.1 490.7 515.1 503.2 502.6C515.7 490.1 515.7 469.8 503.2 457.3L365.8 320L503.1 182.6C515.6 170.1 515.6 149.8 503.1 137.3C490.6 124.8 470.3 124.8 457.8 137.3L320.5 274.7L183.1 137.4z" />
+                                                        </svg>
                                                         Cancelado (6)
                                                     </p>
                                                     <p class="font-bold text-gray-900">0.00</p>
