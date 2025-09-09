@@ -230,7 +230,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                         <tr v-for="account in accounts.data" :key="account.id">
                             <td class="p-4 border-b border-blue-gray-50">
                                 <div class="flex items-center gap-3">
-                                    <img src="https://placehold.co/600x400/transparent/F00"
+                                    <img :src="account.is_active ? 'https://placehold.co/600x400/transparent/429657?text=$' : 'https://placehold.co/600x400/transparent/F00?text=$'"
                                         class="relative inline-block h-12 w-12 !rounded-full border border-blue-gray-50 bg-blue-gray-50/50 object-contain object-center p-1" />
                                     <div class="flex flex-col">
                                         <div class="flex flex-col">
