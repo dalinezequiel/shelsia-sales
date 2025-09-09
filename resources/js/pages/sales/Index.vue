@@ -61,8 +61,8 @@ const updateSale = (sale_id: number, status: string, has_details: [{ id: number;
         form.has_details = has_details,
         form.put(route('sales.update', { id: 0 }), {
             preserveScroll: true,
-            onSuccess: () => toast.success('Venda cancelada com sucesso.'),
-            onError: () => toast.error('Ocorreu um erro ao tentar cancelar venda.')
+            onSuccess: () => toast.success('Venda processada com sucesso.'),
+            onError: () => toast.error('Ocorreu um erro ao tentar processar venda.')
         });
 };
 
