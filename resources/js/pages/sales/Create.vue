@@ -68,7 +68,7 @@ const search = () => {
     }))
 }
 
-const calculate = (subtotal: number, shipping: number, discount: number) =>
+const totalPerReservation = (subtotal: number, shipping: number, discount: number) =>
     subtotal + shipping - discount;
 
 const totalByStatus = (shipping: number, discount: number,
@@ -424,10 +424,11 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                     </div>
                                                     <div class="text-end md:order-5 md:w-30">
                                                         <p class="text-base font-bold text-gray-900 dark:text-white">
-                                                            {{calculate(sale.has_details.reduce((acc: number, item:
-                                                                {
-                                                                    price: number; quantity: number;
-                                                                }) => acc + item.price * item.quantity,
+                                                            {{totalPerReservation(sale.has_details.reduce((acc: number,
+                                                                item:
+                                                                    {
+                                                                        price: number; quantity: number;
+                                                                    }) => acc + item.price * item.quantity,
                                                                 0), Number(sale.shipping),
                                                                 Number(sale.discount)).toFixed(2)}}</p>
                                                     </div>
