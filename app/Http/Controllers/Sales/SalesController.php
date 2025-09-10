@@ -52,7 +52,7 @@ class SalesController extends Controller
             ],
             'cancelled' => [
                 'total' => Sale::where('status', SaleStatus::CANCELLED)->count(),
-                'sum' => Sale::where('status', SaleStatus::CANCELLED)
+                'items' => Sale::where('status', SaleStatus::CANCELLED)
                     ->whereDate('created_at', Carbon::now()
                         ->toDateString())->with('hasDetails')
                     ->get()
