@@ -145,9 +145,29 @@ class SalesController extends Controller
      */
     public function update(Request $request)
     {
-        $sale = Sale::find($request->sale_id);
-        $sale->status = $request->status;
-        $sale->save();
+        try {
+            DB::beginTransaction();
+            $sale = Sale::find($request->sale_id);
+            $sale->status = $request->status;
+            $sale->save();
+
+            foreach ($request->has_details as $detail) {
+                $product = Product::find($detail['product_id']);
+                $current_stock = $product->available_stock;
+                $quantity = $detail['quantity'];
+
+                $new_stock = $current_stock + $quantity;
+                $product->available_stock = $new_stock;
+
+                $product->save();
+            }
+
+            DB::commit();
+            return redirect()->route('sales.index')->with('success', 'Cancelled com sucesso!');
+        } catch (Exception $ex) {
+            DB::rollBack();
+            return redirect()->route('sales.index')->with('error', $ex);
+        }
     }
 
     /**
