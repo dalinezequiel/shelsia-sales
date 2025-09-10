@@ -103,11 +103,15 @@ const submit = () => {
     discount.value = 0;
     shipping.value = 0;
 
-    form.post(route('sales.store'), {
-        preserveScroll: true,
-        onSuccess: () => toast.success('Venda realizada com sucesso.'),
-        onError: () => toast.error('Ocorreu um erro ao tentar realizar venda.')
-    });
+    if (form.details.length !== 0) {
+        form.post(route('sales.store'), {
+            preserveScroll: true,
+            onSuccess: () => toast.success('Venda realizada com sucesso.'),
+            onError: () => toast.error('Ocorreu um erro ao tentar realizar venda.')
+        });
+    } else {
+        toast.warning('O carrinho está vazio.');
+    }
 };
 
 const reservation = () => {
