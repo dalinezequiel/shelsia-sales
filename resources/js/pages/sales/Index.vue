@@ -343,6 +343,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                             </AlertDialogAction>
                                             <AlertDialogAction
                                                 @click="updateSale(sale.id, Status.CANCELLED, sale.has_details)"
+                                                :disabled="sale.status === 'cancelled'"
                                                 class="cursor-pointer bg-[#EC3636] hover:bg-[#D4563F]">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"
                                                     fill="#FFFFFF">
