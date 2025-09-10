@@ -359,7 +359,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <AlertDialogTitle>Vendas Reservadas</AlertDialogTitle>
                                     <AlertDialogDescription>
 
-                                        <section
+                                        <section v-if="sales.length !== 0"
                                             class="bg-white mx-4 my-2 dark:border-gray-700 dark:bg-gray-800 md:px-6">
                                             <div
                                                 class="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
@@ -430,7 +430,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                 </div>
                                             </div>
                                         </section>
-                                        <p v-else>Sem vendas reservadas.</p>
+                                        <p v-else>Nenhuma venda está reservada.</p>
 
 
                                     </AlertDialogDescription>
