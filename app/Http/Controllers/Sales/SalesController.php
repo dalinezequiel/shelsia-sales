@@ -66,16 +66,6 @@ class SalesController extends Controller
         return Inertia::render('sales/Create', compact('products', 'paymentMethods', 'description', 'sales', 'sale_stats'));
     }
 
-    function calculate(array $items){
-        $sum=0;
-        foreach($items as $item){
-            $sale=new Sale($item);
-            dd($sale->hasDetails()[0]->quantity);
-            $sum=$item->quantity *$item->price;
-        }
-        return $sum;
-    }
-
     /**
      * Show the form for creating a new resource.
      */

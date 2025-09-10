@@ -100,6 +100,8 @@ const submit = () => {
     }));
 
     store.items = [];
+    discount.value = 0;
+    shipping.value = 0;
 
     form.post(route('sales.store'), {
         preserveScroll: true,
