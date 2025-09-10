@@ -37,21 +37,24 @@ class SalesController extends Controller
             ->with(['hasDetails', 'hasDetails.product'])->get();
         $sale_stats = [
             'paid' => [
-                'total' => Sale::where('status', SaleStatus::PAID)->count(),
+                'total' => Sale::where('status', SaleStatus::PAID)
+                    ->whereDate('created_at', Carbon::now()->toDateString())->count(),
                 'items' => Sale::where('status', SaleStatus::PAID)
                     ->whereDate('created_at', Carbon::now()
                         ->toDateString())->with('hasDetails')
                     ->get()
             ],
             'pending' => [
-                'total' => Sale::where('status', SaleStatus::PENDING)->count(),
+                'total' => Sale::where('status', SaleStatus::PENDING)
+                    ->whereDate('created_at', Carbon::now()->toDateString())->count(),
                 'items' => Sale::where('status', SaleStatus::PENDING)
                     ->whereDate('created_at', Carbon::now()
                         ->toDateString())->with('hasDetails')
                     ->get()
             ],
             'cancelled' => [
-                'total' => Sale::where('status', SaleStatus::CANCELLED)->count(),
+                'total' => Sale::where('status', SaleStatus::CANCELLED)
+                    ->whereDate('created_at', Carbon::now()->toDateString())->count(),
                 'items' => Sale::where('status', SaleStatus::CANCELLED)
                     ->whereDate('created_at', Carbon::now()
                         ->toDateString())->with('hasDetails')
