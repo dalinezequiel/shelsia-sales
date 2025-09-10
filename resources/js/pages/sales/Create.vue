@@ -44,6 +44,15 @@ const props = defineProps({
     }
 })
 
+interface Sale {
+    discount: number;
+    shipping: number;
+    has_details: [{
+        quantity: number;
+        price: number;
+    }]
+}
+
 const shipping = ref(0);
 const discount = ref(0);
 const total = () => {
@@ -59,7 +68,15 @@ const search = () => {
     }))
 }
 
-const calculate = (subtotal: number, shipping: number, discount: number) => subtotal + shipping - discount;
+const calculate = (subtotal: number, shipping: number, discount: number) =>
+    subtotal + shipping - discount;
+
+const totalByStatus = (shipping: number, discount: number,
+    details: [{ quantity: number, price: number }]) => {
+    const subtotal = details.reduce((acc: number, item) => acc + item.price * item.quantity, 0)
+    const total = subtotal + Number(shipping) - Number(discount);
+    return total;
+}
 
 const form = useForm({
     customer_name: 'Consumidor final',
@@ -480,16 +497,16 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                         </svg>
                                                         Pago ({{ sale_stats.paid.total }})
                                                     </p>
+
                                                     <p v-if="sale_stats.paid.items.length !== 0"
                                                         class="font-bold text-gray-900">
-                                                        {{calculate(sale_stats.paid.items[0].has_details.reduce((acc:
-                                                            number, item:
-                                                                {
-                                                                    price: number; quantity: number;
-                                                                }) => acc + item.price * item.quantity,
-                                                            0), Number(sale_stats.paid.items[0].shipping),
-                                                            Number(sale_stats.paid.items[0].discount)).toFixed(2)}}</p>
+                                                        {{sale_stats.paid.items.map((sale: Sale) =>
+                                                            totalByStatus(sale.shipping, sale.discount,
+                                                                sale.has_details)).reduce((acc: number, subtotal: number) => acc
+                                                                    + subtotal, 0).toFixed(2)}}
+                                                    </p>
                                                     <p v-else class="font-bold text-gray-900">0.00</p>
+
                                                 </div>
                                                 <div
                                                     class="w-full justify-between min-w-0 flex text-center  rounded-lg border border-gray-200 bg-white my-2 p-2 dark:border-gray-700 dark:bg-gray-800 md:px-3">
@@ -501,16 +518,16 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                         </svg>
                                                         Pendente ({{ sale_stats.pending.total }})
                                                     </p>
+
                                                     <p v-if="sale_stats.pending.items.length !== 0"
                                                         class="font-bold text-gray-900">
-                                                        {{calculate(sale_stats.pending.items[0].has_details.reduce((acc:
-                                                            number, item:
-                                                                {
-                                                                    price: number; quantity: number;
-                                                                }) => acc + item.price * item.quantity,
-                                                            0), Number(sale_stats.pending.items[0].shipping),
-                                                            Number(sale_stats.pending.items[0].discount)).toFixed(2)}}</p>
+                                                        {{sale_stats.pending.items.map((sale: Sale) =>
+                                                            totalByStatus(sale.shipping, sale.discount,
+                                                                sale.has_details)).reduce((acc: number, subtotal: number) => acc
+                                                                    + subtotal, 0).toFixed(2)}}
+                                                    </p>
                                                     <p v-else class="font-bold text-gray-900">0.00</p>
+
                                                 </div>
                                                 <div
                                                     class="w-full justify-between min-w-0 flex text-center  rounded-lg border border-gray-200 bg-white mt-2 p-2 dark:border-gray-700 dark:bg-gray-800 md:px-3">
@@ -522,15 +539,14 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                         </svg>
                                                         Cancelado ({{ sale_stats.cancelled.total }})
                                                     </p>
+
                                                     <p v-if="sale_stats.cancelled.items.length !== 0"
                                                         class="font-bold text-gray-900">
-                                                        {{calculate(sale_stats.cancelled.items[0].has_details.reduce((acc:
-                                                            number, item:
-                                                                {
-                                                                    price: number; quantity: number;
-                                                                }) => acc + item.price * item.quantity,
-                                                            0), Number(sale_stats.cancelled.items[0].shipping),
-                                                            Number(sale_stats.cancelled.items[0].discount)).toFixed(2)}}</p>
+                                                        {{sale_stats.cancelled.items.map((sale: Sale) =>
+                                                            totalByStatus(sale.shipping, sale.discount,
+                                                                sale.has_details)).reduce((acc: number, subtotal: number) => acc
+                                                                    + subtotal, 0).toFixed(2)}}
+                                                    </p>
                                                     <p v-else class="font-bold text-gray-900">0.00</p>
                                                 </div>
 
