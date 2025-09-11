@@ -290,8 +290,9 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     </AlertDialogHeader>
                                     <AlertDialogFooter>
                                         <AlertDialogCancel class="cursor-pointer">Cancelar</AlertDialogCancel>
-                                        <AlertDialogAction class="cursor-pointer bg-[#212121]" @click="reservation"
-                                            :disabled="store.items.length === 0">
+                                        <AlertDialogAction
+                                            class="cursor-pointer border-[#93733E] bg-[#93733E] hover:bg-[#735930]"
+                                            @click="reservation" :disabled="store.items.length === 0">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"
                                                 fill="#FFFFFF">
                                                 <path
