@@ -82,7 +82,7 @@ const form = useForm({
     customer_name: 'Consumidor final',
     discount: 0.0,
     shipping: 0.0,
-    payment_method: '',
+    payment_method_id: '',
     details: [{
         price: 0.0,
         quantity: 0.0
@@ -307,13 +307,13 @@ const breadcrumbs: BreadcrumbItem[] = [
                         <div class="py-8 ">
                             <div class="grid gap-2 pb-4 lg:mb-0">
                                 <Label for="payment_method">Forma de pagamento</Label>
-                                <Select id="payment_method" v-model="form.payment_method" required>
+                                <Select id="payment_method" v-model="form.payment_method_id" required>
                                     <SelectTrigger class="w-auto">
                                         <SelectValue placeholder="Selecionar forma de pagamento" />
                                     </SelectTrigger>
                                     <SelectContent>
                                         <SelectItem v-for="paymentMethod in paymentMethods" :key="paymentMethod.id"
-                                            :value="paymentMethod.description">{{ paymentMethod.description }}
+                                            :value="paymentMethod.id">{{ paymentMethod.description }}
                                         </SelectItem>
                                     </SelectContent>
                                 </Select>
