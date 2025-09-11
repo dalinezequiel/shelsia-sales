@@ -92,8 +92,7 @@ class SalesController extends Controller
                 'customer_name' => $request->customer_name,
                 'discount' => $request->discount,
                 'shipping' => $request->shipping,
-                'status' => $request->status,
-                'payment_method_id' => $request
+                'status' => $request->status
             ]);
 
             $sale->paymentMethod()->associate($payment_method);
