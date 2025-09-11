@@ -22,7 +22,8 @@ class SalesController extends Controller
     public function index(Request $request)
     {
         $description = $request->query('description');
-        $sales = Sale::where('description', 'like', '%' . $description . '%')->with(['hasDetails', 'hasDetails.product'])->paginate(5);
+        $sales = Sale::where('description', 'like', '%' . $description . '%')->with(['hasDetails', 'hasDetails.product', 'paymentMethod'])
+            ->paginate(5);
         return Inertia::render('sales/Index', compact('sales'));
     }
 
@@ -34,7 +35,7 @@ class SalesController extends Controller
         $paymentMethods = PaymentMethod::where('is_active', True)->get();
         $description = $request->query('description');
         $sales = Sale::where('status', SaleStatus::PENDING)->whereDate('created_at', Carbon::now()->toDateString())
-            ->with(['hasDetails', 'hasDetails.product'])->get();
+            ->with(['hasDetails', 'hasDetails.product', 'paymentMethod'])->get();
         $sale_stats = [
             'paid' => [
                 'total' => Sale::where('status', SaleStatus::PAID)
@@ -80,19 +81,24 @@ class SalesController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'payment_method' => 'required'
+            'payment_method_id' => 'required'
         ]);
 
         try {
             DB::beginTransaction();
-            $sale = Sale::create([
+            $payment_method = PaymentMethod::find($request->payment_method_id);
+            $sale = new Sale([
                 'description' => 'VD' . rand(10000000, 99999999),
                 'customer_name' => $request->customer_name,
                 'discount' => $request->discount,
                 'shipping' => $request->shipping,
-                'payment_method' => $request->payment_method,
-                'status' => $request->status
+                'status' => $request->status,
+                'payment_method_id' => $request
             ]);
+
+            $sale->paymentMethod()->associate($payment_method);
+            $sale->save();
+
 
             $items = [];
             foreach ($request->details as $detail) {
