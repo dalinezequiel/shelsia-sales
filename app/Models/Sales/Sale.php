@@ -2,6 +2,7 @@
 
 namespace App\Models\Sales;
 
+use App\Models\PaymentMethod\PaymentMethod;
 use Illuminate\Database\Eloquent\Model;
 
 class Sale extends Model
@@ -12,7 +13,6 @@ class Sale extends Model
         'customer_name',
         'discount',
         'shipping',
-        'payment_method',
         'status',
         'created_at'
     ];
@@ -20,5 +20,10 @@ class Sale extends Model
     public function hasDetails()
     {
         return $this->hasMany(SaleDetail::class);
+    }
+
+    public function paymentMethod()
+    {
+        return $this->belongsTo(PaymentMethod::class);
     }
 }
