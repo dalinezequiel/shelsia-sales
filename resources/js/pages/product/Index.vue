@@ -256,10 +256,17 @@ const breadcrumbs: BreadcrumbItem[] = [
                                 </div>
                             </td>
                             <td class="p-4 border-b border-blue-gray-50">
-                                <p
-                                    class="pl-4 block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                                    {{ product.available_stock }}
-                                </p>
+                                <div class="flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="16"
+                                        :fill="product.available_stock >= product.minimum_stock ? '#218230' : '#D94629'">
+                                        <path
+                                            d="M64 320C64 178.6 178.6 64 320 64C461.4 64 576 178.6 576 320C576 461.4 461.4 576 320 576C178.6 576 64 461.4 64 320z" />
+                                    </svg>
+                                    <p
+                                        class="flex pl-1 font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                                        {{ product.available_stock }}
+                                    </p>
+                                </div>
                             </td>
                             <td class="p-4 border-b border-blue-gray-50">
                                 <div class="w-max">
