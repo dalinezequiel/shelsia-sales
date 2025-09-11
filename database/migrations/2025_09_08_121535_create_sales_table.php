@@ -13,11 +13,14 @@ return new class extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('payment_method_id')
+                ->constrained()
+                ->onDelete('CASCADE')
+                ->onUpdate('CASCADE');
             $table->string('description');
             $table->string('customer_name');
             $table->decimal('discount', '10', '2');
             $table->decimal('shipping', '10', '2');
-            $table->string('payment_method');
             $table->enum('status', ['paid', 'cancelled', 'pending'])->default('paid');
             $table->timestamps();
         });
