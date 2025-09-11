@@ -221,7 +221,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                         class="relative grid items-center px-2 py-1 font-sans text-xs font-bold text-green-900 uppercase rounded-md select-none whitespace-nowrap">
                                         <span v-if="sale.status === 'paid'" class="">Pago</span>
                                         <span v-else-if="sale.status === 'pending'"
-                                            class="text-amber-900">Pendente</span>
+                                            class="text-yellow-800">Pendente</span>
                                         <span v-else class="text-red-900">Cancelado</span>
                                     </div>
                                 </div>
