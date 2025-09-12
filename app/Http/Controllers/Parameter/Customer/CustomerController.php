@@ -39,13 +39,13 @@ class CustomerController extends Controller
         ]);
 
         Customer::create([
-            'name' => $request -> name,
-            'surname' => $request -> surname,
-            'gender' => $request -> gender,
-            'phone' => $request -> phone,
-            'email' => $request -> email,
-            'address' => $request -> address,
-            'is_active' => $request -> status
+            'name' => $request->name,
+            'surname' => $request->surname,
+            'gender' => $request->gender,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'address' => $request->address,
+            'is_active' => $request->is_active
         ]);
 
         return redirect()->route('customers.index')->with('success', 'Cadastrado com sucesso!');
@@ -77,14 +77,14 @@ class CustomerController extends Controller
             'surname' => 'required'
         ]);
 
-        $customer -> update([
-            'name' => $request -> input('name'),
-            'surname' => $request -> input('surname'),
-            'gender' => $request -> input('gender'),
-            'phone' => $request -> input('phone'),
-            'email' => $request -> input('email'),
-            'address' => $request -> input('address'),
-            'is_active' => $request -> input('is_active')
+        $customer->update([
+            'name' => $request->input('name'),
+            'surname' => $request->input('surname'),
+            'gender' => $request->input('gender'),
+            'phone' => $request->input('phone'),
+            'email' => $request->input('email'),
+            'address' => $request->input('address'),
+            'is_active' => $request->input('is_active')
         ]);
 
         return redirect()->route('customers.index')->with('success', 'Actualizado com sucesso!');
@@ -95,7 +95,7 @@ class CustomerController extends Controller
      */
     public function destroy(Customer $customer)
     {
-        $customer -> delete();
+        $customer->delete();
         return redirect()->route('customers.index')->with('success', 'Deleted com sucesso!');
     }
 }
