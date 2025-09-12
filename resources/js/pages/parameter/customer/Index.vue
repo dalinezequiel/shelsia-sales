@@ -162,10 +162,10 @@ const breadcrumbs: BreadcrumbItem[] = [
                                         <div class="flex flex-col">
                                             <p
                                                 class="text-blue-gray-900 block font-sans text-sm leading-normal font-bold antialiased">
-                                                {{ customer.name }}</p>
+                                                {{ customer.surname }}</p>
                                             <p
                                                 class="text-blue-gray-900 block font-sans text-xs leading-normal font-normal antialiased opacity-70">
-                                                {{ customer.surname }}
+                                                {{ customer.name }}
                                             </p>
                                         </div>
                                     </div>
