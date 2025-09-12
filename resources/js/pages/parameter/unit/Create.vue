@@ -48,7 +48,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                     <div class="mb-8 flex items-center justify-between gap-8">
                         <div>
                             <h5
-                                class="text-blue-gray-900 block font-sans text-xl leading-snug font-semibold tracking-normal antialiased">
+                                class="text-blue-gray-900 block font-sans text-lg leading-snug font-semibold tracking-normal antialiased">
                                 Unidade de Medida
                             </h5>
                         </div>
