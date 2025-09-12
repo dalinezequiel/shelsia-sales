@@ -82,9 +82,9 @@ const breadcrumbs: BreadcrumbItem[] = [
                         </div>
 
                         <div class="grid gap-2">
-                            <Label for="surname">Apelido</Label>
+                            <Label for="surname">Abreviatura/ Apelido</Label>
                             <Input id="surname" v-model="form.surname" class="mt-1 block w-full" required
-                                autocomplete="surname" placeholder="Apelido" />
+                                autocomplete="surname" placeholder="Abreviatura ou apelido" />
                             <InputError :message="form.errors.surname" class="mt-2" />
                         </div>
 
