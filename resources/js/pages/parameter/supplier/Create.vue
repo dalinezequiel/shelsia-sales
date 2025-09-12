@@ -9,6 +9,7 @@ import ParameterLayout from '@/pages/parameter/Layout.vue';
 import { type BreadcrumbItem } from '@/types';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 import { toast } from 'vue-sonner';
+import { Loader } from 'lucide-vue-next';
 
 const form = useForm({
     name: '',
@@ -51,7 +52,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                     <div class="mb-8 flex items-center justify-between gap-8">
                         <div>
                             <h5
-                                class="text-blue-gray-900 block font-sans text-xl leading-snug font-semibold tracking-normal antialiased">
+                                class="text-blue-gray-900 block font-sans text-lg leading-snug font-semibold tracking-normal antialiased">
                                 Cadastrar Fornecedor
                             </h5>
                         </div>
@@ -67,9 +68,9 @@ const breadcrumbs: BreadcrumbItem[] = [
                         </div>
 
                         <div class="grid gap-2">
-                            <Label for="surname">Apelido</Label>
+                            <Label for="surname">Abreviatura/ Apelido</Label>
                             <Input id="surname" v-model="form.surname" class="mt-1 block w-full" required
-                                autocomplete="surname" placeholder="Apelido" />
+                                autocomplete="surname" placeholder="Abreviatura ou apelido" />
                             <InputError :message="form.errors.surname" class="mt-2" />
                         </div>
 
@@ -80,9 +81,9 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <SelectValue placeholder="Selecionar gênero" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem value="Masculino"> Masculino </SelectItem>
-                                    <SelectItem value="Feminino"> Feminino </SelectItem>
-                                    <SelectItem value="Indefinido"> Indefinido </SelectItem>
+                                    <SelectItem value="male"> Masculino </SelectItem>
+                                    <SelectItem value="female"> Feminino </SelectItem>
+                                    <SelectItem value="undefined"> Indefinido </SelectItem>
                                 </SelectContent>
                             </Select>
                             <InputError :message="form.errors.gender" class="mt-2" />
@@ -133,6 +134,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                             </svg>
                             Voltar</Link>
                             <Button class="cursor-pointer">
+                                <Loader class="animate-spin" v-if="form.processing" />
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round" class="lucide lucide-save-icon lucide-save">
@@ -141,7 +143,8 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <path d="M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7" />
                                     <path d="M7 3v4a1 1 0 0 0 1 1h7" />
                                 </svg>
-                                Salvar</Button>
+                                Salvar
+                            </Button>
                         </div>
                     </form>
                 </div>
