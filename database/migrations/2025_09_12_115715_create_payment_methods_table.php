@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('payment_methods', function (Blueprint $table) {
             $table->id();
             $table->string('description');
-            $table->string('operation_type');
+            $table->enum('operation_type', ['payment', 'receipt', 'payment_receipt'])->default('payment_receipt');
             $table->string('observation')->nullable();
             $table->boolean('is_active')->default(false);
             $table->timestamps();
