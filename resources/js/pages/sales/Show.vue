@@ -5,6 +5,15 @@ import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
 import { Head, Link } from '@inertiajs/vue3';
 
+interface Sale {
+    id: number;
+    description: string;
+    shipping: number;
+    discount: number;
+    customer_name: string;
+    created_at: Date;
+    has_details: Array<any>;
+}
 
 function printButton(elementId: string): void {
     const printContent = document.getElementById(elementId);
@@ -19,7 +28,8 @@ function printButton(elementId: string): void {
     }
 }
 
-defineProps<{ sales: Object }>();
+const props = defineProps<{ sales: Sale }>();
+const calculate = (subtotal: number, shipping: number, discount: number) => subtotal + shipping - discount;
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -38,25 +48,30 @@ const breadcrumbs: BreadcrumbItem[] = [
     <AppLayout :breadcrumbs="breadcrumbs">
 
         <div class="sm:w-11/12 lg:w-3/4 mx-auto">
-            <div class="flex flex-col p-4 sm:p-10 bg-white shadow-md rounded-xl dark:bg-neutral-800">
+            <div id="printableArea" class="flex flex-col p-4 sm:p-10 bg-white shadow-md rounded-xl dark:bg-neutral-800">
 
                 <div class="flex justify-between">
                     <div>
-                        <AppLogoIcon class="size-8 mt-3 fill-current text-black dark:text-black" />
-                        {{ sales }}
+                        <AppLogoIcon class="size-8 mt-1 fill-current text-black dark:text-black" />
                     </div>
 
                     <div class="text-end">
-                        <h2 class="text-2xl md:text-3xl font-semibold text-gray-800 dark:text-neutral-200">Invoice #
+                        <h2 class="font-semibold text-gray-800 text-xl dark:text-neutral-200">{{ sales.description }}
                         </h2>
-                        <span class="mt-1 block text-gray-500 dark:text-neutral-500">3682303</span>
 
                         <address class="mt-4 not-italic text-gray-800 dark:text-neutral-200">
                             Moçambique<br>
-                            Data de criação<br>
+                            {{ sales.created_at.toString().slice(0, 10) }}<br>
+                            {{ sales.created_at.toString().slice(11, 19) }}
                         </address>
                     </div>
 
+                </div>
+                <div class="grid sm:grid-cols-2 gap-3">
+                    <div>
+                        <h3 class="text-sm text-gray-500 dark:text-neutral-200">Cliente</h3>
+                        <p>{{ sales.customer_name }}</p>
+                    </div>
                 </div>
 
                 <div class="mt-6">
@@ -64,115 +79,80 @@ const breadcrumbs: BreadcrumbItem[] = [
                         <div class="hidden sm:grid sm:grid-cols-5">
                             <div
                                 class="sm:col-span-2 text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">
-                                Item</div>
-                            <div class="text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">
-                                Qty</div>
-                            <div class="text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">
-                                Rate</div>
+                                Descrição</div>
                             <div class="text-end text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">
-                                Amount</div>
+                                Quantidade</div>
+                            <div class="text-end text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">
+                                Valor Unitário</div>
+                            <div class="text-end text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">
+                                Total</div>
                         </div>
 
                         <div class="hidden sm:block border-b border-gray-200 dark:border-neutral-700"></div>
 
-                        <div class="grid grid-cols-3 sm:grid-cols-5 gap-2">
-                            <div class="col-span-full sm:col-span-2">
-                                <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">
-                                    Item</h5>
-                                <p class="font-medium text-gray-800 dark:text-neutral-200">Design UX and UI</p>
-                            </div>
-                            <div>
-                                <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">
-                                    Qty</h5>
-                                <p class="text-gray-800 dark:text-neutral-200">1</p>
-                            </div>
-                            <div>
-                                <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">
-                                    Rate</h5>
-                                <p class="text-gray-800 dark:text-neutral-200">5</p>
-                            </div>
-                            <div>
-                                <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">
-                                    Amount</h5>
-                                <p class="sm:text-end text-gray-800 dark:text-neutral-200">$500</p>
-                            </div>
-                        </div>
 
                         <div class="sm:hidden border-b border-gray-200 dark:border-neutral-700"></div>
-
-                        <div class="grid grid-cols-3 sm:grid-cols-5 gap-2">
+                        <div v-for="sale in sales.has_details" :key="sale.id"
+                            class="grid grid-cols-3 sm:grid-cols-5 gap-2">
                             <div class="col-span-full sm:col-span-2">
                                 <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">
                                     Item</h5>
-                                <p class="font-medium text-gray-800 dark:text-neutral-200">Web project</p>
+                                <p class="font-medium text-gray-800 dark:text-neutral-200">{{ sale.product.description
+                                    }}</p>
                             </div>
                             <div>
                                 <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">
                                     Qty</h5>
-                                <p class="text-gray-800 dark:text-neutral-200">1</p>
+                                <p class="text-end text-gray-800 dark:text-neutral-200">{{ sale.quantity }}</p>
                             </div>
                             <div>
                                 <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">
                                     Rate</h5>
-                                <p class="text-gray-800 dark:text-neutral-200">24</p>
+                                <p class="text-end text-gray-800 dark:text-neutral-200">{{ sale.price }}</p>
                             </div>
                             <div>
                                 <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">
                                     Amount</h5>
-                                <p class="sm:text-end text-gray-800 dark:text-neutral-200">$1250</p>
-                            </div>
-                        </div>
-
-                        <div class="sm:hidden border-b border-gray-200 dark:border-neutral-700"></div>
-
-                        <div class="grid grid-cols-3 sm:grid-cols-5 gap-2">
-                            <div class="col-span-full sm:col-span-2">
-                                <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">
-                                    Item</h5>
-                                <p class="font-medium text-gray-800 dark:text-neutral-200">SEO</p>
-                            </div>
-                            <div>
-                                <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">
-                                    Qty</h5>
-                                <p class="text-gray-800 dark:text-neutral-200">1</p>
-                            </div>
-                            <div>
-                                <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">
-                                    Rate</h5>
-                                <p class="text-gray-800 dark:text-neutral-200">6</p>
-                            </div>
-                            <div>
-                                <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">
-                                    Amount</h5>
-                                <p class="sm:text-end text-gray-800 dark:text-neutral-200">$2000</p>
+                                <p class="sm:text-end text-gray-800 dark:text-neutral-200">
+                                    {{ (sale.quantity * sale.price).toFixed(2) }}</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="mt-8 flex sm:justify-end">
+                <div class="px-4 mt-8 flex sm:justify-end">
                     <div class="w-full max-w-2xl sm:text-end space-y-2">
 
                         <div class="grid grid-cols-2 sm:grid-cols-1 gap-3 sm:gap-2">
                             <dl class="grid sm:grid-cols-5 gap-x-3">
                                 <dt class="col-span-3 text-gray-800 dark:text-neutral-200">Subtotal:
                                 </dt>
-                                <dd class="col-span-2 text-gray-500 dark:text-neutral-500">$2750.00</dd>
+                                <dd class="col-span-2 dark:text-neutral-500">{{
+                                    sales.has_details.reduce((acc: number, item: {
+                                        price: number; quantity: number;
+                                    }) => acc + item.price * item.quantity,
+                                        0).toFixed(2)}}</dd>
                             </dl>
 
                             <dl class="grid sm:grid-cols-5 gap-x-3">
-                                <dt class="col-span-3 text-gray-800 dark:text-neutral-200">Taxa de Entrega:</dt>
-                                <dd class="col-span-2 text-gray-500 dark:text-neutral-500">$39.00</dd>
+                                <dt class="col-span-3 dark:text-neutral-200">Taxa de Entrega:</dt>
+                                <dd class="col-span-2 dark:text-neutral-500">{{ props.sales.shipping
+                                    }}</dd>
                             </dl>
 
                             <dl class="grid sm:grid-cols-5 gap-x-3">
                                 <dt class="col-span-3 text-gray-800 dark:text-neutral-200">Desconto:</dt>
-                                <dd class="col-span-2 text-gray-500 dark:text-neutral-500">$39.00</dd>
+                                <dd class="col-span-2 dark:text-neutral-500">{{
+                                    props.sales.discount }}</dd>
                             </dl>
 
                             <dl class="grid sm:grid-cols-5 gap-x-3">
                                 <dt class="col-span-3 font-semibold text-gray-800 dark:text-neutral-200">Total:</dt>
-                                <dd class="col-span-2 text-gray-500 dark:text-neutral-500">$2750.00</dd>
+                                <dd class="col-span-2 dark:text-neutral-500">
+                                    {{calculate(sales.has_details.reduce((acc: number, item: {
+                                        price: number; quantity: number;
+                                    }) => acc + item.price * item.quantity,
+                                        0), Number(sales.shipping), Number(sales.discount)).toFixed(2)}}</dd>
                             </dl>
 
                         </div>
