@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('surname');
-            $table->string('gender');
+            $table->enum('gender', ['male', 'female', 'undefined'])->default('undefined');
             $table->string('phone');
             $table->string('email')->unique();
-            $table->string('address');
+            $table->string('address')->nullable();
             $table->boolean('is_active')->default(false);
             $table->timestamps();
         });
