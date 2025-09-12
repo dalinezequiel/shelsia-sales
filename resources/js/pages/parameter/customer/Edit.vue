@@ -9,6 +9,7 @@ import ParameterLayout from '@/pages/parameter/Layout.vue';
 import { type BreadcrumbItem } from '@/types';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 import { toast } from 'vue-sonner';
+import { Loader } from 'lucide-vue-next';
 
 interface Customer {
     id: number;
@@ -80,9 +81,9 @@ const breadcrumbs: BreadcrumbItem[] = [
                         </div>
 
                         <div class="grid gap-2">
-                            <Label for="surname">Apelido</Label>
+                            <Label for="surname">Abreviatura/ Apelido</Label>
                             <Input id="surname" v-model="form.surname" class="mt-1 block w-full" required
-                                autocomplete="surname" placeholder="Apelido" />
+                                autocomplete="surname" placeholder="Abreviatura ou apelido" />
                             <InputError :message="form.errors.surname" class="mt-2" />
                         </div>
 
@@ -93,8 +94,9 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <SelectValue placeholder="Selecionar gênero" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem value="Masculino"> Masculino </SelectItem>
-                                    <SelectItem value="Feminino"> Feminino </SelectItem>
+                                    <SelectItem value="male"> Masculino </SelectItem>
+                                    <SelectItem value="female"> Feminino </SelectItem>
+                                    <SelectItem value="undefined"> Indefinido </SelectItem>
                                 </SelectContent>
                             </Select>
                             <InputError :message="form.errors.gender" class="mt-2" />
@@ -146,13 +148,15 @@ const breadcrumbs: BreadcrumbItem[] = [
                             </svg>
                             Voltar</Link>
                             <Button class="cursor-pointer">
+                                <Loader class="animate-spin" v-if="form.processing" />
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round" class="lucide lucide-rotate-ccw-icon lucide-rotate-ccw">
                                     <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
                                     <path d="M3 3v5h5" />
                                 </svg>
-                                Actualizar</Button>
+                                Actualizar
+                            </Button>
                         </div>
                     </form>
                 </div>
