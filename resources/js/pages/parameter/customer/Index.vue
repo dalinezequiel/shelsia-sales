@@ -164,7 +164,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                 class="text-blue-gray-900 block font-sans text-sm leading-normal font-bold antialiased">
                                                 {{ customer.name }}</p>
                                             <p
-                                                class="text-blue-gray-900 block font-sans text-sm leading-normal font-normal antialiased opacity-70">
+                                                class="text-blue-gray-900 block font-sans text-xs leading-normal font-normal antialiased opacity-70">
                                                 {{ customer.surname }}
                                             </p>
                                         </div>
@@ -176,7 +176,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                             class="text-blue-gray-900 block font-sans text-sm leading-normal font-normal antialiased">
                                             {{ customer.phone }}</p>
                                         <p
-                                            class="text-blue-gray-900 block font-sans text-sm leading-normal font-normal antialiased opacity-70">
+                                            class="text-blue-gray-900 block font-sans text-xs leading-normal font-normal antialiased opacity-70">
                                             {{ customer.email }}
                                         </p>
                                     </div>
