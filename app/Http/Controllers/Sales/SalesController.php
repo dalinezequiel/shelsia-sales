@@ -157,16 +157,17 @@ class SalesController extends Controller
             $sale->status = $request->status;
             $sale->save();
 
-            foreach ($request->has_details as $detail) {
-                $product = Product::find($detail['product_id']);
-                $current_stock = $product->available_stock;
-                $quantity = $detail['quantity'];
+            if ($request->can_update_stock)
+                foreach ($request->has_details as $detail) {
+                    $product = Product::find($detail['product_id']);
+                    $current_stock = $product->available_stock;
+                    $quantity = $detail['quantity'];
 
-                $new_stock = $current_stock + $quantity;
-                $product->available_stock = $new_stock;
+                    $new_stock = $current_stock + $quantity;
+                    $product->available_stock = $new_stock;
 
-                $product->save();
-            }
+                    $product->save();
+                }
 
             DB::commit();
             return redirect()->route('sales.index')->with('success', 'Cancelled com sucesso!');
