@@ -95,9 +95,9 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <SelectValue placeholder="Selecionar gênero" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem value="Masculino"> Masculino </SelectItem>
-                                    <SelectItem value="Feminino"> Feminino </SelectItem>
-                                    <SelectItem value="Indefinido"> Indefinido </SelectItem>
+                                    <SelectItem value="male"> Masculino </SelectItem>
+                                    <SelectItem value="female"> Feminino </SelectItem>
+                                    <SelectItem value="undefined"> Indefinido </SelectItem>
                                 </SelectContent>
                             </Select>
                             <InputError :message="form.errors.gender" class="mt-2" />
