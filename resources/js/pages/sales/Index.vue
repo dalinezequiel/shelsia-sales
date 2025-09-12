@@ -53,7 +53,8 @@ const form = useForm({
     status: '',
     has_details: [
         { id: 0, quantity: 0 }
-    ]
+    ],
+    can_update_stock: true
 })
 const updateSale = (sale_id: number, status: string, has_details: [{ id: number; quantity: number; }]) => {
     form.sale_id = sale_id.toString(),
