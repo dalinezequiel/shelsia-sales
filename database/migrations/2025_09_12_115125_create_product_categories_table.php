@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('product_categories', function (Blueprint $table) {
             $table->id();
             $table->string('description');
-            $table->string('observation');
+            $table->string('observation')->nullable();
             $table->boolean('is_active')->default(false);
             $table->timestamps();
         });
