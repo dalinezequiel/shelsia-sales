@@ -170,7 +170,8 @@ class SalesController extends Controller
                 }
 
             DB::commit();
-            return redirect()->route('sales.index')->with('success', 'Cancelled com sucesso!');
+            return redirect()->route($request->can_update_stock ? 'sales.index' : 'sales.create')
+                ->with('success', 'Cancelled com sucesso!');
         } catch (Exception $ex) {
             DB::rollBack();
             return redirect()->route('sales.index')->with('error', $ex);
