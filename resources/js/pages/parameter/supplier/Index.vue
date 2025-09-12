@@ -5,7 +5,6 @@ import { type BreadcrumbItem } from '@/types';
 import { File, Pencil, Trash2 } from 'lucide-vue-next';
 import { Head, Link, router } from '@inertiajs/vue3';
 import Avatar from '@/components/additional/Avatar.vue';
-
 import {
     AlertDialog,
     AlertDialogAction,
@@ -73,11 +72,10 @@ const breadcrumbs: BreadcrumbItem[] = [
                     <div class="mb-8 flex items-center justify-between gap-8">
                         <div>
                             <h5
-                                class="text-blue-gray-900 block font-sans text-xl leading-snug font-semibold tracking-normal antialiased">
+                                class="text-blue-gray-900 block font-sans text-lg leading-snug font-semibold tracking-normal antialiased">
                                 Lista de fornecedores
                             </h5>
-                            <p
-                                class="mt-1 block font-sans text-sm leading-relaxed font-normal text-gray-700 antialiased">
+                            <p class="block font-sans text-sm leading-relaxed font-normal text-gray-700 antialiased">
                                 Veja informações sobre todos os fornecedores
                             </p>
                         </div>
@@ -163,10 +161,10 @@ const breadcrumbs: BreadcrumbItem[] = [
                                         <div class="flex flex-col">
                                             <p
                                                 class="text-blue-gray-900 block font-sans text-sm leading-normal font-bold antialiased">
-                                                {{ supplier.name }}</p>
+                                                {{ supplier.surname }}</p>
                                             <p
-                                                class="text-blue-gray-900 block font-sans text-sm leading-normal font-normal antialiased opacity-70">
-                                                {{ supplier.surname }}
+                                                class="text-blue-gray-900 block font-sans text-xs leading-normal font-normal antialiased opacity-70">
+                                                {{ supplier.name }}
                                             </p>
                                         </div>
                                     </div>
@@ -177,7 +175,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                             class="text-blue-gray-900 block font-sans text-sm leading-normal font-normal antialiased">
                                             {{ supplier.phone }}</p>
                                         <p
-                                            class="text-blue-gray-900 block font-sans text-sm leading-normal font-normal antialiased opacity-70">
+                                            class="text-blue-gray-900 block font-sans text-xs leading-normal font-normal antialiased opacity-70">
                                             {{ supplier.email }}
                                         </p>
                                     </div>
