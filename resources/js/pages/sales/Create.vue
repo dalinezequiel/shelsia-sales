@@ -44,6 +44,11 @@ const props = defineProps({
     }
 })
 
+enum Status {
+    PAID = "paid",
+    CANCELLED = "cancelled"
+}
+
 interface Sale {
     discount: number;
     shipping: number;
@@ -83,11 +88,13 @@ const form = useForm({
     discount: 0.0,
     shipping: 0.0,
     payment_method_id: '',
+    sale_id: '',
     details: [{
         price: 0.0,
         quantity: 0.0
     }],
-    status: 'paid'
+    status: 'paid',
+    can_update_stock: false
 });
 
 const submit = () => {
@@ -117,6 +124,16 @@ const submit = () => {
 const reservation = () => {
     form.status = 'pending';
     submit();
+}
+
+const updateSale = (sale_id: number, status: string) => {
+    form.sale_id = sale_id.toString();
+    form.status = status;
+    form.put(route('sales.update', { id: 0 }), {
+        preserveScroll: true,
+        onSuccess: () => toast.success('Venda realizada com sucesso.'),
+        onError: () => toast.error('Ocorreu um erro ao tentar realizar venda.')
+    });
 }
 
 const breadcrumbs: BreadcrumbItem[] = [
@@ -441,13 +458,14 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                                 Number(sale.discount)).toFixed(2)}}</p>
                                                     </div>
                                                     <div class="flex items-center gap-2 md:order-6 md:w-30 justify-end">
-                                                        <button type="button" @click="store.delete(sale.id)"
+                                                        <button type="button" @click="updateSale(sale.id, Status.PAID)"
                                                             class="inline-flex p-2 items-center cursor-pointer rounded-md border border-gray-200 hover:bg-[#EFF2F5] hover:border-[#EFF2F5] text-sm font-medium text-red-600 dark:text-red-500">
                                                             <Check width="18" height="18" color="#3560BD"
                                                                 class="transition-all" />
                                                         </button>
 
-                                                        <button type="button" @click="store.delete(sale.id)"
+                                                        <button type="button"
+                                                            @click="updateSale(sale.id, Status.CANCELLED)"
                                                             class="inline-flex p-2 items-center cursor-pointer rounded-md border border-gray-200 hover:bg-[#F5F0F0] hover:border-[#F5F0F0] text-sm font-medium text-red-600 dark:text-red-500">
                                                             <Trash2 width="18" height="18" color="#C80909"
                                                                 class="transition-all" />
