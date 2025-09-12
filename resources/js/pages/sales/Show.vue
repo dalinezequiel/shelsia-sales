@@ -147,7 +147,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                             </dl>
 
                             <dl class="grid sm:grid-cols-5 gap-x-3">
-                                <dt class="col-span-3 font-semibold text-gray-800 dark:text-neutral-200">Total:</dt>
+                                <dt class="col-span-3 text-gray-800 dark:text-neutral-200">Total:</dt>
                                 <dd class="col-span-2 dark:text-neutral-500">
                                     {{calculate(sales.has_details.reduce((acc: number, item: {
                                         price: number; quantity: number;
