@@ -14,6 +14,9 @@ interface Customer {
     is_active: boolean;
 }
 
+const gender = (gender: string) => gender === 'male' ? 'Masculino'
+    : (gender === 'female' ? 'Feminino' : 'Indefinido')
+
 function printButton(elementId: string): void {
     const printContent = document.getElementById(elementId);
 
@@ -54,7 +57,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                         <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Nome</dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{ props.customer.name
-                                }}</dd>
+                            }}</dd>
                         </div>
                         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Apelido</dt>
@@ -63,8 +66,9 @@ const breadcrumbs: BreadcrumbItem[] = [
                         </div>
                         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Gênero</dt>
-                            <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{ props.customer.gender
-                            }}
+                            <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{
+                                gender(props.customer.gender)
+                                }}
                             </dd>
                         </div>
                         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
