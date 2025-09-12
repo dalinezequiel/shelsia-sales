@@ -91,7 +91,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                             <Label for="gender">Gênero</Label>
                             <Select id="gender" v-model="form.gender">
                                 <SelectTrigger class="w-auto mt-1">
-                                    <SelectValue placeholder="Selecionar gênero" />
+                                    <SelectValue placeholder="Selecionar gênero" /> 
                                 </SelectTrigger>
                                 <SelectContent>
                                     <SelectItem value="male"> Masculino </SelectItem>
