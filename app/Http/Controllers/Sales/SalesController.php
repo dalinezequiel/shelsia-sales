@@ -134,7 +134,7 @@ class SalesController extends Controller
      */
     public function show(Sale $sale)
     {
-        $sales = Sale::where('id', $sale->id)->with(['hasDetails', 'hasDetails.product', 'paymentMethod'])->get();
+        $sales = Sale::where('id', $sale->id)->with(['hasDetails', 'hasDetails.product', 'paymentMethod'])->first();
         return Inertia::render('sales/Show', compact('sales'));
     }
 
