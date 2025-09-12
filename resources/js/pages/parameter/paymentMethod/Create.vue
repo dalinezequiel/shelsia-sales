@@ -10,10 +10,11 @@ import ParameterLayout from '@/pages/parameter/Layout.vue';
 import { type BreadcrumbItem } from '@/types';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 import { toast } from 'vue-sonner';
+import { Loader } from 'lucide-vue-next';
 
 const form = useForm({
     description: '',
-    operation_type: 'Pagamento',
+    operation_type: 'payment_receipt',
     observation: '',
     is_active: true
 });
@@ -26,7 +27,8 @@ const submit = () => {
     });
 };
 
-const operation = () => form.operation_type === 'Recebimento' ? form.operation_type : form.operation_type
+const operation = () => form.operation_type === 'receipt' ? 'Recebimento'
+    : (form.operation_type === 'payment' ? 'Pagamento' : 'Pagamento e Recebimento')
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -73,8 +75,9 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <SelectValue placeholder="Selecionar tipo de operação" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem value="Pagamento" selected> Pagamento </SelectItem>
-                                    <SelectItem value="Recebimento"> Recebimento </SelectItem>
+                                    <SelectItem value="payment"> Pagamento </SelectItem>
+                                    <SelectItem value="receipt"> Recebimento </SelectItem>
+                                    <SelectItem value="payment_receipt" selected> Pagamento e Recebimento </SelectItem>
                                 </SelectContent>
                             </Select>
                         </div>
@@ -107,6 +110,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                             </svg>
                             Voltar</Link>
                             <Button class="cursor-pointer">
+                                <Loader class="animate-spin" v-if="form.processing" />
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round" class="lucide lucide-save-icon lucide-save">
@@ -115,7 +119,8 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <path d="M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7" />
                                     <path d="M7 3v4a1 1 0 0 0 1 1h7" />
                                 </svg>
-                                Salvar</Button>
+                                Salvar
+                            </Button>
                         </div>
                     </form>
                 </div>
