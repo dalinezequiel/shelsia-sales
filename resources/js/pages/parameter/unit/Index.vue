@@ -69,11 +69,10 @@ const breadcrumbs: BreadcrumbItem[] = [
                     <div class="mb-8 flex items-center justify-between gap-8">
                         <div>
                             <h5
-                                class="text-blue-gray-900 block font-sans text-xl leading-snug font-semibold tracking-normal antialiased">
+                                class="text-blue-gray-900 block font-sans text-lg leading-snug font-semibold tracking-normal antialiased">
                                 Unidades de medida
                             </h5>
-                            <p
-                                class="mt-1 block font-sans text-sm leading-relaxed font-normal text-gray-700 antialiased">
+                            <p class="block font-sans text-sm leading-relaxed font-normal text-gray-700 antialiased">
                                 Veja informações sobre unidade de medida
                             </p>
                         </div>
@@ -196,7 +195,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                     Continuar com está operação implicará a exclusão permanente da
                                                     unidade
                                                     <strong> <span class="text-[#EC3636]">{{ unit.description
-                                                    }}</span>
+                                                            }}</span>
                                                     </strong>.
                                                 </AlertDialogDescription>
                                             </AlertDialogHeader>
