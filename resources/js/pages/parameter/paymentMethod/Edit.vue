@@ -10,6 +10,7 @@ import ParameterLayout from '@/pages/parameter/Layout.vue';
 import { type BreadcrumbItem } from '@/types';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 import { toast } from 'vue-sonner';
+import { Loader } from 'lucide-vue-next';
 
 interface PaymentMethod {
     id: number;
@@ -27,6 +28,9 @@ const form = useForm({
     operation_type: props.paymentMethod.operation_type,
     is_active: Boolean(props.paymentMethod.is_active)
 });
+
+const operation = (operation_type: string) => operation_type === 'receipt' ? 'Recebimento'
+    : (operation_type === 'payment' ? 'Pagamento' : 'Pagamento e Recebimento')
 
 const submit = () => {
     form.put(route('payment_methods.update', props.paymentMethod), {
@@ -59,8 +63,8 @@ const breadcrumbs: BreadcrumbItem[] = [
                     <div class="mb-8 flex items-center justify-between gap-8">
                         <div>
                             <h5
-                                class="text-blue-gray-900 block font-sans text-xl leading-snug font-semibold tracking-normal antialiased">
-                                Forma de {{ form.operation_type }}
+                                class="text-blue-gray-900 block font-sans text-lg leading-snug font-semibold tracking-normal antialiased">
+                                Forma de {{ operation(form.operation_type) }}
                             </h5>
                         </div>
                     </div>
@@ -75,14 +79,15 @@ const breadcrumbs: BreadcrumbItem[] = [
                         </div>
 
                         <div class="grid gap-2">
-                            <Label for="gender">Tipo de operação</Label>
-                            <Select id="gender" v-model="form.operation_type">
+                            <Label for="operation_type">Tipo de operação</Label>
+                            <Select id="operation_type" v-model="form.operation_type">
                                 <SelectTrigger class="w-auto mt-1">
-                                    <SelectValue placeholder="Selecionar tipo" />
+                                    <SelectValue placeholder="Selecionar tipo de operação" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem value="Pagamento"> Pagamento </SelectItem>
-                                    <SelectItem value="Recebimento"> Recebimento </SelectItem>
+                                    <SelectItem value="payment"> Pagamento </SelectItem>
+                                    <SelectItem value="receipt"> Recebimento </SelectItem>
+                                    <SelectItem value="payment_receipt"> Pagamento e Recebimento </SelectItem>
                                 </SelectContent>
                             </Select>
                         </div>
@@ -115,13 +120,15 @@ const breadcrumbs: BreadcrumbItem[] = [
                             </svg>
                             Voltar</Link>
                             <Button class="cursor-pointer">
+                                <Loader class="animate-spin" v-if="form.processing" />
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round" class="lucide lucide-rotate-ccw-icon lucide-rotate-ccw">
                                     <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
                                     <path d="M3 3v5h5" />
                                 </svg>
-                                Actualizar</Button>
+                                Actualizar
+                            </Button>
                         </div>
                     </form>
                 </div>
