@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('surname');
             $table->enum('gender', ['male', 'female', 'undefined'])->default('undefined');
             $table->string('phone');
-            $table->string('email')->unique();
+            $table->string('email')->nullable()->unique();
             $table->string('address');
             $table->boolean('is_active')->default(false);
             $table->timestamps();
