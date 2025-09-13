@@ -3,9 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\Product\ProductController;
-use App\Http\Controllers\Financial\FinancialController;
 use App\Http\Controllers\Sales\SalesController;
 use App\Http\Controllers\Analysis\AnalysisController;
+use App\Http\Controllers\Finance\FinanceController;
 use App\Http\Controllers\Parameter\Customer\CustomerController;
 use App\Http\Controllers\Parameter\Supplier\SupplierController;
 use App\Http\Controllers\Parameter\PaymentMethod\PaymentMethod;
@@ -24,7 +24,7 @@ Route::get('dashboard', function () {
 Route::resource('products', ProductController::class);
 Route::post('products/photo', [ProductController::class, 'photo']);
 
-Route::resource('financial', FinancialController::class);
+Route::resource('finances', FinanceController::class);
 Route::resource('sales', SalesController::class);
 Route::get('transactions/pos', [SalesController::class, 'pos'])->name('sales.pos');
 
