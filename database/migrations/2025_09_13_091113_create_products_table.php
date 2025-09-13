@@ -13,19 +13,29 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->integer('barcode');
+            $table->foreignId('product_category_id')
+                ->constrained()
+                ->onDelete('CASCADE')
+                ->onUpdate('CASCADE');
+            $table->foreignId('unit_id')
+                ->constrained()
+                ->onDelete('CASCADE')
+                ->onUpdate('CASCADE');
+            $table->foreignId('supplier_id')
+                ->constrained()
+                ->onDelete('CASCADE')
+                ->onUpdate('CASCADE');
+            $table->bigInteger('barcode');
             $table->string('description')->unique();
-            $table->string('category');
-            $table->string('unit');
-            $table->string('supplier');
-            $table->decimal('purchase_price',10,2);
-            $table->decimal('sale_price',10,2);
+            $table->decimal('purchase_price', 10, 2);
+            $table->decimal('sale_price', 10, 2);
+            $table->decimal('promotional_price', 10, 2)->nullable();
             $table->date('validity');
             $table->integer('minimum_stock');
             $table->integer('maximum_stock');
             $table->integer('available_stock');
             $table->string('location')->unique();
-            $table->string('image');
+            $table->string('image')->nullable()->unique();
             $table->boolean('is_active')->default(false);
             $table->timestamps();
         });
