@@ -30,12 +30,12 @@ const form = useForm({
     account_plan: '',
     description: '',
     category: '',
-    supplier: '',
+    supplier_id: '',
     due_date: '',
     amount: '',
     date_of_issue: '',
-    payment_method: '',
-    period: '',
+    payment_method_id: '',
+    period_id: '',
     observation: '',
     is_active: false
 });
@@ -110,7 +110,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 
                         <div class="grid gap-2">
                             <Label for="supplier">Fornecedor</Label>
-                            <Select id="supplier" v-model="form.supplier">
+                            <Select id="supplier" v-model="form.supplier_id">
                                 <SelectTrigger class="w-auto mt-1">
                                     <SelectValue placeholder="Selecionar fornecedor" />
                                 </SelectTrigger>
@@ -119,7 +119,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                         {{ supplier.name }}</SelectItem>
                                 </SelectContent>
                             </Select>
-                            <InputError :message="form.errors.supplier" class="mt-2" />
+                            <InputError :message="form.errors.supplier_id" class="mt-2" />
                         </div>
                     </div>
 
@@ -149,7 +149,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 
                         <div class="grid gap-2">
                             <Label for="supplier">Forma de pagamento</Label>
-                            <Select id="supplier" v-model="form.payment_method">
+                            <Select id="supplier" v-model="form.payment_method_id">
                                 <SelectTrigger class="w-auto mt-1">
                                     <SelectValue placeholder="Selecionar forma de pagamento" />
                                 </SelectTrigger>
@@ -158,12 +158,12 @@ const breadcrumbs: BreadcrumbItem[] = [
                                         :value="paymentMethod.id">{{ paymentMethod.description }}</SelectItem>
                                 </SelectContent>
                             </Select>
-                            <InputError :message="form.errors.supplier" class="mt-2" />
+                            <InputError :message="form.errors.payment_method_id" class="mt-2" />
                         </div>
 
                         <div class="grid gap-2">
                             <Label for="occurrence">Periodicidade</Label>
-                            <Select id="occurrence" v-model="form.period">
+                            <Select id="occurrence" v-model="form.period_id">
                                 <SelectTrigger class="w-auto mt-1">
                                     <SelectValue placeholder="Selecionar periodicidade" />
                                 </SelectTrigger>
@@ -172,7 +172,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                         {{ period.description }}</SelectItem>
                                 </SelectContent>
                             </Select>
-                            <InputError :message="form.errors.period" class="mt-2" />
+                            <InputError :message="form.errors.period_id" class="mt-2" />
                         </div>
 
                         <div class="grid gap-2 mb-6 lg:mb-0">
