@@ -2,6 +2,7 @@
 
 namespace App\Models\Period;
 
+use App\Models\Finance\Finance;
 use Illuminate\Database\Eloquent\Model;
 
 class Period extends Model
@@ -13,4 +14,9 @@ class Period extends Model
         'is_active',
         'created_at',
     ];
+
+    public function finances()
+    {
+        return $this->hasMany(Finance::class);
+    }
 }
