@@ -7,11 +7,12 @@ import { Head, Link } from '@inertiajs/vue3';
 interface Product {
     barcode: number;
     description: string;
-    category: string;
+    product_category: any;
     unit: string;
-    supplier: string;
+    supplier: any;
     purchase_price: number;
     sale_price: number;
+    promotional_price: number;
     validity: Date;
     minimum_stock: number;
     maximum_stock: number;
@@ -65,7 +66,8 @@ const breadcrumbs: BreadcrumbItem[] = [
                         </div>
                         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Categoria</dt>
-                            <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{ props.product.category }}
+                            <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{
+                                props.product.product_category.description }}
                             </dd>
                         </div>
                         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -76,7 +78,11 @@ const breadcrumbs: BreadcrumbItem[] = [
                         </div>
                         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Preço de venda</dt>
-                            <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{ props.product.sale_price }}
+                            <dd class=" flex mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                                <p :class="props.product.promotional_price > 0 ? 'text-gray-400 line-through' : ''">{{
+                                    props.product.sale_price }} </p>
+                                <p v-if="props.product.promotional_price > 0"> - {{ props.product.promotional_price }}
+                                </p>
                             </dd>
                         </div>
                         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -87,7 +93,8 @@ const breadcrumbs: BreadcrumbItem[] = [
                         </div>
                         <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Fornecedor</dt>
-                            <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{ props.product.supplier }}
+                            <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{ props.product.supplier.name
+                            }}
                             </dd>
                         </div>
                         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
