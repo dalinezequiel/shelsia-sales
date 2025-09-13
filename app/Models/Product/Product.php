@@ -3,6 +3,7 @@
 namespace App\Models\Product;
 
 use App\Models\Sales\SaleDetail;
+use App\Models\Supplier\Supplier;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
@@ -16,6 +17,7 @@ class Product extends Model
         'supplier',
         'purchase_price',
         'sale_price',
+        'promotional_price',
         'validity',
         'minimum_stock',
         'maximum_stock',
@@ -28,5 +30,20 @@ class Product extends Model
     public function hasSaleDetail()
     {
         return $this->hasOne(SaleDetail::class);
+    }
+
+    public function productCategory()
+    {
+        return $this->belongsTo(ProductCategory::class);
+    }
+
+    public function unit()
+    {
+        return $this->belongsTo(Unit::class);
+    }
+
+    public function supplier()
+    {
+        return $this->belongsTo(Supplier::class);
     }
 }
