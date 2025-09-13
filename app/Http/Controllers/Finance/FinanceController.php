@@ -67,7 +67,7 @@ class FinanceController extends Controller
      */
     public function show(Finance $finance)
     {
-        return Inertia::render('financial/Show', compact('finance'));
+        return Inertia::render('finance/Show', compact('finance'));
     }
 
     /**
