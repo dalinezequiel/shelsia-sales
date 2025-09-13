@@ -125,21 +125,22 @@ class ProductController extends Controller
             'description' => 'required'
         ]);
 
-        $product->update([
-            'barcode' => $request->input('barcode'),
-            'description' => $request->input('description'),
-            'category' => $request->input('category'),
-            'unit' => $request->input('unit'),
-            'supplier' => $request->input('supplier'),
-            'purchase_price' => $request->input('purchase_price'),
-            'sale_price' => $request->input('sale_price'),
-            'validity' => $request->input('validity'),
-            'minimum_stock' => $request->input('minimum_stock'),
-            'maximum_stock' => $request->input('maximum_stock'),
-            'available_stock' => $request->input('available_stock'),
-            'location' => $request->input('location'),
-            'is_active' => $request->input('is_active')
-        ]);
+        $product->product_category_id = $request->input('category');
+        $product->unit_id = $request->input('unit');
+        $product->supplier_id = $request->input('supplier');
+
+        $product->barcode = $request->input('barcode');
+        $product->description = $request->input('description');
+        $product->purchase_price = $request->input('purchase_price');
+        $product->sale_price = $request->input('sale_price');
+        $product->promotional_price = $request->input('promotional_price');
+        $product->validity = $request->input('validity');
+        $product->minimum_stock = $request->input('minimum_stock');
+        $product->maximum_stock = $request->input('maximum_stock');
+        $product->available_stock = $request->input('available_stock');
+        $product->location = $request->input('location');
+        $product->is_active = $request->input('is_active');
+        $product->save();
 
         return redirect()->route('products.index')->with('success', 'Actualizado com sucesso!');
     }
