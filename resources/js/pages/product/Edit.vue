@@ -13,10 +13,10 @@ import { Loader } from 'lucide-vue-next';
 
 interface Product {
     barcode: number;
+    product_category_id: number;
+    unit_id: number;
+    supplier_id: number;
     description: string;
-    category: string;
-    unit: string;
-    supplier: string;
     purchase_price: number;
     sale_price: number;
     promotional_price: number;
@@ -50,9 +50,9 @@ const props = defineProps({
 const form = useForm({
     barcode: props.product.barcode,
     description: props.product.description,
-    category: props.product.category,
-    unit: props.product.unit,
-    supplier: props.product.supplier,
+    category: props.product.product_category_id,
+    unit: props.product.unit_id,
+    supplier: props.product.supplier_id,
     purchase_price: props.product.purchase_price,
     sale_price: props.product.sale_price,
     promotional_price: props.product.promotional_price,
@@ -125,7 +125,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                 </SelectTrigger>
                                 <SelectContent>
                                     <SelectItem v-for="productCategory in productCategories" :key="productCategory.id"
-                                        :value="productCategory.description">{{ productCategory.description }}
+                                        :value="productCategory.id">{{ productCategory.description }}
                                     </SelectItem>
                                 </SelectContent>
                             </Select>
@@ -139,7 +139,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <SelectValue placeholder="Selecionar unidade" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem v-for="unit in units" :key="unit.id" :value="unit.description">{{
+                                    <SelectItem v-for="unit in units" :key="unit.id" :value="unit.id">{{
                                         unit.description }}</SelectItem>
                                 </SelectContent>
                             </Select>
@@ -153,7 +153,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <SelectValue placeholder="Selecionar fornecedor" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem v-for="supplier in suppliers" :key="supplier.id" :value="supplier.name">
+                                    <SelectItem v-for="supplier in suppliers" :key="supplier.id" :value="supplier.id">
                                         {{ supplier.name }}</SelectItem>
                                 </SelectContent>
                             </Select>
