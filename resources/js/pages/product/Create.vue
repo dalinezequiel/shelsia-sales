@@ -31,13 +31,13 @@ const form = useForm({
     category: '',
     unit: '',
     supplier: '',
-    purchase_price: '',
-    sale_price: '',
-    promotional_price: '',
+    purchase_price: '0.0',
+    sale_price: '0.0',
+    promotional_price: '0.0',
     validity: '',
-    minimum_stock: '',
-    maximum_stock: '',
-    available_stock: '',
+    minimum_stock: '0',
+    maximum_stock: '0',
+    available_stock: '0',
     location: '',
     image: '',
     is_active: false
@@ -159,7 +159,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                         <div class="grid gap-2 mb-6 lg:mb-0">
                             <Label for="promotional_price">Preço promocional</Label>
                             <Input id="promotional_price" v-model="form.promotional_price" type="number"
-                                class="mt-1 block w-full" required placeholder="Preço promocional" />
+                                class="mt-1 block w-full" placeholder="Preço promocional" />
                             <InputError :message="form.errors.promotional_price" class="mt-2" />
                         </div>
 
