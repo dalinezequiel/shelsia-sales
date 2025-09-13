@@ -244,7 +244,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                             <td class="p-4 border-b border-blue-gray-50">
                                 <p
                                     class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                                    {{ product.category }}
+                                    {{ product.product_category.description }}
                                 </p>
                             </td>
                             <td class="p-4 border-b border-blue-gray-50">
