@@ -14,4 +14,9 @@ class Unit extends Model
         'is_active',
         'created_at',
     ];
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }
