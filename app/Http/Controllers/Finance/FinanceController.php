@@ -40,7 +40,26 @@ class FinanceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'account_plan' => 'required',
+            'description' => 'required'
+        ]);
+
+        Finance::create([
+            'account_plan' => $request->account_plan,
+            'description' => $request->description,
+            'category' => $request->category,
+            'supplier' => $request->supplier,
+            'due_date' => $request->due_date,
+            'amount' => $request->amount,
+            'date_of_issue' => $request->date_of_issue,
+            'payment_method' => $request->payment_method,
+            'occurrence' => $request->occurrence,
+            'observation' => $request->observation,
+            'is_active' => $request->is_active
+        ]);
+
+        return redirect()->route('finances.index')->with('success', 'Cadastrado com sucesso!');
     }
 
     /**
