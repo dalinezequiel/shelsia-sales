@@ -72,6 +72,7 @@ class FinanceController extends Controller
      */
     public function show(Finance $finance)
     {
+        $finance = Finance::where('id', $finance->id)->with(['supplier', 'period', 'paymentMethod'])->first();
         return Inertia::render('finance/Show', compact('finance'));
     }
 
