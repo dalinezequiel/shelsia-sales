@@ -54,9 +54,12 @@ class FinanceController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Finance $finance)
     {
-        //
+        $suppliers = Supplier::where('is_active', True)->get();
+        $paymentMethods = PaymentMethod::where('is_active', True)->get();
+        $periods = Period::where('is_active', True)->get();
+        return Inertia::render('financial/Edit', compact('finance', 'suppliers', 'paymentMethods', 'periods'));
     }
 
     /**
