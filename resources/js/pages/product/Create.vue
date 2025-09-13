@@ -33,6 +33,7 @@ const form = useForm({
     supplier: '',
     purchase_price: '',
     sale_price: '',
+    promotional_price: '',
     validity: '',
     minimum_stock: '',
     maximum_stock: '',
@@ -155,15 +156,21 @@ const breadcrumbs: BreadcrumbItem[] = [
                             <InputError :message="form.errors.sale_price" class="mt-2" />
                         </div>
 
+                        <div class="grid gap-2 mb-6 lg:mb-0">
+                            <Label for="promotional_price">Preço promocional</Label>
+                            <Input id="promotional_price" v-model="form.promotional_price" type="number"
+                                class="mt-1 block w-full" required placeholder="Preço promocional" />
+                            <InputError :message="form.errors.promotional_price" class="mt-2" />
+                        </div>
+
                         <div class="grid gap-2">
                             <Label for="validity">Validade</Label>
                             <Input id="validity" v-model="form.validity" type="date" class="mt-1 block w-full" required
                                 autocomplete="validity" placeholder="Validade" />
                             <InputError :message="form.errors.validity" class="mt-2" />
                         </div>
-                    </div>
 
-                    <div class="grid lg:grid-cols-3 lg:gap-4 ">
+
                         <div class="grid gap-2 mb-6 lg:mb-0">
                             <Label for="minimum_stock">Estoque minimo</Label>
                             <Input id="minimum_stock" v-model="form.minimum_stock" type="number"
