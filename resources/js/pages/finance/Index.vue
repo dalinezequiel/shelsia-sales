@@ -250,14 +250,14 @@ const breadcrumbs: BreadcrumbItem[] = [
                                 <div class="flex">
                                     <div class="pr-1 flex justify-center">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="16"
-                                            :fill="account.category === 'Receitas' ? '#218230' : '#D94629'">
+                                            :fill="account.category === 'income' ? '#218230' : '#D94629'">
                                             <path
                                                 d="M64 320C64 178.6 178.6 64 320 64C461.4 64 576 178.6 576 320C576 461.4 461.4 576 320 576C178.6 576 64 461.4 64 320z" />
                                         </svg>
                                     </div>
                                     <p
                                         class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                                        {{ account.category }}
+                                        {{ account.category === 'income' ? 'Receitas' : 'Despesas' }}
                                     </p>
                                 </div>
                             </td>
