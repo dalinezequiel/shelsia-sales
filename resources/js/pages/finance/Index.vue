@@ -39,12 +39,12 @@ interface Account {
     account_plan: string;
     description: string;
     category: string;
-    supplier: string;
+    supplier_id: string;
     due_date: Date;
     amount: number;
     date_of_issue: Date;
-    payment_method: string;
-    occurrence: string;
+    payment_method_id: string;
+    period_id: string;
     observation: string;
     is_active: boolean;
 }
@@ -58,7 +58,7 @@ const form = useForm({
     amount: '',
     date_of_issue: '',
     payment_method: '',
-    occurrence: '',
+    period: '',
     observation: '',
     is_active: true
 });
@@ -68,18 +68,18 @@ const payBill = (bill: Account) => {
     form.account_plan = bill.account_plan;
     form.description = bill.description;
     form.category = bill.category;
-    form.supplier = bill.supplier;
+    form.supplier = bill.supplier_id.toString();
     form.due_date = bill.due_date.toString();
     form.amount = bill.amount.toString();
     form.date_of_issue = bill.date_of_issue.toString();
-    form.payment_method = bill.payment_method;
-    form.occurrence = bill.occurrence;
+    form.payment_method = bill.payment_method_id;
+    form.period = bill.period_id;
     form.observation = bill.observation;
     form.is_active = true
 }
 
 const submit = () => {
-    form.put(route('finances.update', { financial: form }), {
+    form.put(route('finances.update', { finance: form }), {
         preserveScroll: true,
         onSuccess: () => toast.success('Pagamento efectuado com sucesso.'),
         onError: () => toast.error('Ocorreu um erro ao tentar pagar conta.')
@@ -303,7 +303,8 @@ const breadcrumbs: BreadcrumbItem[] = [
 
                                     <AlertDialogContent>
                                         <AlertDialogHeader>
-                                            <AlertDialogTitle>{{ account.category }}</AlertDialogTitle>
+                                            <AlertDialogTitle>{{ account.category === 'income' ? 'Receitas' : 'Despesas'
+                                            }}</AlertDialogTitle>
                                             <AlertDialogDescription>
                                                 <form id="payment" @submit.prevent="submit">
                                                     <div class="grid gap-y-4 mt-4">
@@ -327,7 +328,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                             <Label for="payment_method">Forma de pagamento</Label>
                                                             <Input id="payment_method"
                                                                 class="text-primary mt-1 block w-full"
-                                                                v-model="account.payment_method" required
+                                                                v-model="account.payment_method.description" required
                                                                 placeholder="Valor da conta" readonly />
                                                         </div>
                                                     </div>
