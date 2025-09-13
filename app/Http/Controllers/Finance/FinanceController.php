@@ -45,19 +45,25 @@ class FinanceController extends Controller
             'description' => 'required'
         ]);
 
-        Finance::create([
+        $supplier = Supplier::find($request->supplier_id);
+        $payment_method = PaymentMethod::find($request->payment_method_id);
+        $period = Period::find($request->period_id);
+
+        $finance = new Finance([
             'account_plan' => $request->account_plan,
             'description' => $request->description,
             'category' => $request->category,
-            'supplier' => $request->supplier,
             'due_date' => $request->due_date,
             'amount' => $request->amount,
             'date_of_issue' => $request->date_of_issue,
-            'payment_method' => $request->payment_method,
-            'occurrence' => $request->occurrence,
             'observation' => $request->observation,
             'is_active' => $request->is_active
         ]);
+
+        $finance->supplier()->associate($supplier);
+        $finance->paymentMethod()->associate($payment_method);
+        $finance->period()->associate($period);
+        $finance->save();
 
         return redirect()->route('finances.index')->with('success', 'Cadastrado com sucesso!');
     }
