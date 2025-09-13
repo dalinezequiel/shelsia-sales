@@ -20,7 +20,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $description = $request->query('description');
-        $products = Product::where('description', 'like', '%' . $description . '%')->paginate(5);
+        $products = Product::where('description', 'like', '%' . $description . '%')->with('productCategory')->paginate(5);
         return Inertia::render('product/Index', compact('products'));
     }
 
