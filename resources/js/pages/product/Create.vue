@@ -28,9 +28,9 @@ defineProps({
 const form = useForm({
     barcode: '',
     description: '',
-    category: '',
-    unit: '',
-    supplier: '',
+    product_category_id: '',
+    unit_id: '',
+    supplier_id: '',
     purchase_price: '0.0',
     sale_price: '0.0',
     promotional_price: '0.0',
@@ -99,45 +99,45 @@ const breadcrumbs: BreadcrumbItem[] = [
                     <div class="grid lg:grid-cols-2 lg:gap-4 ">
                         <div class="grid gap-2 mb-6 lg:mb-0">
                             <Label for="category">Categoria</Label>
-                            <Select id="category" v-model="form.category">
+                            <Select id="category" v-model="form.product_category_id">
                                 <SelectTrigger class="w-auto mt-1">
                                     <SelectValue placeholder="Selecionar categoria" />
                                 </SelectTrigger>
                                 <SelectContent>
                                     <SelectItem v-for="productCategory in productCategories" :key="productCategory.id"
-                                        :value="productCategory.description">{{ productCategory.description }}
+                                        :value="productCategory.id">{{ productCategory.description }}
                                     </SelectItem>
                                 </SelectContent>
                             </Select>
-                            <InputError :message="form.errors.category" class="mt-2" />
+                            <InputError :message="form.errors.product_category_id" class="mt-2" />
                         </div>
 
                         <div class="grid gap-2 mb-6 lg:mb-0">
                             <Label for="unit">Unidade</Label>
-                            <Select id="unit" v-model="form.unit">
+                            <Select id="unit" v-model="form.unit_id">
                                 <SelectTrigger class="w-auto mt-1">
                                     <SelectValue placeholder="Selecionar unidade" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem v-for="unit in units" :key="unit.id" :value="unit.description">{{
+                                    <SelectItem v-for="unit in units" :key="unit.id" :value="unit.id">{{
                                         unit.description }}</SelectItem>
                                 </SelectContent>
                             </Select>
-                            <InputError :message="form.errors.unit" class="mt-2" />
+                            <InputError :message="form.errors.unit_id" class="mt-2" />
                         </div>
 
                         <div class="grid gap-2">
                             <Label for="supplier">Fornecedor</Label>
-                            <Select id="supplier" v-model="form.supplier">
+                            <Select id="supplier" v-model="form.supplier_id">
                                 <SelectTrigger class="w-auto mt-1">
                                     <SelectValue placeholder="Selecionar fornecedor" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem v-for="supplier in suppliers" :key="supplier.id" :value="supplier.name">
+                                    <SelectItem v-for="supplier in suppliers" :key="supplier.id" :value="supplier.id">
                                         {{ supplier.name }}</SelectItem>
                                 </SelectContent>
                             </Select>
-                            <InputError :message="form.errors.supplier" class="mt-2" />
+                            <InputError :message="form.errors.supplier_id" class="mt-2" />
                         </div>
                     </div>
 
