@@ -21,7 +21,7 @@ const mainNavItems: NavItem[] = [
     },
     {
         title: 'Financeiro',
-        href: '/financial',
+        href: '/finances',
         icon: WalletMinimal,
     },
     {
