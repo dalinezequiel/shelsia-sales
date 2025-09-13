@@ -18,10 +18,10 @@ class FinanceController extends Controller
     public function index(Request $request)
     {
         $description = $request->query('description');
-        $accounts = Finance::where('description', 'like', '%' . $description . '%')->paginate(5);
+        $finances = Finance::where('description', 'like', '%' . $description . '%')->paginate(5);
 
         $paymentMethods = PaymentMethod::where('is_active', True)->get();
-        return Inertia::render('financial/Index', compact('accounts', 'paymentMethods'));
+        return Inertia::render('finance/Index', compact('finances', 'paymentMethods'));
     }
 
     /**
