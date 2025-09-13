@@ -26,7 +26,7 @@ interface Account {
 }
 
 const props = defineProps({
-    financial: {
+    finance: {
         type: Object as PropType<Account>,
         required: true
     },
@@ -45,21 +45,21 @@ const props = defineProps({
 });
 
 const form = useForm({
-    account_plan: props.financial.account_plan,
-    description: props.financial.description,
-    category: props.financial.category,
-    supplier: props.financial.supplier,
-    due_date: props.financial.due_date.toString(),
-    amount: props.financial.amount,
-    date_of_issue: props.financial.date_of_issue.toString(),
-    payment_method: props.financial.payment_method,
-    occurrence: props.financial.occurrence,
-    observation: props.financial.observation,
-    is_active: Boolean(props.financial.is_active)
+    account_plan: props.finance.account_plan,
+    description: props.finance.description,
+    category: props.finance.category,
+    supplier: props.finance.supplier,
+    due_date: props.finance.due_date.toString(),
+    amount: props.finance.amount,
+    date_of_issue: props.finance.date_of_issue.toString(),
+    payment_method: props.finance.payment_method,
+    occurrence: props.finance.occurrence,
+    observation: props.finance.observation,
+    is_active: Boolean(props.finance.is_active)
 });
 
 const submit = () => {
-    form.put(route('financial.update', props.financial), {
+    form.put(route('finances.update', props.finance), {
         preserveScroll: true,
         onSuccess: () => toast.success('Conta actualizada com sucesso.'),
         onError: () => toast.error('Ocorreu um erro ao tentar actualizar conta.')
@@ -69,11 +69,11 @@ const submit = () => {
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Financeiro',
-        href: '/financial',
+        href: '/finances',
     },
     {
         title: 'Actualização',
-        href: '/financial/Update',
+        href: '/finances/Update',
     }
 ];
 </script>
@@ -119,8 +119,8 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <SelectValue placeholder="Selecionar categoria" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem value="Receitas"> Receitas </SelectItem>
-                                    <SelectItem value="Despesas"> Despesas </SelectItem>
+                                    <SelectItem value="income"> Receitas </SelectItem>
+                                    <SelectItem value="expense"> Despesas </SelectItem>
                                 </SelectContent>
                             </Select>
                             <InputError :message="form.errors.category" class="mt-2" />
@@ -215,7 +215,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                     </div>
 
                     <div class="flex items-center gap-2 mt-10">
-                        <Link :href="route('financial.index')"
+                        <Link :href="route('finances.index')"
                             class="px-4 py-2 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-900 bg-white text-gray-800 shadow-2xs hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden focus:bg-gray-50 dark:bg-transparent dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
