@@ -35,13 +35,13 @@ const form = useForm({
     amount: '',
     date_of_issue: '',
     payment_method: '',
-    occurrence: '',
+    period: '',
     observation: '',
     is_active: false
 });
 
 const submit = () => {
-    form.post(route('financial.store'), {
+    form.post(route('finances.store'), {
         preserveScroll: true,
         onSuccess: () => toast.success('Conta cadastrado com sucesso.'),
         onError: () => toast.error('Ocorreu um erro ao tentar cadastrar conta.')
@@ -51,11 +51,11 @@ const submit = () => {
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Financeiro',
-        href: '/accounts',
+        href: '/finances',
     },
     {
         title: 'Cadastro',
-        href: '/accounts/Create',
+        href: '/finances/Create',
     }
 ];
 </script>
@@ -101,8 +101,8 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <SelectValue placeholder="Selecionar categoria" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem value="Receitas"> Receitas </SelectItem>
-                                    <SelectItem value="Despesas"> Despesas </SelectItem>
+                                    <SelectItem value="income"> Receitas </SelectItem>
+                                    <SelectItem value="expense"> Despesas </SelectItem>
                                 </SelectContent>
                             </Select>
                             <InputError :message="form.errors.category" class="mt-2" />
@@ -115,7 +115,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <SelectValue placeholder="Selecionar fornecedor" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem v-for="supplier in suppliers" :key="supplier.id" :value="supplier.name">
+                                    <SelectItem v-for="supplier in suppliers" :key="supplier.id" :value="supplier.id">
                                         {{ supplier.name }}</SelectItem>
                                 </SelectContent>
                             </Select>
@@ -155,7 +155,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                 </SelectTrigger>
                                 <SelectContent>
                                     <SelectItem v-for="paymentMethod in paymentMethods" :key="paymentMethod.id"
-                                        :value="paymentMethod.description">{{ paymentMethod.description }}</SelectItem>
+                                        :value="paymentMethod.id">{{ paymentMethod.description }}</SelectItem>
                                 </SelectContent>
                             </Select>
                             <InputError :message="form.errors.supplier" class="mt-2" />
@@ -163,16 +163,16 @@ const breadcrumbs: BreadcrumbItem[] = [
 
                         <div class="grid gap-2">
                             <Label for="occurrence">Periodicidade</Label>
-                            <Select id="occurrence" v-model="form.occurrence">
+                            <Select id="occurrence" v-model="form.period">
                                 <SelectTrigger class="w-auto mt-1">
                                     <SelectValue placeholder="Selecionar periodicidade" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem v-for="period in periods" :key="period.id" :value="period.description">
+                                    <SelectItem v-for="period in periods" :key="period.id" :value="period.id">
                                         {{ period.description }}</SelectItem>
                                 </SelectContent>
                             </Select>
-                            <InputError :message="form.errors.occurrence" class="mt-2" />
+                            <InputError :message="form.errors.period" class="mt-2" />
                         </div>
 
                         <div class="grid gap-2 mb-6 lg:mb-0">
@@ -197,7 +197,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                     </div>
 
                     <div class="flex items-center gap-2 mt-10">
-                        <Link :href="route('financial.index')"
+                        <Link :href="route('finances.index')"
                             class="px-4 py-2 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-900 bg-white text-gray-800 shadow-2xs hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden focus:bg-gray-50 dark:bg-transparent dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
