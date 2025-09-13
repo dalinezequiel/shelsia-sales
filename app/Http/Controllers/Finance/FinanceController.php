@@ -78,7 +78,7 @@ class FinanceController extends Controller
         $suppliers = Supplier::where('is_active', True)->get();
         $paymentMethods = PaymentMethod::where('is_active', True)->get();
         $periods = Period::where('is_active', True)->get();
-        return Inertia::render('financial/Edit', compact('finance', 'suppliers', 'paymentMethods', 'periods'));
+        return Inertia::render('finance/Edit', compact('finance', 'suppliers', 'paymentMethods', 'periods'));
     }
 
     /**
