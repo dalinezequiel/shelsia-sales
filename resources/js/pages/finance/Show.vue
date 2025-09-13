@@ -7,12 +7,12 @@ interface Account {
     account_plan: string;
     description: string;
     category: string;
-    supplier: string;
+    supplier: any;
     due_date: Date;
     amount: number;
     date_of_issue: Date;
-    payment_method: string;
-    period: string;
+    payment_method: any;
+    period: any;
     observation: string;
     is_active: boolean;
 }
@@ -58,7 +58,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                         <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Descrição</dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{ props.finance.account_plan
-                            }} - {{ props.finance.description }}</dd>
+                                }} - {{ props.finance.description }}</dd>
                         </div>
                         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Valor da conta</dt>
@@ -73,7 +73,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Forma de pagamento</dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{
-                                props.finance.payment_method }}
+                                props.finance.payment_method.description }}
                             </dd>
                         </div>
                         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -84,13 +84,15 @@ const breadcrumbs: BreadcrumbItem[] = [
                         </div>
                         <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Fornecedor</dt>
-                            <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{ props.finance.supplier }}
+                            <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{ props.finance.supplier.name
+                                }}
                             </dd>
                         </div>
                         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Periodicidade</dt>
-                            <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{ props.finance.period
-                            }}</dd>
+                            <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{
+                                props.finance.period.description
+                                }}</dd>
                         </div>
                         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Estado da conta</dt>
