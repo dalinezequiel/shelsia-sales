@@ -2,6 +2,7 @@
 
 namespace App\Models\Supplier;
 
+use App\Models\Product\Product;
 use Illuminate\Database\Eloquent\Model;
 
 class Supplier extends Model
@@ -17,4 +18,9 @@ class Supplier extends Model
         'is_active',
         'created_at',
     ];
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }
