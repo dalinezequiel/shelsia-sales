@@ -2,6 +2,7 @@
 
 namespace App\Models\PaymentMethod;
 
+use App\Models\Finance\Finance;
 use App\Models\Sales\Sale;
 use Illuminate\Database\Eloquent\Model;
 
@@ -19,5 +20,10 @@ class PaymentMethod extends Model
     public function sales()
     {
         return $this->hasMany(Sale::class);
+    }
+
+    public function finances()
+    {
+        return $this->hasMany(Finance::class);
     }
 }
