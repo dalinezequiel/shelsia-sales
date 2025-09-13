@@ -89,9 +89,28 @@ class FinanceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Finance $finance)
     {
-        //
+        $request->validate([
+            'account_plan' => 'required',
+            'description' => 'required'
+        ]);
+
+        $finance->supplier_id = $request->input('supplier');
+        $finance->payment_method_id = $request->input('payment_method');
+        $finance->period_id = $request->input('period');
+
+        $finance->account_plan = $request->input('account_plan');
+        $finance->description = $request->input('description');
+        $finance->category = $request->input('category');
+        $finance->due_date = $request->input('due_date');
+        $finance->amount = $request->input('amount');
+        $finance->date_of_issue = $request->input('date_of_issue');
+        $finance->observation = $request->input('observation');
+        $finance->is_active = $request->input('is_active');
+        $finance->save();
+
+        return redirect()->route('finances.index')->with('success', 'Actualizado com sucesso!');
     }
 
     /**
