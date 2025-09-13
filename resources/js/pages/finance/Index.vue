@@ -24,7 +24,7 @@ import Pagination from '@/components/additional/Pagination.vue';
 import { dateFormat } from '@/store';
 
 defineProps({
-    accounts: {
+    finances: {
         type: Object,
         required: true
     },
@@ -79,7 +79,7 @@ const payBill = (bill: Account) => {
 }
 
 const submit = () => {
-    form.put(route('financial.update', { financial: form }), {
+    form.put(route('finances.update', { financial: form }), {
         preserveScroll: true,
         onSuccess: () => toast.success('Pagamento efectuado com sucesso.'),
         onError: () => toast.error('Ocorreu um erro ao tentar pagar conta.')
@@ -88,14 +88,14 @@ const submit = () => {
 
 const description = ref('');
 const search = () => {
-    router.get(route('financial.index', { description: description.value }, {
+    router.get(route('finances.index', { description: description.value }, {
         preserveState: true,
         replace: true
     }))
 };
 
 const deleteAccount = (id: number) => {
-    router.delete(route('financial.destroy', id), {
+    router.delete(route('finances.destroy', id), {
         preserveScroll: true,
         onSuccess: () => toast.success('Conta excluída com sucesso.'),
         onError: () => toast.error('Ocorreu um erro ao tentar excluir conta.')
@@ -132,7 +132,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                         </p>
                     </div>
                     <div class="flex flex-col gap-2 shrink-0 sm:flex-row">
-                        <Link :href="route('financial.index')"
+                        <Link :href="route('finances.index')"
                             class="select-none rounded-lg border border-gray-900 py-2 px-4 text-center align-middle font-sans text-xs font-bold uppercase text-gray-900 transition-all hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                             type="button">
                         Listar
@@ -140,7 +140,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                         <button
                             class="flex select-none items-center gap-3 rounded-lg bg-gray-900 py-2 px-4 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                             type="button">
-                            <Link :href="route('financial.create')" class="flex gap-y-3 gap-x-2">
+                            <Link :href="route('finances.create')" class="flex gap-y-3 gap-x-2">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="16" fill="#ffffff">
                                 <path
                                     d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z" />
@@ -153,7 +153,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                 <div class="flex flex-col items-center justify-between gap-4 md:flex-row">
                     <div class="block w-full overflow-hidden md:w-max">
                         <nav>
-                            <Tablist :list="accounts" />
+                            <Tablist :list="finances" />
                         </nav>
                     </div>
                     <div class="w-full md:w-72">
@@ -227,7 +227,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="account in accounts.data" :key="account.id">
+                        <tr v-for="account in finances.data" :key="account.id">
                             <td class="p-4 border-b border-blue-gray-50">
                                 <div class="flex items-center gap-3">
                                     <img :src="account.is_active ? 'https://placehold.co/600x400/transparent/429657?text=$' : 'https://placehold.co/600x400/transparent/F00?text=$'"
@@ -349,14 +349,14 @@ const breadcrumbs: BreadcrumbItem[] = [
                                 <button
                                     class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                     type="button">
-                                    <Link :href="route('financial.edit', account.id)">
+                                    <Link :href="route('finances.edit', account.id)">
                                     <Pencil width="18" height="18" color="#1C7005" class="hover:stroke-[#33C809]" />
                                     </Link>
                                 </button>
                                 <button
                                     class="relative rounded-lg text-center mx-2 align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                     type="button">
-                                    <Link :href="route('financial.show', account.id)">
+                                    <Link :href="route('finances.show', account.id)">
                                     <File width="18" height="18" color="#393B3C" class="hover:stroke-[#949799]" />
                                     </Link>
                                 </button>
@@ -393,7 +393,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                 </table>
             </div>
 
-            <Pagination :list="accounts" />
+            <Pagination :list="finances" />
         </div>
     </AppLayout>
 </template>
