@@ -51,14 +51,16 @@ class ProductController extends Controller
             $image_path = $request->file('image')->storeAs('products', $file_name);
         }
 
-        Product::create([
+        $product_category = ProductCategory::find($request->product_category_id);
+        $unit = Unit::find($request->unit_id);
+        $supplier = Supplier::find($request->supplier_id);
+
+        $product = new Product([
             'barcode' => $request->barcode,
             'description' => $request->description,
-            'category' => $request->category,
-            'unit' => $request->unit,
-            'supplier' => $request->supplier,
             'purchase_price' => $request->purchase_price,
             'sale_price' => $request->sale_price,
+            'promotional_price' => $request->promotional_price,
             'validity' => $request->validity,
             'minimum_stock' => $request->minimum_stock,
             'maximum_stock' => $request->maximum_stock,
@@ -67,6 +69,11 @@ class ProductController extends Controller
             'image' => $image_path,
             'is_active' => $request->is_active
         ]);
+
+        $product->productCategory()->associate($product_category);
+        $product->unit()->associate($unit);
+        $product->supplier()->associate($supplier);
+        $product->save();
 
         return redirect()->route('products.index')->with('success', 'Cadastrado com sucesso!');
     }
