@@ -5,25 +5,28 @@
             <thead>
                 <tr>
                     <th
-                        class="px-4 bg-gray-50 text-gray-700 align-middle py-3 text-xs font-semibold text-left uppercase border-l-0 border-r-0 whitespace-nowrap">
-                        Top Channels</th>
+                        class="px-6 bg-gray-50 text-gray-700 align-middle py-3 text-xs font-semibold text-left border-l-0 border-r-0 whitespace-nowrap">
+                        Vendas Diárias</th>
                     <th
-                        class="px-4 bg-gray-50 text-gray-700 align-middle py-3 text-xs font-semibold text-left uppercase border-l-0 border-r-0 whitespace-nowrap">
-                        Users</th>
+                        class="px-4 bg-gray-50 text-gray-700 text-end py-3 text-xs font-semibold border-l-0 border-r-0 whitespace-nowrap">
+                        Núm.</th>
                     <th
-                        class="px-4 bg-gray-50 text-gray-700 align-middle py-3 text-xs font-semibold text-left uppercase border-l-0 border-r-0 whitespace-nowrap min-w-140-px">
-                        Ranking
+                        class="w-40 px-4 bg-gray-50 text-gray-700 text-start py-3 text-xs font-semibold border-l-0 border-r-0 whitespace-nowrap">
+                        Percentual
+                    </th>
+                    <th
+                        class="px-6 bg-gray-50 text-gray-700 text-end py-3 text-xs font-semibold border-l-0 border-r-0 whitespace-nowrap min-w-140-px">
+                        Montante
                     </th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-100">
                 <tr class="text-gray-500">
-                    <th class="border-t-0 px-4 align-middle text-sm font-normal whitespace-nowrap p-4 text-left">
-                        Organic
-                        Search</th>
-                    <td class="border-t-0 px-4 align-middle text-xs font-medium text-gray-900 whitespace-nowrap p-4">
-                        5,649</td>
-                    <td class="border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
+                    <th class="border-t-0 px-6 align-middle text-sm font-normal whitespace-nowrap p-4 text-left">
+                        Pagas</th>
+                    <td class="border-t-0 px-4 text-end text-xs font-medium text-gray-900 whitespace-nowrap p-4">
+                        5649</td>
+                    <td class="w-40 border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
                         <div class="flex items-center">
                             <span class="mr-2 text-xs font-medium">30%</span>
                             <div class="relative w-full">
@@ -33,39 +36,45 @@
                             </div>
                         </div>
                     </td>
+                    <td class="border-t-0 px-6 text-end text-xs font-medium text-gray-900 whitespace-nowrap p-4">
+                        5649.00</td>
                 </tr>
                 <tr class="text-gray-500">
-                    <th class="border-t-0 px-4 align-middle text-sm font-normal whitespace-nowrap p-4 text-left">
-                        Referral</th>
-                    <td class="border-t-0 px-4 align-middle text-xs font-medium text-gray-900 whitespace-nowrap p-4">
+                    <th class="border-t-0 px-6 align-middle text-sm font-normal whitespace-nowrap p-4 text-left">
+                        Pendentes</th>
+                    <td class="border-t-0 px-4 text-end text-xs font-medium text-gray-900 whitespace-nowrap p-4">
                         4,025</td>
-                    <td class="border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
+                    <td class="w-40 border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
                         <div class="flex items-center">
-                            <span class="mr-2 text-xs font-medium">24%</span>
+                            <span class="mr-2 text-xs font-medium">30%</span>
                             <div class="relative w-full">
                                 <div class="w-full bg-gray-200 rounded-sm h-2">
-                                    <div class="bg-orange-300 h-2 rounded-sm" style="width: 24%"></div>
+                                    <div class="bg-orange-300 h-2 rounded-sm" style="width: 30%"></div>
                                 </div>
                             </div>
                         </div>
                     </td>
+                    <td class="border-t-0 px-6 text-end text-xs font-medium text-gray-900 whitespace-nowrap p-4">
+                        5649.00</td>
                 </tr>
                 <tr class="text-gray-500">
-                    <th class="border-t-0 px-4 align-middle text-sm font-normal whitespace-nowrap p-4 text-left">
-                        Direct
+                    <th class="border-t-0 px-6 align-middle text-sm font-normal whitespace-nowrap p-4 text-left">
+                        Canceladas
                     </th>
-                    <td class="border-t-0 px-4 align-middle text-xs font-medium text-gray-900 whitespace-nowrap p-4">
+                    <td class="border-t-0 px-4 text-end text-xs font-medium text-gray-900 whitespace-nowrap p-4">
                         3,105</td>
-                    <td class="border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
+                    <td class="w-40 border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
                         <div class="flex items-center">
-                            <span class="mr-2 text-xs font-medium">18%</span>
+                            <span class="mr-2 text-xs font-medium">30%</span>
                             <div class="relative w-full">
                                 <div class="w-full bg-gray-200 rounded-sm h-2">
-                                    <div class="bg-teal-400 h-2 rounded-sm" style="width: 18%"></div>
+                                    <div class="bg-red-600 h-2 rounded-sm" style="width: 30%"></div>
                                 </div>
                             </div>
                         </div>
                     </td>
+                    <td class="border-t-0 px-6 text-end text-xs font-medium text-gray-900 whitespace-nowrap p-4">
+                        5649.00</td>
                 </tr>
             </tbody>
         </table>
