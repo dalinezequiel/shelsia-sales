@@ -7,6 +7,9 @@ defineProps({
         required: true
     }
 });
+
+const percents = (total: number, total_per_situation: number) => (total_per_situation * 100) / total;
+const applyProgress = (number: number) => "w-[" + number + "%]".toString();
 </script>
 <template>
     <div class="block w-full mt-4 overflow-x-auto rounded-2xl border">
@@ -42,7 +45,8 @@ defineProps({
                         {{ indicators.finances.income.total }}</td>
                     <td class="w-40 border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
                         <div class="flex items-center">
-                            <span class="mr-2 text-xs font-medium">30%</span>
+                            <span class="mr-2 text-xs font-medium">{{
+                                percents(indicators.finances.total, indicators.finances.income.total) }} %</span>
                             <div class="relative w-full">
                                 <div class="w-full bg-gray-200 rounded-sm h-2">
                                     <div class="bg-cyan-600 h-2 rounded-sm" style="width: 30%"></div>
@@ -60,10 +64,13 @@ defineProps({
                         {{ indicators.finances.expenses.total }}</td>
                     <td class="w-40 border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
                         <div class="flex items-center">
-                            <span class="mr-2 text-xs font-medium">30%</span>
+                            <span class="mr-2 text-xs font-medium">{{
+                                percents(indicators.finances.total, indicators.finances.expenses.total) }} %</span>
                             <div class="relative w-full">
                                 <div class="w-full bg-gray-200 rounded-sm h-2">
-                                    <div class="bg-orange-300 h-2 rounded-sm" style="width: 30%"></div>
+                                    <!-- style="width: 30%" -->
+                                    <div :class="applyProgress(30)" class="bg-orange-300 h-2 rounded-sm">
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -82,7 +89,7 @@ defineProps({
                             <span class="mr-2 text-xs font-medium">30%</span>
                             <div class="relative w-full">
                                 <div class="w-full bg-gray-200 rounded-sm h-2">
-                                    <div class="bg-red-600 h-2 rounded-sm" style="width: 30%"></div>
+                                    <div class="bg-red-600 h-2 rounded-sm" style="width: 40%"></div>
                                 </div>
                             </div>
                         </div>
