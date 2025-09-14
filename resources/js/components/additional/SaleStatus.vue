@@ -5,7 +5,7 @@
             <thead>
                 <tr>
                     <th
-                        class="px-6 bg-gray-50 text-gray-700 align-middle py-3 text-xs font-semibold text-left border-l-0 border-r-0 whitespace-nowrap">
+                        class="w-2/5 px-6 bg-gray-50 text-gray-700 align-middle py-3 text-xs font-semibold text-left border-l-0 border-r-0 whitespace-nowrap">
                         Vendas Diárias</th>
                     <th
                         class="px-4 bg-gray-50 text-gray-700 text-end py-3 text-xs font-semibold border-l-0 border-r-0 whitespace-nowrap">
