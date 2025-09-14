@@ -5,6 +5,7 @@ use Inertia\Inertia;
 use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\Sales\SalesController;
 use App\Http\Controllers\Analysis\AnalysisController;
+use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Finance\FinanceController;
 use App\Http\Controllers\Parameter\Customer\CustomerController;
 use App\Http\Controllers\Parameter\Supplier\SupplierController;
@@ -17,9 +18,7 @@ Route::get('/', function () {
     return Inertia::render('Welcome');
 })->name('home');
 
-Route::get('dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::resource('dashboard', DashboardController::class)->middleware(['auth', 'verified']);
 
 Route::resource('products', ProductController::class);
 Route::post('products/photo', [ProductController::class, 'photo']);
