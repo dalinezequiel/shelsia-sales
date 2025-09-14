@@ -1,6 +1,6 @@
 <template>
     <div class="grid gap-4 lg:gap-4 md:grid-cols-4 px-0 pt-0">
-        <div class="relative p-6 rounded-2xl bg-white shadow dark:bg-gray-800">
+        <div class="relative px-6 py-4 rounded-2xl bg-white shadow dark:bg-gray-800">
             <div class="space-y-2">
                 <div
                     class="flex items-center space-x-2 rtl:space-x-reverse text-sm font-medium text-gray-500 dark:text-gray-400">
@@ -13,7 +13,7 @@
             </div>
         </div>
 
-        <div class="relative p-6 rounded-2xl bg-white shadow dark:bg-gray-800">
+        <div class="relative px-6 py-4 rounded-2xl bg-white shadow dark:bg-gray-800">
             <div class="space-y-2">
                 <div
                     class="flex items-center space-x-2 rtl:space-x-reverse text-sm font-medium text-gray-500 dark:text-gray-400">
@@ -27,7 +27,7 @@
 
         </div>
 
-        <div class="relative p-6 rounded-2xl bg-white shadow dark:bg-gray-800">
+        <div class="relative px-6 py-4 rounded-2xl bg-white shadow dark:bg-gray-800">
             <div class="space-y-2">
                 <div
                     class="flex items-center space-x-2 rtl:space-x-reverse text-sm font-medium text-gray-500 dark:text-gray-400">
@@ -41,7 +41,7 @@
             </div>
         </div>
 
-        <div class="relative p-6 rounded-2xl bg-white shadow dark:bg-gray-800">
+        <div class="relative px-6 py-4 rounded-2xl bg-white shadow dark:bg-gray-800">
             <div class="space-y-2">
                 <div
                     class="flex items-center space-x-2 rtl:space-x-reverse text-sm font-medium text-gray-500 dark:text-gray-400">
