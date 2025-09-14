@@ -49,7 +49,6 @@ function product_list(product: Product) {
             <div
                 class="flex gap-2 absolute bottom-0 left-0 right-0 p-4 translate-y-10 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
 
-                <!-- <Countdown /> -->
                 <div class="rounded-lg inline-flex items-center">
                     <button @click="decrement"
                         class="bg-white rounded-l border text-gray-600 cursor-pointer hover:bg-gray-100 active:bg-gray-200 disabled:opacity-50 inline-flex items-center px-2 py-1 border-r border-gray-200">
@@ -72,7 +71,7 @@ function product_list(product: Product) {
                 </div>
 
                 <button
-                    @click="product_list({ id: product.id, name: product.description, category: product.category, price: product.sale_price, image: product.image })"
+                    @click="product_list({ id: product.id, name: product.description, category: product.category, price: product.promotional_price > 0 ? product.promotional_price : product.sale_price, image: product.image })"
                     class="w-full bg-indigo-600 text-white px-0 text-sm rounded-sm font-medium cursor-pointer hover:bg-indigo-700 transition-colors duration-300 flex items-center justify-center gap-2">
                     <ShoppingCart width="16px" />
                 </button>
@@ -85,12 +84,13 @@ function product_list(product: Product) {
             <div class="flex justify-between items-start">
                 <div>
                     <h3 class="text-md font-bold text-gray-800">{{ product.description }}</h3>
-                    <p class="text-gray-500 text-sm">{{ product.product_category.description }}ola</p>
+                    <p class="text-gray-500 text-sm">{{ product.product_category.description }}</p>
                 </div>
                 <div class="text-right">
-                    <p class="text-md font-bold text-indigo-600">{{ product.promotional_price > 0 ?
-                        product.promotional_price : product.sale_price }}</p>
-                    <p v-if="product.promotional_price > 0" class="text-xs text-gray-400 line-through">{{
+                    <p class="text-md font-bold text-indigo-600"><span class="text-[0.6rem]">MT</span>{{
+                        product.promotional_price > 0 ?
+                            product.promotional_price : product.sale_price }}</p>
+                    <p v-if="product.promotional_price > 0" class="text-xs text-gray-400 line-through">MT{{
                         product.sale_price }}</p>
                 </div>
             </div>
