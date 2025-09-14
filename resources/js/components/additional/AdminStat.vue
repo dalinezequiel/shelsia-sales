@@ -18,7 +18,7 @@ defineProps({
                 </div>
 
                 <div class="text-green-700 text-2xl dark:text-gray-100">
-                    {{ currencyFormat(indicators.finance.total_income) }}
+                    {{ currencyFormat(indicators.finances.income.sum) }}
                 </div>
             </div>
         </div>
@@ -31,7 +31,7 @@ defineProps({
                 </div>
 
                 <div class="text-cyan-800 text-2xl dark:text-gray-100">
-                    {{ indicators.product }}
+                    {{ indicators.products.total }}
                 </div>
             </div>
 
@@ -46,7 +46,7 @@ defineProps({
                 </div>
 
                 <div class="text-cyan-800 text-2xl dark:text-gray-100">
-                    {{ indicators.sale }}
+                    {{ indicators.sales.total }}
                 </div>
             </div>
         </div>
@@ -59,7 +59,7 @@ defineProps({
                 </div>
 
                 <div class="text-red-700 text-2xl dark:text-gray-100">
-                    {{ currencyFormat(indicators.finance.total_expenses) }}
+                    {{ currencyFormat(indicators.finances.expenses.sum) }}
                 </div>
             </div>
         </div>

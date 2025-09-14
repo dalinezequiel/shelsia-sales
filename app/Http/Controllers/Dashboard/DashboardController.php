@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Finance\Finance;
 use App\Models\Product\Product;
 use App\Models\Sales\Sale;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -16,17 +17,40 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $finance = [
-            'total_expenses' => Finance::where('is_active', false)->sum('amount'),
-            'total_income' => Finance::where('is_active', true)->sum('amount')
-        ];
-        $product = Product::where('is_active', true)->count();
-        $sale = Sale::where('status', 'paid')->count();
-
         $indicators = [
-            'finance' => $finance,
-            'product' => $product,
-            'sale' => $sale
+            'finances' => [
+                'total' => Finance::count(),
+                'expenses' => [
+                    'total' => Finance::where('is_active', false)->count(),
+                    'sum' => Finance::where('is_active', false)->sum('amount')
+                ],
+                'income' => [
+                    'total' => Finance::where('is_active', true)->count(),
+                    'sum' => Finance::where('is_active', true)->sum('amount')
+                ],
+                'late_bills' => [
+                    'total' => Finance::where('is_active', false)->whereDate('due_date', '<', Carbon::now()
+                        ->toDateString())->count(),
+                    'sum' => Finance::where('is_active', false)->whereDate('due_date', '<', Carbon::now()
+                        ->toDateString())->sum('amount')
+                ]
+            ],
+            'products' => ['total' => Product::count()],
+            'sales' => [
+                'total' => Sale::count(),
+                'paid' => [
+                    'total' => Sale::where('status', 'paid')->count(),
+                    'items_to_sum' => Sale::where('status', 'paid')->get()
+                ],
+                'pending' => [
+                    'total' => Sale::where('status', 'pending')->count(),
+                    'items_to_sum' => Sale::where('status', 'pending')->get()
+                ],
+                'cancelled' => [
+                    'total' => Sale::where('status', 'cancelled')->count(),
+                    'items_to_sum' => Sale::where('status', 'cancelled')->get()
+                ]
+            ]
         ];
         return Inertia::render('Dashboard', compact('indicators'));
     }
