@@ -7,7 +7,7 @@
                     <span>Receita</span>
                 </div>
 
-                <div class="text-3xl dark:text-gray-100">
+                <div class="text-green-700 text-2xl dark:text-gray-100">
                     192.1k
                 </div>
             </div>
@@ -17,10 +17,10 @@
             <div class="space-y-2">
                 <div
                     class="flex items-center space-x-2 rtl:space-x-reverse text-sm font-medium text-gray-500 dark:text-gray-400">
-                    <span>Novos Clientes</span>
+                    <span>Produtos</span>
                 </div>
 
-                <div class="text-3xl dark:text-gray-100">
+                <div class="text-cyan-800 text-2xl dark:text-gray-100">
                     1340
                 </div>
             </div>
@@ -32,10 +32,10 @@
                 <div
                     class="flex items-center space-x-2 rtl:space-x-reverse text-sm font-medium text-gray-500 dark:text-gray-400">
 
-                    <span>Novas Vendas</span>
+                    <span>Vendas</span>
                 </div>
 
-                <div class="text-3xl dark:text-gray-100">
+                <div class="text-cyan-800 text-2xl dark:text-gray-100">
                     3543
                 </div>
             </div>
@@ -48,7 +48,7 @@
                     <span>Despesas</span>
                 </div>
 
-                <div class="text-3xl dark:text-gray-100">
+                <div class="text-red-700 text-2xl dark:text-gray-100">
                     192.1k
                 </div>
             </div>
