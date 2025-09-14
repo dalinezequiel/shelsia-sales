@@ -4,6 +4,10 @@ import { reactive } from 'vue';
 export const dateFormat = (date: Date) =>
     new Intl.DateTimeFormat('en-US', { month: 'short', day: '2-digit', year: 'numeric' }).format(new Date(date));
 
+export const currencyFormat = (number: number) => {
+    return new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(number).replace('€', '');
+};
+
 interface Cart {
     items: ICart[];
     total(): number;
