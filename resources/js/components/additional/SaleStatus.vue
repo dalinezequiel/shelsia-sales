@@ -1,10 +1,14 @@
 <script setup lang="ts">
+import { currencyFormat } from '@/store';
+
 defineProps({
     indicators: {
         type: Object,
         required: true
     }
 });
+
+const calculate = (subtotal: number, shipping: number, discount: number) => subtotal + shipping - discount;
 </script>
 <template>
     <div class="block w-full mt-4 overflow-x-auto rounded-2xl border">
@@ -48,8 +52,19 @@ defineProps({
                             </div>
                         </div>
                     </td>
-                    <td class="border-t-0 px-6 text-end text-xs font-medium text-gray-900 whitespace-nowrap p-4">
-                        5649.00</td>
+                    <td v-if="indicators.sales.paid.items_to_sum"
+                        class="border-t-0 px-6 text-end text-xs font-medium text-gray-900 whitespace-nowrap p-4">
+                        {{currencyFormat(calculate(indicators.sales.paid.items_to_sum.has_details.reduce((acc:
+                            number, item: {
+                                price: number; quantity: number;
+                            }) => acc + item.price * item.quantity,
+                            0), Number(indicators.sales.paid.items_to_sum.shipping),
+                            Number(indicators.sales.paid.items_to_sum.discount))
+                        )}}
+                    </td>
+                    <td v-else class="border-t-0 px-6 text-end text-xs font-medium text-gray-900 whitespace-nowrap p-4">
+                        0,00
+                    </td>
                 </tr>
                 <tr class="text-gray-500">
                     <th class="border-t-0 px-6 align-middle text-sm font-normal whitespace-nowrap p-4 text-left">
@@ -66,8 +81,19 @@ defineProps({
                             </div>
                         </div>
                     </td>
-                    <td class="border-t-0 px-6 text-end text-xs font-medium text-gray-900 whitespace-nowrap p-4">
-                        5649.00</td>
+                    <td v-if="indicators.sales.pending.items_to_sum"
+                        class="border-t-0 px-6 text-end text-xs font-medium text-gray-900 whitespace-nowrap p-4">
+                        {{currencyFormat(calculate(indicators.sales.pending.items_to_sum.has_details.reduce((acc:
+                            number, item: {
+                                price: number; quantity: number;
+                            }) => acc + item.price * item.quantity,
+                            0), Number(indicators.sales.pending.items_to_sum.shipping),
+                            Number(indicators.sales.pending.items_to_sum.discount))
+                        )}}
+                    </td>
+                    <td v-else class="border-t-0 px-6 text-end text-xs font-medium text-gray-900 whitespace-nowrap p-4">
+                        0,00
+                    </td>
                 </tr>
                 <tr class="text-gray-500">
                     <th class="border-t-0 px-6 align-middle text-sm font-normal whitespace-nowrap p-4 text-left">
@@ -85,8 +111,20 @@ defineProps({
                             </div>
                         </div>
                     </td>
-                    <td class="border-t-0 px-6 text-end text-xs font-medium text-gray-900 whitespace-nowrap p-4">
-                        5649.00</td>
+
+                    <td v-if="indicators.sales.cancelled.items_to_sum"
+                        class="border-t-0 px-6 text-end text-xs font-medium text-gray-900 whitespace-nowrap p-4">
+                        {{currencyFormat(calculate(indicators.sales.cancelled.items_to_sum.has_details.reduce((acc:
+                            number, item: {
+                                price: number; quantity: number;
+                            }) => acc + item.price * item.quantity,
+                            0), Number(indicators.sales.cancelled.items_to_sum.shipping),
+                            Number(indicators.sales.cancelled.items_to_sum.discount))
+                        )}}
+                    </td>
+                    <td v-else class="border-t-0 px-6 text-end text-xs font-medium text-gray-900 whitespace-nowrap p-4">
+                        0,00
+                    </td>
                 </tr>
             </tbody>
         </table>
