@@ -1,4 +1,11 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+defineProps({
+    indicators: {
+        type: Object,
+        required: true
+    }
+});
+</script>
 <template>
     <div class="block w-full mt-4 overflow-x-auto rounded-2xl border">
         <table class="items-center w-full bg-transparent border-collapse">
@@ -30,7 +37,7 @@
                     <th class="border-t-0 px-6 align-middle text-sm font-normal whitespace-nowrap p-4 text-left">
                         Pagas</th>
                     <td class="border-t-0 px-4 text-end text-xs font-medium text-gray-900 whitespace-nowrap p-4">
-                        5649</td>
+                        {{ indicators.sales.paid.total }}</td>
                     <td class="w-40 border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
                         <div class="flex items-center">
                             <span class="mr-2 text-xs font-medium">30%</span>
@@ -48,7 +55,7 @@
                     <th class="border-t-0 px-6 align-middle text-sm font-normal whitespace-nowrap p-4 text-left">
                         Pendentes</th>
                     <td class="border-t-0 px-4 text-end text-xs font-medium text-gray-900 whitespace-nowrap p-4">
-                        4,025</td>
+                        {{ indicators.sales.pending.total }}</td>
                     <td class="w-40 border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
                         <div class="flex items-center">
                             <span class="mr-2 text-xs font-medium">30%</span>
@@ -67,7 +74,7 @@
                         Canceladas
                     </th>
                     <td class="border-t-0 px-4 text-end text-xs font-medium text-gray-900 whitespace-nowrap p-4">
-                        3,105</td>
+                        {{ indicators.sales.cancelled.total }}</td>
                     <td class="w-40 border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
                         <div class="flex items-center">
                             <span class="mr-2 text-xs font-medium">30%</span>
