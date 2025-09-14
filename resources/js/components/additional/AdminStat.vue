@@ -13,7 +13,7 @@ const calculate = (item: any, income: number) => {
         const subtotal = item.has_details
             .reduce((acc: number, item: { price: number; quantity: number; }) => acc + item.price * item.quantity,
                 0);
-        return currencyFormat(income + subtotal + (item.shipping - item.discount));
+        return currencyFormat(Number(income) + subtotal + (item.shipping - item.discount));
     }
     return 0;
 }
