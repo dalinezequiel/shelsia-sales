@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\Finance\Finance;
+use App\Models\Product\Product;
+use App\Models\Sales\Sale;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -13,7 +16,19 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Dashboard');
+        $finance = [
+            'total_expenses' => Finance::where('is_active', false)->sum('amount'),
+            'total_income' => Finance::where('is_active', true)->sum('amount')
+        ];
+        $product = Product::where('is_active', true)->count();
+        $sale = Sale::where('status', 'paid')->count();
+
+        $indicators = [
+            'finance' => $finance,
+            'product' => $product,
+            'sale' => $sale
+        ];
+        return Inertia::render('Dashboard', compact('indicators'));
     }
 
     /**
