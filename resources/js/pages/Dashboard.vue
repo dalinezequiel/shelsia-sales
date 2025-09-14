@@ -4,7 +4,7 @@ import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/vue3';
 import AdminStat from '@/components/additional/AdminStat.vue';
 import Ranking from '@/components/additional/Ranking.vue';
-import SaleTotal from '@/components/additional/SaleTotal.vue';
+import SaleStatus from '@/components/additional/SaleStatus.vue';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -22,7 +22,7 @@ const breadcrumbs: BreadcrumbItem[] = [
         <div class="flex h-full flex-1 flex-col gap-4 rounded-xl p-4 overflow-x-auto">
             <AdminStat />
             <Ranking />
-            <SaleTotal />
+            <SaleStatus />
         </div>
     </AppLayout>
 </template>
