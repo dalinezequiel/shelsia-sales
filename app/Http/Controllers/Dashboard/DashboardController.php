@@ -45,7 +45,7 @@ class DashboardController extends Controller
                 ],
                 'pending' => [
                     'total' => Sale::where('status', 'pending')->count(),
-                    'items_to_sum' => Sale::where('status', 'pending')->with(['hasDetails', 'hasDetails.product'])->first()
+                    'items_to_sum' => Sale::where('status', 'pending')->with(['hasDetails', 'hasDetails.product'])->get()
                 ],
                 'cancelled' => [
                     'total' => Sale::where('status', 'cancelled')->count(),
