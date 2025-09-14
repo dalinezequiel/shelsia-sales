@@ -3,8 +3,8 @@ import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/vue3';
 import AdminStat from '@/components/additional/AdminStat.vue';
-import Ranking from '@/components/additional/Ranking.vue';
 import SaleStatus from '@/components/additional/SaleStatus.vue';
+import FinanceStatus from '@/components/additional/FinanceStatus.vue';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -21,7 +21,7 @@ const breadcrumbs: BreadcrumbItem[] = [
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex h-full flex-1 flex-col gap-4 rounded-xl p-4 overflow-x-auto">
             <AdminStat />
-            <Ranking />
+            <FinanceStatus/>
             <SaleStatus />
         </div>
     </AppLayout>
