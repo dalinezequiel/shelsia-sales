@@ -7,6 +7,17 @@ defineProps({
         required: true
     }
 });
+
+const calculate = (item: any, income: number) => {
+    if (item !== null) {
+        const subtotal = item.has_details
+            .reduce((acc: number, item: { price: number; quantity: number; }) => acc + item.price * item.quantity,
+                0);
+        return currencyFormat(income + subtotal + (item.shipping - item.discount));
+    }
+    return 0;
+}
+
 </script>
 <template>
     <div class="grid gap-4 lg:gap-4 md:grid-cols-4 px-0 pt-0">
@@ -18,7 +29,7 @@ defineProps({
                 </div>
 
                 <div class="text-green-700 text-2xl dark:text-gray-100">
-                    {{ currencyFormat(indicators.finances.income.sum) }}
+                    {{ calculate(indicators.sales.paid.items_to_sum, indicators.finances.income.sum) }}
                 </div>
             </div>
         </div>
