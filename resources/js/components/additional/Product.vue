@@ -85,7 +85,7 @@ function product_list(product: Product) {
             <div class="flex justify-between items-start">
                 <div>
                     <h3 class="text-md font-bold text-gray-800">{{ product.description }}</h3>
-                    <p class="text-gray-500 text-sm">{{ product.product_category.description }}</p>
+                    <p class="text-gray-500 text-sm">{{ product.product_category.description }}ola</p>
                 </div>
                 <div class="text-right">
                     <p class="text-md font-bold text-indigo-600">{{ product.promotional_price > 0 ?
