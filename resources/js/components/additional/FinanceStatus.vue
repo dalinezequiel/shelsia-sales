@@ -1,4 +1,13 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { currencyFormat } from '@/store';
+
+defineProps({
+    indicators: {
+        type: Object,
+        required: true
+    }
+});
+</script>
 <template>
     <div class="block w-full mt-4 overflow-x-auto rounded-2xl border">
         <table class="items-center w-full bg-transparent border-collapse">
@@ -30,7 +39,7 @@
                     <th class="border-t-0 px-6 align-middle text-sm font-normal whitespace-nowrap p-4 text-left">
                         Pagas</th>
                     <td class="border-t-0 px-4 text-end text-xs font-medium text-gray-900 whitespace-nowrap p-4">
-                        5649</td>
+                        {{ indicators.finances.income.total }}</td>
                     <td class="w-40 border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
                         <div class="flex items-center">
                             <span class="mr-2 text-xs font-medium">30%</span>
@@ -42,13 +51,13 @@
                         </div>
                     </td>
                     <td class="border-t-0 px-6 text-end text-xs font-medium text-gray-900 whitespace-nowrap p-4">
-                        5649.00</td>
+                        {{ currencyFormat(indicators.finances.income.sum) }}</td>
                 </tr>
                 <tr class="text-gray-500">
                     <th class="border-t-0 px-6 align-middle text-sm font-normal whitespace-nowrap p-4 text-left">
                         Pendentes</th>
                     <td class="border-t-0 px-4 text-end text-xs font-medium text-gray-900 whitespace-nowrap p-4">
-                        4,025</td>
+                        {{ indicators.finances.expenses.total }}</td>
                     <td class="w-40 border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
                         <div class="flex items-center">
                             <span class="mr-2 text-xs font-medium">30%</span>
@@ -60,14 +69,14 @@
                         </div>
                     </td>
                     <td class="border-t-0 px-6 text-end text-xs font-medium text-gray-900 whitespace-nowrap p-4">
-                        5649.00</td>
+                        {{ currencyFormat(indicators.finances.expenses.sum) }}</td>
                 </tr>
                 <tr class="text-gray-500">
                     <th class="border-t-0 px-6 align-middle text-sm font-normal whitespace-nowrap p-4 text-left">
                         Atrasadas
                     </th>
                     <td class="border-t-0 px-4 text-end text-xs font-medium text-gray-900 whitespace-nowrap p-4">
-                        3,105</td>
+                        {{ indicators.finances.late_bills.total }}</td>
                     <td class="w-40 border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
                         <div class="flex items-center">
                             <span class="mr-2 text-xs font-medium">30%</span>
@@ -79,7 +88,7 @@
                         </div>
                     </td>
                     <td class="border-t-0 px-6 text-end text-xs font-medium text-gray-900 whitespace-nowrap p-4">
-                        5649.00</td>
+                        {{ currencyFormat(indicators.finances.late_bills.sum) }}</td>
                 </tr>
             </tbody>
         </table>

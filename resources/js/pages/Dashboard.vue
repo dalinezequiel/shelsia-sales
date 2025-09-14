@@ -28,7 +28,7 @@ const breadcrumbs: BreadcrumbItem[] = [
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex h-full flex-1 flex-col gap-4 rounded-xl p-4 overflow-x-auto">
             <AdminStat :indicators="indicators" />
-            <FinanceStatus />
+            <FinanceStatus :indicators="indicators" />
             <SaleStatus />
         </div>
     </AppLayout>
