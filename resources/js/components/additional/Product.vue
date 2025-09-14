@@ -85,11 +85,13 @@ function product_list(product: Product) {
             <div class="flex justify-between items-start">
                 <div>
                     <h3 class="text-md font-bold text-gray-800">{{ product.description }}</h3>
-                    <p class="text-gray-500 text-sm">{{ product.category }}</p>
+                    <p class="text-gray-500 text-sm">{{ product.product_category.description }}</p>
                 </div>
                 <div class="text-right">
-                    <p class="text-lg font-bold text-indigo-600">${{ product.sale_price }}</p>
-                    <p class="text-xs text-gray-400 line-through">$249.99</p>
+                    <p class="text-md font-bold text-indigo-600">{{ product.promotional_price > 0 ?
+                        product.promotional_price : product.sale_price }}</p>
+                    <p v-if="product.promotional_price > 0" class="text-xs text-gray-400 line-through">{{
+                        product.sale_price }}</p>
                 </div>
             </div>
         </div>
