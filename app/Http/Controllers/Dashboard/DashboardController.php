@@ -20,6 +20,7 @@ class DashboardController extends Controller
         $indicators = [
             'finances' => [
                 'total' => Finance::count(),
+                'sum' => Finance::sum('amount'),
                 'expenses' => [
                     'total' => Finance::where('is_active', false)->count(),
                     'sum' => Finance::where('is_active', false)->sum('amount')
