@@ -46,7 +46,8 @@ const applyProgress = (number: number) => "w-[" + number + "%]".toString();
                     <td class="w-40 border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
                         <div class="flex items-center">
                             <span class="mr-2 text-xs font-medium">{{
-                                percents(indicators.finances.total, indicators.finances.income.total) }} %</span>
+                                percents(indicators.finances.total, indicators.finances.income.total).toFixed(0) }}
+                                %</span>
                             <div class="relative w-full">
                                 <div class="w-full bg-gray-200 rounded-sm h-2">
                                     <div class="bg-cyan-600 h-2 rounded-sm" style="width: 30%"></div>
@@ -65,7 +66,8 @@ const applyProgress = (number: number) => "w-[" + number + "%]".toString();
                     <td class="w-40 border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
                         <div class="flex items-center">
                             <span class="mr-2 text-xs font-medium">{{
-                                percents(indicators.finances.total, indicators.finances.expenses.total) }} %</span>
+                                percents(indicators.finances.total, indicators.finances.expenses.total).toFixed(0) }}
+                                %</span>
                             <div class="relative w-full">
                                 <div class="w-full bg-gray-200 rounded-sm h-2">
                                     <!-- style="width: 30%" -->
