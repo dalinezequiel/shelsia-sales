@@ -1,5 +1,5 @@
 <template>
-    <div class="block w-full h-full mt-6 overflow-x-auto rounded-2xl border">
+    <div class="block w-full mt-4 overflow-x-auto rounded-2xl border">
         <table class="items-center w-full bg-transparent border-collapse">
             <thead>
                 <tr>
