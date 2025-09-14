@@ -1,3 +1,13 @@
+<script setup lang="ts">
+import { currencyFormat } from '@/store';
+
+defineProps({
+    indicators: {
+        type: Object,
+        required: true
+    }
+});
+</script>
 <template>
     <div class="grid gap-4 lg:gap-4 md:grid-cols-4 px-0 pt-0">
         <div class="relative px-6 py-4 rounded-2xl bg-white shadow dark:bg-gray-800">
@@ -8,7 +18,7 @@
                 </div>
 
                 <div class="text-green-700 text-2xl dark:text-gray-100">
-                    192.1k
+                    {{ currencyFormat(indicators.finance.total_income) }}
                 </div>
             </div>
         </div>
@@ -21,7 +31,7 @@
                 </div>
 
                 <div class="text-cyan-800 text-2xl dark:text-gray-100">
-                    1340
+                    {{ indicators.product }}
                 </div>
             </div>
 
@@ -36,7 +46,7 @@
                 </div>
 
                 <div class="text-cyan-800 text-2xl dark:text-gray-100">
-                    3543
+                    {{ indicators.sale }}
                 </div>
             </div>
         </div>
@@ -49,7 +59,7 @@
                 </div>
 
                 <div class="text-red-700 text-2xl dark:text-gray-100">
-                    192.1k
+                    {{ currencyFormat(indicators.finance.total_expenses) }}
                 </div>
             </div>
         </div>
