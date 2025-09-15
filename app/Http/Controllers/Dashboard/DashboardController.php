@@ -22,8 +22,10 @@ class DashboardController extends Controller
                 'total' => Finance::count(),
                 'sum' => Finance::sum('amount'),
                 'expenses' => [
-                    'total' => Finance::where('is_active', false)->count(),
-                    'sum' => Finance::where('is_active', false)->sum('amount')
+                    'total' => Finance::where('is_active', false)->whereDate('due_date', '>=', Carbon::now()
+                        ->toDateString())->count(),
+                    'sum' => Finance::where('is_active', false)->whereDate('due_date', '>=', Carbon::now()
+                        ->toDateString())->sum('amount')
                 ],
                 'income' => [
                     'total' => Finance::where('is_active', true)->count(),
