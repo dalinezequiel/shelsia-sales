@@ -68,7 +68,9 @@ const each_sale_total = (shipping: number, discount: number, item: any) => {
                                 indicators.sales.paid.total).toFixed(0) }}%</span>
                             <div class="relative w-full">
                                 <div class="w-full bg-gray-200 rounded-sm h-2">
-                                    <div class="bg-cyan-600 h-2 rounded-sm" style="width: 30%"></div>
+                                    <div class="bg-cyan-600 h-2 rounded-sm"
+                                        :style="applyProgressBar(percents(indicators.sales.total, indicators.sales.paid.total))">
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -92,7 +94,9 @@ const each_sale_total = (shipping: number, discount: number, item: any) => {
                                 indicators.sales.pending.total).toFixed(0) }}%</span>
                             <div class="relative w-full">
                                 <div class="w-full bg-gray-200 rounded-sm h-2">
-                                    <div class="bg-orange-300 h-2 rounded-sm" style="width: 30%"></div>
+                                    <div class="bg-orange-300 h-2 rounded-sm"
+                                        :style="applyProgressBar(percents(indicators.sales.total, indicators.sales.pending.total))">
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -117,7 +121,9 @@ const each_sale_total = (shipping: number, discount: number, item: any) => {
                                 indicators.sales.cancelled.total).toFixed(0) }}%</span>
                             <div class="relative w-full">
                                 <div class="w-full bg-gray-200 rounded-sm h-2">
-                                    <div class="bg-red-600 h-2 rounded-sm" style="width: 30%"></div>
+                                    <div class="bg-red-600 h-2 rounded-sm"
+                                        :style="applyProgressBar(percents(indicators.sales.total, indicators.sales.cancelled.total))">
+                                    </div>
                                 </div>
                             </div>
                         </div>
