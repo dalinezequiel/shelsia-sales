@@ -2,7 +2,7 @@
 import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
 import { Head, Link, router } from '@inertiajs/vue3';
-import { File, Pencil, Trash2 } from 'lucide-vue-next';
+import { File, SquarePen, Trash2 } from 'lucide-vue-next';
 import { Input } from '@/components/ui/input';
 import {
     AlertDialog,
@@ -288,7 +288,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                     type="button">
                                     <Link :href="route('products.edit', product.id)">
-                                    <Pencil width="18" height="18" color="#1C7005" class="hover:stroke-[#33C809]" />
+                                    <SquarePen width="18" height="18" color="#1C7005" class="hover:stroke-[#33C809]" />
                                     </Link>
                                 </button>
                                 <button
