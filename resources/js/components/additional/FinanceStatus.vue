@@ -87,7 +87,8 @@ const applyProgressBar = (number: number) => "width: ".concat(number.toString(),
                         {{ indicators.finances.late_bills.total }}</td>
                     <td class="w-40 border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
                         <div class="flex items-center">
-                            <span class="mr-2 text-xs font-medium">30%</span>
+                            <span class="mr-2 text-xs font-medium">{{ percents(indicators.finances.total,
+                                indicators.finances.late_bills.total).toFixed() }}%</span>
                             <div class="relative w-full">
                                 <div class="w-full bg-gray-200 rounded-sm h-2">
                                     <div class="bg-red-600 h-2 rounded-sm" style="width: 40%"></div>
