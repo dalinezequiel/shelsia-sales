@@ -24,18 +24,25 @@ class DashboardController extends Controller
                 'expenses' => [
                     'total' => Finance::where('category', 'expense')->whereDate('due_date', '>=', Carbon::now()
                         ->toDateString())->count(),
+
                     'paid' => Finance::where('category', 'expense')->where('is_active', true)
                         ->whereDate('due_date', '>=', Carbon::now()->toDateString())->count(),
+
                     'sum' => Finance::where('category', 'expense')->whereDate('due_date', '>=', Carbon::now()
                         ->toDateString())->sum('amount')
                 ],
                 'income' => [
                     'total' => Finance::where('category', 'income')->count(),
+                    'paid' => Finance::where('category', 'income')->where('is_active', true)->count(),
                     'sum' => Finance::where('category', 'income')->sum('amount')
                 ],
                 'late_bills' => [
                     'total' => Finance::where('category', 'expense')->whereDate('due_date', '<', Carbon::now()
                         ->toDateString())->count(),
+
+                    'paid' => Finance::where('category', 'expense')->where('is_active', true)
+                        ->whereDate('due_date', '<', Carbon::now()->toDateString())->count(),
+
                     'sum' => Finance::where('category', 'expense')->whereDate('due_date', '<', Carbon::now()
                         ->toDateString())->sum('amount')
                 ]
