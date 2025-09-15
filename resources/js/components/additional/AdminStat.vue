@@ -77,7 +77,8 @@ const each_sale_total = (shipping: number, discount: number, item: any) => {
                 </div>
 
                 <div class="text-red-700 text-2xl dark:text-gray-100">
-                    {{ currencyFormat(indicators.finances.expenses.sum + indicators.finances.late_bills.sum) }}
+                    {{ currencyFormat(Number(indicators.finances.expenses.sum) +
+                        Number(indicators.finances.late_bills.sum)) }}
                 </div>
             </div>
         </div>
