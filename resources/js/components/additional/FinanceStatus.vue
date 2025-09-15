@@ -9,7 +9,7 @@ defineProps({
 });
 
 const percents = (total: number, total_per_situation: number) => (total_per_situation * 100) / total;
-const applyProgress = (number: number) => "w-[" + number + "%]".toString();
+const applyProgressBar = (number: number) => "width: ".concat(number.toString(), "%");
 </script>
 <template>
     <div class="block w-full mt-4 overflow-x-auto rounded-2xl border">
@@ -70,8 +70,7 @@ const applyProgress = (number: number) => "w-[" + number + "%]".toString();
                                 %</span>
                             <div class="relative w-full">
                                 <div class="w-full bg-gray-200 rounded-sm h-2">
-                                    <!-- style="width: 30%" -->
-                                    <div :class="applyProgress(30)" class="bg-orange-300 h-2 rounded-sm">
+                                    <div class="bg-orange-300 h-2 rounded-sm" :style="applyProgressBar(17)">
                                     </div>
                                 </div>
                             </div>
