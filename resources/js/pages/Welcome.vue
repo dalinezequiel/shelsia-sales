@@ -14,7 +14,7 @@ import { Head, Link } from '@inertiajs/vue3';
             <nav class="flex items-center justify-between gap-4">
                 <p>Logo</p>
                 <div class="flex gap-4">
-                    <Link v-if="$page.props.auth.user" :href="route('dashboard')"
+                    <Link v-if="$page.props.auth.user" :href="route('dashboard.index')"
                         class="inline-block rounded-sm border border-[#19140035] px-5 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#1915014a] dark:border-[#3E3E3A] dark:text-[#EDEDEC] dark:hover:border-[#62605b]">
                     Dashboard
                     </Link>
@@ -244,7 +244,8 @@ import { Head, Link } from '@inertiajs/vue3';
 
                 <footer>
                     <div class="w-full mx-auto max-w-screen-xl py-4 md:flex md:items-center md:justify-between">
-                        <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 All Rights Reserved.
+                        <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 All Rights
+                            Reserved.
                         </span>
                         <ul
                             class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">

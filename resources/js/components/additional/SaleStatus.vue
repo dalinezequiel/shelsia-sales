@@ -8,7 +8,25 @@ defineProps({
     }
 });
 
-const calculate = (subtotal: number, shipping: number, discount: number) => subtotal + shipping - discount;
+const calculate = (items: any) => {
+    if (items !== null) {
+        console.log(items)
+        const total = items.reduce((acc: number, item: { shipping: number; discount: number; has_details: any }) => {
+            const total_sum = each_sale_total(item.shipping, item.discount, item.has_details);
+            return acc + total_sum;
+        }, 0)
+        return currencyFormat(total);
+    }
+    return 0;
+}
+
+const each_sale_total = (shipping: number, discount: number, item: any) => {
+    return item.reduce((acc: number, detail: { quantity: number; price: number; }) => {
+        return acc + detail.quantity * detail.price
+    }, 0) + Number(shipping) - discount;
+}
+
+
 </script>
 <template>
     <div class="block w-full mt-4 overflow-x-auto rounded-2xl border">
@@ -54,13 +72,7 @@ const calculate = (subtotal: number, shipping: number, discount: number) => subt
                     </td>
                     <td v-if="indicators.sales.paid.items_to_sum"
                         class="border-t-0 px-6 text-end text-xs font-medium text-gray-900 whitespace-nowrap p-4">
-                        {{currencyFormat(calculate(indicators.sales.paid.items_to_sum.has_details.reduce((acc:
-                            number, item: {
-                                price: number; quantity: number;
-                            }) => acc + item.price * item.quantity,
-                            0), Number(indicators.sales.paid.items_to_sum.shipping),
-                            Number(indicators.sales.paid.items_to_sum.discount))
-                        )}}
+                        {{ calculate(indicators.sales.paid.items_to_sum) }}
                     </td>
                     <td v-else class="border-t-0 px-6 text-end text-xs font-medium text-gray-900 whitespace-nowrap p-4">
                         0,00
@@ -83,13 +95,7 @@ const calculate = (subtotal: number, shipping: number, discount: number) => subt
                     </td>
                     <td v-if="indicators.sales.pending.items_to_sum"
                         class="border-t-0 px-6 text-end text-xs font-medium text-gray-900 whitespace-nowrap p-4">
-                        {{currencyFormat(calculate(indicators.sales.pending.items_to_sum.has_details.reduce((acc:
-                            number, item: {
-                                price: number; quantity: number;
-                            }) => acc + item.price * item.quantity,
-                            0), Number(indicators.sales.pending.items_to_sum.shipping),
-                            Number(indicators.sales.pending.items_to_sum.discount))
-                        )}}
+                        {{ calculate(indicators.sales.pending.items_to_sum) }}
                     </td>
                     <td v-else class="border-t-0 px-6 text-end text-xs font-medium text-gray-900 whitespace-nowrap p-4">
                         0,00
@@ -114,13 +120,7 @@ const calculate = (subtotal: number, shipping: number, discount: number) => subt
 
                     <td v-if="indicators.sales.cancelled.items_to_sum"
                         class="border-t-0 px-6 text-end text-xs font-medium text-gray-900 whitespace-nowrap p-4">
-                        {{currencyFormat(calculate(indicators.sales.cancelled.items_to_sum.has_details.reduce((acc:
-                            number, item: {
-                                price: number; quantity: number;
-                            }) => acc + item.price * item.quantity,
-                            0), Number(indicators.sales.cancelled.items_to_sum.shipping),
-                            Number(indicators.sales.cancelled.items_to_sum.discount))
-                        )}}
+                        {{ calculate(indicators.sales.cancelled.items_to_sum) }}
                     </td>
                     <td v-else class="border-t-0 px-6 text-end text-xs font-medium text-gray-900 whitespace-nowrap p-4">
                         0,00
