@@ -50,7 +50,9 @@ const applyProgressBar = (number: number) => "width: ".concat(number.toString(),
                                 %</span>
                             <div class="relative w-full">
                                 <div class="w-full bg-gray-200 rounded-sm h-2">
-                                    <div class="bg-cyan-600 h-2 rounded-sm" style="width: 30%"></div>
+                                    <div class="bg-cyan-600 h-2 rounded-sm"
+                                        :style="applyProgressBar(percents(indicators.finances.total, indicators.finances.income.total))">
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -70,7 +72,8 @@ const applyProgressBar = (number: number) => "width: ".concat(number.toString(),
                                 %</span>
                             <div class="relative w-full">
                                 <div class="w-full bg-gray-200 rounded-sm h-2">
-                                    <div class="bg-orange-300 h-2 rounded-sm" :style="applyProgressBar(17)">
+                                    <div class="bg-orange-300 h-2 rounded-sm"
+                                        :style="applyProgressBar(percents(indicators.finances.total, indicators.finances.expenses.total))">
                                     </div>
                                 </div>
                             </div>
@@ -91,7 +94,9 @@ const applyProgressBar = (number: number) => "width: ".concat(number.toString(),
                                 indicators.finances.late_bills.total).toFixed() }}%</span>
                             <div class="relative w-full">
                                 <div class="w-full bg-gray-200 rounded-sm h-2">
-                                    <div class="bg-red-600 h-2 rounded-sm" style="width: 40%"></div>
+                                    <div class="bg-red-600 h-2 rounded-sm"
+                                        :style="applyProgressBar(percents(indicators.finances.total, indicators.finances.late_bills.total))">
+                                    </div>
                                 </div>
                             </div>
                         </div>
