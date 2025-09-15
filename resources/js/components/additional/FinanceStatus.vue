@@ -25,7 +25,7 @@ const applyProgressBar = (number: number) => "width: ".concat(number.toString(),
                 <tr>
                     <th
                         class="w-2/5 px-6 bg-gray-50 text-gray-500 align-middle py-3 text-xs font-semibold text-left border-l-0 border-r-0 whitespace-nowrap">
-                        Situação</th>
+                        Classificação</th>
                     <th
                         class="px-4 bg-gray-50 text-gray-500 text-end py-3 text-xs font-semibold border-l-0 border-r-0 whitespace-nowrap">
                         Núm.</th>
@@ -40,7 +40,7 @@ const applyProgressBar = (number: number) => "width: ".concat(number.toString(),
                 </tr>
                 <tr class="text-gray-500">
                     <th class="border-t-0 px-6 align-middle text-sm font-normal whitespace-nowrap p-4 text-left">
-                        Pagas</th>
+                        Recebimentos</th>
                     <td class="border-t-0 px-4 text-end text-xs font-medium text-gray-900 whitespace-nowrap p-4">
                         {{ indicators.finances.income.total }}</td>
                     <td class="w-40 border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
@@ -60,7 +60,7 @@ const applyProgressBar = (number: number) => "width: ".concat(number.toString(),
                 </tr>
                 <tr class="text-gray-500">
                     <th class="border-t-0 px-6 align-middle text-sm font-normal whitespace-nowrap p-4 text-left">
-                        Pendentes</th>
+                        Pagamentos</th>
                     <td class="border-t-0 px-4 text-end text-xs font-medium text-gray-900 whitespace-nowrap p-4">
                         {{ indicators.finances.expenses.total }}</td>
                     <td class="w-40 border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
@@ -81,7 +81,7 @@ const applyProgressBar = (number: number) => "width: ".concat(number.toString(),
                 </tr>
                 <tr class="text-gray-500">
                     <th class="border-t-0 px-6 align-middle text-sm font-normal whitespace-nowrap p-4 text-left">
-                        Atrasadas
+                        Dívidas
                     </th>
                     <td class="border-t-0 px-4 text-end text-xs font-medium text-gray-900 whitespace-nowrap p-4">
                         {{ indicators.finances.late_bills.total }}</td>
