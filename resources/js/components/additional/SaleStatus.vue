@@ -10,7 +10,6 @@ defineProps({
 
 const calculate = (items: any) => {
     if (items !== null) {
-        console.log(items)
         const total = items.reduce((acc: number, item: { shipping: number; discount: number; has_details: any }) => {
             const total_sum = each_sale_total(item.shipping, item.discount, item.has_details);
             return acc + total_sum;
