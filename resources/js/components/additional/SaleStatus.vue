@@ -8,6 +8,8 @@ defineProps({
     }
 });
 
+const percents = (total: number, total_per_situation: number) => (total_per_situation * 100) / total;
+
 const calculate = (items: any) => {
     if (items !== null) {
         const total = items.reduce((acc: number, item: { shipping: number; discount: number; has_details: any }) => {
@@ -61,7 +63,8 @@ const each_sale_total = (shipping: number, discount: number, item: any) => {
                         {{ indicators.sales.paid.total }}</td>
                     <td class="w-40 border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
                         <div class="flex items-center">
-                            <span class="mr-2 text-xs font-medium">30%</span>
+                            <span class="mr-2 text-xs font-medium">{{ percents(indicators.sales.total,
+                                indicators.sales.paid.total).toFixed(0) }}%</span>
                             <div class="relative w-full">
                                 <div class="w-full bg-gray-200 rounded-sm h-2">
                                     <div class="bg-cyan-600 h-2 rounded-sm" style="width: 30%"></div>
@@ -84,7 +87,8 @@ const each_sale_total = (shipping: number, discount: number, item: any) => {
                         {{ indicators.sales.pending.total }}</td>
                     <td class="w-40 border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
                         <div class="flex items-center">
-                            <span class="mr-2 text-xs font-medium">30%</span>
+                            <span class="mr-2 text-xs font-medium">{{ percents(indicators.sales.total,
+                                indicators.sales.pending.total).toFixed(0) }}%</span>
                             <div class="relative w-full">
                                 <div class="w-full bg-gray-200 rounded-sm h-2">
                                     <div class="bg-orange-300 h-2 rounded-sm" style="width: 30%"></div>
@@ -108,7 +112,8 @@ const each_sale_total = (shipping: number, discount: number, item: any) => {
                         {{ indicators.sales.cancelled.total }}</td>
                     <td class="w-40 border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
                         <div class="flex items-center">
-                            <span class="mr-2 text-xs font-medium">30%</span>
+                            <span class="mr-2 text-xs font-medium">{{ percents(indicators.sales.total,
+                                indicators.sales.cancelled.total).toFixed(0) }}%</span>
                             <div class="relative w-full">
                                 <div class="w-full bg-gray-200 rounded-sm h-2">
                                     <div class="bg-red-600 h-2 rounded-sm" style="width: 30%"></div>
