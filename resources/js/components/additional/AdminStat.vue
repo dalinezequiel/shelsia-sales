@@ -8,14 +8,21 @@ defineProps({
     }
 });
 
-const calculate = (item: any, income: number) => {
-    if (item !== null) {
-        const subtotal = item.has_details
-            .reduce((acc: number, item: { price: number; quantity: number; }) => acc + item.price * item.quantity,
-                0);
-        return currencyFormat(Number(income) + subtotal + (item.shipping - item.discount));
+const calculate = (items: any, income: number) => {
+    if (items !== null) {
+        const total = items.reduce((acc: number, item: { shipping: number; discount: number; has_details: any }) => {
+            const total_sum = each_sale_total(item.shipping, item.discount, item.has_details);
+            return acc + total_sum;
+        }, 0)
+        return currencyFormat(total + Number(income));
     }
     return 0;
+}
+
+const each_sale_total = (shipping: number, discount: number, item: any) => {
+    return item.reduce((acc: number, detail: { quantity: number; price: number; }) => {
+        return acc + detail.quantity * detail.price
+    }, 0) + Number(shipping) - discount;
 }
 
 </script>
