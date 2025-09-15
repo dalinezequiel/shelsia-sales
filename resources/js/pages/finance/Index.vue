@@ -2,8 +2,7 @@
 import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
 import { Head, Link, router, useForm } from '@inertiajs/vue3';
-import { File, Pencil, Trash2, ArrowDownUp, Check } from 'lucide-vue-next';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { File, SquarePen, Trash2, ReceiptText, Check } from 'lucide-vue-next';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import {
@@ -297,8 +296,8 @@ const breadcrumbs: BreadcrumbItem[] = [
                             <td class="p-4 border-b border-blue-gray-50 text-center">
                                 <AlertDialog>
                                     <AlertDialogTrigger
-                                        class="relative mr-2 cursor-pointer rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
-                                        <ArrowDownUp width="20" color="#696969" class="hover:stroke-[#C4C4C4]" />
+                                        class="relative mr-1 cursor-pointer rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
+                                        <ReceiptText width="18" color="#525251" class="hover:stroke-[#0D0D0D]" />
                                     </AlertDialogTrigger>
 
                                     <AlertDialogContent>
@@ -353,21 +352,21 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                     type="button">
                                     <Link :href="route('finances.edit', account.id)">
-                                    <Pencil width="18" height="18" color="#1C7005" class="hover:stroke-[#33C809]" />
+                                    <SquarePen width="18" color="#1C7005" class="hover:stroke-[#33C809]" />
                                     </Link>
                                 </button>
                                 <button
-                                    class="relative rounded-lg text-center mx-2 align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                                    class="relative rounded-lg text-center mx-1 align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                     type="button">
                                     <Link :href="route('finances.show', account.id)">
-                                    <File width="18" height="18" color="#393B3C" class="hover:stroke-[#949799]" />
+                                    <File width="18" color="#393B3C" class="hover:stroke-[#949799]" />
                                     </Link>
                                 </button>
 
                                 <AlertDialog>
                                     <AlertDialogTrigger
                                         class="relative cursor-pointer rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
-                                        <Trash2 width="18" height="18" color="#C80909"
+                                        <Trash2 width="18" color="#C80909"
                                             class="transition-all hover:stroke-[#F86363]" />
                                     </AlertDialogTrigger>
 
