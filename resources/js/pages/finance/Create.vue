@@ -125,7 +125,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 
                     <div class="grid lg:grid-cols-3 lg:gap-4 ">
                         <div class="grid gap-2">
-                            <Label for="due_date">Dta de vencimento</Label>
+                            <Label for="due_date">Data de vencimento</Label>
                             <Input id="due_date" v-model="form.due_date" type="date" class="mt-1 block w-full" required
                                 placeholder="Data de vencimento" />
                             <InputError :message="form.errors.due_date" class="mt-2" />
