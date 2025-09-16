@@ -32,7 +32,7 @@ return new class extends Migration
             $table->decimal('amount', '10', '2');
             $table->date('date_of_issue');
             $table->string('observation')->nullable();
-            $table->boolean('is_active')->default(false);
+            $table->boolean('is_paid')->default(false);
             $table->timestamps();
         });
     }
