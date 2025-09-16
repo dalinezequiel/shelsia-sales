@@ -65,7 +65,8 @@ const each_sale_total = (shipping: number, discount: number, item: any) => {
                     <td class="border-t-0 px-6 text-sm font-normal whitespace-nowrap">
                         Pagas</td>
                     <td class="border-t-0 px-4 text-end text-xs font-medium whitespace-nowrap">
-                        <span class="px-2 py-1 rounded-md border border-gray-200">0 / 0</span>
+                        <span class="px-2 py-1 rounded-md border border-gray-200">{{ indicators.sales.paid.total }} / {{
+                            indicators.sales.total }}</span>
                     </td>
 
                     <td class="border-t-0 px-4 text-end text-xs font-medium text-gray-900 whitespace-nowrap">
@@ -95,7 +96,8 @@ const each_sale_total = (shipping: number, discount: number, item: any) => {
                     <td class="border-t-0 px-6 text-sm font-normal whitespace-nowrap">
                         Pendentes</td>
                     <td class="border-t-0 px-4 text-end text-xs font-medium whitespace-nowrap">
-                        <span class="px-2 py-1 rounded-md border border-gray-200">0 / 0</span>
+                        <span class="px-2 py-1 rounded-md border border-gray-200">{{ indicators.sales.pending.total }} /
+                            {{ indicators.sales.total }}</span>
                     </td>
                     <td class="border-t-0 px-4 text-end text-xs font-medium text-gray-900 whitespace-nowrap">
                         {{ indicators.sales.pending.total }}</td>
@@ -125,7 +127,8 @@ const each_sale_total = (shipping: number, discount: number, item: any) => {
                         Canceladas
                     </td>
                     <td class="border-t-0 px-4 text-end text-xs font-medium  whitespace-nowrap">
-                        <span class="px-2 py-1 rounded-md border border-gray-200">0 / 0</span>
+                        <span class="px-2 py-1 rounded-md border border-gray-200">{{ indicators.sales.cancelled.total }}
+                            / {{ indicators.sales.total }}</span>
                     </td>
                     <td class="border-t-0 px-4 text-end text-xs font-medium text-gray-900 whitespace-nowrap">
                         {{ indicators.sales.cancelled.total }}</td>
