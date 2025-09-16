@@ -5,13 +5,14 @@ import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/vue3';
 import Input from '@/components/ui/input/Input.vue';
 import { ref } from 'vue';
+import { currencyFormat } from '@/store';
 
 defineProps({
     forecasts: {
         type: Object,
         required: true
     },
-    sales: {
+    finances: {
         type: Object,
         required: true
     }
@@ -30,8 +31,10 @@ function printButton(elementId: string): void {
     }
 }
 
-const currentDate = new Date();
-const currentYear = ref(currentDate.getFullYear());
+const currentDate = ref(new Date());
+const data='2025-09-16'
+const currentYear = ref(currentDate.value.getFullYear());
+
 
 
 const breadcrumbs: BreadcrumbItem[] = [
@@ -57,16 +60,16 @@ const breadcrumbs: BreadcrumbItem[] = [
                     <section class="grid grid-cols-2 gap-2">
                         <div class="p-2 rounded-md border border-gray-200">
                             <p class="text-sm">Valor Bruto</p>
-                            <p>0,00</p>
+                            <p>{{ currencyFormat(finances.total_expenses + finances.total_income) }}</p>
                         </div>
                         <div class="p-2 rounded-md border border-gray-200">
                             <p class="text-sm">Valor Líquido</p>
-                            <p>0,00</p>
+                            <p>{{ currencyFormat(finances.total_income) }}</p>
                         </div>
 
                     </section>
                     <section class="mx-4 grid grid-cols-2">
-                        <Input type="date" />
+                        <Input type="date" v-model="data"/>
                         <div class="pl-14 pl-2 grid items-start">
                             <button @click="printButton('printableArea')"
                                 class="flex justify-center gap-2 select-none cursor-pointer rounded-lg border border-gray-200 py-3 px-2 text-center align-middle font-sans text-xs font-bold uppercase text-gray-900 transition-all hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
