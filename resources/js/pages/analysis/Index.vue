@@ -3,33 +3,44 @@ import LineChart from '@/components/additional/LineChart.vue';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/vue3';
-import {
-    AlertDialog,
-    AlertDialogAction,
-    AlertDialogCancel,
-    AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogTitle,
-    AlertDialogTrigger,
-} from '@/components/ui/alert-dialog'
-import { ChartNoAxesColumn, Microchip } from 'lucide-vue-next';
+import Input from '@/components/ui/input/Input.vue';
+import { ref } from 'vue';
 
 defineProps({
     forecasts: {
         type: Object,
         required: true
+    },
+    sales: {
+        type: Object,
+        required: true
     }
 });
 
+function printButton(elementId: string): void {
+    const printContent = document.getElementById(elementId);
+
+    if (printContent) {
+        const originalContent = document.body.innerHTML;
+        document.body.innerHTML = printContent.innerHTML;
+        window.print();
+        document.body.innerHTML = originalContent;
+    } else {
+        console.error(`Element with ID '${elementId}' not found.`);
+    }
+}
+
+const currentDate = new Date();
+const currentYear = ref(currentDate.getFullYear());
+
+
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Analysis',
+        title: 'Análises',
         href: '/analysis',
     },
     {
-        title: 'Prediction',
+        title: 'Previsão',
         href: '/analysis',
     }
 ];
@@ -37,176 +48,172 @@ const breadcrumbs: BreadcrumbItem[] = [
 
 <template>
 
-    <Head title="Products" />
+    <Head title="Previsão" />
 
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="relative flex flex-col w-full h-full text-gray-700 bg-white shadow-md rounded-xl bg-clip-border">
-            <div class="relative mx-4 mt-4 text-gray-700 bg-white rounded-none bg-clip-border">
-                <h1>Sales forecast</h1>
-                <LineChart />
-                <div class="pt-8">
-                    <section id="about">
-                        <div class="container">
-                            <div>
-                                <!-- Heading -->
-                                <h1 class="mb-4 section-title" data-aos="fade-down">
-                                    Evaluation metrics
-                                </h1>
-                                <p class="mb-4 max-w-3xl text-gray-400" data-aos="fade-down">
-                                    Insights sobre o desempenho do modelo, avaliam a sua
-                                    capacidade
-                                    preditiva, capacidade de generalização e qualidade geral.
-                                </p>
-                                <div class="flex items-center gap-2 mt-10">
-                                    <AlertDialog>
-                                        <AlertDialogTrigger
-                                            class="relative cursor-pointer rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
-                                            <button
-                                                class="px-4 py-2 cursor-pointer inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-900 bg-white text-gray-800 shadow-2xs hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden focus:bg-gray-50 dark:bg-transparent dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800">
-                                                <Microchip />
-                                                Performance
-                                            </button>
-                                        </AlertDialogTrigger>
+            <div id="printableArea" class="relative mx-4 mt-4 text-gray-700 bg-white rounded-none bg-clip-border">
+                <div class="flex justify-between">
+                    <section class="grid grid-cols-2 gap-2">
+                        <div class="p-2 rounded-md border border-gray-200">
+                            <p class="text-sm">Valor Bruto</p>
+                            <p>0,00</p>
+                        </div>
+                        <div class="p-2 rounded-md border border-gray-200">
+                            <p class="text-sm">Valor Líquido</p>
+                            <p>0,00</p>
+                        </div>
 
-                                        <AlertDialogContent>
-                                            <AlertDialogHeader>
-                                                <AlertDialogTitle>Performance</AlertDialogTitle>
-                                                <AlertDialogDescription>
-                                                    <div>
-                                                        <p class="mb-4 max-w-3xl text-gray-400" data-aos="fade-down">
-                                                            Essas métricas fornecem insights sobre o desempenho do
-                                                            modelo e ajudam a comparar diferentes modelos ou algoritmos.
-                                                        </p>
-                                                    </div>
-
-                                                    <div class="grid gap-2 sm:grid-cols-2 lg:grid-cols-2">
-                                                        <div class="rounded-lg border border-gray-400 py-3 text-center">
-                                                            <h4 class="text-lg font-bold text-[#36AD5E]">{{
-                                                                forecasts.performance.r2_score.toFixed(5) }}</h4>
-                                                            <p class="text-gray-500">r2 score</p>
-                                                        </div>
-                                                        <div class="rounded-lg border border-gray-400 py-3 text-center">
-                                                            <h4 class="text-lg font-bold text-[#36AD5E]">{{
-                                                                forecasts.performance.mean_absolute_error.toFixed(5) }}
-                                                            </h4>
-                                                            <p class="text-gray-500">mean absolute error</p>
-                                                        </div>
-                                                        <div class="rounded-lg border border-gray-400 py-3 text-center">
-                                                            <h4 class="text-lg font-bold text-[#36AD5E]">{{
-                                                                forecasts.performance.mean_absolute_percentage_error.toFixed(5)
-                                                            }}%
-                                                            </h4>
-                                                            <p class="text-gray-500">mean absolute percentage error</p>
-                                                        </div>
-                                                        <div class="rounded-lg border border-gray-400 p-3 text-center">
-                                                            <h4 class="text-lg font-bold text-[#36AD5E]">{{
-                                                                forecasts.performance.mean_squared_error.toFixed(5) }}
-                                                            </h4>
-                                                            <p class="text-gray-500">mean squared error</p>
-                                                        </div>
-                                                        <div class="rounded-lg border border-gray-400 p-3 text-center">
-                                                            <h4 class="text-lg font-bold text-[#36AD5E]">{{
-                                                                forecasts.performance.root_mean_squared_error.toFixed(5)
-                                                                }}</h4>
-                                                            <p class="text-gray-500">root mean squared error</p>
-                                                        </div>
-
-                                                    </div>
-                                                </AlertDialogDescription>
-                                            </AlertDialogHeader>
-                                            <AlertDialogFooter>
-                                                <AlertDialogCancel class="cursor-pointer">Cancel</AlertDialogCancel>
-                                            </AlertDialogFooter>
-                                        </AlertDialogContent>
-                                    </AlertDialog>
-
-                                    <AlertDialog>
-                                        <AlertDialogTrigger
-                                            class="relative cursor-pointer rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
-                                            <button
-                                                class="px-4 py-2 cursor-pointer inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-900 bg-white text-gray-800 shadow-2xs hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden focus:bg-gray-50 dark:bg-transparent dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800">
-                                                <ChartNoAxesColumn />
-                                                Statistics
-                                            </button>
-                                        </AlertDialogTrigger>
-
-                                        <AlertDialogContent>
-                                            <AlertDialogHeader>
-                                                <AlertDialogTitle>Statistics</AlertDialogTitle>
-                                                <AlertDialogDescription>
-                                                    <div>
-                                                        <p class="mb-4 max-w-3xl text-gray-400" data-aos="fade-down">
-                                                            Descrever e resumir conjunto de dados através de um único
-                                                            valor, para facilitar a compreensão das características de
-                                                            um fenómeno.
-                                                        </p>
-                                                    </div>
-
-                                                    <div class="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
-                                                        <div class="rounded-lg border border-gray-400 py-3 text-center">
-                                                            <h4 class="text-lg font-bold text-[#36AD5E]">{{
-                                                                forecasts.statistics.count }}</h4>
-                                                            <p class="text-gray-500">count</p>
-                                                        </div>
-                                                        <div class="rounded-lg border border-gray-400 py-3 text-center">
-                                                            <h4 class="text-lg font-bold text-[#36AD5E]">{{
-                                                                forecasts.statistics.mean.toFixed(4) }}
-                                                            </h4>
-                                                            <p class="text-gray-500">mean</p>
-                                                        </div>
-                                                        <div class="rounded-lg border border-gray-400 py-3 text-center">
-                                                            <h4 class="text-lg font-bold text-[#36AD5E]">{{
-                                                                forecasts.statistics.std.toFixed(4) }}
-                                                            </h4>
-                                                            <p class="text-gray-500">std</p>
-                                                        </div>
-                                                        <div class="rounded-lg border border-gray-400 p-3 text-center">
-                                                            <h4 class="text-lg font-bold text-[#36AD5E]">{{
-                                                                forecasts.statistics.p25.toFixed(4)
-                                                                }}</h4>
-                                                            <p class="text-gray-500">p25%</p>
-                                                        </div>
-                                                        <div class="rounded-lg border border-gray-400 p-3 text-center">
-                                                            <h4 class="text-lg font-bold text-[#36AD5E]">{{
-                                                                forecasts.statistics.p50.toFixed(4)
-                                                                }}</h4>
-                                                            <p class="text-gray-500">p50%</p>
-                                                        </div>
-                                                        <div class="rounded-lg border border-gray-400 p-3 text-center">
-                                                            <h4 class="text-lg font-bold text-[#36AD5E]">{{
-                                                                forecasts.statistics.p75.toFixed(4)
-                                                                }}</h4>
-                                                            <p class="text-gray-500">p75%</p>
-                                                        </div>
-
-                                                    </div>
-                                                    <div class="grid mt-2 gap-2 sm:grid-cols-2 lg:grid-cols-2">
-                                                        <div
-                                                            class="rounded-lg truncate overflow-hidden whitespace-nowrap border border-gray-400 p-3 text-center">
-                                                            <h4 class="text-lg font-bold text-[#36AD5E]">{{
-                                                                forecasts.statistics.min }}
-                                                            </h4>
-                                                            <p class="text-gray-500">min</p>
-                                                        </div>
-                                                        <div class="rounded-lg border border-gray-400 p-3 text-center">
-                                                            <h4 class="text-lg font-bold text-[#36AD5E]">{{
-                                                                forecasts.statistics.max
-                                                                }}</h4>
-                                                            <p class="text-gray-500">max</p>
-                                                        </div>
-                                                    </div>
-                                                </AlertDialogDescription>
-                                            </AlertDialogHeader>
-                                            <AlertDialogFooter>
-                                                <AlertDialogCancel class="cursor-pointer">Cancel</AlertDialogCancel>
-                                            </AlertDialogFooter>
-                                        </AlertDialogContent>
-                                    </AlertDialog>
-                                </div>
-
-                            </div>
+                    </section>
+                    <section class="mx-4 grid grid-cols-2">
+                        <Input type="date" />
+                        <div class="pl-14 pl-2 grid items-start">
+                            <button @click="printButton('printableArea')"
+                                class="flex justify-center gap-2 select-none cursor-pointer rounded-lg border border-gray-200 py-3 px-2 text-center align-middle font-sans text-xs font-bold uppercase text-gray-900 transition-all hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
+                                <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                    <polyline points="7 10 12 15 17 10" />
+                                    <line x1="12" x2="12" y1="15" y2="3" />
+                                </svg>
+                                PDF
+                            </button>
                         </div>
                     </section>
+                </div>
+                <LineChart />
+                <div class="pt-6">
+                    <div class="container">
+
+                        <section class="w-full flex gap-12">
+                            <div>
+                                <label id="open-tickets-tabs-label" class="font-semibold block mb-1 text-sm">Métricas de
+                                    desempenho
+                                    <span class="font-normal text-gray-500">({{ currentDate.toDateString() }})</span>
+                                </label>
+                                <div class="grid grid-cols-5 gap-2">
+                                    <button
+                                        class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
+                                        <p class="font-medium text-md">{{
+                                            forecasts.performance.r2_score.toFixed(5) }}</p>
+                                        <p class="text-sm text-gray-600">
+                                            Coêficiente R2
+                                        </p>
+                                    </button>
+                                    <button
+                                        class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
+                                        <p class="font-semibold text-md">{{
+                                            forecasts.performance.mean_absolute_error.toFixed(5) }}</p>
+                                        <p class="text-sm text-gray-600">
+                                            Erro médio absoluto
+                                        </p>
+                                    </button>
+                                    <button
+                                        class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
+                                        <p class="font-semibold text-md">{{
+                                            forecasts.performance.mean_absolute_percentage_error.toFixed(5) }}
+                                        </p>
+                                        <p class="text-sm text-gray-600">
+                                            Erro percentual absoluto médio
+                                        </p>
+                                    </button>
+                                    <button
+                                        class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
+                                        <p class="font-semibold text-md">{{
+                                            forecasts.performance.mean_squared_error.toFixed(5) }}</p>
+                                        <p class="text-sm text-gray-600">
+                                            Erro quadrático médio
+                                        </p>
+                                    </button>
+                                    <button
+                                        class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
+                                        <p class="font-semibold text-md">{{
+                                            forecasts.performance.root_mean_squared_error.toFixed(5) }}</p>
+                                        <p class="text-sm text-gray-600">
+                                            Raiz do erro quadrático médio
+                                        </p>
+                                    </button>
+                                </div>
+                            </div>
+
+
+                            <div>
+                                <label id="ticket-statistics-tabs-label" class="font-semibold block mb-1 text-sm">Dados
+                                    estatísticos
+                                    <span class="font-normal text-gray-500">({{ currentDate.toDateString()
+                                    }})</span></label>
+                                <div class="grid grid-cols-5 gap-2">
+                                    <button
+                                        class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
+                                        <p class="font-semibold text-md">{{ forecasts.statistics.count }}</p>
+                                        <p class="text-sm text-gray-600">
+                                            Total
+                                        </p>
+                                    </button>
+                                    <button
+                                        class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
+                                        <p class="font-semibold text-md">{{ forecasts.statistics.mean.toFixed(4)
+                                            }}</p>
+                                        <p class="text-sm text-gray-600">
+                                            Média
+                                        </p>
+                                    </button>
+                                    <button
+                                        class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
+                                        <p class="font-semibold text-md">{{ forecasts.statistics.std.toFixed(4)
+                                            }}</p>
+                                        <p class="text-sm text-gray-600">
+                                            Variância
+                                        </p>
+                                    </button>
+                                    <button
+                                        class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
+                                        <p class="font-semibold text-md">{{ forecasts.statistics.p25.toFixed(4)
+                                            }}</p>
+                                        <p class="text-sm text-gray-600">
+                                            Percentil 25%
+                                        </p>
+                                    </button>
+                                    <button
+                                        class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
+                                        <p class="font-semibold text-md">{{ forecasts.statistics.p50.toFixed(4)
+                                            }}</p>
+                                        <p class="text-sm text-gray-600">
+                                            Percentil 50%
+                                        </p>
+                                    </button>
+
+                                    <button
+                                        class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
+                                        <p class="font-semibold text-md">{{ forecasts.statistics.p75.toFixed(4)
+                                            }}</p>
+                                        <p class="text-sm text-gray-600">
+                                            Percentil 75%
+                                        </p>
+                                    </button>
+                                    <button
+                                        class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
+                                        <p class="font-semibold text-md">{{ forecasts.statistics.min.toFixed(4)
+                                            }}</p>
+                                        <p class="text-sm text-gray-600">
+                                            Mínimo
+                                        </p>
+                                    </button>
+                                    <button
+                                        class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
+                                        <p class="font-semibold text-md">{{ forecasts.statistics.max.toFixed(4)
+                                            }}</p>
+                                        <p class="text-sm text-gray-600">
+                                            Máximo
+                                        </p>
+                                    </button>
+                                </div>
+                            </div>
+
+                        </section>
+                    </div>
+
                 </div>
             </div>
         </div>
