@@ -4,8 +4,17 @@ import { reactive } from 'vue';
 export const dateFormat = (date: Date) =>
     new Intl.DateTimeFormat('en-US', { month: 'short', day: '2-digit', year: 'numeric' }).format(new Date(date));
 
-export const currencyFormat = (number: number) => {
-    return new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(number).replace('€', '');
+export const currencyFormat = (number: number, applyDecimal: boolean = false) => {
+    const without_decimals = new Intl.NumberFormat('de-DE', {
+        style: 'currency',
+        currency: 'EUR',
+        maximumFractionDigits: 0,
+        minimumFractionDigits: 0,
+    })
+        .format(number)
+        .replace('€', '');
+    const with_decimals = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(number).replace('€', '');
+    return applyDecimal ? with_decimals : without_decimals;
 };
 
 interface Cart {
