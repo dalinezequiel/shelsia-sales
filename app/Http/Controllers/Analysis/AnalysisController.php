@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Analysis;
 
 use App\Http\Controllers\Controller;
+use App\Models\Finance\Finance;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Inertia\Inertia;
@@ -20,30 +21,35 @@ class AnalysisController extends Controller
             "freq" => "d",
             "data" => [
                 [
-                   "ds" => "2007-12-10",
-		 	        "y" => 9.59076113897809 
+                    "ds" => "2007-12-10",
+                    "y" => 9.59076113897809
                 ],
                 [
                     "ds" => "2007-12-11",
-		 	        "y" => 8.51959031601596
+                    "y" => 8.51959031601596
                 ],
                 [
                     "ds" => "2007-12-12",
-		 	        "y" => 8.18367658262066
+                    "y" => 8.18367658262066
                 ],
                 [
                     "ds" => "2007-12-13",
-		 	        "y" => 8.07246736935477
+                    "y" => 8.07246736935477
                 ],
                 [
                     "ds" => "2007-12-14",
-		 	        "y" => 7.8935720735049
+                    "y" => 7.8935720735049
                 ]
             ]
         ];
-        
-        $forecasts = Http::post($forecast_endpoint, [$sales]) -> json();
-        return Inertia::render('analysis/Index', compact('forecasts'));
+
+        $finances = [
+            'total_expenses' => Finance::where('category', 'expense')->sum('amount'),
+            'total_income' => Finance::where('category', 'income')->sum('amount')
+        ];
+
+        $forecasts = Http::post($forecast_endpoint, [$sales])->json();
+        return Inertia::render('analysis/Index', compact('forecasts', 'finances'));
     }
 
     /**
