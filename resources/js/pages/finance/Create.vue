@@ -37,7 +37,7 @@ const form = useForm({
     payment_method_id: '',
     period_id: '',
     observation: '',
-    is_active: false
+    is_paid: false
 });
 
 const submit = () => {
@@ -186,8 +186,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 
                     <div class="flex items-center space-x-2 ">
                         <label class="inline-flex items-center cursor-pointer">
-                            <input type="checkbox" id="is_active" v-model="form.is_active" disabled
-                                class="sr-only peer">
+                            <input type="checkbox" id="is_active" v-model="form.is_paid" disabled class="sr-only peer">
                             <div
                                 class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-gray-900 dark:peer-checked:bg-blue-600">
                             </div>
