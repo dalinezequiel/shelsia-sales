@@ -8,7 +8,7 @@ const chartData = reactive({
     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
     datasets: [
         {
-            label: 'History',
+            label: 'Histórico',
             backgroundColor: '#696969',
             borderColor: '#696969',
             data: [35, 25, 17, 30, 14],
@@ -16,7 +16,7 @@ const chartData = reactive({
             pointRadius: 6,
         },
         {
-            label: 'Future',
+            label: 'Futuro',
             backgroundColor: '#CD8232',
             borderColor: '#CD8232',
             data: [40, 20, 12, 39, 20],
@@ -24,7 +24,7 @@ const chartData = reactive({
             pointRadius: 6,
         },
         {
-            label: 'Predicted',
+            label: 'Previsão',
             backgroundColor: '#36AD5E',
             borderColor: '#36AD5E',
             data: [, , , , 20, 30, 49],
@@ -48,7 +48,7 @@ const chartOptions = ref({
         },
         title: {
             display: true,
-            text: (ctx) => 'Point Style: ' + ctx.chart.data.datasets[0].pointStyle,
+            text: (ctx) => 'Descrição',
         }
     },
     scales: {
