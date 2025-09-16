@@ -2,7 +2,7 @@
 import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
 import { Head, Link, router, useForm } from '@inertiajs/vue3';
-import { File, SquarePen, Trash2, ReceiptText, Check } from 'lucide-vue-next';
+import { File, Pencil, Trash2, ReceiptText, Check } from 'lucide-vue-next';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import {
@@ -303,7 +303,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <AlertDialogContent>
                                         <AlertDialogHeader>
                                             <AlertDialogTitle>{{ account.category === 'income' ? 'Receitas' : 'Despesas'
-                                            }}</AlertDialogTitle>
+                                                }}</AlertDialogTitle>
                                             <AlertDialogDescription>
                                                 <form id="payment" @submit.prevent="submit">
                                                     <div class="grid gap-y-4 mt-4">
@@ -352,7 +352,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     class="relative rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                     type="button">
                                     <Link :href="route('finances.edit', account.id)">
-                                    <SquarePen width="18" color="#1C7005" class="hover:stroke-[#33C809]" />
+                                    <Pencil width="18" color="#1C7005" class="hover:stroke-[#33C809]" />
                                     </Link>
                                 </button>
                                 <button
