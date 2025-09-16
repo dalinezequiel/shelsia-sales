@@ -59,7 +59,7 @@ const form = useForm({
     payment_method: '',
     period: '',
     observation: '',
-    is_active: true
+    is_paid: true
 });
 
 const payBill = (bill: Account) => {
@@ -74,7 +74,7 @@ const payBill = (bill: Account) => {
     form.payment_method = bill.payment_method_id;
     form.period = bill.period_id;
     form.observation = bill.observation;
-    form.is_active = true
+    form.is_paid = true
 }
 
 const submit = () => {
@@ -280,9 +280,9 @@ const breadcrumbs: BreadcrumbItem[] = [
                             </td>
                             <td class="p-4 border-b border-blue-gray-50">
                                 <div class="w-max">
-                                    <div :class="account.is_active ? 'bg-green-500/20' : 'bg-red-500/20'"
+                                    <div :class="account.is_paid ? 'bg-green-500/20' : 'bg-red-500/20'"
                                         class="relative grid items-center rounded-md  px-2 py-1 font-sans text-xs font-bold whitespace-nowrap text-green-900 uppercase select-none">
-                                        <span v-if="account.is_active" class="">Pago</span>
+                                        <span v-if="account.is_paid" class="">Pago</span>
                                         <span v-else class="text-red-900">Não Pago</span>
                                     </div>
                                 </div>
