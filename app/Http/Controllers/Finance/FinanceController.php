@@ -56,7 +56,7 @@ class FinanceController extends Controller
             'amount' => $request->amount,
             'date_of_issue' => $request->date_of_issue,
             'observation' => $request->observation,
-            'is_active' => $request->is_active
+            'is_paid' => $request->is_paid
         ]);
 
         $finance->supplier()->associate($supplier);
@@ -108,7 +108,7 @@ class FinanceController extends Controller
         $finance->amount = $request->input('amount');
         $finance->date_of_issue = $request->input('date_of_issue');
         $finance->observation = $request->input('observation');
-        $finance->is_active = $request->input('is_active');
+        $finance->is_paid = $request->input('is_paid');
         $finance->save();
 
         return redirect()->route('finances.index')->with('success', 'Actualizado com sucesso!');
