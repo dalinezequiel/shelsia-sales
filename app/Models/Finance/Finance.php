@@ -18,7 +18,7 @@ class Finance extends Model
         'amount',
         'date_of_issue',
         'observation',
-        'is_active'
+        'is_paid'
     ];
 
     public function supplier()
