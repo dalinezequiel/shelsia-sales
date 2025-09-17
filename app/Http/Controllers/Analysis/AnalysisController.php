@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\Finance\Finance;
 use App\Models\Sales\Sale;
 use App\SaleStatus;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Inertia\Inertia;
+use Throwable;
 
 class AnalysisController extends Controller
 {
@@ -17,19 +19,25 @@ class AnalysisController extends Controller
      */
     public function index(Request $request)
     {
-        $finances = [
-            'total_expenses' => Finance::where('category', 'expense')->sum('amount'),
-            'total_income' => Finance::where('category', 'income')->sum('amount')
-        ];
+        try {
+            $finances = [
+                'total_expenses' => Finance::where('category', 'expense')->sum('amount'),
+                'total_income' => Finance::where('category', 'income')->sum('amount')
+            ];
 
-        $data_for_forecasting = [
-            "periods" => $request->query('period'),
-            "freq" => $request->query('frequency'),
-            "sales" => $this->saleDataFrame()
-        ];
+            $data_for_forecasting = [
+                "period" => $request->query('period'),
+                "frequency" => $request->query('frequency'),
+                "sales" => $this->saleDataFrame()
+            ];
 
-        $forecasts = Http::post(env('FORECAST_BASE_URL'), [$data_for_forecasting])->json();
-        return Inertia::render('analysis/Index', compact('forecasts', 'finances'));
+            $forecasts = Http::post(env('FORECAST_BASE_URL'), [$data_for_forecasting])->json();
+            return Inertia::render('analysis/Index', compact('forecasts', 'finances'));
+        } catch (Exception $ex) {
+            return response()->json([
+                'message_error' => $ex->getMessage()
+            ]);
+        }
     }
 
     function saleDataFrame()
