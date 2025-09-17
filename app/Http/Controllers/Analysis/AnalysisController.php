@@ -50,7 +50,7 @@ class AnalysisController extends Controller
             'total_income' => Finance::where('category', 'income')->sum('amount')
         ];
 
-        $sale = Sale::where('status', SaleStatus::PAID)->with('hasDetails')->get();
+        $sale = Sale::where('status', SaleStatus::PAID)->with('details')->get();
 
         $forecasts = Http::post(env('FORECAST_BASE_URL'), [$sales])->json();
         return Inertia::render('analysis/Index', compact('forecasts', 'finances'));
