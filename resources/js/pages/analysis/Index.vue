@@ -32,7 +32,7 @@ function printButton(elementId: string): void {
 }
 
 const currentDate = ref(new Date());
-const data='2025-09-16'
+const data = '2025-09-16'
 const currentYear = ref(currentDate.value.getFullYear());
 
 
@@ -69,7 +69,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 
                     </section>
                     <section class="mx-4 grid grid-cols-2">
-                        <Input type="date" v-model="data"/>
+                        <Input type="date" v-model="data" />
                         <div class="pl-14 pl-2 grid items-start">
                             <button @click="printButton('printableArea')"
                                 class="flex justify-center gap-2 select-none cursor-pointer rounded-lg border border-gray-200 py-3 px-2 text-center align-middle font-sans text-xs font-bold uppercase text-gray-900 transition-all hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
@@ -145,7 +145,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                 <label id="ticket-statistics-tabs-label" class="font-semibold block mb-1 text-sm">Dados
                                     estatísticos
                                     <span class="font-normal text-gray-500">({{ currentDate.toDateString()
-                                    }})</span></label>
+                                        }})</span></label>
                                 <div class="grid grid-cols-5 gap-2">
                                     <button
                                         class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
@@ -157,7 +157,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <button
                                         class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
                                         <p class="font-semibold text-md">{{ forecasts.statistics.mean.toFixed(4)
-                                            }}</p>
+                                        }}</p>
                                         <p class="text-sm text-gray-600">
                                             Média
                                         </p>
@@ -165,15 +165,15 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <button
                                         class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
                                         <p class="font-semibold text-md">{{ forecasts.statistics.std.toFixed(4)
-                                            }}</p>
+                                        }}</p>
                                         <p class="text-sm text-gray-600">
-                                            Variância
+                                            Desvio padrão
                                         </p>
                                     </button>
                                     <button
                                         class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
                                         <p class="font-semibold text-md">{{ forecasts.statistics.p25.toFixed(4)
-                                            }}</p>
+                                        }}</p>
                                         <p class="text-sm text-gray-600">
                                             Percentil 25%
                                         </p>
@@ -181,7 +181,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <button
                                         class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
                                         <p class="font-semibold text-md">{{ forecasts.statistics.p50.toFixed(4)
-                                            }}</p>
+                                        }}</p>
                                         <p class="text-sm text-gray-600">
                                             Percentil 50%
                                         </p>
@@ -190,7 +190,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <button
                                         class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
                                         <p class="font-semibold text-md">{{ forecasts.statistics.p75.toFixed(4)
-                                            }}</p>
+                                        }}</p>
                                         <p class="text-sm text-gray-600">
                                             Percentil 75%
                                         </p>
@@ -198,7 +198,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <button
                                         class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
                                         <p class="font-semibold text-md">{{ forecasts.statistics.min.toFixed(4)
-                                            }}</p>
+                                        }}</p>
                                         <p class="text-sm text-gray-600">
                                             Mínimo
                                         </p>
@@ -206,7 +206,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <button
                                         class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
                                         <p class="font-semibold text-md">{{ forecasts.statistics.max.toFixed(4)
-                                            }}</p>
+                                        }}</p>
                                         <p class="text-sm text-gray-600">
                                             Máximo
                                         </p>
