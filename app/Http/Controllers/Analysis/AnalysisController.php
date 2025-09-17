@@ -56,10 +56,6 @@ class AnalysisController extends Controller
             return ['ds' => $grupo->first()['ds'], 'y' => $grupo->sum('y')];
         })->values();
 
-        $groupByMonth[] = [
-            'ds' => '2025-09-20',
-            'y' => 1000
-        ];
         return $groupByMonth;
     }
 
@@ -68,7 +64,10 @@ class AnalysisController extends Controller
      */
     public function create()
     {
-        //
+        $groupByMonth[] = [
+            'ds' => '2025-09-20',
+            'y' => 1000
+        ];
     }
 
     /**
