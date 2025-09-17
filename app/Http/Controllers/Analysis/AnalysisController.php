@@ -10,7 +10,6 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Inertia\Inertia;
-use Throwable;
 
 class AnalysisController extends Controller
 {
