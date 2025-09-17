@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Analysis;
 
 use App\Http\Controllers\Controller;
 use App\Models\Finance\Finance;
+use App\Models\Sales\Sale;
+use App\SaleStatus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Inertia\Inertia;
@@ -15,7 +17,7 @@ class AnalysisController extends Controller
      */
     public function index()
     {
-        $forecast_endpoint = 'http://127.0.0.1:5000/preditions';
+        $forecast_endpoint = 'http://127.0.0.1:5000/predition';
         $sales = [
             "periods" => 10,
             "freq" => "d",
@@ -48,7 +50,9 @@ class AnalysisController extends Controller
             'total_income' => Finance::where('category', 'income')->sum('amount')
         ];
 
-        $forecasts = Http::post($forecast_endpoint, [$sales])->json();
+        $sale = Sale::where('status', SaleStatus::PAID)->with('hasDetails')->get();
+
+        $forecasts = Http::post(env('FORECAST_BASE_URL'), [$sales])->json();
         return Inertia::render('analysis/Index', compact('forecasts', 'finances'));
     }
 
