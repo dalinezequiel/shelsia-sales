@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Analysis;
 
 use App\Http\Controllers\Controller;
 use App\Models\Finance\Finance;
-use App\Models\Forecast\DataFrame;
 use App\Models\Sales\Sale;
 use App\SaleStatus;
 use Illuminate\Http\Request;
@@ -18,34 +17,6 @@ class AnalysisController extends Controller
      */
     public function index(Request $request)
     {
-        $forecast_endpoint = 'http://127.0.0.1:5000/predition';
-        $sales = [
-            "periods" => 10,
-            "freq" => "d",
-            "sales" => [
-                [
-                    "ds" => "2007-12-10",
-                    "y" => 9.59076113897809
-                ],
-                [
-                    "ds" => "2007-12-11",
-                    "y" => 8.51959031601596
-                ],
-                [
-                    "ds" => "2007-12-12",
-                    "y" => 8.18367658262066
-                ],
-                [
-                    "ds" => "2007-12-13",
-                    "y" => 8.07246736935477
-                ],
-                [
-                    "ds" => "2007-12-14",
-                    "y" => 7.8935720735049
-                ]
-            ]
-        ];
-
         $finances = [
             'total_expenses' => Finance::where('category', 'expense')->sum('amount'),
             'total_income' => Finance::where('category', 'income')->sum('amount')
@@ -57,8 +28,7 @@ class AnalysisController extends Controller
             "sales" => $this->saleDataFrame()
         ];
 
-
-        $forecasts = Http::post(env('FORECAST_BASE_URL'), [$sales])->json();
+        $forecasts = Http::post(env('FORECAST_BASE_URL'), [$data_for_forecasting])->json();
         return Inertia::render('analysis/Index', compact('forecasts', 'finances'));
     }
 
@@ -68,11 +38,22 @@ class AnalysisController extends Controller
         $sales = Sale::where('status', SaleStatus::PAID)->with('details')->get();
         foreach ($sales as $sale) {
             $subtotal = $sale->details->reduce(fn($acc, $detail) => $acc + ($detail['quantity'] * $detail['price']), 0);
-            $dataFrame[] = new DataFrame([
-                'ds' => $sale->created_at->format('Y-m-d'),
-                'y' => $subtotal + $sale->shipping - $sale->discount
-            ]);
+            $dataFrame[] = [
+                'ds' => strval($sale->created_at->format('Y-m-d')),
+                'y' => floatval($subtotal + $sale->shipping - $sale->discount)
+            ];
         }
+
+        $items = collect($dataFrame);
+        $groupByMonth = $items->groupBy('ds')->map(function ($grupo) {
+            return ['ds' => $grupo->first()['ds'], 'y' => $grupo->sum('y')];
+        })->values();
+
+        $groupByMonth[] = [
+            'ds' => '2025-09-20',
+            'y' => 1000
+        ];
+        return $groupByMonth;
     }
 
     /**

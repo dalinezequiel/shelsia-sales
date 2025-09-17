@@ -2,7 +2,7 @@
 import LineChart from '@/components/additional/LineChart.vue';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
-import { Head } from '@inertiajs/vue3';
+import { Head, router } from '@inertiajs/vue3';
 import Input from '@/components/ui/input/Input.vue';
 import { ref } from 'vue';
 import { currencyFormat } from '@/store';
@@ -18,6 +18,20 @@ defineProps({
     }
 });
 
+const currentDate = ref(new Date());
+const data = '2025-09-16'
+const currentYear = ref(currentDate.value.getFullYear());
+
+
+const period = ref('1');
+const frequency = ref('d');
+const search = () => {
+    router.get(route('analysis.index', { period: period.value, frequency: frequency.value }, {
+        preserveState: true,
+        replace: true
+    }))
+}
+
 function printButton(elementId: string): void {
     const printContent = document.getElementById(elementId);
 
@@ -30,11 +44,6 @@ function printButton(elementId: string): void {
         console.error(`Element with ID '${elementId}' not found.`);
     }
 }
-
-const currentDate = ref(new Date());
-const data = '2025-09-16'
-const currentYear = ref(currentDate.value.getFullYear());
-
 
 
 const breadcrumbs: BreadcrumbItem[] = [
@@ -69,7 +78,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 
                     </section>
                     <section class="mx-4 grid grid-cols-2">
-                        <Input type="date" v-model="data" />
+                        <Input type="month" @change="search" />
                         <div class="pl-14 pl-2 grid items-start">
                             <button @click="printButton('printableArea')"
                                 class="flex justify-center gap-2 select-none cursor-pointer rounded-lg border border-gray-200 py-3 px-2 text-center align-middle font-sans text-xs font-bold uppercase text-gray-900 transition-all hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
@@ -85,7 +94,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                         </div>
                     </section>
                 </div>
-                {{ forecasts }}
+                ola{{ forecasts }}
                 <LineChart />
                 <div class="pt-6">
                     <div class="container">
@@ -99,41 +108,51 @@ const breadcrumbs: BreadcrumbItem[] = [
                                 <div class="grid grid-cols-5 gap-2">
                                     <button
                                         class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
-                                        <p class="font-medium text-md">{{
+                                        <p v-if="forecasts !== null" class="font-medium text-md">{{
                                             forecasts.performance.r2_score.toFixed(5) }}</p>
+                                        <p v-else="forecasts.performance" class="font-medium text-md">{{
+                                            Number(0).toFixed(5) }}</p>
                                         <p class="text-sm text-gray-600">
                                             Coêficiente R2
                                         </p>
                                     </button>
                                     <button
                                         class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
-                                        <p class="font-semibold text-md">{{
+                                        <p v-if="forecasts !== null" class="font-semibold text-md">{{
                                             forecasts.performance.mean_absolute_error.toFixed(5) }}</p>
+                                        <p v-else="forecasts.performance" class="font-medium text-md">{{
+                                            Number(0).toFixed(5) }}</p>
                                         <p class="text-sm text-gray-600">
                                             Erro médio absoluto
                                         </p>
                                     </button>
                                     <button
                                         class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
-                                        <p class="font-semibold text-md">{{
+                                        <p v-if="forecasts !== null" class="font-semibold text-md">{{
                                             forecasts.performance.mean_absolute_percentage_error.toFixed(5) }}
                                         </p>
+                                        <p v-else class="font-medium text-md">{{
+                                            Number(0).toFixed(5) }}</p>
                                         <p class="text-sm text-gray-600">
                                             Erro percentual absoluto médio
                                         </p>
                                     </button>
                                     <button
                                         class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
-                                        <p class="font-semibold text-md">{{
+                                        <p v-if="forecasts !== null" class="font-semibold text-md">{{
                                             forecasts.performance.mean_squared_error.toFixed(5) }}</p>
+                                        <p v-else class="font-medium text-md">{{
+                                            Number(0).toFixed(5) }}</p>
                                         <p class="text-sm text-gray-600">
                                             Erro quadrático médio
                                         </p>
                                     </button>
                                     <button
                                         class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
-                                        <p class="font-semibold text-md">{{
+                                        <p v-if="forecasts !== null" class="font-semibold text-md">{{
                                             forecasts.performance.root_mean_squared_error.toFixed(5) }}</p>
+                                        <p v-else class="font-medium text-md">{{
+                                            Number(0).toFixed(5) }}</p>
                                         <p class="text-sm text-gray-600">
                                             Raiz do erro quadrático médio
                                         </p>
@@ -150,39 +169,49 @@ const breadcrumbs: BreadcrumbItem[] = [
                                 <div class="grid grid-cols-5 gap-2">
                                     <button
                                         class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
-                                        <p class="font-semibold text-md">{{ forecasts.statistics.count }}</p>
+                                        <p v-if="forecasts !== null" class="font-semibold text-md">{{
+                                            forecasts.statistics.count }}</p>
+                                        <p v-else class="font-medium text-md">{{ 0 }}</p>
                                         <p class="text-sm text-gray-600">
                                             Total
                                         </p>
                                     </button>
                                     <button
                                         class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
-                                        <p class="font-semibold text-md">{{ forecasts.statistics.mean.toFixed(4)
-                                        }}</p>
+                                        <p v-if="forecasts !== null" class="font-semibold text-md">{{
+                                            forecasts.statistics.mean.toFixed(4)
+                                            }}</p>
+                                        <p v-else class="font-medium text-md">{{ Number(0).toFixed(4) }}</p>
                                         <p class="text-sm text-gray-600">
                                             Média
                                         </p>
                                     </button>
                                     <button
                                         class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
-                                        <p class="font-semibold text-md">{{ forecasts.statistics.std.toFixed(4)
-                                        }}</p>
+                                        <p v-if="forecasts !== null" class="font-semibold text-md">{{
+                                            forecasts.statistics.std.toFixed(4)
+                                            }}</p>
+                                        <p v-else class="font-medium text-md">{{ Number(0).toFixed(4) }}</p>
                                         <p class="text-sm text-gray-600">
                                             Desvio padrão
                                         </p>
                                     </button>
                                     <button
                                         class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
-                                        <p class="font-semibold text-md">{{ forecasts.statistics.p25.toFixed(4)
-                                        }}</p>
+                                        <p v-if="forecasts !== null" class="font-semibold text-md">{{
+                                            forecasts.statistics.p25.toFixed(4)
+                                            }}</p>
+                                        <p v-else class="font-medium text-md">{{ Number(0).toFixed(4) }}</p>
                                         <p class="text-sm text-gray-600">
                                             Percentil 25%
                                         </p>
                                     </button>
                                     <button
                                         class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
-                                        <p class="font-semibold text-md">{{ forecasts.statistics.p50.toFixed(4)
-                                        }}</p>
+                                        <p v-if="forecasts !== null" class="font-semibold text-md">{{
+                                            forecasts.statistics.p50.toFixed(4)
+                                            }}</p>
+                                        <p v-else class="font-medium text-md">{{ Number(0).toFixed(4) }}</p>
                                         <p class="text-sm text-gray-600">
                                             Percentil 50%
                                         </p>
@@ -190,24 +219,30 @@ const breadcrumbs: BreadcrumbItem[] = [
 
                                     <button
                                         class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
-                                        <p class="font-semibold text-md">{{ forecasts.statistics.p75.toFixed(4)
-                                        }}</p>
+                                        <p v-if="forecasts !== null" class="font-semibold text-md">{{
+                                            forecasts.statistics.p75.toFixed(4)
+                                            }}</p>
+                                        <p v-else class="font-medium text-md">{{ Number(0).toFixed(4) }}</p>
                                         <p class="text-sm text-gray-600">
                                             Percentil 75%
                                         </p>
                                     </button>
                                     <button
                                         class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
-                                        <p class="font-semibold text-md">{{ forecasts.statistics.min.toFixed(4)
-                                        }}</p>
+                                        <p v-if="forecasts !== null" class="font-semibold text-md">{{
+                                            forecasts.statistics.min.toFixed(4)
+                                            }}</p>
+                                        <p v-else class="font-medium text-md">{{ Number(0).toFixed(4) }}</p>
                                         <p class="text-sm text-gray-600">
                                             Mínimo
                                         </p>
                                     </button>
                                     <button
                                         class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
-                                        <p class="font-semibold text-md">{{ forecasts.statistics.max.toFixed(4)
-                                        }}</p>
+                                        <p v-if="forecasts !== null" class="font-semibold text-md">{{
+                                            forecasts.statistics.max.toFixed(4)
+                                            }}</p>
+                                        <p v-else class="font-medium text-md">{{ Number(0).toFixed(4) }}</p>
                                         <p class="text-sm text-gray-600">
                                             Máximo
                                         </p>
