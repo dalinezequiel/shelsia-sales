@@ -85,6 +85,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                         </div>
                     </section>
                 </div>
+                {{ forecasts }}
                 <LineChart />
                 <div class="pt-6">
                     <div class="container">

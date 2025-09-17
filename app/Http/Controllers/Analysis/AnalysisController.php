@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Analysis;
 
 use App\Http\Controllers\Controller;
 use App\Models\Finance\Finance;
+use App\Models\Forecast\DataFrame;
 use App\Models\Sales\Sale;
 use App\SaleStatus;
 use Illuminate\Http\Request;
@@ -15,13 +16,13 @@ class AnalysisController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $forecast_endpoint = 'http://127.0.0.1:5000/predition';
         $sales = [
             "periods" => 10,
             "freq" => "d",
-            "data" => [
+            "sales" => [
                 [
                     "ds" => "2007-12-10",
                     "y" => 9.59076113897809
@@ -50,10 +51,28 @@ class AnalysisController extends Controller
             'total_income' => Finance::where('category', 'income')->sum('amount')
         ];
 
-        $sale = Sale::where('status', SaleStatus::PAID)->with('details')->get();
+        $data_for_forecasting = [
+            "periods" => $request->query('period'),
+            "freq" => $request->query('frequency'),
+            "sales" => $this->saleDataFrame()
+        ];
+
 
         $forecasts = Http::post(env('FORECAST_BASE_URL'), [$sales])->json();
         return Inertia::render('analysis/Index', compact('forecasts', 'finances'));
+    }
+
+    function saleDataFrame()
+    {
+        $dataFrame = [];
+        $sales = Sale::where('status', SaleStatus::PAID)->with('details')->get();
+        foreach ($sales as $sale) {
+            $subtotal = $sale->details->reduce(fn($acc, $detail) => $acc + ($detail['quantity'] * $detail['price']), 0);
+            $dataFrame[] = new DataFrame([
+                'ds' => $sale->created_at->format('Y-m-d'),
+                'y' => $subtotal + $sale->shipping - $sale->discount
+            ]);
+        }
     }
 
     /**
