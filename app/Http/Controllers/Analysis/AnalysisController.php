@@ -52,8 +52,8 @@ class AnalysisController extends Controller
         }
 
         $items = collect($dataFrame);
-        $groupByMonth = $items->groupBy('ds')->map(function ($grupo) {
-            return ['ds' => $grupo->first()['ds'], 'y' => $grupo->sum('y')];
+        $groupByMonth = $items->groupBy('ds')->map(function ($group) {
+            return ['ds' => $group->first()['ds'], 'y' => $group->sum('y')];
         })->values();
 
         return $groupByMonth;
