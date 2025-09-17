@@ -17,7 +17,7 @@ class Sale extends Model
         'created_at'
     ];
 
-    public function hasDetails()
+    public function details()
     {
         return $this->hasMany(SaleDetail::class);
     }
