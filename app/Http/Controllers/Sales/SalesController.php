@@ -22,7 +22,7 @@ class SalesController extends Controller
     public function index(Request $request)
     {
         $description = $request->query('description');
-        $sales = Sale::where('description', 'like', '%' . $description . '%')->with(['hasDetails', 'hasDetails.product', 'paymentMethod'])
+        $sales = Sale::where('description', 'like', '%' . $description . '%')->with(['details', 'details.product', 'paymentMethod'])
             ->paginate(5);
         return Inertia::render('sales/Index', compact('sales'));
     }
@@ -35,14 +35,14 @@ class SalesController extends Controller
         $paymentMethods = PaymentMethod::where('is_active', True)->get();
         $description = $request->query('description');
         $sales = Sale::where('status', SaleStatus::PENDING)->whereDate('created_at', Carbon::now()->toDateString())
-            ->with(['hasDetails', 'hasDetails.product', 'paymentMethod'])->get();
+            ->with(['details', 'details.product', 'paymentMethod'])->get();
         $sale_stats = [
             'paid' => [
                 'total' => Sale::where('status', SaleStatus::PAID)
                     ->whereDate('created_at', Carbon::now()->toDateString())->count(),
                 'items' => Sale::where('status', SaleStatus::PAID)
                     ->whereDate('created_at', Carbon::now()
-                        ->toDateString())->with('hasDetails')
+                        ->toDateString())->with('details')
                     ->get()
             ],
             'pending' => [
@@ -50,7 +50,7 @@ class SalesController extends Controller
                     ->whereDate('created_at', Carbon::now()->toDateString())->count(),
                 'items' => Sale::where('status', SaleStatus::PENDING)
                     ->whereDate('created_at', Carbon::now()
-                        ->toDateString())->with('hasDetails')
+                        ->toDateString())->with('details')
                     ->get()
             ],
             'cancelled' => [
@@ -58,7 +58,7 @@ class SalesController extends Controller
                     ->whereDate('created_at', Carbon::now()->toDateString())->count(),
                 'items' => Sale::where('status', SaleStatus::CANCELLED)
                     ->whereDate('created_at', Carbon::now()
-                        ->toDateString())->with('hasDetails')
+                        ->toDateString())->with('details')
                     ->get()
             ]
         ];
@@ -119,12 +119,11 @@ class SalesController extends Controller
                 $product->save();
             }
 
-            $sale->hasDetails()->saveMany($items);
+            $sale->details()->saveMany($items);
             DB::commit();
             return redirect()->route('sales.pos')->with('success', 'Venda realizada com sucesso!');
         } catch (Exception $ex) {
             DB::rollback();
-            echo $ex;
             return redirect()->route('sales.pos')->with('error', $ex);
         }
     }
@@ -134,7 +133,7 @@ class SalesController extends Controller
      */
     public function show(Sale $sale)
     {
-        $sales = Sale::where('id', $sale->id)->with(['hasDetails', 'hasDetails.product', 'paymentMethod'])->first();
+        $sales = Sale::where('id', $sale->id)->with(['details', 'details.product', 'paymentMethod'])->first();
         return Inertia::render('sales/Show', compact('sales'));
     }
 
@@ -158,7 +157,7 @@ class SalesController extends Controller
             $sale->save();
 
             if ($request->can_update_stock)
-                foreach ($request->has_details as $detail) {
+                foreach ($request->details as $detail) {
                     $product = Product::find($detail['product_id']);
                     $current_stock = $product->available_stock;
                     $quantity = $detail['quantity'];

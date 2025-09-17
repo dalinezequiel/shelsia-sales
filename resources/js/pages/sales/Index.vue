@@ -51,15 +51,15 @@ enum Status {
 const form = useForm({
     sale_id: '',
     status: '',
-    has_details: [
+    details: [
         { id: 0, quantity: 0 }
     ],
     can_update_stock: true
 })
-const updateSale = (sale_id: number, status: string, has_details: [{ id: number; quantity: number; }]) => {
+const updateSale = (sale_id: number, status: string, details: [{ id: number; quantity: number; }]) => {
     form.sale_id = sale_id.toString(),
         form.status = status,
-        form.has_details = has_details,
+        form.details = details,
         form.put(route('sales.update', { id: 0 }), {
             preserveScroll: true,
             onSuccess: () => toast.success('Venda processada com sucesso.'),
@@ -204,7 +204,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                             <td class="p-4 border-b border-blue-gray-50">
                                 <p
                                     class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                                    MZN {{calculate(sale.has_details.reduce((acc: number, item: {
+                                    MZN {{calculate(sale.details.reduce((acc: number, item: {
                                         price: number; quantity: number;
                                     }) => acc + item.price * item.quantity,
                                         0), Number(sale.shipping), Number(sale.discount)).toFixed(2)}}
@@ -255,7 +255,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                         <AlertDialogHeader>
                                             <AlertDialogTitle>Lista de produtos</AlertDialogTitle>
                                             <AlertDialogDescription>
-                                                <section v-if="sale.has_details.length !== 0"
+                                                <section v-if="sale.details.length !== 0"
                                                     class="bg-white mx-4 my-2 dark:border-gray-700 dark:bg-gray-800 md:px-6">
                                                     <div
                                                         class="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
@@ -280,8 +280,8 @@ const breadcrumbs: BreadcrumbItem[] = [
 
 
 
-                                                <section v-if="sale.has_details.length !== 0"
-                                                    v-for="product in sale.has_details" :key="product.id"
+                                                <section v-if="sale.details.length !== 0"
+                                                    v-for="product in sale.details" :key="product.id"
                                                     class="rounded-lg border border-gray-200 bg-white mx-4 my-2 p-2 dark:border-gray-700 dark:bg-gray-800 md:px-6">
                                                     <div
                                                         class="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
@@ -334,7 +334,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                         <AlertDialogFooter>
                                             <AlertDialogCancel class="cursor-pointer">Cancelar</AlertDialogCancel>
                                             <AlertDialogAction v-if="sale.status === 'pending'"
-                                                @click="updateSale(sale.id, Status.PAID, sale.has_details)"
+                                                @click="updateSale(sale.id, Status.PAID, sale.details)"
                                                 class="cursor-pointer  border border-[#475A88] bg-[#475A88] text-white shadow-2xs hover:bg-[#38476B] disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden focus:bg-gray-50 dark:bg-transparent dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"
                                                     fill="#FFFFFF">
@@ -344,7 +344,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                 Pagar
                                             </AlertDialogAction>
                                             <AlertDialogAction
-                                                @click="updateSale(sale.id, Status.CANCELLED, sale.has_details)"
+                                                @click="updateSale(sale.id, Status.CANCELLED, sale.details)"
                                                 :disabled="sale.status === 'cancelled'"
                                                 class="cursor-pointer bg-[#EC3636] hover:bg-[#D4563F]">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"

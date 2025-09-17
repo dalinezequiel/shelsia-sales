@@ -12,7 +12,7 @@ interface Sale {
     discount: number;
     customer_name: string;
     created_at: Date;
-    has_details: Array<any>;
+    details: Array<any>;
 }
 
 function printButton(elementId: string): void {
@@ -92,13 +92,12 @@ const breadcrumbs: BreadcrumbItem[] = [
 
 
                         <div class="sm:hidden border-b border-gray-200 dark:border-neutral-700"></div>
-                        <div v-for="sale in sales.has_details" :key="sale.id"
-                            class="grid grid-cols-3 sm:grid-cols-5 gap-2">
+                        <div v-for="sale in sales.details" :key="sale.id" class="grid grid-cols-3 sm:grid-cols-5 gap-2">
                             <div class="col-span-full sm:col-span-2">
                                 <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">
                                     Item</h5>
                                 <p class="font-medium text-gray-800 dark:text-neutral-200">{{ sale.product.description
-                                    }}</p>
+                                }}</p>
                             </div>
                             <div>
                                 <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">
@@ -128,7 +127,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                 <dt class="col-span-3 text-gray-800 dark:text-neutral-200">Subtotal:
                                 </dt>
                                 <dd class="col-span-2 dark:text-neutral-500">{{
-                                    sales.has_details.reduce((acc: number, item: {
+                                    sales.details.reduce((acc: number, item: {
                                         price: number; quantity: number;
                                     }) => acc + item.price * item.quantity,
                                         0).toFixed(2)}}</dd>
@@ -137,7 +136,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                             <dl class="grid sm:grid-cols-5 gap-x-3">
                                 <dt class="col-span-3 dark:text-neutral-200">Taxa de Entrega:</dt>
                                 <dd class="col-span-2 dark:text-neutral-500">{{ props.sales.shipping
-                                    }}</dd>
+                                }}</dd>
                             </dl>
 
                             <dl class="grid sm:grid-cols-5 gap-x-3">
@@ -149,7 +148,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                             <dl class="grid sm:grid-cols-5 gap-x-3">
                                 <dt class="col-span-3 text-gray-800 dark:text-neutral-200">Total:</dt>
                                 <dd class="col-span-2 dark:text-neutral-500">
-                                    {{calculate(sales.has_details.reduce((acc: number, item: {
+                                    {{calculate(sales.details.reduce((acc: number, item: {
                                         price: number; quantity: number;
                                     }) => acc + item.price * item.quantity,
                                         0), Number(sales.shipping), Number(sales.discount)).toFixed(2)}}</dd>

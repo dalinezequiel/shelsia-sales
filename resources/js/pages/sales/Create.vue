@@ -52,7 +52,7 @@ enum Status {
 interface Sale {
     discount: number;
     shipping: number;
-    has_details: [{
+    details: [{
         quantity: number;
         price: number;
     }]
@@ -449,7 +449,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                     </div>
                                                     <div class="text-end md:order-5 md:w-30">
                                                         <p class="text-base font-bold text-gray-900 dark:text-white">
-                                                            {{totalPerReservation(sale.has_details.reduce((acc: number,
+                                                            {{totalPerReservation(sale.details.reduce((acc: number,
                                                                 item:
                                                                     {
                                                                         price: number; quantity: number;
@@ -529,7 +529,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                         class="font-bold text-gray-900">
                                                         {{sale_stats.paid.items.map((sale: Sale) =>
                                                             totalByStatus(sale.shipping, sale.discount,
-                                                                sale.has_details)).reduce((acc: number, subtotal: number) => acc
+                                                                sale.details)).reduce((acc: number, subtotal: number) => acc
                                                                     + subtotal, 0).toFixed(2)}}
                                                     </p>
                                                     <p v-else class="font-bold text-gray-900">0.00</p>
@@ -550,7 +550,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                         class="font-bold text-gray-900">
                                                         {{sale_stats.pending.items.map((sale: Sale) =>
                                                             totalByStatus(sale.shipping, sale.discount,
-                                                                sale.has_details)).reduce((acc: number, subtotal: number) => acc
+                                                                sale.details)).reduce((acc: number, subtotal: number) => acc
                                                                     + subtotal, 0).toFixed(2)}}
                                                     </p>
                                                     <p v-else class="font-bold text-gray-900">0.00</p>
@@ -571,7 +571,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                         class="font-bold text-gray-900">
                                                         {{sale_stats.cancelled.items.map((sale: Sale) =>
                                                             totalByStatus(sale.shipping, sale.discount,
-                                                                sale.has_details)).reduce((acc: number, subtotal: number) => acc
+                                                                sale.details)).reduce((acc: number, subtotal: number) => acc
                                                                     + subtotal, 0).toFixed(2)}}
                                                     </p>
                                                     <p v-else class="font-bold text-gray-900">0.00</p>
