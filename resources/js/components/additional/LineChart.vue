@@ -3,6 +3,13 @@ import { ref, reactive, watch } from 'vue';
 import { LineChart } from 'vue-chart-3';
 import { Chart, registerables } from 'chart.js';
 
+const props = defineProps({
+    sales: {
+        type: Object,
+        required: false
+    }
+})
+
 Chart.register(...registerables);
 const chartData = reactive({
     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
