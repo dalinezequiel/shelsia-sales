@@ -19,11 +19,10 @@ defineProps({
 });
 
 const currentDate = ref(new Date());
-const data = '2025-09-16'
-const currentYear = ref(currentDate.value.getFullYear());
+const selectedYear = ref('');
 
 
-const period = ref('1');
+const period = ref('2');
 const frequency = ref('d');
 const search = () => {
     router.get(route('analysis.index', { period: period.value, frequency: frequency.value }, {
@@ -78,7 +77,8 @@ const breadcrumbs: BreadcrumbItem[] = [
 
                     </section>
                     <section class="mx-4 grid grid-cols-2">
-                        <Input type="month" @change="search" />
+                        <Input type="number" v-model="selectedYear" :value="new Date().getFullYear()"
+                            @change="search" />
                         <div class="pl-14 pl-2 grid items-start">
                             <button @click="printButton('printableArea')"
                                 class="flex justify-center gap-2 select-none cursor-pointer rounded-lg border border-gray-200 py-3 px-2 text-center align-middle font-sans text-xs font-bold uppercase text-gray-900 transition-all hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
@@ -109,7 +109,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <button
                                         class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
                                         <p v-if="forecasts !== null" class="font-medium text-md">{{
-                                            forecasts.performance.r2_score.toFixed(2) }}</p>
+                                            forecasts.performance.r2_score.toString().slice(0, 7) }}</p>
                                         <p v-else="forecasts.performance" class="font-medium text-md">{{
                                             Number(0).toFixed(2) }}</p>
                                         <p class="text-xs text-gray-600">
@@ -119,7 +119,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <button
                                         class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
                                         <p v-if="forecasts !== null" class="font-semibold text-md">{{
-                                            forecasts.performance.mean_absolute_error.toFixed(2) }}</p>
+                                            forecasts.performance.mean_absolute_error.toString().slice(0, 7) }}</p>
                                         <p v-else="forecasts.performance" class="font-medium text-md">{{
                                             Number(0).toFixed(2) }}</p>
                                         <p class="text-xs text-gray-600">
@@ -129,7 +129,8 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <button
                                         class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
                                         <p v-if="forecasts !== null" class="font-semibold text-md">{{
-                                            forecasts.performance.mean_absolute_percentage_error.toFixed(5) }}
+                                            forecasts.performance.mean_absolute_percentage_error.toString().slice(0, 7)
+                                        }}
                                         </p>
                                         <p v-else class="font-medium text-md">{{
                                             Number(0).toFixed(2) }}</p>
@@ -140,7 +141,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <button
                                         class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
                                         <p v-if="forecasts !== null" class="font-semibold text-md">{{
-                                            forecasts.performance.mean_squared_error.toFixed(2) }}</p>
+                                            forecasts.performance.mean_squared_error.toString().slice(0, 7) }}</p>
                                         <p v-else class="font-medium text-md">{{
                                             Number(0).toFixed(2) }}</p>
                                         <p class="text-xs text-gray-600">
@@ -150,7 +151,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <button
                                         class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
                                         <p v-if="forecasts !== null" class="font-semibold text-md">{{
-                                            forecasts.performance.root_mean_squared_error.toFixed(2) }}</p>
+                                            forecasts.performance.root_mean_squared_error.toString().slice(0, 7) }}</p>
                                         <p v-else class="font-medium text-md">{{
                                             Number(0).toFixed(2) }}</p>
                                         <p class="text-xs text-gray-600">
