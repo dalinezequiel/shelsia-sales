@@ -94,7 +94,8 @@ const breadcrumbs: BreadcrumbItem[] = [
                         </div>
                     </section>
                 </div>
-                <LineChart />
+                <LineChart v-if="forecasts" :forecasts="forecasts.forecasts" />
+                <LineChart v-else />
                 <div class="pt-8">
                     <div class="container">
 
@@ -103,7 +104,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                 <h1 id="open-tickets-tabs-label" class="font-semibold block mb-1 text-md">Métricas de
                                     Desempenho
                                     <span class="font-normal text-xs text-gray-500">({{ currentDate.toDateString()
-                                        }})</span>
+                                    }})</span>
                                 </h1>
                                 <div class="grid grid-cols-5 gap-2">
                                     <button
@@ -130,7 +131,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                         class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
                                         <p v-if="forecasts !== null" class="font-semibold text-md">{{
                                             forecasts.performance.mean_absolute_percentage_error.toString().slice(0, 7)
-                                        }}
+                                            }}
                                         </p>
                                         <p v-else class="font-medium text-md">{{
                                             Number(0).toFixed(2) }}</p>
@@ -166,7 +167,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                 <label id="ticket-statistics-tabs-label"
                                     class="font-semibold block mb-1 text-md">Estatísticas
                                     <span class="font-normal text-xs text-gray-500">({{ currentDate.toDateString()
-                                    }})</span></label>
+                                        }})</span></label>
                                 <div class="grid grid-cols-5 gap-2">
                                     <button
                                         class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
@@ -181,7 +182,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                         class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
                                         <p v-if="forecasts !== null" class="font-semibold text-md">{{
                                             forecasts.statistics.mean.toFixed(2)
-                                        }}</p>
+                                            }}</p>
                                         <p v-else class="font-medium text-md">{{ Number(0).toFixed(2) }}</p>
                                         <p class="text-xs text-gray-600">
                                             Média
@@ -191,7 +192,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                         class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
                                         <p v-if="forecasts !== null" class="font-semibold text-md">{{
                                             forecasts.statistics.std.toFixed(2)
-                                        }}</p>
+                                            }}</p>
                                         <p v-else class="font-medium text-md">{{ Number(0).toFixed(2) }}</p>
                                         <p class="text-xs text-gray-600">
                                             Desvio padrão
@@ -201,7 +202,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                         class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
                                         <p v-if="forecasts !== null" class="font-semibold text-md">{{
                                             forecasts.statistics.p25.toFixed(2)
-                                        }}</p>
+                                            }}</p>
                                         <p v-else class="font-medium text-md">{{ Number(0).toFixed(2) }}</p>
                                         <p class="text-xs text-gray-600">
                                             Percentil 25%
@@ -211,7 +212,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                         class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
                                         <p v-if="forecasts !== null" class="font-semibold text-md">{{
                                             forecasts.statistics.p50.toFixed(2)
-                                        }}</p>
+                                            }}</p>
                                         <p v-else class="font-medium text-md">{{ Number(0).toFixed(2) }}</p>
                                         <p class="text-xs text-gray-600">
                                             Percentil 50%
@@ -222,7 +223,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                         class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
                                         <p v-if="forecasts !== null" class="font-semibold text-md">{{
                                             forecasts.statistics.p75.toFixed(2)
-                                        }}</p>
+                                            }}</p>
                                         <p v-else class="font-medium text-md">{{ Number(0).toFixed(2) }}</p>
                                         <p class="text-xs text-gray-600">
                                             Percentil 75%
@@ -232,7 +233,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                         class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
                                         <p v-if="forecasts !== null" class="font-semibold text-md">{{
                                             forecasts.statistics.min.toFixed(2)
-                                        }}</p>
+                                            }}</p>
                                         <p v-else class="font-medium text-md">{{ Number(0).toFixed(2) }}</p>
                                         <p class="text-xs text-gray-600">
                                             Mínimo
@@ -242,7 +243,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                         class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
                                         <p v-if="forecasts !== null" class="font-semibold text-md">{{
                                             forecasts.statistics.max.toFixed(2)
-                                        }}</p>
+                                            }}</p>
                                         <p v-else class="font-medium text-md">{{ Number(0).toFixed(2) }}</p>
                                         <p class="text-xs text-gray-600">
                                             Máximo
