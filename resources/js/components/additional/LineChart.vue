@@ -4,9 +4,9 @@ import { LineChart } from 'vue-chart-3';
 import { Chart, registerables } from 'chart.js';
 
 const props = defineProps({
-    sales: {
+    forecasts: {
         type: Object,
-        required: false
+        required: true
     }
 })
 
