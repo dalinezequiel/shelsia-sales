@@ -78,7 +78,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 
                     </section>
                     <section class="flex gap-2">
-                        <Input type="number" v-model="period" />
+                        <Input type="number" v-model="period" min="1" />
                         <div class="items-start">
                             <button @click="search"
                                 class="flex justify-center gap-2 select-none cursor-pointer rounded-lg border border-gray-200 py-3 px-4 text-center align-middle font-sans text-xs font-bold uppercase text-gray-900 transition-all hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
