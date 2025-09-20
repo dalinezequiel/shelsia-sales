@@ -15,6 +15,10 @@ defineProps({
     finances: {
         type: Object,
         required: true
+    },
+    sales: {
+        type: Object,
+        required: true
     }
 });
 
@@ -94,7 +98,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                         </div>
                     </section>
                 </div>
-                <LineChart v-if="forecasts" :forecasts="forecasts.forecasts" />
+                <LineChart v-if="forecasts" :forecasts="forecasts.forecasts" :sales="sales" />
                 <LineChart v-else />
                 <div class="pt-8">
                     <div class="container">
