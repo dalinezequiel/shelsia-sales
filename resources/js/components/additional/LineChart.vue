@@ -6,38 +6,57 @@ import { Chart, registerables } from 'chart.js';
 const props = defineProps({
     forecasts: {
         type: Object,
-        required: true
+        required: false
+    },
+    sales: {
+        type: Object,
+        required: false
     }
 })
+
+const forecast = props.forecasts?.map(item => {
+    const date = new Date(item.ds);
+    return {
+        x: date.getDate(),
+        y: item.yhat
+    };
+});
 
 Chart.register(...registerables);
 const chartData = reactive({
     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
     datasets: [
         {
-            label: 'Histórico',
+            data: forecast,
             backgroundColor: '#696969',
             borderColor: '#696969',
-            data: [35, 25, 17, 30, 14],
             pointStyle: 'circle',
-            pointRadius: 6,
-        },
-        {
-            label: 'Futuro',
-            backgroundColor: '#CD8232',
-            borderColor: '#CD8232',
-            data: [40, 20, 12, 39, 20],
-            pointStyle: 'circle',
-            pointRadius: 6,
-        },
-        {
-            label: 'Previsão',
-            backgroundColor: '#36AD5E',
-            borderColor: '#36AD5E',
-            data: [, , , , 20, 30, 49],
-            pointStyle: 'circle',
-            pointRadius: 6,
-        },
+            pointRadius: 6
+        }
+        // {
+        //     label: 'Histórico',
+        //     backgroundColor: '#696969',
+        //     borderColor: '#696969',
+        //     data: [35, 25, 17, 30, 14],
+        //     pointStyle: 'circle',
+        //     pointRadius: 6,
+        // },
+        // {
+        //     label: 'Futuro',
+        //     backgroundColor: '#CD8232',
+        //     borderColor: '#CD8232',
+        //     data: [40, 20, 12, 39, 20],
+        //     pointStyle: 'circle',
+        //     pointRadius: 6,
+        // },
+        // {
+        //     label: 'Previsão',
+        //     backgroundColor: '#36AD5E',
+        //     borderColor: '#36AD5E',
+        //     data: [, , , , 20, 30, 49],
+        //     pointStyle: 'circle',
+        //     pointRadius: 6,
+        // },
     ],
 });
 
@@ -80,4 +99,6 @@ const chartOptions = ref({
 
 <template>
     <LineChart :chartData="chartData" :options="chartOptions" />
+    <!-- {{ forecasts }} -->
+    {{ dataFrame }}
 </template>
