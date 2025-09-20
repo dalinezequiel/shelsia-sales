@@ -26,8 +26,8 @@ class AnalysisController extends Controller
 
             $sales = $this->saleDataFrame();
             $data_for_forecasting = [
-                "period" => $request->query('period'),
-                "frequency" => $request->query('frequency'),
+                "period" => $request->query('period', '1'),
+                "frequency" => $request->query('frequency', 'd'),
                 "sales" => $sales
             ];
 
