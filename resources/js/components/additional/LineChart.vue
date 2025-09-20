@@ -35,8 +35,15 @@ const history = props.sales?.map(item => {
     };
 });
 
-const applyColor = (ctx, forecast_color, future_color) => ctx.p0.parsed.x >= history.length - 1 ? future_color : forecast_color;
-const pointBackgroundColor = (ctx, forecast_color, future_color) => ctx.dataIndex >= history.length - 1 ? future_color : forecast_color;
+const applyColor = (ctx, forecast_color, future_color) => {
+    if (history === null) return 'black';
+    return ctx.p0.parsed.x >= history.length - 1 ? future_color : forecast_color;
+}
+
+const pointBackgroundColor = (ctx, forecast_color, future_color) => {
+    if (history === null || history === undefined) return;
+    return ctx.dataIndex >= history.length - 1 ? future_color : forecast_color;
+}
 
 Chart.register(...registerables);
 const chartData = reactive({
