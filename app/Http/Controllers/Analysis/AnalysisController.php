@@ -72,6 +72,17 @@ class AnalysisController extends Controller
         return collect($total)->reduce(fn($acc, $item) => $acc + $item, 0);
     }
 
+    function total_sum()
+    {
+        $total = [];
+        $sales = Sale::with('details')->get();
+        foreach ($sales as $sale) {
+            $subtotal = $sale->details->reduce(fn($acc, $detail) => $acc + ($detail['quantity'] * $detail['price']), 0);
+            $total[] = floatval($subtotal + $sale->shipping - $sale->discount);
+        }
+        return collect($total)->reduce(fn($acc, $item) => $acc + $item, 0);
+    }
+
     /**
      * Show the form for creating a new resource.
      */
