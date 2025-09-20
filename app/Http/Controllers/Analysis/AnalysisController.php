@@ -61,6 +61,17 @@ class AnalysisController extends Controller
         return $groupByMonth;
     }
 
+    function total_paid()
+    {
+        $total = [];
+        $sales = Sale::where('status', SaleStatus::PAID)->with('details')->get();
+        foreach ($sales as $sale) {
+            $subtotal = $sale->details->reduce(fn($acc, $detail) => $acc + ($detail['quantity'] * $detail['price']), 0);
+            $total[] = floatval($subtotal + $sale->shipping - $sale->discount);
+        }
+        return collect($total)->reduce(fn($acc, $item) => $acc + $item, 0);
+    }
+
     /**
      * Show the form for creating a new resource.
      */
