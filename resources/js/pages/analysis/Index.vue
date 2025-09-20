@@ -7,7 +7,7 @@ import Input from '@/components/ui/input/Input.vue';
 import { ref } from 'vue';
 import { currencyFormat } from '@/store';
 
-defineProps({
+const props = defineProps({
     forecasts: {
         type: Object,
         required: true
@@ -19,11 +19,15 @@ defineProps({
     sales: {
         type: Object,
         required: true
+    },
+    search_period: {
+        type: String,
+        required: false
     }
 });
 
 const currentDate = ref(new Date());
-const period = ref(1);
+const period = ref(props.search_period);
 const frequency = ref('d');
 const search = () => {
     router.get(route('analysis.index', { period: period.value, frequency: frequency.value }, {

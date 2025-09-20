@@ -31,8 +31,9 @@ class AnalysisController extends Controller
                 "sales" => $sales
             ];
 
+            $search_period = $data_for_forecasting['period'];
             $forecasts = Http::post(env('FORECAST_BASE_URL'), [$data_for_forecasting])->json();
-            return Inertia::render('analysis/Index', compact('forecasts', 'finances', 'sales'));
+            return Inertia::render('analysis/Index', compact('forecasts', 'finances', 'sales', 'search_period'));
         } catch (Exception $ex) {
             return response()->json([
                 'message_error' => $ex->getMessage()
