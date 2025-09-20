@@ -1,5 +1,5 @@
 <script setup>
-import { ref, reactive, watch } from 'vue';
+import { ref, reactive } from 'vue';
 import { LineChart } from 'vue-chart-3';
 import { Chart, registerables } from 'chart.js';
 
@@ -14,49 +14,52 @@ const props = defineProps({
     }
 })
 
+const labels = [];
 const forecast = props.forecasts?.map(item => {
     const date = new Date(item.ds);
+    labels.push(date.toLocaleDateString('en-US', {
+        month: 'long',
+        day: 'numeric'
+    }));
     return {
         x: date.getDate(),
         y: item.yhat
     };
 });
 
+const history = props.sales?.map(item => {
+    const date = new Date(item.ds);
+    return {
+        x: date.getDate(),
+        y: item.y
+    };
+});
+
+const applyColor = (ctx, forecast_color, future_color) => ctx.p0.parsed.x >= history.length ? future_color : forecast_color;
+const pointBackgroundColor = (ctx, forecast_color, future_color) => ctx.dataIndex >= history.length ? future_color : forecast_color;
+
 Chart.register(...registerables);
 const chartData = reactive({
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    labels: labels,
     datasets: [
         {
+            label: 'Previsto',
             data: forecast,
+            backgroundColor: ctx => pointBackgroundColor(ctx, '#CD8232', '#36AD5E'),
+            pointStyle: 'circle',
+            pointRadius: 6,
+            segment: {
+                borderColor: ctx => applyColor(ctx, '#CD8232', '#36AD5E')
+            }
+        },
+        {
+            label: 'Histórico',
             backgroundColor: '#696969',
             borderColor: '#696969',
+            data: history,
             pointStyle: 'circle',
             pointRadius: 6
-        }
-        // {
-        //     label: 'Histórico',
-        //     backgroundColor: '#696969',
-        //     borderColor: '#696969',
-        //     data: [35, 25, 17, 30, 14],
-        //     pointStyle: 'circle',
-        //     pointRadius: 6,
-        // },
-        // {
-        //     label: 'Futuro',
-        //     backgroundColor: '#CD8232',
-        //     borderColor: '#CD8232',
-        //     data: [40, 20, 12, 39, 20],
-        //     pointStyle: 'circle',
-        //     pointRadius: 6,
-        // },
-        // {
-        //     label: 'Previsão',
-        //     backgroundColor: '#36AD5E',
-        //     borderColor: '#36AD5E',
-        //     data: [, , , , 20, 30, 49],
-        //     pointStyle: 'circle',
-        //     pointRadius: 6,
-        // },
+        },
     ],
 });
 
@@ -74,7 +77,7 @@ const chartOptions = ref({
         },
         title: {
             display: true,
-            text: (ctx) => 'Descrição',
+            text: 'Vendas',
         }
     },
     scales: {
@@ -82,23 +85,20 @@ const chartOptions = ref({
             display: true,
             title: {
                 display: true,
-                text: 'Month'
+                text: 'Dias, Ano '.concat(new Date().getFullYear())
             }
         },
         y: {
             display: true,
             title: {
                 display: true,
-                text: 'Value'
+                text: 'Faturamento'
             }
         }
     }
-    // ... other chart.js options
 });
 </script>
 
 <template>
     <LineChart :chartData="chartData" :options="chartOptions" />
-    <!-- {{ forecasts }} -->
-    {{ dataFrame }}
 </template>

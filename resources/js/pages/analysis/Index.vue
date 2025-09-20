@@ -26,7 +26,7 @@ const currentDate = ref(new Date());
 const selectedYear = ref('');
 
 
-const period = ref('2');
+const period = ref('4');
 const frequency = ref('d');
 const search = () => {
     router.get(route('analysis.index', { period: period.value, frequency: frequency.value }, {
