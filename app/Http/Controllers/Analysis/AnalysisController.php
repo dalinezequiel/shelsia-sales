@@ -24,14 +24,15 @@ class AnalysisController extends Controller
                 'total_income' => Finance::where('category', 'income')->sum('amount')
             ];
 
+            $sales = $this->saleDataFrame();
             $data_for_forecasting = [
                 "period" => $request->query('period'),
                 "frequency" => $request->query('frequency'),
-                "sales" => $this->saleDataFrame()
+                "sales" => $sales
             ];
 
             $forecasts = Http::post(env('FORECAST_BASE_URL'), [$data_for_forecasting])->json();
-            return Inertia::render('analysis/Index', compact('forecasts', 'finances'));
+            return Inertia::render('analysis/Index', compact('forecasts', 'finances', 'sales'));
         } catch (Exception $ex) {
             return response()->json([
                 'message_error' => $ex->getMessage()
