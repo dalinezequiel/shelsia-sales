@@ -12,10 +12,6 @@ const props = defineProps({
         type: Object,
         required: true
     },
-    finances: {
-        type: Object,
-        required: true
-    },
     sales: {
         type: Object,
         required: true
@@ -73,11 +69,11 @@ const breadcrumbs: BreadcrumbItem[] = [
                     <section class="grid grid-cols-2 gap-2">
                         <div class="p-2 rounded-md border border-gray-200">
                             <p class="text-sm">Valor Bruto</p>
-                            <p>{{ currencyFormat(finances.total_expenses + finances.total_income) }}</p>
+                            <p>{{ currencyFormat(sales.sum_gross_value) }}</p>
                         </div>
                         <div class="p-2 rounded-md border border-gray-200">
                             <p class="text-sm">Valor Líquido</p>
-                            <p>{{ currencyFormat(finances.total_income) }}</p>
+                            <p>{{ currencyFormat(sales.sum_net_value) }}</p>
                         </div>
 
                     </section>
@@ -108,7 +104,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                         </div>
                     </section>
                 </div>
-                <LineChart v-if="forecasts" :forecasts="forecasts.forecasts" :sales="sales" />
+                <LineChart v-if="forecasts" :forecasts="forecasts.forecasts" :sales="sales.sum_per_sale" />
                 <LineChart v-else />
                 <div class="pt-8">
                     <div class="container">

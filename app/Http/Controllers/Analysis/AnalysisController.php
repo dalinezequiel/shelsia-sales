@@ -19,21 +19,21 @@ class AnalysisController extends Controller
     public function index(Request $request)
     {
         try {
-            $finances = [
-                'total_expenses' => Finance::where('category', 'expense')->sum('amount'),
-                'total_income' => Finance::where('category', 'income')->sum('amount')
+            $sales = [
+                'sum_per_sale' => $this->saleDataFrame(),
+                'sum_gross_value' => $this->total_sum(),
+                'sum_net_value' => $this->total_paid()
             ];
 
-            $sales = $this->saleDataFrame();
             $data_for_forecasting = [
                 "period" => $request->query('period', '1'),
                 "frequency" => $request->query('frequency', 'd'),
-                "sales" => $sales
+                "sales" => $sales['sum_per_sale']
             ];
 
             $search_period = $data_for_forecasting['period'];
             $forecasts = Http::post(env('FORECAST_BASE_URL'), [$data_for_forecasting])->json();
-            return Inertia::render('analysis/Index', compact('forecasts', 'finances', 'sales', 'search_period'));
+            return Inertia::render('analysis/Index', compact('forecasts', 'sales', 'search_period'));
         } catch (Exception $ex) {
             return response()->json([
                 'message_error' => $ex->getMessage()
