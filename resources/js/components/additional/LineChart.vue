@@ -84,7 +84,7 @@ const chartOptions = ref({
         },
         title: {
             display: true,
-            text: 'Vendas',
+            text: 'Distribuição das Vendas',
         }
     },
     scales: {
