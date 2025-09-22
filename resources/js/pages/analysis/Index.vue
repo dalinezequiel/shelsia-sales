@@ -140,8 +140,8 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <button
                                         class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
                                         <p v-if="forecasts !== null" class="font-semibold text-md">{{
-                                            forecasts.performance.mean_absolute_percentage_error.toString().slice(0, 7)
-                                        }}
+                                            forecasts.performance.mean_absolute_percentage_error.toString().slice(0, 5)
+                                        }}%
                                         </p>
                                         <p v-else class="font-medium text-md">{{
                                             Number(0).toFixed(2) }}</p>
