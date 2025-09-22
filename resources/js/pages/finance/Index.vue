@@ -18,9 +18,9 @@ import {
 } from '@/components/ui/alert-dialog'
 import { toast } from 'vue-sonner';
 import { ref } from 'vue';
-import Tablist from '@/components/additional/Tablist.vue';
 import Pagination from '@/components/additional/Pagination.vue';
 import { dateFormat } from '@/store';
+import TablistFinance from '@/components/additional/TablistFinance.vue';
 
 defineProps({
     finances: {
@@ -152,7 +152,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                 <div class="flex flex-col items-center justify-between gap-4 md:flex-row">
                     <div class="block w-full overflow-hidden md:w-max">
                         <nav>
-                            <Tablist :list="finances" />
+                            <TablistFinance :list="finances" />
                         </nav>
                     </div>
                     <div class="w-full md:w-72">
