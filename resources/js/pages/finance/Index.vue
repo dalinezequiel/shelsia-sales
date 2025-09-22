@@ -228,7 +228,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="account in finances.data" :key="account.id">
+                        <tr v-for="account in finances.items.data" :key="account.id">
                             <td class="p-4 border-b border-blue-gray-50">
                                 <div class="flex items-center gap-3">
                                     <img :src="account.is_active ? 'https://placehold.co/600x400/transparent/429657?text=$' : 'https://placehold.co/600x400/transparent/F00?text=$'"
@@ -395,7 +395,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                 </table>
             </div>
 
-            <Pagination :list="finances" />
+            <Pagination :list="finances.items" />
         </div>
     </AppLayout>
 </template>

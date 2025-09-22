@@ -1,20 +1,12 @@
 <script setup lang="ts">
-import { IProduct } from '@/interfaces';
 
-const props = defineProps({
+defineProps({
     list: {
         type: Object,
         required: true
     }
 });
 
-const stats = {
-    total: props.list.total,
-    active: props.list.data.filter((item: IProduct) => item.is_active).length,
-    inactive: function () {
-        return this.total - this.active
-    }
-}
 </script>
 <template>
     <section>
@@ -22,7 +14,7 @@ const stats = {
             <li>
                 <button
                     class="focus:outline-none p-2 rounded-l-lg border border-r-0 bg-white flex space-x-1 items-center w-24">
-                    <p class="font-semibold text-md">{{ stats.total }}</p>
+                    <p class="font-semibold text-md">{{ list.total }}</p>
                     <p class="text-gray-600 text-sm">
                         Contas
                     </p>
@@ -30,7 +22,7 @@ const stats = {
             </li>
             <li>
                 <button class="focus:outline-none p-2 border border-r-0 bg-white flex space-x-1 items-center w-24">
-                    <p class="font-semibold text-md">{{ stats.active }}</p>
+                    <p class="font-semibold text-md">{{ list.total_paid }}</p>
                     <p class="text-gray-600 text-sm">
                         Pagas
                     </p>
@@ -39,7 +31,7 @@ const stats = {
 
             <li>
                 <button class="focus:outline-none p-2 border rounded-r-lg bg-white flex space-x-1 items-center w-26">
-                    <p class="font-semibold text-md">{{ stats.inactive() }}</p>
+                    <p class="font-semibold text-md">{{ list.total - list.total_paid }}</p>
                     <p class="text-gray-600 text-sm">
                         Não Pagas
                     </p>
