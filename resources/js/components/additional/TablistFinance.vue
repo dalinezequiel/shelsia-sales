@@ -38,7 +38,7 @@ const stats = {
             </li>
 
             <li>
-                <button class="focus:outline-none p-2 border rounded-r-lg bg-white flex space-x-1 items-center w-24">
+                <button class="focus:outline-none p-2 border rounded-r-lg bg-white flex space-x-1 items-center w-26">
                     <p class="font-semibold text-md">{{ stats.inactive() }}</p>
                     <p class="text-gray-600 text-sm">
                         Não Pagas
