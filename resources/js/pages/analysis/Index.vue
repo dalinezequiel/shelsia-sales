@@ -32,18 +32,7 @@ const search = () => {
     }))
 }
 
-function printButton(elementId: string): void {
-    const printContent = document.getElementById(elementId);
-
-    if (printContent) {
-        const originalContent = document.body.innerHTML;
-        document.body.innerHTML = printContent.innerHTML;
-        window.print();
-        document.body.innerHTML = originalContent;
-    } else {
-        console.error(`Element with ID '${elementId}' not found.`);
-    }
-}
+const printButton = () => window.print();
 
 
 const breadcrumbs: BreadcrumbItem[] = [
@@ -90,7 +79,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                         </div>
 
                         <div class="items-start">
-                            <button @click="printButton('printableArea')"
+                            <button @click="printButton"
                                 class="flex justify-center gap-2 select-none cursor-pointer rounded-lg border border-gray-200 py-3 px-4 text-center align-middle font-sans text-xs font-bold uppercase text-gray-900 transition-all hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
                                 <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -109,7 +98,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                 <div class="pt-8">
                     <div class="container">
 
-                        <section class="w-full flex gap-12">
+                        <section class="w-full flex gap-12 flex-wrap">
                             <div>
                                 <h1 id="open-tickets-tabs-label" class="font-semibold block mb-1 text-md">Métricas de
                                     Desempenho
