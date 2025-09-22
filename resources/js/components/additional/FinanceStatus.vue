@@ -9,7 +9,7 @@ defineProps({
 });
 
 const percents = (total: number, total_per_situation: number) =>
-    Number.isInteger((total_per_situation * 100) / total) ? (total_per_situation * 100) / total : 0;
+    Number.isInteger(total_per_situation * 100) ? (total_per_situation * 100) / total : 0;
 const applyProgressBar = (number: number) => "width: ".concat(number.toString(), "%");
 
 </script>
@@ -74,7 +74,7 @@ const applyProgressBar = (number: number) => "width: ".concat(number.toString(),
                         Pagamentos</th>
                     <td class="border-t-0 px-4 text-end text-xs font-medium whitespace-nowrap">
                         <span class="px-2 py-1 rounded-md border border-gray-200">{{ indicators.finances.expenses.paid
-                        }} / {{ indicators.finances.expenses.total }}</span>
+                            }} / {{ indicators.finances.expenses.total }}</span>
                     </td>
 
                     <td class="border-t-0 px-4 text-end text-xs font-medium text-gray-900 whitespace-nowrap">
@@ -102,7 +102,7 @@ const applyProgressBar = (number: number) => "width: ".concat(number.toString(),
                     </th>
                     <td class="border-t-0 px-4 text-end text-xs font-medium whitespace-nowrap">
                         <span class="px-2 py-1 rounded-md border border-gray-200">{{ indicators.finances.late_bills.paid
-                        }} / {{ indicators.finances.late_bills.total }}</span>
+                            }} / {{ indicators.finances.late_bills.total }}</span>
                     </td>
 
                     <td class="border-t-0 px-4 text-end text-xs font-medium text-gray-900 whitespace-nowrap">
