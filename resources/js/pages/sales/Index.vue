@@ -120,10 +120,10 @@ const breadcrumbs: BreadcrumbItem[] = [
                                         <div class="mb-8">
                                             <p class="py-2 text-center">Produto Mais Vendido</p>
                                             <div class="flex gap-4">
-                                                <section>
+                                                <section class="flex items-center rounded-lg border border-gray-200">
                                                     <img :src="'/storage/'.concat(more_less_sold.best_selling.image)"
                                                         :alt="more_less_sold.best_selling.description"
-                                                        class="object-cover h-full rounded-lg border border-gray-200 w-30" />
+                                                        class="object-cover w-30" />
                                                 </section>
                                                 <section class="grid gap-2">
                                                     <div
@@ -131,6 +131,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                         <p class="text-md text-primary text-gray-600 font-semibold">
                                                             {{ more_less_sold.best_selling.description }}
                                                         </p>
+                                                        <p class="text-xs">Supplier</p>
                                                     </div>
                                                     <div class="flex gap-2">
                                                         <button
@@ -174,10 +175,10 @@ const breadcrumbs: BreadcrumbItem[] = [
                                         <div>
                                             <p class="py-2 text-center">Produto Menos Vendido</p>
                                             <div class="flex gap-4">
-                                                <section>
+                                                <section class="flex items-center rounded-lg border border-gray-200">
                                                     <img :src="'/storage/'.concat(more_less_sold.least_sold.image)"
                                                         :alt="more_less_sold.least_sold.description"
-                                                        class="object-cover h-full rounded-lg border border-gray-200 w-30" />
+                                                        class="w-full object-cover w-30" />
                                                 </section>
                                                 <section class="grid gap-2">
                                                     <div
@@ -185,6 +186,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                         <p class="text-md text-primary text-gray-600 font-semibold">
                                                             {{ more_less_sold.least_sold.description }}
                                                         </p>
+                                                        <p class="text-xs">Supplier</p>
                                                     </div>
                                                     <div class="flex gap-2">
                                                         <button
