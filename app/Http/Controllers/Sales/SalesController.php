@@ -21,11 +21,11 @@ class SalesController extends Controller
      */
     public function index(Request $request)
     {
-        $this->sales_stats();
+        $more_less_sold = $this->sales_stats();
         $description = $request->query('description');
         $sales = Sale::where('description', 'like', '%' . $description . '%')->with(['details', 'details.product', 'paymentMethod'])
             ->paginate(5);
-        return Inertia::render('sales/Index', compact('sales'));
+        return Inertia::render('sales/Index', compact('sales', 'more_less_sold'));
     }
 
     /**
@@ -83,7 +83,7 @@ class SalesController extends Controller
     public function map_products()
     {
         $products = [];
-        $sales = Sale::with(['details', 'details.product'])->get();
+        $sales = Sale::where('status', SaleStatus::PAID)->with(['details', 'details.product'])->get();
         foreach ($sales as $sale) {
             $products[] = $sale->details->map(fn($item) => [
                 'product_id' => $item->product->id,

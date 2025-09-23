@@ -18,10 +18,14 @@ import { toast } from 'vue-sonner';
 import Pagination from '@/components/additional/Pagination.vue';
 import Tablist from '@/components/additional/Tablist.vue';
 import { ref } from 'vue';
-import { dateFormat } from '@/store';
+import { currencyFormat, dateFormat } from '@/store';
 
 defineProps({
     sales: {
+        type: Object,
+        required: true
+    },
+    more_less_sold: {
         type: Object,
         required: true
     }
@@ -99,6 +103,137 @@ const breadcrumbs: BreadcrumbItem[] = [
                         </p>
                     </div>
                     <div class="flex flex-col gap-2 shrink-0 sm:flex-row">
+
+                        <AlertDialog>
+                            <AlertDialogTrigger
+                                class="select-none cursor-pointer rounded-lg border border-gray-900 py-2 px-4 text-center align-middle font-sans text-xs font-bold uppercase text-gray-900 transition-all hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="16">
+                                    <path
+                                        d="M256 144C256 117.5 277.5 96 304 96L336 96C362.5 96 384 117.5 384 144L384 496C384 522.5 362.5 544 336 544L304 544C277.5 544 256 522.5 256 496L256 144zM64 336C64 309.5 85.5 288 112 288L144 288C170.5 288 192 309.5 192 336L192 496C192 522.5 170.5 544 144 544L112 544C85.5 544 64 522.5 64 496L64 336zM496 160L528 160C554.5 160 576 181.5 576 208L576 496C576 522.5 554.5 544 528 544L496 544C469.5 544 448 522.5 448 496L448 208C448 181.5 469.5 160 496 160z" />
+                                </svg>
+                            </AlertDialogTrigger>
+
+                            <AlertDialogContent class="px-8 min-w-152">
+                                <AlertDialogHeader>
+                                    <AlertDialogTitle>Estatísticas</AlertDialogTitle>
+                                    <AlertDialogDescription>
+                                        <div class="mb-8">
+                                            <p class="py-2 text-center">Produto Mais Vendido</p>
+                                            <div class="flex gap-4">
+                                                <section>
+                                                    <img :src="'/storage/'.concat(more_less_sold.best_selling.image)"
+                                                        :alt="more_less_sold.best_selling.description"
+                                                        class="object-cover h-full rounded-lg border border-gray-200 w-30" />
+                                                </section>
+                                                <section class="grid gap-2">
+                                                    <div
+                                                        class="w-full focus:outline-none p-2 rounded-md border bg-white flex flex-col  w-24">
+                                                        <p class="text-md text-primary text-gray-600 font-semibold">
+                                                            {{ more_less_sold.best_selling.description }}
+                                                        </p>
+                                                    </div>
+                                                    <div class="flex gap-2">
+                                                        <button
+                                                            class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
+                                                            <p class="font-medium text-primary text-md">{{
+                                                                currencyFormat(more_less_sold.best_selling.subtotal) }}
+                                                            </p>
+                                                            <p class="text-xs text-gray-600">
+                                                                Lucro bruto
+                                                            </p>
+                                                        </button>
+                                                        <button
+                                                            class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
+                                                            <p class="font-medium text-primary text-md">{{
+                                                                currencyFormat(more_less_sold.best_selling.profit_per_product)
+                                                            }}</p>
+                                                            <p class="text-xs text-gray-600">
+                                                                Lucro líquido
+                                                            </p>
+                                                        </button>
+                                                        <button
+                                                            class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
+                                                            <p class="font-medium text-primary text-md">{{
+                                                                more_less_sold.best_selling.quantity_sold }}</p>
+                                                            <p class="text-xs text-gray-600">
+                                                                Unidades vendidas
+                                                            </p>
+                                                        </button>
+                                                        <button
+                                                            class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
+                                                            <p class="font-medium text-primary text-md">{{
+                                                                more_less_sold.best_selling.number_of_sales }}</p>
+                                                            <p class="text-xs text-gray-600">
+                                                                Número de vendas
+                                                            </p>
+                                                        </button>
+                                                    </div>
+                                                </section>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <p class="py-2 text-center">Produto Menos Vendido</p>
+                                            <div class="flex gap-4">
+                                                <section>
+                                                    <img :src="'/storage/'.concat(more_less_sold.least_sold.image)"
+                                                        :alt="more_less_sold.least_sold.description"
+                                                        class="object-cover h-full rounded-lg border border-gray-200 w-30" />
+                                                </section>
+                                                <section class="grid gap-2">
+                                                    <div
+                                                        class="w-full focus:outline-none p-2 rounded-md border bg-white flex flex-col  w-24">
+                                                        <p class="text-md text-primary text-gray-600 font-semibold">
+                                                            {{ more_less_sold.least_sold.description }}
+                                                        </p>
+                                                    </div>
+                                                    <div class="flex gap-2">
+                                                        <button
+                                                            class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
+                                                            <p class="font-medium text-primary text-md">{{
+                                                                currencyFormat(more_less_sold.least_sold.subtotal) }}
+                                                            </p>
+                                                            <p class="text-xs text-gray-600">
+                                                                Lucro bruto
+                                                            </p>
+                                                        </button>
+                                                        <button
+                                                            class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
+                                                            <p class="font-medium text-primary text-md">{{
+                                                                currencyFormat(more_less_sold.least_sold.profit_per_product)
+                                                            }}</p>
+                                                            <p class="text-xs text-gray-600">
+                                                                Lucro líquido
+                                                            </p>
+                                                        </button>
+                                                        <button
+                                                            class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
+                                                            <p class="font-medium text-primary text-md">{{
+                                                                more_less_sold.least_sold.quantity_sold }}</p>
+                                                            <p class="text-xs text-gray-600">
+                                                                Unidades vendidas
+                                                            </p>
+                                                        </button>
+                                                        <button
+                                                            class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
+                                                            <p class="font-medium text-primary text-md">{{
+                                                                more_less_sold.least_sold.number_of_sales }}</p>
+                                                            <p class="text-xs text-gray-600">
+                                                                Número de vendas
+                                                            </p>
+                                                        </button>
+                                                    </div>
+                                                </section>
+                                            </div>
+                                        </div>
+                                    </AlertDialogDescription>
+                                </AlertDialogHeader>
+                                <AlertDialogFooter>
+                                    <AlertDialogCancel class="cursor-pointer">Cancelar</AlertDialogCancel>
+                                </AlertDialogFooter>
+                            </AlertDialogContent>
+                        </AlertDialog>
+
+
                         <button @click="search"
                             class="select-none cursor-pointer rounded-lg border border-gray-900 py-2 px-4 text-center align-middle font-sans text-xs font-bold uppercase text-gray-900 transition-all hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                             type="button">
