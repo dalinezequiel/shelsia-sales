@@ -21,6 +21,7 @@ class SalesController extends Controller
      */
     public function index(Request $request)
     {
+        $this->sales_stats();
         $description = $request->query('description');
         $sales = Sale::where('description', 'like', '%' . $description . '%')->with(['details', 'details.product', 'paymentMethod'])
             ->paginate(5);
@@ -65,6 +66,64 @@ class SalesController extends Controller
         $products = Product::where('is_active', True)->where('description', 'like', '%' . $description . '%')
             ->with('productCategory')->inRandomOrder()->limit(8)->get();
         return Inertia::render('sales/Create', compact('products', 'paymentMethods', 'description', 'sales', 'sale_stats'));
+    }
+
+    /**
+     * calculate best selling product.
+     */
+    function sales_stats()
+    {
+        $stats = [
+            'best_selling' => $this->groupByProduct()->sortByDesc('quantity_sold')->first(),
+            'least_sold' => $this->groupByProduct()->sortByDesc('quantity_sold')->last()
+        ];
+        return $stats;
+    }
+
+    public function map_products()
+    {
+        $products = [];
+        $sales = Sale::with(['details', 'details.product'])->get();
+        foreach ($sales as $sale) {
+            $products[] = $sale->details->map(fn($item) => [
+                'product_id' => $item->product->id,
+                'description' => $item->product->description,
+                'subtotal' => $item['quantity'] * ($item->product->promotional_price > 0 ?
+                    $item->product->promotional_price : $item->product->sale_price),
+
+                'profit_per_product' => $item['quantity'] * ($item->product->promotional_price > 0 ?
+                    $item->product->promotional_price : $item->product->sale_price - $item->product->purchase_price),
+                'image' => $item->product->image,
+                'quantity_sold' => $item['quantity'],
+                'number_of_sales' => 1
+            ]);
+        }
+        return $products;
+    }
+
+    public function groupByProduct()
+    {
+        $products = [];
+        foreach ($this->map_products() as $product) {
+            foreach ($product as $item) {
+                $products[] = $item;
+            }
+        }
+
+        $items = collect($products);
+        $groupByProduct = $items->groupBy('product_id')->map(function ($group) {
+            return
+                [
+                    'product_id' => $group->first()['product_id'],
+                    'description' => $group->first()['description'],
+                    'image' => $group->first()['image'],
+                    'subtotal' => $group->sum('subtotal'),
+                    'profit_per_product' => $group->sum('profit_per_product'),
+                    'quantity_sold' => $group->sum('quantity_sold'),
+                    'number_of_sales' => $group->sum('number_of_sales')
+                ];
+        })->values();
+        return $groupByProduct;
     }
 
     /**
