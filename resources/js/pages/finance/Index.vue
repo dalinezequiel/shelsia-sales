@@ -101,6 +101,9 @@ const deleteAccount = (id: number) => {
     })
 }
 
+const validate_expiration = (dueDate: Date, is_paid: boolean) =>
+    is_paid ? '#218230' : new Date() > new Date(dueDate) ? '#D94629' : 'orange';
+
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Financeiro',
@@ -249,13 +252,6 @@ const breadcrumbs: BreadcrumbItem[] = [
                             </td>
                             <td class="p-4 border-b border-blue-gray-50">
                                 <div class="flex">
-                                    <div class="pr-1 flex justify-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="16"
-                                            :fill="account.category === 'income' ? '#218230' : '#D94629'">
-                                            <path
-                                                d="M64 320C64 178.6 178.6 64 320 64C461.4 64 576 178.6 576 320C576 461.4 461.4 576 320 576C178.6 576 64 461.4 64 320z" />
-                                        </svg>
-                                    </div>
                                     <p
                                         class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
                                         {{ account.category === 'income' ? 'Receitas' : 'Despesas' }}
@@ -288,10 +284,19 @@ const breadcrumbs: BreadcrumbItem[] = [
                                 </div>
                             </td>
                             <td class="p-4 border-b border-blue-gray-50">
-                                <p
-                                    class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                                    {{ dateFormat(account.due_date) }}
-                                </p>
+                                <div class="flex">
+                                    <div class="pr-1 flex justify-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="16"
+                                            :fill="validate_expiration(account.due_date, account.is_paid)">
+                                            <path
+                                                d="M64 320C64 178.6 178.6 64 320 64C461.4 64 576 178.6 576 320C576 461.4 461.4 576 320 576C178.6 576 64 461.4 64 320z" />
+                                        </svg>
+                                    </div>
+                                    <p
+                                        class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                                        {{ dateFormat(account.due_date) }}
+                                    </p>
+                                </div>
                             </td>
                             <td class="p-4 border-b border-blue-gray-50 text-center">
                                 <AlertDialog>
@@ -303,7 +308,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <AlertDialogContent>
                                         <AlertDialogHeader>
                                             <AlertDialogTitle>{{ account.category === 'income' ? 'Receitas' : 'Despesas'
-                                                }}</AlertDialogTitle>
+                                            }}</AlertDialogTitle>
                                             <AlertDialogDescription>
                                                 <form id="payment" @submit.prevent="submit">
                                                     <div class="grid gap-y-4 mt-4">
