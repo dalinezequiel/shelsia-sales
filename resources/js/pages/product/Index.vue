@@ -18,7 +18,7 @@ import {
 import { toast } from 'vue-sonner';
 import { ref } from 'vue';
 import Pagination from '@/components/additional/Pagination.vue';
-import Tablist from '@/components/additional/Tablist.vue';
+import TablistProduct from '@/components/additional/TablistProduct.vue';
 import { dateFormat } from '@/store';
 
 defineProps({
@@ -110,7 +110,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                 <div class="flex flex-col items-center justify-between gap-4 md:flex-row">
                     <div class="block w-full overflow-hidden md:w-max">
                         <nav>
-                            <Tablist :stats="product_stats" />
+                            <TablistProduct :stats="product_stats" />
                         </nav>
                     </div>
                     <div class="w-full md:w-72">

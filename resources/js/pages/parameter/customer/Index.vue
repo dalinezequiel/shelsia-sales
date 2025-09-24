@@ -19,7 +19,7 @@ import {
 } from '@/components/ui/alert-dialog'
 import { toast } from 'vue-sonner';
 import Pagination from '@/components/additional/Pagination.vue';
-import Tablist from '@/components/additional/Tablist.vue';
+import Tablist from '@/components/additional/TablistProduct.vue';
 import { ref } from 'vue';
 
 defineProps({

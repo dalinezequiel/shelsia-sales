@@ -19,7 +19,7 @@ import {
 } from '@/components/ui/alert-dialog'
 import { toast } from 'vue-sonner';
 import Pagination from '@/components/additional/Pagination.vue';
-import Tablist from '@/components/additional/Tablist.vue';
+import Tablist from '@/components/additional/TablistProduct.vue';
 import { ref } from 'vue';
 
 defineProps({
@@ -195,7 +195,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                     Continuar com está operação implicará a exclusão permanente da
                                                     forma de pagamento
                                                     <strong> <span class="text-[#EC3636]">{{ paymentMethod.description
-                                                    }}</span>
+                                                            }}</span>
                                                     </strong>.
                                                 </AlertDialogDescription>
                                             </AlertDialogHeader>
