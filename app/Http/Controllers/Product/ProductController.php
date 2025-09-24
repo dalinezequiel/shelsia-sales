@@ -19,9 +19,13 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
+        $product_stats = [
+            'active' => Product::where('is_active', true)->count(),
+            'inactive' => Product::where('is_active', false)->count()
+        ];
         $description = $request->query('description');
         $products = Product::where('description', 'like', '%' . $description . '%')->with('productCategory')->paginate(5);
-        return Inertia::render('product/Index', compact('products'));
+        return Inertia::render('product/Index', compact('products', 'product_stats'));
     }
 
     /**
