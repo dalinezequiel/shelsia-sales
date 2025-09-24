@@ -118,7 +118,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <AlertDialogTitle>Estatísticas</AlertDialogTitle>
                                     <AlertDialogDescription>
                                         <div class="mb-8">
-                                            <p class="py-2 text-center">Produto Mais Vendido</p>
+                                            <p class="py-2 text-primary">Produto Mais Vendido</p>
                                             <div class="flex gap-4">
                                                 <section class="flex items-center rounded-lg border border-gray-200">
                                                     <img :src="'/storage/'.concat(more_less_sold.best_selling.image)"
@@ -128,10 +128,11 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                 <section class="grid gap-2">
                                                     <div
                                                         class="w-full focus:outline-none p-2 rounded-md border bg-white flex flex-col  w-24">
-                                                        <p class="text-md text-primary text-gray-600 font-semibold">
+                                                        <p class="text-md text-primary text-gray-600 font-bold">
                                                             {{ more_less_sold.best_selling.description }}
                                                         </p>
-                                                        <p class="text-xs">Supplier</p>
+                                                        <p class="text-xs">{{ more_less_sold.best_selling.supplier }}
+                                                        </p>
                                                     </div>
                                                     <div class="flex gap-2">
                                                         <button
@@ -147,7 +148,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                             class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
                                                             <p class="font-medium text-primary text-md">{{
                                                                 currencyFormat(more_less_sold.best_selling.profit_per_product)
-                                                            }}</p>
+                                                                }}</p>
                                                             <p class="text-xs text-gray-600">
                                                                 Lucro líquido
                                                             </p>
@@ -173,7 +174,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                             </div>
                                         </div>
                                         <div>
-                                            <p class="py-2 text-center">Produto Menos Vendido</p>
+                                            <p class="py-2 text-primary">Produto Menos Vendido</p>
                                             <div class="flex gap-4">
                                                 <section class="flex items-center rounded-lg border border-gray-200">
                                                     <img :src="'/storage/'.concat(more_less_sold.least_sold.image)"
@@ -183,10 +184,10 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                 <section class="grid gap-2">
                                                     <div
                                                         class="w-full focus:outline-none p-2 rounded-md border bg-white flex flex-col  w-24">
-                                                        <p class="text-md text-primary text-gray-600 font-semibold">
+                                                        <p class="text-md text-primary text-gray-600 font-bold">
                                                             {{ more_less_sold.least_sold.description }}
                                                         </p>
-                                                        <p class="text-xs">Supplier</p>
+                                                        <p class="text-xs">{{ more_less_sold.least_sold.supplier }}</p>
                                                     </div>
                                                     <div class="flex gap-2">
                                                         <button
@@ -202,7 +203,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                             class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
                                                             <p class="font-medium text-primary text-md">{{
                                                                 currencyFormat(more_less_sold.least_sold.profit_per_product)
-                                                            }}</p>
+                                                                }}</p>
                                                             <p class="text-xs text-gray-600">
                                                                 Lucro líquido
                                                             </p>
@@ -373,7 +374,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                         </p>
                                         <p
                                             class="block font-sans text-xs antialiased font-normal leading-normal text-blue-gray-900 opacity-70">
-                                            {{ new Date(sale.created_at).toISOString().slice(0, 19) }}
+                                            {{ new Date(sale.created_at).toString().slice(0, 24) }}
                                         </p>
                                     </div>
                                 </div>

@@ -83,11 +83,12 @@ class SalesController extends Controller
     public function map_products()
     {
         $products = [];
-        $sales = Sale::where('status', SaleStatus::PAID)->with(['details', 'details.product'])->get();
+        $sales = Sale::where('status', SaleStatus::PAID)->with(['details', 'details.product', 'details.product.supplier'])->get();
         foreach ($sales as $sale) {
             $products[] = $sale->details->map(fn($item) => [
                 'product_id' => $item->product->id,
                 'description' => $item->product->description,
+                'supplier' => $item->product->supplier->name,
                 'subtotal' => $item['quantity'] * ($item->product->promotional_price > 0 ?
                     $item->product->promotional_price : $item->product->sale_price),
 
@@ -116,6 +117,7 @@ class SalesController extends Controller
                 [
                     'product_id' => $group->first()['product_id'],
                     'description' => $group->first()['description'],
+                    'supplier' => $group->first()['supplier'],
                     'image' => $group->first()['image'],
                     'subtotal' => $group->sum('subtotal'),
                     'profit_per_product' => $group->sum('profit_per_product'),
