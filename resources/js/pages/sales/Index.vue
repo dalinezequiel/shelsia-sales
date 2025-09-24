@@ -16,12 +16,16 @@ import {
 } from '@/components/ui/alert-dialog'
 import { toast } from 'vue-sonner';
 import Pagination from '@/components/additional/Pagination.vue';
-import Tablist from '@/components/additional/Tablist.vue';
 import { ref } from 'vue';
 import { currencyFormat, dateFormat } from '@/store';
+import TablistSale from '@/components/additional/TablistSale.vue';
 
 defineProps({
     sales: {
+        type: Object,
+        required: true
+    },
+    sale_stats: {
         type: Object,
         required: true
     },
@@ -258,7 +262,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                 <div class="flex flex-col items-center justify-between gap-4 md:flex-row">
                     <div class="block w-full overflow-hidden md:w-max">
                         <nav>
-                            <Tablist :list="sales" />
+                            <TablistSale :list="sale_stats" />
                         </nav>
                     </div>
                     <div class="w-full md:w-72">
