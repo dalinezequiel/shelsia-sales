@@ -25,7 +25,12 @@ class SalesController extends Controller
         $description = $request->query('description');
         $sales = Sale::where('description', 'like', '%' . $description . '%')->with(['details', 'details.product', 'paymentMethod'])
             ->paginate(5);
-        return Inertia::render('sales/Index', compact('sales', 'more_less_sold'));
+        $sale_stats = [
+            'paid' => Sale::where('status', SaleStatus::PAID)->count(),
+            'pending' => Sale::where('status', SaleStatus::PENDING)->count(),
+            'cancelled' => Sale::where('status', SaleStatus::CANCELLED)->count()
+        ];
+        return Inertia::render('sales/Index', compact('sales', 'more_less_sold', 'sale_stats'));
     }
 
     /**
