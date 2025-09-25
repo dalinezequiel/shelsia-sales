@@ -19,18 +19,7 @@ interface Account {
 
 const props = defineProps<{ finance: Account }>();
 
-function printButton(elementId: string): void {
-    const printContent = document.getElementById(elementId);
-
-    if (printContent) {
-        const originalContent = document.body.innerHTML;
-        document.body.innerHTML = printContent.innerHTML;
-        window.print();
-        document.body.innerHTML = originalContent;
-    } else {
-        console.error(`Element with ID '${elementId}' not found.`);
-    }
-}
+const printButton = () => window.print();
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -58,7 +47,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                         <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Descrição</dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{ props.finance.account_plan
-                                }} - {{ props.finance.description }}</dd>
+                            }} - {{ props.finance.description }}</dd>
                         </div>
                         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Valor da conta</dt>
@@ -85,14 +74,14 @@ const breadcrumbs: BreadcrumbItem[] = [
                         <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Fornecedor</dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{ props.finance.supplier.name
-                                }}
+                            }}
                             </dd>
                         </div>
                         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Periodicidade</dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{
                                 props.finance.period.description
-                                }}</dd>
+                            }}</dd>
                         </div>
                         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Estado da conta</dt>
@@ -122,7 +111,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                 </svg>
                 Voltar
                 </Link>
-                <button id="printButton" @click="printButton('printableArea')"
+                <button id="printButton" @click="printButton"
                     class="py-2 px-3 cursor-pointer inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-gray-900 text-white shadow-2xs hover:shadow-gray-900/20 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden  dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800"
                     href="#">
                     <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
