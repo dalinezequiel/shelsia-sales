@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Finance;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreAccountRequest;
+use App\Http\Requests\UpdateAccountRequest;
 use App\Models\Finance\Finance;
 use App\Models\PaymentMethod\PaymentMethod;
 use App\Models\Period\Period;
@@ -90,13 +91,8 @@ class FinanceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Finance $finance)
+    public function update(UpdateAccountRequest $request, Finance $finance)
     {
-        $request->validate([
-            'account_plan' => 'required',
-            'description' => 'required'
-        ]);
-
         $finance->supplier_id = $request->input('supplier');
         $finance->payment_method_id = $request->input('payment_method');
         $finance->period_id = $request->input('period');
