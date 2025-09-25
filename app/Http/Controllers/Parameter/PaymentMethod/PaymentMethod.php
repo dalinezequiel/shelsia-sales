@@ -14,9 +14,13 @@ class PaymentMethod extends Controller
      */
     public function index(Request $request)
     {
+        $paymentMethods_stats = [
+            'active' => Payment::where('is_active', true)->count(),
+            'inactive' => Payment::where('is_active', false)->count()
+        ];
         $description = $request->query('description');
         $paymentMethods = Payment::where('description', 'like', '%' . $description . '%')->paginate(5);
-        return Inertia::render('parameter/paymentMethod/Index', compact('paymentMethods'));
+        return Inertia::render('parameter/paymentMethod/Index', compact('paymentMethods', 'paymentMethods_stats'));
     }
 
     /**

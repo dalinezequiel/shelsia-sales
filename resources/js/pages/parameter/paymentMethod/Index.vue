@@ -26,6 +26,10 @@ defineProps({
     paymentMethods: {
         type: Object,
         required: true
+    },
+    paymentMethods_stats: {
+        type: Object,
+        required: true
     }
 });
 
@@ -97,7 +101,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                     <div class="flex flex-col items-center justify-between gap-4 md:flex-row">
                         <div class="block w-full overflow-hidden md:w-max">
                             <nav>
-                                <Tablist :list="paymentMethods" />
+                                <Tablist :stats="paymentMethods_stats" />
                             </nav>
                         </div>
                         <div class="w-full md:w-72">
@@ -195,7 +199,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                     Continuar com está operação implicará a exclusão permanente da
                                                     forma de pagamento
                                                     <strong> <span class="text-[#EC3636]">{{ paymentMethod.description
-                                                            }}</span>
+                                                    }}</span>
                                                     </strong>.
                                                 </AlertDialogDescription>
                                             </AlertDialogHeader>
