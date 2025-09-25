@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Finance;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreAccountRequest;
 use App\Models\Finance\Finance;
 use App\Models\PaymentMethod\PaymentMethod;
 use App\Models\Period\Period;
@@ -41,13 +42,8 @@ class FinanceController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreAccountRequest $request)
     {
-        $request->validate([
-            'account_plan' => 'required',
-            'description' => 'required'
-        ]);
-
         $supplier = Supplier::find($request->supplier_id);
         $payment_method = PaymentMethod::find($request->payment_method_id);
         $period = Period::find($request->period_id);

@@ -32,7 +32,7 @@ const form = useForm({
     category: '',
     supplier_id: '',
     due_date: '',
-    amount: '',
+    amount: '0.0',
     date_of_issue: '',
     payment_method_id: '',
     period_id: '',
@@ -80,14 +80,14 @@ const breadcrumbs: BreadcrumbItem[] = [
                     <div class="grid lg:grid-cols-2 lg:gap-4 ">
                         <div class="grid gap-2 mb-6 lg:mb-0">
                             <Label for="account_plan">Plano de contas</Label>
-                            <Input id="account_plan" v-model="form.account_plan" class="mt-1 block w-full" required
+                            <Input id="account_plan" v-model="form.account_plan" class="mt-1 block w-full"
                                 placeholder="Plano de contas: x-xxx-xx-x" />
                             <InputError :message="form.errors.account_plan" class="mt-2" />
                         </div>
 
                         <div class="grid gap-2 mb-6 lg:mb-0">
                             <Label for="description">Descrição</Label>
-                            <Input id="description" v-model="form.description" class="mt-1 block w-full" required
+                            <Input id="description" v-model="form.description" class="mt-1 block w-full"
                                 autocomplete="description" placeholder="Descrição" />
                             <InputError :message="form.errors.description" class="mt-2" />
                         </div>
@@ -126,14 +126,14 @@ const breadcrumbs: BreadcrumbItem[] = [
                     <div class="grid lg:grid-cols-3 lg:gap-4 ">
                         <div class="grid gap-2">
                             <Label for="due_date">Data de vencimento</Label>
-                            <Input id="due_date" v-model="form.due_date" type="date" class="mt-1 block w-full" required
+                            <Input id="due_date" v-model="form.due_date" type="date" class="mt-1 block w-full"
                                 placeholder="Data de vencimento" />
                             <InputError :message="form.errors.due_date" class="mt-2" />
                         </div>
 
                         <div class="grid gap-2 mb-6 lg:mb-0">
                             <Label for="amount">Valor da conta</Label>
-                            <Input id="amount" v-model="form.amount" type="number" class="mt-1 block w-full" required
+                            <Input id="amount" v-model="form.amount" type="number" class="mt-1 block w-full"
                                 placeholder="Valor da conta" />
                             <InputError :message="form.errors.amount" class="mt-2" />
                         </div>
@@ -143,7 +143,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                         <div class="grid gap-2">
                             <Label for="date_of_issue">Data de emissão</Label>
                             <Input id="date_of_issue" v-model="form.date_of_issue" type="date" class="mt-1 block w-full"
-                                required placeholder="Data de emissão" />
+                                placeholder="Data de emissão" />
                             <InputError :message="form.errors.date_of_issue" class="mt-2" />
                         </div>
 
