@@ -83,14 +83,14 @@ const breadcrumbs: BreadcrumbItem[] = [
                     <div class="grid lg:grid-cols-2 lg:gap-4 ">
                         <div class="grid gap-2 mb-6 lg:mb-0">
                             <Label for="barcode">Código de barras</Label>
-                            <Input id="barcode" v-model="form.barcode" type="number" class="mt-1 block w-full" required
+                            <Input id="barcode" v-model="form.barcode" type="number" class="mt-1 block w-full"
                                 autocomplete="barcode" placeholder="Código de barras" />
                             <InputError :message="form.errors.barcode" class="mt-2" />
                         </div>
 
                         <div class="grid gap-2 mb-6 lg:mb-0">
                             <Label for="description">Descrição</Label>
-                            <Input id="description" v-model="form.description" class="mt-1 block w-full" required
+                            <Input id="description" v-model="form.description" class="mt-1 block w-full"
                                 autocomplete="description" placeholder="Descrição" />
                             <InputError :message="form.errors.description" class="mt-2" />
                         </div>
@@ -145,14 +145,14 @@ const breadcrumbs: BreadcrumbItem[] = [
                         <div class="grid gap-2 mb-6 lg:mb-0">
                             <Label for="purchase_price">Preço de compra</Label>
                             <Input id="purchase_price" v-model="form.purchase_price" type="number"
-                                class="mt-1 block w-full" required placeholder="Preço de compra" />
+                                class="mt-1 block w-full" placeholder="Preço de compra" />
                             <InputError :message="form.errors.purchase_price" class="mt-2" />
                         </div>
 
                         <div class="grid gap-2 mb-6 lg:mb-0">
                             <Label for="sale_price">Preço de venda</Label>
                             <Input id="sale_price" v-model="form.sale_price" type="number" class="mt-1 block w-full"
-                                required placeholder="Preço de venda" />
+                                placeholder="Preço de venda" />
                             <InputError :message="form.errors.sale_price" class="mt-2" />
                         </div>
 
@@ -165,7 +165,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 
                         <div class="grid gap-2">
                             <Label for="validity">Validade</Label>
-                            <Input id="validity" v-model="form.validity" type="date" class="mt-1 block w-full" required
+                            <Input id="validity" v-model="form.validity" type="date" class="mt-1 block w-full"
                                 autocomplete="validity" placeholder="Validade" />
                             <InputError :message="form.errors.validity" class="mt-2" />
                         </div>
@@ -174,16 +174,14 @@ const breadcrumbs: BreadcrumbItem[] = [
                         <div class="grid gap-2 mb-6 lg:mb-0">
                             <Label for="minimum_stock">Estoque minimo</Label>
                             <Input id="minimum_stock" v-model="form.minimum_stock" type="number"
-                                class="mt-1 block w-full" required autocomplete="minimum_stock"
-                                placeholder="Estoque minimo" />
+                                class="mt-1 block w-full" autocomplete="minimum_stock" placeholder="Estoque minimo" />
                             <InputError :message="form.errors.minimum_stock" class="mt-2" />
                         </div>
 
                         <div class="grid gap-2 mb-6 lg:mb-0">
                             <Label for="maximum_stock">Estoque máximo</Label>
                             <Input id="maximum_stock" v-model="form.maximum_stock" type="number"
-                                class="mt-1 block w-full" required autocomplete="maximum_stock"
-                                placeholder="Estoque máximo" />
+                                class="mt-1 block w-full" autocomplete="maximum_stock" placeholder="Estoque máximo" />
                             <InputError :message="form.errors.maximum_stock" class="mt-2" />
                         </div>
 

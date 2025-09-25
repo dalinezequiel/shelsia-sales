@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Product;
 
 use App\Http\Controllers\Controller;
-use App\Models\PaymentMethod\PaymentMethod;
+use App\Http\Requests\ProductRequest;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Product\Product;
 use App\Models\Product\ProductCategory;
@@ -42,13 +42,8 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        $request->validate([
-            'barcode' => 'required',
-            'description' => 'required'
-        ]);
-
         $image_path = null;
         if ($request->hasFile('image')) {
             $file_name = rand(0, 9999999) . '-' . $request->file('image')->getClientOriginalName();
