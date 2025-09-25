@@ -14,9 +14,13 @@ class UnitController extends Controller
      */
     public function index(Request $request)
     {
+        $units_stats = [
+            'active' => Unit::where('is_active', true)->count(),
+            'inactive' => Unit::where('is_active', false)->count()
+        ];
         $description = $request->query('description');
         $units = Unit::where('description', 'like', '%' . $description . '%')->paginate(5);
-        return Inertia::render('parameter/unit/Index', compact('units'));
+        return Inertia::render('parameter/unit/Index', compact('units', 'units_stats'));
     }
 
     /**

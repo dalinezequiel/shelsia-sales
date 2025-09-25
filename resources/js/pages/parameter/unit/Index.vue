@@ -26,6 +26,10 @@ defineProps({
     units: {
         type: Object,
         required: true
+    },
+    units_stats: {
+        type: Object,
+        required: true
     }
 });
 
@@ -97,7 +101,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                     <div class="flex flex-col items-center justify-between gap-4 md:flex-row">
                         <div class="block w-full overflow-hidden md:w-max">
                             <nav>
-                                <Tablist :list="units" />
+                                <Tablist :stats="units_stats" />
                             </nav>
                         </div>
                         <div class="w-full md:w-72">
@@ -195,7 +199,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                     Continuar com está operação implicará a exclusão permanente da
                                                     unidade
                                                     <strong> <span class="text-[#EC3636]">{{ unit.description
-                                                    }}</span>
+                                                            }}</span>
                                                     </strong>.
                                                 </AlertDialogDescription>
                                             </AlertDialogHeader>
