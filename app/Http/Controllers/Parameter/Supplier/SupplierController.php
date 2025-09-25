@@ -14,9 +14,13 @@ class SupplierController extends Controller
      */
     public function index(Request $request)
     {
+        $suppliers_stats = [
+            'active' => Supplier::where('is_active', true)->count(),
+            'inactive' => Supplier::where('is_active', false)->count()
+        ];
         $name = $request->query('name');
         $suppliers = Supplier::where('name', 'like', '%' . $name . '%')->paginate(5);
-        return Inertia::render('parameter/supplier/Index', compact('suppliers'));
+        return Inertia::render('parameter/supplier/Index', compact('suppliers', 'suppliers_stats'));
     }
 
     /**
