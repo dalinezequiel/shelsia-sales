@@ -87,7 +87,8 @@ const form = useForm({
     customer_name: 'Consumidor final',
     discount: 0.0,
     shipping: 0.0,
-    payment_method_id: '',
+    payment_method_id: props.paymentMethods !== null ?
+        props.paymentMethods.at(0).id : '',
     sale_id: '',
     details: [{
         price: 0.0,
@@ -232,9 +233,11 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                 <div
                                                     class="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
                                                     <a href="#" class="shrink-0 md:order-1">
-                                                        <img class="h-10 dark:hidden"
+                                                        <img v-if="product.image" class="h-10 dark:hidden"
                                                             :src="'/storage/'.concat(product.image)"
                                                             :alt="product.image" />
+                                                        <img v-else src="/storage/products/placeholder.png"
+                                                            alt="imagem do produto" class="h-10 dark:hidden" />
                                                     </a>
 
                                                     <div class="w-full min-w-0 flex-1 space-y-2 md:order-2 md:max-w-md">
@@ -326,7 +329,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                         <div class="py-8 ">
                             <div class="grid gap-2 pb-4 lg:mb-0">
                                 <Label for="payment_method">Forma de pagamento</Label>
-                                <Select id="payment_method" v-model="form.payment_method_id" required>
+                                <Select id="payment_method" v-model="form.payment_method_id">
                                     <SelectTrigger class="w-auto">
                                         <SelectValue placeholder="Selecionar forma de pagamento" />
                                     </SelectTrigger>
