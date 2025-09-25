@@ -149,7 +149,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 </script>
 <template>
 
-    <Head title="Products" />
+    <Head title="Vendas" />
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="grid grid-cols-1 gap-6 p-4">
             <div class="grid grid-cols-1 gap-2 pr-88">

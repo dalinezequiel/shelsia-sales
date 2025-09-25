@@ -91,7 +91,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 
 <template>
 
-    <Head title="Products" />
+    <Head title="Vendas" />
 
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="relative flex flex-col w-full h-full text-gray-700 bg-white shadow-md rounded-xl bg-clip-border">
@@ -152,7 +152,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                             class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
                                                             <p class="font-medium text-primary text-md">{{
                                                                 currencyFormat(more_less_sold.best_selling.profit_per_product)
-                                                                }}</p>
+                                                            }}</p>
                                                             <p class="text-xs text-gray-600">
                                                                 Lucro líquido
                                                             </p>
@@ -207,7 +207,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                             class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
                                                             <p class="font-medium text-primary text-md">{{
                                                                 currencyFormat(more_less_sold.least_sold.profit_per_product)
-                                                                }}</p>
+                                                            }}</p>
                                                             <p class="text-xs text-gray-600">
                                                                 Lucro líquido
                                                             </p>
