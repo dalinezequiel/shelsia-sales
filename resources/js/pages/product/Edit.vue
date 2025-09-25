@@ -85,7 +85,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 </script>
 <template>
 
-    <Head title="Products" />
+    <Head title="Produtos" />
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="relative flex h-full lg:pr-40 w-full flex-col bg-white bg-clip-border text-gray-700">
             <div class="relative mx-4 mt-4 overflow-hidden rounded-none bg-white bg-clip-border text-gray-700">
