@@ -14,9 +14,13 @@ class CustomerController extends Controller
      */
     public function index(Request $request)
     {
+        $customers_stats = [
+            'active' => Customer::where('is_active', true)->count(),
+            'inactive' => Customer::where('is_active', false)->count()
+        ];
         $name = $request->query('name');
         $customers = Customer::where('name', 'like', '%' . $name . '%')->paginate(5);
-        return Inertia::render('parameter/customer/Index', compact('customers'));
+        return Inertia::render('parameter/customer/Index', compact('customers', 'customers_stats'));
     }
 
     /**

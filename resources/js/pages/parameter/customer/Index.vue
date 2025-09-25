@@ -26,6 +26,10 @@ defineProps({
     customers: {
         type: Object,
         required: true
+    },
+    customers_stats: {
+        type: Object,
+        required: true
     }
 });
 
@@ -101,7 +105,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                     <div class="flex flex-col items-center justify-between gap-4 md:flex-row">
                         <div class="block w-full overflow-hidden md:w-max">
                             <nav>
-                                <Tablist :list="customers" />
+                                <Tablist :stats="customers_stats" />
                             </nav>
                         </div>
                         <div class="w-full md:w-72">
