@@ -14,9 +14,13 @@ class PeriodController extends Controller
      */
     public function index(Request $request)
     {
+        $periods_stats = [
+            'active' => Period::where('is_active', true)->count(),
+            'inactive' => Period::where('is_active', false)->count()
+        ];
         $description = $request->query('description');
         $periods = Period::where('description', 'like', '%' . $description . '%')->paginate(5);
-        return Inertia::render('parameter/period/Index', compact('periods'));
+        return Inertia::render('parameter/period/Index', compact('periods', 'periods_stats'));
     }
 
     /**
