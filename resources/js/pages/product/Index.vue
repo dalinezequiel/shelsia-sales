@@ -278,7 +278,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                             <td class="p-4 border-b border-blue-gray-50">
                                 <div class="w-max">
                                     <div :class="product.is_active ? 'bg-green-500/20' : 'bg-red-500/20'"
-                                        class="relative grid items-center rounded-md  px-2 py-1 font-sans text-sm font-bold whitespace-nowrap text-green-900 select-none">
+                                        class="relative grid items-center rounded-md  px-2 py-1 font-sans text-xs font-bold whitespace-nowrap text-green-900 select-none">
                                         <span v-if="product.is_active" class="">Activo</span>
                                         <span v-else class="text-red-900">Inactivo</span>
                                     </div>
