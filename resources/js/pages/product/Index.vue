@@ -194,7 +194,10 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <AlertDialog>
                                         <AlertDialogTrigger
                                             class="relative cursor-pointer rounded-lg text-center align-middle font-sans text-xs font-medium text-gray-900 uppercase transition-all select-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
-                                            <img :src="'/storage/'.concat(product.image)" :alt="product.image"
+                                            <img v-if="product.image" :src="'/storage/'.concat(product.image)"
+                                                :alt="product.image"
+                                                class="relative inline-block h-12 w-12 !rounded-full border border-blue-gray-50 bg-blue-gray-50/50 object-contain object-center p-1" />
+                                            <img v-else src="https://placehold.co/400?text=SI" alt="imagem do produto"
                                                 class="relative inline-block h-12 w-12 !rounded-full border border-blue-gray-50 bg-blue-gray-50/50 object-contain object-center p-1" />
                                         </AlertDialogTrigger>
 
