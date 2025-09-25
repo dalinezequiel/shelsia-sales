@@ -277,7 +277,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                             <td class="p-4 border-b border-blue-gray-50">
                                 <div class="w-max">
                                     <div :class="account.is_paid ? 'bg-green-500/20' : 'bg-red-500/20'"
-                                        class="relative grid items-center rounded-md  px-2 py-1 font-sans text-sm font-bold whitespace-nowrap text-green-900 select-none">
+                                        class="relative grid items-center rounded-md  px-2 py-1 font-sans text-xs font-bold whitespace-nowrap text-green-900 select-none">
                                         <span v-if="account.is_paid" class="">Pago</span>
                                         <span v-else class="text-red-900">Não Pago</span>
                                     </div>
@@ -308,7 +308,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                     <AlertDialogContent>
                                         <AlertDialogHeader>
                                             <AlertDialogTitle>{{ account.category === 'income' ? 'Receitas' : 'Despesas'
-                                            }}</AlertDialogTitle>
+                                                }}</AlertDialogTitle>
                                             <AlertDialogDescription>
                                                 <form id="payment" @submit.prevent="submit">
                                                     <div class="grid gap-y-4 mt-4">
