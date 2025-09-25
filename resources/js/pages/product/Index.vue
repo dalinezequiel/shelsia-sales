@@ -74,7 +74,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 
 <template>
 
-    <Head title="Products" />
+    <Head title="Produtos" />
 
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="relative flex flex-col w-full h-full text-gray-700 bg-white shadow-md rounded-xl bg-clip-border">
@@ -197,7 +197,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                             <img v-if="product.image" :src="'/storage/'.concat(product.image)"
                                                 :alt="product.image"
                                                 class="relative inline-block h-12 w-12 !rounded-full border border-blue-gray-50 bg-blue-gray-50/50 object-contain object-center p-1" />
-                                            <img v-else src="https://placehold.co/400?text=SI" alt="imagem do produto"
+                                            <img v-else src="/storage/products/placeholder.png" alt="imagem do produto"
                                                 class="relative inline-block h-12 w-12 !rounded-full border border-blue-gray-50 bg-blue-gray-50/50 object-contain object-center p-1" />
                                         </AlertDialogTrigger>
 
