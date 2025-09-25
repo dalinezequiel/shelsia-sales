@@ -118,7 +118,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 
 <template>
 
-    <Head title="Financial" />
+    <Head title="Financeiro" />
 
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="relative flex flex-col w-full h-full text-gray-700 bg-white shadow-md rounded-xl bg-clip-border">
