@@ -125,9 +125,13 @@ const breadcrumbs: BreadcrumbItem[] = [
                                             <p class="py-2 text-primary">Produto Mais Vendido</p>
                                             <div class="flex gap-4">
                                                 <section class="flex items-center rounded-lg border border-gray-200">
-                                                    <img :src="'/storage/'.concat(more_less_sold.best_selling.image)"
+                                                    <img v-if="more_less_sold.best_selling.image"
+                                                        :src="'/storage/'.concat(more_less_sold.best_selling.image)"
                                                         :alt="more_less_sold.best_selling.description"
                                                         class="object-cover w-30" />
+
+                                                    <img v-else src="/storage/products/placeholder.png"
+                                                        alt="imagem do produto" class="object-cover w-30" />
                                                 </section>
                                                 <section class="grid gap-2">
                                                     <div
@@ -152,7 +156,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                             class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
                                                             <p class="font-medium text-primary text-md">{{
                                                                 currencyFormat(more_less_sold.best_selling.profit_per_product)
-                                                            }}</p>
+                                                                }}</p>
                                                             <p class="text-xs text-gray-600">
                                                                 Lucro líquido
                                                             </p>
@@ -181,9 +185,13 @@ const breadcrumbs: BreadcrumbItem[] = [
                                             <p class="py-2 text-primary">Produto Menos Vendido</p>
                                             <div class="flex gap-4">
                                                 <section class="flex items-center rounded-lg border border-gray-200">
-                                                    <img :src="'/storage/'.concat(more_less_sold.least_sold.image)"
+                                                    <img v-if="more_less_sold.least_sold.image"
+                                                        :src="'/storage/'.concat(more_less_sold.least_sold.image)"
                                                         :alt="more_less_sold.least_sold.description"
                                                         class="w-full object-cover w-30" />
+
+                                                    <img v-else src="/storage/products/placeholder.png"
+                                                        alt="imagem do produto" class="w-full object-cover w-30" />
                                                 </section>
                                                 <section class="grid gap-2">
                                                     <div
@@ -207,7 +215,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                             class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
                                                             <p class="font-medium text-primary text-md">{{
                                                                 currencyFormat(more_less_sold.least_sold.profit_per_product)
-                                                            }}</p>
+                                                                }}</p>
                                                             <p class="text-xs text-gray-600">
                                                                 Lucro líquido
                                                             </p>
@@ -428,9 +436,13 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                     <div
                                                         class="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
                                                         <a href="#" class="shrink-0">
-                                                            <img class="h-10 dark:hidden"
+                                                            <img v-if="product.image" class="h-10 dark:hidden"
                                                                 :src="'/storage/'.concat(product.product.image)"
                                                                 :alt="product.image" />
+                                                            <img v-else class="h-10 dark:hidden"
+                                                                src="/storage/products/placeholder.png"
+                                                                alt="imagem do produto" />
+
                                                         </a>
                                                         <div class="w-full min-w-0 flex-1 space-y-2 md:max-w-md">
                                                             <p
