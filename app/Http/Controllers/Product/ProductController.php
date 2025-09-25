@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Product;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
+use App\Http\Requests\UpdateProductRequest;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Product\Product;
 use App\Models\Product\ProductCategory;
@@ -118,13 +119,8 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $product)
+    public function update(UpdateProductRequest $request, Product $product)
     {
-        $request->validate([
-            'barcode' => 'required',
-            'description' => 'required'
-        ]);
-
         $product->product_category_id = $request->input('category');
         $product->unit_id = $request->input('unit');
         $product->supplier_id = $request->input('supplier');
