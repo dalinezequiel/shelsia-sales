@@ -156,7 +156,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                             class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
                                                             <p class="font-medium text-primary text-md">{{
                                                                 currencyFormat(more_less_sold.best_selling.profit_per_product)
-                                                                }}</p>
+                                                            }}</p>
                                                             <p class="text-xs text-gray-600">
                                                                 Lucro líquido
                                                             </p>
@@ -215,7 +215,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                             class="focus:outline-none p-2 rounded-md border bg-white flex flex-col items-center w-24">
                                                             <p class="font-medium text-primary text-md">{{
                                                                 currencyFormat(more_less_sold.least_sold.profit_per_product)
-                                                                }}</p>
+                                                            }}</p>
                                                             <p class="text-xs text-gray-600">
                                                                 Lucro líquido
                                                             </p>
@@ -436,10 +436,10 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                     <div
                                                         class="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
                                                         <a href="#" class="shrink-0">
-                                                            <img v-if="product.image" class="h-10 dark:hidden"
+                                                            <img v-if="product.product.image" class="h-10 dark:hidden"
                                                                 :src="'/storage/'.concat(product.product.image)"
                                                                 :alt="product.image" />
-                                                            <img v-else class="h-10 dark:hidden"
+                                                            <img v-else class="w-10 h-10 dark:hidden"
                                                                 src="/storage/products/placeholder.png"
                                                                 alt="imagem do produto" />
 
