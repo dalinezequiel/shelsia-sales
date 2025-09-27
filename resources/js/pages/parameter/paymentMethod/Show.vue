@@ -32,7 +32,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 </script>
 <template>
 
-    <Head title="Details" />
+    <Head title="Forma de Pagar" />
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="px-12">
             <div id="printableArea" class="max-w-4xl overflow-hidden bg-white sm:rounded-lg">

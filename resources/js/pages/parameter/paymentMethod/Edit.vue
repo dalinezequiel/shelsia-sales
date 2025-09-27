@@ -54,7 +54,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 
 <template>
 
-    <Head title="Customer Parameters" />
+    <Head title="Forma de Pagar" />
 
     <AppLayout :breadcrumbs="breadcrumbs">
         <ParameterLayout>
