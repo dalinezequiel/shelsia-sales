@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Parameter\Customer;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreCustomerRequest;
 use App\Models\Customer\Customer;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -35,13 +36,8 @@ class CustomerController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreCustomerRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'surname' => 'required'
-        ]);
-
         Customer::create([
             'name' => $request->name,
             'surname' => $request->surname,
@@ -74,13 +70,8 @@ class CustomerController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Customer $customer)
+    public function update(StoreCustomerRequest $request, Customer $customer)
     {
-        $request->validate([
-            'name' => 'required',
-            'surname' => 'required'
-        ]);
-
         $customer->update([
             'name' => $request->input('name'),
             'surname' => $request->input('surname'),
