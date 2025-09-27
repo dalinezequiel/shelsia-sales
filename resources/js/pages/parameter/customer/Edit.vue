@@ -57,7 +57,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 
 <template>
 
-    <Head title="Customer Parameters" />
+    <Head title="Clientes" />
     <AppLayout :breadcrumbs="breadcrumbs">
         <ParameterLayout>
             <div class="relative flex h-full w-full flex-col bg-white bg-clip-border text-gray-700">
@@ -105,8 +105,8 @@ const breadcrumbs: BreadcrumbItem[] = [
                         <div class="grid lg:grid-cols-2 lg:gap-4 ">
                             <div class="grid gap-2 mb-6 lg:mb-0">
                                 <Label for="phone">Telefone</Label>
-                                <Input id="phone" v-model="form.phone" class="mt-1 block w-full"
-                                    autocomplete="phone" placeholder="Telefone ex: +258 xx xxxx xxx" />
+                                <Input id="phone" v-model="form.phone" class="mt-1 block w-full" autocomplete="phone"
+                                    placeholder="Telefone ex: +258 xx xxxx xxx" />
                                 <InputError :message="form.errors.phone" class="mt-2" />
                             </div>
 
