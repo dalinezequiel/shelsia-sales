@@ -20,7 +20,7 @@ defineProps<Props>();
 
 const breadcrumbItems: BreadcrumbItem[] = [
     {
-        title: 'Profile settings',
+        title: 'Perfil',
         href: '/settings/profile',
     },
 ];
@@ -47,7 +47,7 @@ const submit = () => {
 
         <SettingsLayout>
             <div class="flex flex-col space-y-6">
-                <HeadingSmall title="Informações do perfil" description="Atualize seu nome e endereço de e-mail" />
+                <HeadingSmall title="Informações do perfil" description="Actualize seu nome e endereço de e-mail" />
 
                 <form @submit.prevent="submit" class="space-y-6">
                     <div class="grid gap-2">
