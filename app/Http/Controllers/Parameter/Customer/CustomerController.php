@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Parameter\Customer;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCustomerRequest;
+use App\Http\Requests\UpdateCustomerRequest;
 use App\Models\Customer\Customer;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -70,7 +71,7 @@ class CustomerController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreCustomerRequest $request, Customer $customer)
+    public function update(UpdateCustomerRequest $request, Customer $customer)
     {
         $customer->update([
             'name' => $request->input('name'),
