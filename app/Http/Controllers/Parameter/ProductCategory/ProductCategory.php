@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Parameter\ProductCategory;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ParameterRequest as ProductCategoryRequest;
 use App\Models\Product\ProductCategory as Category;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -34,12 +35,8 @@ class ProductCategory extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ProductCategoryRequest $request)
     {
-        $request->validate([
-            'description' => 'required'
-        ]);
-
         Category::create([
             'description' => $request->description,
             'observation' => $request->observation,
@@ -68,12 +65,8 @@ class ProductCategory extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $productCategory)
+    public function update(ProductCategoryRequest $request, Category $productCategory)
     {
-        $request->validate([
-            'description' => 'required'
-        ]);
-
         $productCategory->update([
             'description' => $request->input('description'),
             'observation' => $request->input('observation'),
