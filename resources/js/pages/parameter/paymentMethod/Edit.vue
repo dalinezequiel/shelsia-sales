@@ -73,8 +73,8 @@ const breadcrumbs: BreadcrumbItem[] = [
                     <form @submit.prevent="submit" class="space-y-6">
                         <div class="grid gap-2">
                             <Label for="name">Descrição</Label>
-                            <Input id="name" v-model="form.description" class="mt-1 block w-full" required
-                                autocomplete="name" placeholder="Descrição" />
+                            <Input id="name" v-model="form.description" class="mt-1 block w-full" autocomplete="name"
+                                placeholder="Descrição" />
                             <InputError :message="form.errors.description" class="mt-2" />
                         </div>
 

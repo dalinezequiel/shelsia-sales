@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Parameter\PaymentMethod;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PaymentMethodRequest;
 use App\Models\PaymentMethod\PaymentMethod as Payment;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -34,12 +35,8 @@ class PaymentMethod extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PaymentMethodRequest $request)
     {
-        $request->validate([
-            'description' => 'required'
-        ]);
-
         Payment::create([
             'description' => $request->description,
             'operation_type' => $request->operation_type,
@@ -69,12 +66,8 @@ class PaymentMethod extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Payment $paymentMethod)
+    public function update(PaymentMethodRequest $request, Payment $paymentMethod)
     {
-        $request->validate([
-            'description' => 'required'
-        ]);
-
         $paymentMethod->update([
             'description' => $request->input('description'),
             'operation_type' => $request->input('operation_type'),
