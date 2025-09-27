@@ -164,7 +164,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                 <td class="border-blue-gray-50 border-b p-4">
                                     <div class="w-max">
                                         <div :class="paymentMethod.is_active ? 'bg-green-500/20' : 'bg-red-500/20'"
-                                            class="relative grid items-center rounded-md  px-2 py-1 font-sans text-xs font-bold whitespace-nowrap text-green-900 uppercase select-none">
+                                            class="relative grid items-center rounded-md  px-2 py-1 font-sans text-xs font-bold whitespace-nowrap text-green-900 select-none">
                                             <span v-if="paymentMethod.is_active" class="">Activo</span>
                                             <span v-else class="text-red-900">Inactivo</span>
                                         </div>
@@ -199,7 +199,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                     Continuar com está operação implicará a exclusão permanente da
                                                     forma de pagamento
                                                     <strong> <span class="text-[#EC3636]">{{ paymentMethod.description
-                                                    }}</span>
+                                                            }}</span>
                                                     </strong>.
                                                 </AlertDialogDescription>
                                             </AlertDialogHeader>
