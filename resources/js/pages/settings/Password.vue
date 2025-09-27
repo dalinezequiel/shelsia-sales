@@ -70,9 +70,9 @@ const updatePassword = () => {
                     </div>
 
                     <div class="grid gap-2">
-                        <Label for="password">Nova Senha</Label>
+                        <Label for="password">Nova senha</Label>
                         <Input id="password" ref="passwordInput" v-model="form.password" type="password"
-                            class="mt-1 block w-full" autocomplete="new-password" placeholder="Nova Senha" />
+                            class="mt-1 block w-full" autocomplete="new-password" placeholder="Nova senha" />
                         <InputError :message="form.errors.password" />
                     </div>
 
