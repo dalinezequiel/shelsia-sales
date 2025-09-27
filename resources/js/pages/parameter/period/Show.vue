@@ -13,18 +13,7 @@ interface Period {
 
 defineProps<{ period: Period }>();
 
-function printButton(elementId: string): void {
-    const printContent = document.getElementById(elementId);
-
-    if (printContent) {
-        const originalContent = document.body.innerHTML;
-        document.body.innerHTML = printContent.innerHTML;
-        window.print();
-        document.body.innerHTML = originalContent;
-    } else {
-        console.error(`Element with ID '${elementId}' not found.`);
-    }
-}
+const printButton = () => window.print();
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -82,7 +71,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                 </svg>
                 Voltar
                 </Link>
-                <Button id="printButton" @click="printButton('printableArea')" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border cursor-pointer
+                <Button id="printButton" @click="printButton" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border cursor-pointer
                     border-gray-200 bg-gray-900 text-white shadow-2xs hover:shadow-gray-900/20 disabled:opacity-50
                     disabled:pointer-events-none focus:outline-hidden dark:border-neutral-700 dark:text-neutral-300
                     dark:hover:bg-neutral-800 dark:focus:bg-neutral-800">
