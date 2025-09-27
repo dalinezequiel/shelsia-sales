@@ -57,7 +57,7 @@ const updatePassword = () => {
 
         <SettingsLayout>
             <div class="space-y-6">
-                <HeadingSmall title="Atualizar senha"
+                <HeadingSmall title="Actualizar senha"
                     description="Certifique-se de que sua conta esteja usando uma senha longa e aleatória" />
 
                 <form @submit.prevent="updatePassword" class="space-y-6">
