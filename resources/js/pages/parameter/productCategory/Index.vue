@@ -65,7 +65,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 
 <template>
 
-    <Head title="Customer Parameters" />
+    <Head title="Categorias" />
     <AppLayout :breadcrumbs="breadcrumbs">
         <ParameterLayout>
             <div class="relative flex h-full w-full flex-col bg-white bg-clip-border text-gray-700">
@@ -199,7 +199,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                     Continuar com está operação implicará a exclusão permanente da
                                                     categoria
                                                     <strong> <span class="text-[#EC3636]">{{ productCategory.description
-                                                    }}</span>
+                                                            }}</span>
                                                     </strong>.
                                                 </AlertDialogDescription>
                                             </AlertDialogHeader>
