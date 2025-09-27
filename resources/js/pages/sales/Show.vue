@@ -40,7 +40,7 @@ const breadcrumbs: BreadcrumbItem[] = [
             <div id="printableArea" class="flex flex-col p-4 sm:p-10 bg-white shadow-md rounded-xl dark:bg-neutral-800">
 
                 <div class="flex justify-between">
-                    <div>
+                    <div class="size-8">
                         <AppLogoIcon class="size-8 mt-1 fill-current text-black dark:text-black" />
                     </div>
 
@@ -86,7 +86,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                 <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">
                                     Item</h5>
                                 <p class="font-medium text-gray-800 dark:text-neutral-200">{{ sale.product.description
-                                }}</p>
+                                    }}</p>
                             </div>
                             <div>
                                 <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">
@@ -125,7 +125,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                             <dl class="grid sm:grid-cols-5 gap-x-3">
                                 <dt class="col-span-3 dark:text-neutral-200">Taxa de Entrega:</dt>
                                 <dd class="col-span-2 dark:text-neutral-500">{{ props.sales.shipping
-                                }}</dd>
+                                    }}</dd>
                             </dl>
 
                             <dl class="grid sm:grid-cols-5 gap-x-3">
