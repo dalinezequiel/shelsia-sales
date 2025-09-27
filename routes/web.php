@@ -15,8 +15,8 @@ use App\Http\Controllers\Parameter\ProductCategory\ProductCategory;
 use App\Http\Controllers\Parameter\Unit\UnitController;
 
 Route::get('/', function () {
-    return Inertia::render('Welcome');
-})->name('home');
+    return Inertia::render('auth/Login');
+})->name('login');
 
 Route::resource('dashboard', DashboardController::class)->middleware(['auth', 'verified']);
 
