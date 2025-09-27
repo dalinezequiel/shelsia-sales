@@ -43,7 +43,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 
 <template>
 
-    <Head title="Customer Parameters" />
+    <Head title="Fornecedores" />
 
     <AppLayout :breadcrumbs="breadcrumbs">
         <ParameterLayout>
