@@ -28,7 +28,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 </script>
 <template>
 
-    <Head title="Details" />
+    <Head title="Períodos" />
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="px-12">
             <div id="printableArea" class="max-w-4xl overflow-hidden bg-white sm:rounded-lg">
@@ -40,13 +40,13 @@ const breadcrumbs: BreadcrumbItem[] = [
                         <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Descrição</dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{ period.description
-                                }}</dd>
+                            }}</dd>
                         </div>
 
                         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Observação</dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{ period.observation
-                            }}
+                                }}
                             </dd>
                         </div>
 
