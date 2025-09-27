@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Parameter\Unit;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreUnitRequest;
+use App\Http\Requests\StoreUnitRequest as UnitRequest;
 use App\Models\Product\Unit;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -35,7 +35,7 @@ class UnitController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreUnitRequest $request)
+    public function store(UnitRequest $request)
     {
         Unit::create([
             'description' => $request->description,
@@ -66,12 +66,8 @@ class UnitController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Unit $unit)
+    public function update(UnitRequest $request, Unit $unit)
     {
-        $request->validate([
-            'description' => 'required'
-        ]);
-
         $unit->update([
             'description' => $request->input('description'),
             'abbreviation' => $request->input('abbreviation'),
