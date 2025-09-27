@@ -68,7 +68,7 @@ class SalesController extends Controller
                     ->get()
             ]
         ];
-        $products = Product::where('is_active', True)->where('description', 'like', '%' . $description . '%')
+        $products = Product::where('is_active', True)->where('description', 'like', '%' . $description . '%')->where('available_stock', '>', '0')
             ->with('productCategory')->inRandomOrder()->limit(8)->get();
         return Inertia::render('sales/Create', compact('products', 'paymentMethods', 'description', 'sales', 'sale_stats'));
     }
