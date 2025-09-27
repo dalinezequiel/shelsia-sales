@@ -25,8 +25,7 @@ class UpdateCustomerRequest extends FormRequest
             'name' => 'required',
             'surname' => 'required',
             'gender' => 'required',
-            'phone' => 'required',
-            'email' => 'required'
+            'phone' => 'required'
         ];
     }
 
