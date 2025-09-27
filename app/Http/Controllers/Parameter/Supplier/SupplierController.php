@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Parameter\Supplier;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreSupplierRequest;
 use App\Models\Supplier\Supplier;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -34,13 +35,8 @@ class SupplierController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreSupplierRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'surname' => 'required'
-        ]);
-
         Supplier::create([
             'name' => $request->name,
             'surname' => $request->surname,
