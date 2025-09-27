@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Parameter\Supplier;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSupplierRequest;
+use App\Http\Requests\UpdateSupplierRequest;
 use App\Models\Supplier\Supplier;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -69,13 +70,8 @@ class SupplierController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Supplier $supplier)
+    public function update(UpdateSupplierRequest $request, Supplier $supplier)
     {
-        $request->validate([
-            'name' => 'required',
-            'surname' => 'required'
-        ]);
-
         $supplier->update([
             'name' => $request->input('name'),
             'surname' => $request->input('surname'),

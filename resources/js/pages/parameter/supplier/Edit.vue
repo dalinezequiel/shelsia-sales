@@ -76,15 +76,15 @@ const breadcrumbs: BreadcrumbItem[] = [
                     <form @submit.prevent="submit" class="space-y-6">
                         <div class="grid gap-2">
                             <Label for="name">Nome</Label>
-                            <Input id="name" v-model="form.name" class="mt-1 block w-full" required autocomplete="name"
+                            <Input id="name" v-model="form.name" class="mt-1 block w-full" autocomplete="name"
                                 placeholder="Nome" />
                             <InputError :message="form.errors.name" class="mt-2" />
                         </div>
 
                         <div class="grid gap-2">
                             <Label for="surname">Abreviatura/ Apelido</Label>
-                            <Input id="surname" v-model="form.surname" class="mt-1 block w-full" required
-                                autocomplete="surname" placeholder="Abreviatura ou apelido" />
+                            <Input id="surname" v-model="form.surname" class="mt-1 block w-full" autocomplete="surname"
+                                placeholder="Abreviatura ou apelido" />
                             <InputError :message="form.errors.surname" class="mt-2" />
                         </div>
 
@@ -106,14 +106,14 @@ const breadcrumbs: BreadcrumbItem[] = [
                         <div class="grid lg:grid-cols-2 lg:gap-4 ">
                             <div class="grid gap-2 mb-6 lg:mb-0">
                                 <Label for="phone">Telefone</Label>
-                                <Input id="phone" v-model="form.phone" type="number" class="mt-1 block w-full" required
+                                <Input id="phone" v-model="form.phone" type="number" class="mt-1 block w-full"
                                     autocomplete="phone" placeholder="Telefone ex: +258 xx xxxx xxx" />
                                 <InputError :message="form.errors.phone" class="mt-2" />
                             </div>
 
                             <div class="grid gap-2">
                                 <Label for="email">Email</Label>
-                                <Input id="email" v-model="form.email" type="email" class="mt-1 block w-full" required
+                                <Input id="email" v-model="form.email" type="email" class="mt-1 block w-full"
                                     autocomplete="email" placeholder="Email" />
                                 <InputError :message="form.errors.email" class="mt-2" />
                             </div>
@@ -121,8 +121,8 @@ const breadcrumbs: BreadcrumbItem[] = [
 
                         <div class="grid gap-2">
                             <Label for="address">Endereço</Label>
-                            <Input id="address" v-model="form.address" class="mt-1 block w-full" required
-                                autocomplete="username" placeholder="Endereço" />
+                            <Input id="address" v-model="form.address" class="mt-1 block w-full" autocomplete="username"
+                                placeholder="Endereço" />
                             <InputError :message="form.errors.address" class="mt-2" />
                         </div>
 
