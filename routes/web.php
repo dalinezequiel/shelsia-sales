@@ -18,23 +18,24 @@ Route::get('/', function () {
     return Inertia::render('auth/Login');
 })->name('login');
 
-Route::resource('dashboard', DashboardController::class)->middleware(['auth', 'verified']);
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::resource('dashboard', DashboardController::class);
+    Route::resource('products', ProductController::class);
+    Route::post('products/photo', [ProductController::class, 'photo']);
 
-Route::resource('products', ProductController::class);
-Route::post('products/photo', [ProductController::class, 'photo']);
+    Route::resource('finances', FinanceController::class);
+    Route::resource('sales', SalesController::class);
+    Route::get('transactions/pos', [SalesController::class, 'pos'])->name('sales.pos');
 
-Route::resource('finances', FinanceController::class);
-Route::resource('sales', SalesController::class);
-Route::get('transactions/pos', [SalesController::class, 'pos'])->name('sales.pos');
-
-Route::resource('analysis', AnalysisController::class);
-Route::prefix('parameters')->group(function () {
-    Route::resource('/customers', CustomerController::class);
-    Route::resource('/suppliers', SupplierController::class);
-    Route::resource('/units', UnitController::class);
-    Route::resource('/product_categories', ProductCategory::class);
-    Route::resource('/payment_methods', PaymentMethod::class);
-    Route::resource('/periods', PeriodController::class);
+    Route::resource('analysis', AnalysisController::class);
+    Route::prefix('parameters')->group(function () {
+        Route::resource('/customers', CustomerController::class);
+        Route::resource('/suppliers', SupplierController::class);
+        Route::resource('/units', UnitController::class);
+        Route::resource('/product_categories', ProductCategory::class);
+        Route::resource('/payment_methods', PaymentMethod::class);
+        Route::resource('/periods', PeriodController::class);
+    });
 });
 
 require __DIR__ . '/settings.php';
