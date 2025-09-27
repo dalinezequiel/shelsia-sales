@@ -46,7 +46,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                         <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Nome</dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{ props.supplier.name
-                            }}</dd>
+                                }}</dd>
                         </div>
                         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Apelido</dt>
@@ -57,7 +57,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                             <dt class="text-sm font-medium text-gray-500">Gênero</dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{
                                 gender(props.supplier.gender)
-                            }}
+                                }}
                             </dd>
                         </div>
                         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -100,7 +100,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                 </svg>
                 Voltar
                 </Link>
-                <Button id="printButton" @click="printButton('printableArea')" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border cursor-pointer
+                <Button id="printButton" @click="printButton" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border cursor-pointer
                     border-gray-200 bg-gray-900 text-white shadow-2xs hover:shadow-gray-900/20 disabled:opacity-50
                     disabled:pointer-events-none focus:outline-hidden dark:border-neutral-700 dark:text-neutral-300
                     dark:hover:bg-neutral-800 dark:focus:bg-neutral-800">
