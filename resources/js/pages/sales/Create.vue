@@ -87,13 +87,13 @@ const form = useForm({
     customer_name: 'Consumidor final',
     discount: 0.0,
     shipping: 0.0,
-    payment_method_id: props.paymentMethods !== null ?
-        props.paymentMethods.at(0).id : '',
     sale_id: '',
     details: [{
         price: 0.0,
         quantity: 0.0
     }],
+    payment_method_id: props.paymentMethods.length !== 0 ?
+        props.paymentMethods.at(0).id : 0,
     status: 'paid',
     can_update_stock: false
 });
@@ -118,7 +118,11 @@ const submit = () => {
             onError: () => toast.error('Ocorreu um erro ao tentar realizar venda.')
         });
     } else {
-        toast.warning('O carrinho está vazio.');
+        toast.warning('Nenhum item está adicionado no carrinho.');
+    }
+
+    if (form.payment_method_id === 0) {
+        toast.warning('Forma de pagamento não informado.');
     }
 };
 
