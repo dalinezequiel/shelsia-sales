@@ -101,7 +101,6 @@ function product_list(product: Product) {
                         product.sale_price }}</p>
                 </div>
             </div>
-            {{ product.available_stock }}
         </div>
     </div>
 

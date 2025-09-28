@@ -130,6 +130,7 @@ class SalesController extends Controller
                     'number_of_sales' => $group->sum('number_of_sales')
                 ];
         })->values();
+        // dd($groupByProduct);
         return $groupByProduct;
     }
 
