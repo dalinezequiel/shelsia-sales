@@ -4,17 +4,6 @@ import { ref } from 'vue';
 import { toast } from 'vue-sonner';
 import { store } from '@/store'
 
-const quantity = ref(1);
-
-function increment() {
-    quantity.value++;
-}
-
-function decrement() {
-    if (quantity.value > 1) {
-        quantity.value--;
-    }
-}
 
 interface Product {
     id: number;
@@ -24,12 +13,28 @@ interface Product {
     image: string;
 }
 
-defineProps({
+const props = defineProps({
     product: {
         type: Object,
         required: true
     }
 })
+
+const quantity = ref(1);
+
+function increment() {
+    if (quantity.value < props.product.available_stock) {
+        quantity.value++;
+    } else {
+        toast.warning('Estoque insuficiênte para continuar, verifique!')
+    }
+}
+
+function decrement() {
+    if (quantity.value > 1) {
+        quantity.value--;
+    }
+}
 
 function product_list(product: Product) {
     const total = quantity.value * product.price
@@ -96,6 +101,7 @@ function product_list(product: Product) {
                         product.sale_price }}</p>
                 </div>
             </div>
+            {{ product.available_stock }}
         </div>
     </div>
 
