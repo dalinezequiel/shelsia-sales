@@ -470,13 +470,6 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                             <Check width="18" height="18" color="#3560BD"
                                                                 class="transition-all" />
                                                         </button>
-
-                                                        <button type="button"
-                                                            @click="updateSale(sale.id, Status.CANCELLED)"
-                                                            class="inline-flex p-2 items-center cursor-pointer rounded-md border border-gray-200 hover:bg-[#F5F0F0] hover:border-[#F5F0F0] text-sm font-medium text-red-600 dark:text-red-500">
-                                                            <Trash2 width="18" height="18" color="#C80909"
-                                                                class="transition-all" />
-                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
