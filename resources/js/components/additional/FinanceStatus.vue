@@ -8,8 +8,10 @@ defineProps({
     }
 });
 
-const percents = (total: number, total_per_situation: number) =>
-    Number.isInteger(total_per_situation * 100) ? (total_per_situation * 100) / total : 0;
+const percents = (total: number, total_per_situation: number): number => {
+    if (total === 0) return 0;
+    return Number.isInteger(total_per_situation * 100) ? (total_per_situation * 100) / total : 0;
+}
 const applyProgressBar = (number: number) => "width: ".concat(number.toString(), "%");
 
 </script>
