@@ -36,7 +36,7 @@ const each_sale_total = (shipping: number, discount: number, item: any) => {
                 </div>
 
                 <div class="text-green-700 text-2xl dark:text-gray-100">
-                    {{ calculate(indicators.sales.paid.items_to_sum, indicators.finances.income.sum) }}
+                    {{ calculate(indicators.sales.paid.items_to_sum, indicators.finances.income.sum_paid) }}
                 </div>
             </div>
         </div>

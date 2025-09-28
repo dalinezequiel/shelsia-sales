@@ -34,7 +34,8 @@ class DashboardController extends Controller
                 'income' => [
                     'total' => Finance::where('category', 'income')->count(),
                     'paid' => Finance::where('category', 'income')->where('is_paid', true)->count(),
-                    'sum' => Finance::where('category', 'income')->sum('amount')
+                    'sum' => Finance::where('category', 'income')->sum('amount'),
+                    'sum_paid' => Finance::where('category', 'income')->where('is_paid', true)->sum('amount'),
                 ],
                 'late_bills' => [
                     'total' => Finance::where('category', 'expense')->whereDate('due_date', '<', Carbon::now()
